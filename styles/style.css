@@ -1,0 +1,90 @@
+body { 
+	background-color: #95B3D7; /* fallback color if gradients are not supported */
+}
+
+div {
+	position:absolute;
+}
+
+#defaultEm {
+  font-size:1em;
+  float:left;
+  line-height:1;
+  padding:0 0 0 0;
+  visibility:hidden;
+}
+
+.menu {
+	background-color: #4F801F;
+	top:45px;
+	left:5px;
+	width:500px;
+	height:50px;
+	border: 1px solid #4F801F;
+	border-radius: 15px;
+	box-shadow: 5px 5px 2px #888888;
+}
+
+.leftbutton, .rightbutton {
+	position:static;
+	background-color: #E6702A;
+	margin:5px 2px 2px 2px;
+	width:70px;
+	text-align:center;
+	height:25px;
+	border: 1px solid #E6702A;
+	border-radius: 15px;
+	box-shadow: 5px 5px 2px #888888;
+	cursor:default;
+}
+
+.leftbutton {
+	float:left;
+}
+
+.rightbutton {
+	float:right;
+}
+
+.leftbutton:hover {
+	background-color: #4F801F;
+	border:1px solid #4F801F;
+	color:#FFFFFF;
+}
+
+.rightbutton:hover {
+	background-color: #4F801F;
+	border:1px solid #4F801F;
+	color:#FFFFFF;
+}
+
+#logo {
+	position: absolute;
+	left:15px;
+	top:10px;
+}
+
+#menubox {
+	left:115px;
+	top:10px;
+	width:960px;
+	height:50px;
+}
+
+#gridbox {
+	left:115px;
+	top:70px;
+	width:960px;
+	height:540px;
+	border:solid 1px black;
+	background-color:#CCCCCC;
+}
+
+#advertbox {
+	left:1085px;
+	top:10px;
+	width:160px;
+	height:600px;
+	background-color: red;
+	border:solid 1px black;
+}
