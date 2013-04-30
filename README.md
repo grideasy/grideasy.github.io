@@ -1,0 +1,1 @@
+GridEasy is a simple basic application to design responsive websites based on fluid grids.
