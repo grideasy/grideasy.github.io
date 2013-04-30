@@ -6,6 +6,17 @@ div {
 	position:absolute;
 }
 
+select {
+	margin:10px 0px 10px 2px;
+	border:solid black 1px;
+	border-radius: 5px;
+	width:40px;
+}
+
+#rowH {
+	width:50px;
+}
+
 #defaultEm {
   font-size:1em;
   float:left;
@@ -14,17 +25,37 @@ div {
   visibility:hidden;
 }
 
-.menu {
-	background-color: #4F801F;
-	top:45px;
-	left:5px;
-	width:500px;
-	height:50px;
-	border: 1px solid #4F801F;
-	border-radius: 15px;
-	box-shadow: 5px 5px 2px #888888;
+.close {
+	position:static;
+	float:right;
+	margin: 25px 10px 10px 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor:default;
 }
 
+.close:hover {
+	color:#FFFFFF;
+}
+
+.menu {
+	background-color: #E6702A;
+	top:45px;
+	left:5px;
+	width:850px;
+	height:50px;
+	border: 1px solid #E6702A;
+	border-radius: 15px;
+	box-shadow: 5px 5px 2px #888888;
+	visibility:hidden;
+}
+
+.menu label {
+	margin-left: 10px;
+}
+
+.menu .after {
+	margin-left: 1px;
+}
 .leftbutton, .rightbutton {
 	position:static;
 	background-color: #E6702A;

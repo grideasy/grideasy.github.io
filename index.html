@@ -6,6 +6,8 @@
 		<link rel=stylesheet href="styles/style.css" type="text/css">
 		<script type="text/javascript" src="scripts/project.js"></script>
 		<script type="text/javascript" src="scripts/project_functions.js"></script>
+		<script type="text/javascript" src="scripts/events.js"></script>
+		<script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
 		<script>
 			window.onload=main;
 		</script>
@@ -27,16 +29,92 @@
 			<div id="butsave" class="rightbutton">Save</div>
 			<div id="butopen" class="rightbutton">Open</div>
 			<div id="butcreate" class="rightbutton">Create</div>
+			<!--  *****************menus for each button *********************-->
 			<div id="menugrid" class="menu">
+				<label for "Ncols">No&#772; of Cols</label>
+				<select id="Ncols">
+					<option>1</option>
+					<option>2</option>
+					<option selected="selected">3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>15</option>
+					<option>16</option>
+				</select>
+				<label for "TMarg">Top Margin</label>
+				<select id="TMarg">
+					<option>1</option>
+					<option selected="selected">2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>15</option>
+				</select>
+				<label for "TMarg"  class="after">%</label>
+				<label for "SMargs">Side Margins</label>
+				<select id="SMargs">
+					<option>1</option>
+					<option selected="selected">2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>15</option>
+				</select>
+				<label for "SMargs"  class="after">%</label>
+				<label for "Gutts">Gutters</label>
+				<select id="Gutts">
+					<option>1</option>
+					<option selected="selected">2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<label for "Gutts"  class="after">%</label>
+				<label for "rowsonoff">Rows</label><input type="checkbox" name="rowsonoff" id="rowsonoff" value="off" checked=false>
+				<label for "rowH">Row Ratio</label>
+				<select id="rowH">
+					<option selected="selected">1</option>
+					<option>0.5</option>
+					<option>0.25</option>
+				</select>
+				<div class="close" alt="close" title="close">X</div>
+			</div>
+			<div id="menucontainer" class="menu">
 				
 			</div>
-			<div id="menucontainer" class="menu">Container</div>
 			<div id="menucontent" class="menu">Content</div>
 			<div id="menustate" class="menu">State</div>
 			<div id="menuhelp" class="menu">Help</div>
 			<div id="menusave" class="menu">Save</div>
 			<div id="menuopen" class="menu">Open</div>
-			<div id="menucreate" class="menu">Create</div>
+			<div id="menucreate" class="menu">Create</div>  
 		</div>
 		
 		<div id="advertbox"></div>
