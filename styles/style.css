@@ -1,5 +1,5 @@
 body { 
-	background-color: #95B3D7; /* fallback color if gradients are not supported */
+	background-color: #95B3D7;
 }
 
 div {
@@ -10,11 +10,6 @@ select {
 	margin:10px 0px 10px 2px;
 	border:solid black 1px;
 	border-radius: 5px;
-	width:40px;
-}
-
-#rowH {
-	width:50px;
 }
 
 #defaultEm {
@@ -56,6 +51,7 @@ select {
 .menu .after {
 	margin-left: 1px;
 }
+
 .leftbutton, .rightbutton {
 	position:static;
 	background-color: #E6702A;
@@ -89,6 +85,27 @@ select {
 	color:#FFFFFF;
 }
 
+.smallbutton {
+	position:static;
+	float:right;
+	background-color: #C6500A;
+	margin:10px 15px 2px 10px;
+	color:#FFFFFF;
+	width:80px;
+	text-align:center;
+	height:20px;
+	border: 1px solid #C6500A;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px #888888;
+	cursor:default;
+}
+
+.smallbutton:hover {
+	background-color: #4F801F;
+	border:1px solid #4F801F;
+	color:#FFFFFF;
+}
+
 #logo {
 	position: absolute;
 	left:15px;
@@ -102,20 +119,127 @@ select {
 	height:50px;
 }
 
-#gridbox {
+#gridframe {
 	left:115px;
 	top:70px;
-	width:960px;
+	width:979px;
 	height:540px;
 	border:solid 1px black;
+	background-color:#EEEEEE;
+	overflow: auto;
+}
+
+#gridbox {
+	left:0px;
+	top:0px;
+	width:960px;
+	height:1920px;
 	background-color:#CCCCCC;
 }
 
+#menugrid select {
+	width:40px;
+	text-align: center;
+}
+
+#rowH {
+	width:100px;
+}
+
+#menustate {
+	width:350px;
+}
+
+#stateedit {
+	top:100px;
+	left:5px;
+	width:850px;
+	height:400px;
+	border:solid 1px black;
+	background-color:#E6702A;
+	border: 1px solid #E6702A;
+	border-radius: 15px;
+	box-shadow: 5px 5px 2px #888888;
+	visibility:hidden;
+}
+
+#statetable input:hover {
+	background-color:#FFFFFF;
+}
+
+#stateback {
+	top:5%;
+	margin-left:5%;
+	width:90%;
+	height:75%;
+	background-color:#FFFFFF;
+	border-radius: 10px;
+}
+
+
+#tablemenu {
+	top:80%;
+	margin-left:5%;
+	width:90%;
+	height:50px;
+}
+
+.statecontent {
+	display:block;
+	margin:2px 2px 2px 15px;
+	width:70%;
+	background-color:#DDDDDD;
+	border: 1px solid black;
+	float:left;
+	padding-left: 4px;
+}
+
+.statebreak {
+	display:block;
+	margin:2px 2px 2px 2px;
+	width:20%;
+	background-color:#DDDDDD;
+	border: 1px solid black;
+	float:left;
+	padding-right: 4px;
+	text-align: right;
+}
+
+#addstate, #delstate {
+	visibility:hidden;
+}
+
+#content, #break {
+	background-color:#666666;
+	color:#FFFFFF;
+}
+
+.statebutton {
+	position:static;
+	background-color: #C6500A;
+	margin:5px 2px 2px 6px;
+	width:150px;
+	text-align:center;
+	height:25px;
+	border: 1px solid #C6500A;
+	border-radius: 15px;
+	box-shadow: 5px 5px 2px #888888;
+	cursor:default;
+	float:left;
+}
+
+.statebutton:hover {
+	background-color: #4F801F;
+	border:1px solid #4F801F;
+	color:#FFFFFF;
+}
+
 #advertbox {
-	left:1085px;
+	left:1185px;
 	top:10px;
 	width:160px;
 	height:600px;
 	background-color: red;
 	border:solid 1px black;
+	
 }

@@ -15,10 +15,12 @@
 	<body>
 		<span id="defaultEm">M</span>
 		<img id="logo" src="images/logo.jpg">
+		<div id="gridframe">
 		<div id="gridbox">
 			<div id="topmargin"></div>
 			<div id="leftmargin"></div>
 			<div id="rightmargin"></div>
+		</div>
 		</div>
 		<div id="menubox">
 			<div id="butgrid" class="leftbutton">Grid</div>
@@ -90,6 +92,7 @@
 				<label for "SMargs"  class="after">%</label>
 				<label for "Gutts">Gutters</label>
 				<select id="Gutts">
+					<option>0.5</option>
 					<option>1</option>
 					<option selected="selected">2</option>
 					<option>3</option>
@@ -100,9 +103,11 @@
 				<label for "rowsonoff">Rows</label><input type="checkbox" name="rowsonoff" id="rowsonoff" value="off" checked=false>
 				<label for "rowH">Row Ratio</label>
 				<select id="rowH">
-					<option selected="selected">1</option>
-					<option>0.5</option>
 					<option>0.25</option>
+					<option>0.5</option>
+					<option>0.62</option>
+					<option selected="selected">1</option>
+					<option>1.62</option>
 				</select>
 				<div class="close" alt="close" title="close">X</div>
 			</div>
@@ -110,12 +115,37 @@
 				
 			</div>
 			<div id="menucontent" class="menu">Content</div>
-			<div id="menustate" class="menu">State</div>
+			<div id="menustate" class="menu">
+				<label for "States">State</label>
+				<select id="States">
+					
+				</select>
+				<div class="close" alt="close" title="close">X</div>
+				<div id="editstates" class="smallbutton">Edit States</div>
+				
+			</div>
 			<div id="menuhelp" class="menu">Help</div>
 			<div id="menusave" class="menu">Save</div>
 			<div id="menuopen" class="menu">Open</div>
-			<div id="menucreate" class="menu">Create</div>  
+			<div id="menucreate" class="menu">Create</div> 
+			
+			<div id="stateedit">
+				<div id="stateback">
+					<p><span id="content" class="statecontent">State Content</span>
+					<span id="break" class="statebreak">Max Size Ems &lt; 60</span></p>
+					<span id="statetable">
+					</span>
+					
+				</div>
+				<div id="tablemenu">
+					<div class="close" alt="close" title="close">X</div>
+					<div id="addstate" class="statebutton" row="0"> Add Row Below </div>
+					<div id="delstate" class="statebutton" row="0">Delete Row </div>
+				</div>
+			</div> 
 		</div>
+		
+		
 		
 		<div id="advertbox"></div>
 	</body>
