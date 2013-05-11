@@ -8,12 +8,17 @@ function addListeners() {
 	$('SMargs').addEventListener('change', function() {setSMargs(this)}, false);
 	$('Gutts').addEventListener('change', function() {setGutts(this)}, false);
 	$('rowH').addEventListener('change', function() {setrowH(this)}, false);
-	$('rowsonoff').addEventListener('change', function() {rowsonoff(this)}, false);
+	$('rowsonoff').addEventListener('change', function() {setrowsonoff(this)}, false);
 	
 	$("butcontainer").addEventListener('click', containermenu, false);
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
 	
+	//State menu listeners ***************************************************
+	$("States").addEventListener('change', function() {setTheState(this)});
+	$("editstates").addEventListener('click', function() {$("stateedit").style.visibility="visible"}, false);
+	$("addstate").addEventListener('click', addrow, false);
+	$("delstate").addEventListener('click', delrow, false);
 	//**************all menus************************
 	var closers=getElementsByClassName("close");
 	for(var i=0; i<closers.length; i++)
@@ -52,8 +57,93 @@ function setSMargs(item) {
 
 function setGutts(item) {
 	cleargridbox();
-	Project.states[Project.currentstate].grid.gutters=parseInt(item.options[item.selectedIndex].text);
+	Project.states[Project.currentstate].grid.gutters=parseFloat(item.options[item.selectedIndex].text);
 	buildGrid();
+}
+
+function setrowsonoff(item) {
+	cleargridbox();
+	Project.states[Project.currentstate].grid.rowson=item.checked;
+	buildGrid();
+}
+
+function setrowH(item) {
+	cleargridbox();
+	Project.states[Project.currentstate].grid.rowratio=parseFloat(item.options[item.selectedIndex].text);
+	buildGrid();
+}
+
+//state menu listeners *************************************
+
+function statemenu() {
+	clearAllMenus();
+	$('menustate').style.visibility="visible";
+	$('butstate').style.height='50px';
+}
+
+function setTheState(item) {
+	var ratios=[]
+	ratios[25]=0;
+	ratios[50]=1;
+	ratios[62]=2;
+	ratios[100]=3;
+	ratios[162]=4;
+	cleargridbox();
+	Project.currentstate=item.selectedIndex;
+	var grid=Project.states[Project.currentstate].grid;
+	//Grid Menu Options Set *********************************************
+	$('Ncols').options[grid.columns-1].selected="selected";
+	$('TMarg').options[grid.topMargin-1].selected="selected";
+	$('SMargs').options[grid.sideMargins-1].selected="selected";
+	$('Gutts').options[Math.floor(grid.gutters)].selected="selected";
+	$('rowH').options[ratios[grid.rowratio*100]].selected="selected";
+	$('rowsonoff').checked=grid.rowson;
+	
+	buildGrid();
+}
+
+function addrow() {
+	if(Project.states.length>7) {
+		alert("Maximum of 8 states already reached.");
+		return;
+	}
+	var r=parseInt($("addstate").row);
+	var state=new State();
+	state.name="New_State"+(Project.nsc++);
+	state.grid.width=Math.round((Project.states[r].grid.width+Project.states[r+1].grid.width)*50)/100;
+	state.grid.height=Project.height/Project.dfs;;
+	state.grid.columns=Project.states[r].grid.columns;
+	state.grid.rows=0;
+	state.grid.rowratio=1;
+	state.grid.rowson=false;
+	state.grid.topMargin=2;
+	state.grid.sideMargins=2;
+	state.grid.gutters=2;
+	Project.states.push(state);
+	Project.states.sort(compareBreaks);
+	if(Project.currentstate>r) {
+		Project.currentstate+=1;
+	}
+	setStateHTML();
+	buildStateTable();
+}
+
+function delrow() {
+	var r=parseInt($("delstate").row);
+	var del=confirm("Delete state "+Project.states[r].name+"?")
+	if(del) {
+		
+		Project.states.splice(r,1);
+		Project.states.sort(compareBreaks);
+		if(Project.currentstate>r) {
+			Project.currentstate-=1;
+		}
+		setStateHTML();
+		buildStateTable();
+	}
+	else {
+		return;
+	}
 }
 
 function containermenu() {
@@ -68,11 +158,7 @@ function contentmenu() {
 	$('butcontent').style.height='50px';
 }
 
-function statemenu() {
-	clearAllMenus();
-	$('menustate').style.visibility="visible";
-	$('butstate').style.height='50px';
-}
+
 
 function clearAllMenus() {
 	var Mbuttons=getElementsByClassName("leftbutton");
@@ -85,4 +171,5 @@ function clearAllMenus() {
 	{
 		menus[i].style.visibility="hidden";
 	}
+	$("stateedit").style.visibility="hidden";
 }
