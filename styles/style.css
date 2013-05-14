@@ -12,6 +12,14 @@ select {
 	border-radius: 5px;
 }
 
+textarea {
+	width:90%;
+	height:80%;
+	margin-left:5%;
+	margin-top:2%;
+	resize:none;
+}
+
 #defaultEm {
   font-size:1em;
   float:left;
@@ -146,11 +154,19 @@ select {
 	width:100px;
 }
 
+#menucontainer {
+	width:480px;
+}
+
+
+
 #menustate {
 	width:350px;
 }
 
-#stateedit {
+
+
+.edit {
 	top:100px;
 	left:5px;
 	width:850px;
@@ -163,11 +179,16 @@ select {
 	visibility:hidden;
 }
 
-#statetable input:hover {
+#menucontent {
+	top:45px;
+	height:450px;
+}
+
+#statetable input:hover, #contenttable input:hover {
 	background-color:#FFFFFF;
 }
 
-#stateback {
+.back {
 	top:5%;
 	margin-left:5%;
 	width:90%;
@@ -177,7 +198,7 @@ select {
 }
 
 
-#tablemenu {
+.tablemenu {
 	top:80%;
 	margin-left:5%;
 	width:90%;
@@ -214,7 +235,7 @@ select {
 	color:#FFFFFF;
 }
 
-.statebutton {
+.editbutton {
 	position:static;
 	background-color: #C6500A;
 	margin:5px 2px 2px 6px;
@@ -228,7 +249,7 @@ select {
 	float:left;
 }
 
-.statebutton:hover {
+.editbutton:hover {
 	background-color: #4F801F;
 	border:1px solid #4F801F;
 	color:#FFFFFF;

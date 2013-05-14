@@ -6,7 +6,9 @@
 		<link rel=stylesheet href="styles/style.css" type="text/css">
 		<script type="text/javascript" src="scripts/project.js"></script>
 		<script type="text/javascript" src="scripts/project_functions.js"></script>
+		<script type="text/javascript" src="scripts/container.js"></script>
 		<script type="text/javascript" src="scripts/events.js"></script>
+		<script type="text/javascript" src="scripts/dropcontent.js"></script>
 		<script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
 		<script>
 			window.onload=main;
@@ -32,8 +34,9 @@
 			<div id="butopen" class="rightbutton">Open</div>
 			<div id="butcreate" class="rightbutton">Create</div>
 			<!--  *****************menus for each button *********************-->
+			<!--  *****************grid *********************-->
 			<div id="menugrid" class="menu">
-				<label for "Ncols">No&#772; of Cols</label>
+				<label for = "Ncols">No&#772; of Cols</label>
 				<select id="Ncols">
 					<option>1</option>
 					<option>2</option>
@@ -52,7 +55,7 @@
 					<option>15</option>
 					<option>16</option>
 				</select>
-				<label for "TMarg">Top Margin</label>
+				<label for = "TMarg">Top Margin</label>
 				<select id="TMarg">
 					<option>1</option>
 					<option selected="selected">2</option>
@@ -70,8 +73,8 @@
 					<option>14</option>
 					<option>15</option>
 				</select>
-				<label for "TMarg"  class="after">%</label>
-				<label for "SMargs">Side Margins</label>
+				<label for = "TMarg"  class="after">%</label>
+				<label for = "SMargs">Side Margins</label>
 				<select id="SMargs">
 					<option>1</option>
 					<option selected="selected">2</option>
@@ -89,8 +92,8 @@
 					<option>14</option>
 					<option>15</option>
 				</select>
-				<label for "SMargs"  class="after">%</label>
-				<label for "Gutts">Gutters</label>
+				<label for = "SMargs"  class="after">%</label>
+				<label for = "Gutts">Gutters</label>
 				<select id="Gutts">
 					<option>0.5</option>
 					<option>1</option>
@@ -99,9 +102,9 @@
 					<option>4</option>
 					<option>5</option>
 				</select>
-				<label for "Gutts"  class="after">%</label>
-				<label for "rowsonoff">Rows</label><input type="checkbox" name="rowsonoff" id="rowsonoff" value="off" checked=false>
-				<label for "rowH">Row Ratio</label>
+				<label for = "Gutts"  class="after">%</label>
+				<label for = "rowsonoff">Rows</label><input type="checkbox" name="rowsonoff" id="rowsonoff" value="off" checked=false>
+				<label for = "rowH">Row Ratio</label>
 				<select id="rowH">
 					<option>0.25</option>
 					<option>0.5</option>
@@ -111,12 +114,28 @@
 				</select>
 				<div class="close" alt="close" title="close">X</div>
 			</div>
+			<!--  *****************container *********************-->
 			<div id="menucontainer" class="menu">
-				
+				<div class="close" alt="close" title="close">X</div>
+				<div id="createcontainer" class="smallbutton">New</div>
+				<div id="showcontainer" class="smallbutton">Show</div>
+				<div id="hidecontainer" class="smallbutton">Hide</div>
+				<div id="placecontainer" class="smallbutton">Place</div>
 			</div>
-			<div id="menucontent" class="menu">Content</div>
+			<!--  *****************content *********************-->
+			<div id="menucontent" class="edit">
+				<div class="back">
+					<span>&rArr;</span><span>&lArr;</span>
+					<textarea id="drop_zone">jhfgjkl;hkljl;jkl;jk</textarea>
+					
+				</div>
+				<div class="tablemenu">
+					<div class="close" alt="close" title="close">X</div>
+				</div>
+			</div>
+			<!--  *****************state *********************-->
 			<div id="menustate" class="menu">
-				<label for "States">State</label>
+				<label for = "States">State</label>
 				<select id="States">
 					
 				</select>
@@ -129,20 +148,21 @@
 			<div id="menuopen" class="menu">Open</div>
 			<div id="menucreate" class="menu">Create</div> 
 			
-			<div id="stateedit">
-				<div id="stateback">
-					<p><span id="content" class="statecontent">State Content</span>
+			<div id="stateedit" class="edit">
+				<div class="back">
+					<p><span id="content" class="statecontent">State Name</span>
 					<span id="break" class="statebreak">Max Size Ems &lt; 60</span></p>
 					<span id="statetable">
 					</span>
 					
 				</div>
-				<div id="tablemenu">
+				<div class="tablemenu">
 					<div class="close" alt="close" title="close">X</div>
-					<div id="addstate" class="statebutton" row="0"> Add Row Below </div>
-					<div id="delstate" class="statebutton" row="0">Delete Row </div>
+					<div id="addstate" class="editbutton" row="0"> Add Row Below </div>
+					<div id="delstate" class="editbutton" row="0">Delete Row </div>
 				</div>
-			</div> 
+			</div>
+			
 		</div>
 		
 		

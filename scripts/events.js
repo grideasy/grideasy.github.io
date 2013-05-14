@@ -14,11 +14,32 @@ function addListeners() {
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
 	
+	//Container menu listeners ***************************************************
+	//$("States").addEventListener('change', function() {setTheState(this)});
+	//$("editstates").addEventListener('click', function() {$("stateedit").style.visibility="visible"}, false);
+	//$("addstate").addEventListener('click', addrow, false);
+	//$("delstate").addEventListener('click', delrow, false);
+		
 	//State menu listeners ***************************************************
-	$("States").addEventListener('change', function() {setTheState(this)});
+	$("States").addEventListener('change', function() {setTheState(this)}, false);
 	$("editstates").addEventListener('click', function() {$("stateedit").style.visibility="visible"}, false);
 	$("addstate").addEventListener('click', addrow, false);
 	$("delstate").addEventListener('click', delrow, false);
+	
+	//drop_zone listeners *************************************************
+	if(window.File && window.FileReader && window.FileList && window.Blob) {
+		dropZone = $('drop_zone');
+		dropZone.value="";
+		dropZone.addEventListener('dragover', handleDragOver, false);
+		dropZone.addEventListener('drop', handleFileSelect, false);
+		dropZone.addEventListener('click', storeCursorPosition, false);
+		dropZone.addEventListener('keyup', storeCursorPosition, false);
+	}
+	else {
+		
+
+	}
+	
 	//**************all menus************************
 	var closers=getElementsByClassName("close");
 	for(var i=0; i<closers.length; i++)
@@ -29,7 +50,19 @@ function addListeners() {
 
 //event listener functions ****************************
 
-
+//drop_zone listeners **********************************************************
+function storeCursorPosition() {
+	var dropZone=$('drop_zone');
+	dropZone.cursor=dropZone.selectionStart;
+	var upto=dropZone.value.slice(0,dropZone.cursor);
+	var after=dropZone.value.slice(dropZone.cursor+1);
+	var re=/\n/g;
+	var uarray=re.exec(upto);
+	dropZone.first=re.lastIndex;
+	re=/\n/;
+	dropZone.last=after.search(re)+dropZone.cursor;
+	console.log(dropZone.first,dropZone.last);
+}
 //grid menu listeners _______________________
 function gridmenu() {
 	clearAllMenus();
@@ -146,20 +179,25 @@ function delrow() {
 	}
 }
 
+//container menu listeners *************************************
 function containermenu() {
 	clearAllMenus();
 	$('menucontainer').style.visibility="visible";
 	$('butcontainer').style.height='50px';
 }
 
+//content menu listeners *************************************
 function contentmenu() {
 	clearAllMenus();
 	$('menucontent').style.visibility="visible";
 	$('butcontent').style.height='50px';
 }
 
+function setTheContent(item) {
+	$("contentedit").style.visibility="visible"
+}
 
-
+// All mernus ********************************************************
 function clearAllMenus() {
 	var Mbuttons=getElementsByClassName("leftbutton");
 	for(var i=0; i<Mbuttons.length; i++)
@@ -171,5 +209,9 @@ function clearAllMenus() {
 	{
 		menus[i].style.visibility="hidden";
 	}
-	$("stateedit").style.visibility="hidden";
+	var Edits=getElementsByClassName("edit");
+	for(var i=0; i<Edits.length; i++)
+	{
+		Edits[i].style.visibility="hidden";
+	}
 }

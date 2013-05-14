@@ -10,7 +10,8 @@ Project={
 	default_states:["Smart Phone","Tablet","Computer"],
 	default_breaks:[[28.75,1],[40.5,3]],  //breakpoints in ems and number of columns
 	//breaks:[[28.75,1],[40.5,3]], //active breakpoints in ems and number of columns
-	staterows:3 //number of rows in state table containing states;
+	staterows:3, //number of rows in state table containing states;
+	content:"" //content as text
 }
 
 function State()
@@ -40,12 +41,8 @@ function Container(id)  //container object storing data that does not change wit
 	this.bottom_margin=false;
 	this.starts=[];  //array of column number for left hand edge in order of states
 	this.widths=[]; //array number of columns container covers in order of states
-	this.height; //height of container if set measured as a percentage. 
-	this.content; //content object
-}
-
-function Content() {
-	
+	this.height=0; //height of container if set measured as a percentage. 
+	this.content; //content text HTML format
 }
 
 function GridBox(left,top,width,height,colour)

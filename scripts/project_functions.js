@@ -3,6 +3,8 @@ function $(id) {
 }
 
 function main() {
+	C=new Container("A");
+	B=new Box(C);
 	setMenuDefaults();
 	addListeners();
 	Project.dfs=getDefaultFontSize();
@@ -12,6 +14,7 @@ function main() {
 	setStateHTML();
 	buildStateTable();
 	buildGrid();
+	//console.log(JSON.stringify(Project));
 }
 
 function setMenuDefaults() {
@@ -25,12 +28,14 @@ function setMenuDefaults() {
 }
 
 function getDefaultFontSize() {
- 	parent=document.body;
+ 	var parentB=document.body;
  	var M=$('defaultEm');
  	var fs=M.offsetHeight;
-	parent.removeChild(M);
+	parentB.removeChild(M);
  	return fs;
 }
+
+//States functions *****************************************************************
 
 function setStates() {
 	for(var i=0;i<Project.default_states.length;i++) {
@@ -113,6 +118,23 @@ function unsetRow(t) {
 	else {
 		$("addstate").style.visibility="hidden";
 		$("delstate").style.visibility="hidden";
+	}
+}
+
+//Container functions *****************************************************************
+
+//Content functions *****************************************************************
+function setContentHTML() {
+	var cHTML="";
+	if(Project.containers.length==0) {
+		$("Contents").style.visibilty="hidden";
+	}
+	else {
+		for(var i=0;i<Project.states.length;i++) {
+			cHTML+="<option>"+Project.states[i].name+"</option>";
+		}
+		$("States").innerHTML=cHTML;
+		$('States').options[Project.currentstate].selected="selected";
 	}
 }
 
