@@ -23,6 +23,10 @@
 			<div id="leftmargin"></div>
 			<div id="rightmargin"></div>
 		</div>
+		<div id="contbox">
+				<div id="topspacer">&nbsp; </div>
+				<div id="leftspacer">&nbsp; </div>
+			</div>
 		</div>
 		<div id="menubox">
 			<div id="butgrid" class="leftbutton">Grid</div>
@@ -34,6 +38,7 @@
 			<div id="butopen" class="rightbutton">Open</div>
 			<div id="butcreate" class="rightbutton">Create</div>
 			<!--  *****************menus for each button *********************-->
+			
 			<!--  *****************grid *********************-->
 			<div id="menugrid" class="menu">
 				<label for = "Ncols">No&#772; of Cols</label>
@@ -103,7 +108,6 @@
 					<option>5</option>
 				</select>
 				<label for = "Gutts"  class="after">%</label>
-				<label for = "rowsonoff">Rows</label><input type="checkbox" name="rowsonoff" id="rowsonoff" value="off" checked=false>
 				<label for = "rowH">Row Ratio</label>
 				<select id="rowH">
 					<option>0.25</option>
@@ -125,11 +129,15 @@
 			<!--  *****************content *********************-->
 			<div id="menucontent" class="edit">
 				<div class="back">
-					<span>&rArr;</span><span>&lArr;</span><span>Show markup</span>
-					<textarea id="drop_zone">jhfgjkl;hkljl;jkl;jk</textarea>
+					<span id="tabright" alt="Tab Right" title="Tab Right">&rArr;</span >
+					<span id="tabback" alt="Tab Back" title="Tab Back">&lArr;</span>
+					<span><input type="checkbox" id="showbreaks"><label for="showbreaks">Show/Hide Container Breaks</label></span>
+					<textarea id="drop_zone"> </textarea>
 					
 				</div>
 				<div class="tablemenu">
+					<div id="pushto" class="editbutton">Send To Containers</div>
+					<div id="pullfrom" class="editbutton">Bring From Containers</div>
 					<div class="close" alt="close" title="close">X</div>
 				</div>
 			</div>

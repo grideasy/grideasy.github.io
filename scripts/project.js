@@ -11,7 +11,8 @@ Project={
 	default_breaks:[[28.75,1],[40.5,3]],  //breakpoints in ems and number of columns
 	//breaks:[[28.75,1],[40.5,3]], //active breakpoints in ems and number of columns
 	staterows:3, //number of rows in state table containing states;
-	content:"" //content as text
+	content:"", //content as text
+	toedge:true //when true containers snap to edges of grid, when false containers snap to semi-gutters around them
 }
 
 function State()
@@ -23,26 +24,19 @@ function State()
 		columns:6,
 		rows:0,
 		rowratio:1,
-		rowson:false,
 		topMargin:2,
 		sideMargins:2,
-		gutters:2
+		gutters:1
 	};
 }	
-
-
 
 function Container(id)  //container object storing data that does not change with states
 {
 	this.id=id;
-	this.left_margin=false;   //container snaps to margins if true otherwise snap to grid
-	this.right_margin=false;
-	this.top_margin=false;
-	this.bottom_margin=false;
-	this.starts=[];  //array of column number for left hand edge in order of states
-	this.widths=[]; //array number of columns container covers in order of states
-	this.height=0; //height of container if set measured as a percentage. 
+	this.start=0;  //start column
+	this.rows=1; //height of container in rows. 
 	this.content; //content text HTML format
+	this.box; //HTML element containing content
 }
 
 function GridBox(left,top,width,height,colour)

@@ -3,8 +3,6 @@ function $(id) {
 }
 
 function main() {
-	C=new Container("A");
-	B=new Box(C);
 	setMenuDefaults();
 	addListeners();
 	Project.dfs=getDefaultFontSize();
@@ -22,9 +20,10 @@ function setMenuDefaults() {
 	$('Ncols').options[5].selected="selected";
 	$('TMarg').options[1].selected="selected";
 	$('SMargs').options[1].selected="selected";
-	$('Gutts').options[2].selected="selected";
+	$('Gutts').options[1].selected="selected";
 	$('rowH').options[3].selected="selected";
-	$('rowsonoff').checked=false;
+	//Content Menu Checkbox;
+	$('showbreaks').checked=false;
 }
 
 function getDefaultFontSize() {
@@ -138,12 +137,66 @@ function setContentHTML() {
 	}
 }
 
+
+function textToHTML(txt) {
+	var TTre, Tre;
+	//remove any white space characters after the last alphanumeric character
+	var endre=/\s*$/
+	txt=txt.replace(endre,"");
+	//Split at line breaks
+	var Nre=/\n+/;
+	var tmparray=txt.split(Nre);
+	for(var i=0;i<tmparray.length;i++) {
+		TTre=/\t\t/g;
+		Tre=/\t/g;
+		if(TTre.test(tmparray[i])) {
+			tmparray[i]=tmparray[i].replace(TTre,"<p>")+"</p>";
+		}
+		else if(Tre.test(tmparray[i])) {
+			tmparray[i]=tmparray[i].replace(Tre,"<h2>")+"</h2>";
+		}
+		else {
+			tmparray[i]="<h1>"+tmparray[i]+"</h1>"
+		}
+	}
+	return tmparray.join("");
+}
+
+function fillCont(C) {
+	//create new containers if there are more from the content than exist
+	var Plen=Project.containers.length;
+	var diff=C.length-Project.containers.length;
+	for(var i=0;i<Plen;i++) {
+		cn=Project.containers[i];
+		cn.content=C[i];
+		setCRBox(cn);
+	}
+	for(var i=Plen; i<diff;i++) {
+		cn=new Container(i);
+		cn.content=C[i];
+		Project.containers.push(cn);
+		Box(cn);
+	}
+	
+}
+
+//Grid functions ***********************************************************************************************
+
 function buildGrid() {
 	var col;
 	var grid=Project.states[Project.currentstate].grid;
 	var gridWHratio=grid.width/grid.height;
 	$("gridbox").style.width=grid.width+"em";
+	$("gridbox").style.height=grid.height+"em";
 	$("gridbox").style.left=((Project.width/Project.dfs)-grid.width)/2+"em";
+	$("contbox").style.width=$("gridbox").style.width;
+	$("contbox").style.left=$("gridbox").style.left;
+	$("contbox").style.height=$("gridbox").style.height;
+	$("topspacer").style.height=(grid.topMargin-grid.gutters)*gridWHratio+"%";
+	$("topspacer").style.backgroundColor="#FF00FF";
+	$("leftspacer").style.width=(grid.sideMargins-grid.gutters)+"%";
+	$("leftspacer").style.height=(100-grid.topMargin*gridWHratio)+"%";
+	$("leftspacer").style.backgroundColor="#0000FF";
 	setBox("topmargin",0,0,100,grid.topMargin*gridWHratio,'#999999');
 	setBox("leftmargin",0,0,grid.sideMargins,100,'#999999');
 	setBox("rightmargin",100-grid.sideMargins,0,grid.sideMargins,100,'#999999');
@@ -158,31 +211,32 @@ function buildGrid() {
 		$('gridbox').appendChild(col);
 		setBox(col.id,cleft,ctop,cwidth,cheight,'#F0AA8C');
 		cleft+=cwidth+2*grid.gutters;
+	}	
+	var rtop=ctop+cwidth*gridWHratio*grid.rowratio;
+	var rheight=2*grid.gutters*gridWHratio;
+	rleft=grid.sideMargins+grid.gutters;
+	rwidth=100-2*rleft;
+	var i=0;
+	while(rtop+rheight<100) {
+		row=document.createElement('div');
+		row.id="row"+(i);
+		$('gridbox').appendChild(row);
+		setBox(row.id,rleft,rtop,rwidth,rheight,'#CCCCCC');
+		rtop+=rheight+cwidth*gridWHratio*grid.rowratio;
+		i++;
 	}
+	grid.rows=i;
 	
-	if(grid.rowson) {
-		var rtop=ctop+cwidth*gridWHratio*grid.rowratio;
-		var rheight=2*grid.gutters*gridWHratio;
-		rleft=grid.sideMargins+grid.gutters;
-		rwidth=100-2*rleft;
-		var i=0;
-		while(rtop+rheight<100) {
-			row=document.createElement('div');
-			row.id="row"+(i);
-			$('gridbox').appendChild(row);
-			setBox(row.id,rleft,rtop,rwidth,rheight,'#CCCCCC');
-			rtop+=rheight+cwidth*gridWHratio*grid.rowratio;
-			i++;
-		}
-		grid.rows=i;
+	for(var i=0;i<Project.containers.length;i++) {
+		setCRBox(Project.containers[i]);
 	}
 	
 	function setBox(id,left,top,width,height,colour) {	
 		var box=$(id).style;
-		box.left=(left*grid.width/100)+"em";
-		box.top=(top*grid.height/100)+"em";
-		box.width=(width*grid.width/100)+"em";
-		box.height=(height*grid.height/100)+"em";
+		box.left=left+"%";
+		box.top=top+"%";
+		box.width=width+"%";
+		box.height=height+"%";
 		box.backgroundColor=colour;		
 	}
 }
@@ -195,11 +249,9 @@ function cleargridbox()
 		col=$("col"+i);
 		col.parentNode.removeChild(col);
 	}
-	if(grid.rowson){
-		for (var i=0;i<grid.rows;i++) {
-			row=$("row"+i);
-			row.parentNode.removeChild(row);
-		}
+	for (var i=0;i<grid.rows;i++) {
+		row=$("row"+i);
+		row.parentNode.removeChild(row);
 	}
 }
 

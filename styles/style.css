@@ -145,6 +145,18 @@ textarea {
 	background-color:#CCCCCC;
 }
 
+#contbox div {
+	position:static;
+}
+#topspacer {
+	width:100%;
+}
+
+#leftspacer {
+	font-size:1pt;
+	float:left;
+}
+
 #menugrid select {
 	width:40px;
 	text-align: center;
@@ -157,7 +169,6 @@ textarea {
 #menucontainer {
 	width:480px;
 }
-
 
 
 #menustate {
@@ -183,6 +194,31 @@ textarea {
 	top:45px;
 	height:450px;
 }
+
+#menucontent span {
+	display:block;
+	float:left;
+	margin-top:-1.5%;
+	margin-left:5%;
+	margin-bottom:-1.5%;
+	font-size:32pt;
+	cursor:default;
+	color:#CCCCCC;
+}
+
+#menucontent label {
+	font-size:12pt;
+}
+
+#menucontent span:hover {
+	color:#000000;
+}
+
+#tabright {
+	margin-left:10%;
+}
+
+
 
 #statetable input:hover, #contenttable input:hover {
 	background-color:#FFFFFF;

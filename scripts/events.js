@@ -1,24 +1,32 @@
 
 function addListeners() {
-
-	// Grid Menu listeners *****************************
+	// Menu listeners ***********************************************
 	$('butgrid').addEventListener('click', gridmenu, false);
-	$('Ncols').addEventListener('change', function() {setNcols(this)}, false);
-	$('TMarg').addEventListener('change', function() {setTMarg(this)}, false);
-	$('SMargs').addEventListener('change', function() {setSMargs(this)}, false);
-	$('Gutts').addEventListener('change', function() {setGutts(this)}, false);
-	$('rowH').addEventListener('change', function() {setrowH(this)}, false);
-	$('rowsonoff').addEventListener('change', function() {setrowsonoff(this)}, false);
-	
 	$("butcontainer").addEventListener('click', containermenu, false);
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
 	
+	//Project Menu listeners *****************************************
+	$('rowH').addEventListener('change', function() {setrowH(this)}, false);
+	
+	// Grid Menu listeners *****************************
+	$('Ncols').addEventListener('change', function() {setNcols(this)}, false);
+	$('TMarg').addEventListener('change', function() {setTMarg(this)}, false);
+	$('SMargs').addEventListener('change', function() {setSMargs(this)}, false);
+	$('Gutts').addEventListener('change', function() {setGutts(this)}, false);
+	
+		
 	//Container menu listeners ***************************************************
 	//$("States").addEventListener('change', function() {setTheState(this)});
 	//$("editstates").addEventListener('click', function() {$("stateedit").style.visibility="visible"}, false);
 	//$("addstate").addEventListener('click', addrow, false);
 	//$("delstate").addEventListener('click', delrow, false);
+	
+	//Content menu listeners *************************************************
+	$("tabright").addEventListener('click', addlevel, false);
+	$("tabback").addEventListener('click', dellevel, false);
+	$("showbreaks").addEventListener('change',function() {showcontainers(this)},false);
+	$("pushto").addEventListener('click', function() {tocont(this)}, false);
 		
 	//State menu listeners ***************************************************
 	$("States").addEventListener('change', function() {setTheState(this)}, false);
@@ -27,7 +35,7 @@ function addListeners() {
 	$("delstate").addEventListener('click', delrow, false);
 	
 	//drop_zone listeners *************************************************
-	if(window.File && window.FileReader && window.FileList && window.Blob) {
+	if(window.File && window.FileReader && window.FileList && window.Blob) {	
 		dropZone = $('drop_zone');
 		dropZone.value="";
 		dropZone.addEventListener('dragover', handleDragOver, false);
@@ -37,7 +45,6 @@ function addListeners() {
 	}
 	else {
 		
-
 	}
 	
 	//**************all menus************************
@@ -48,21 +55,48 @@ function addListeners() {
 	}
 }
 
-//event listener functions ****************************
+//event listener functions ******************************************************************
 
-//drop_zone listeners **********************************************************
+//drop_zone listeners ****************************************
 function storeCursorPosition() {
 	var dropZone=$('drop_zone');
 	dropZone.cursor=dropZone.selectionStart;
 	var upto=dropZone.value.slice(0,dropZone.cursor);
 	var after=dropZone.value.slice(dropZone.cursor+1);
 	var re=/\n/g;
-	var uarray=re.exec(upto);
-	dropZone.first=re.lastIndex;
+	dropZone.first=0;
+	while (re.test(upto)) {
+		dropZone.first=re.lastIndex;
+	}
 	re=/\n/;
 	dropZone.last=after.search(re)+dropZone.cursor;
-	console.log(dropZone.first,dropZone.last);
+	var tabs=(dropZone.value.charCodeAt(dropZone.first)==9)+(dropZone.value.charCodeAt(dropZone.first+1)==9);
+	if(tabs==1) {
+		$("tabright").style.visibility="inherit";
+		$("tabback").style.visibility="inherit";
+	}
+	if(tabs>1) {
+		$("tabright").style.visibility="hidden";
+		$("tabback").style.visibility="inherit";
+	}
+	if(tabs<1) {
+		$("tabback").style.visibility="hidden";
+		$("tabright").style.visibility="inherit";
+	}
 }
+// project menu listeners ____________________________-
+function projectmenu() {
+	clearAllMenus();
+	$('menuproject').style.visibility="visible";
+	$('butproject').style.height='50px';
+}
+
+function setrowH(item) {
+	cleargridbox();
+	Project.states[Project.currentstate].grid.rowratio=parseFloat(item.options[item.selectedIndex].text);
+	buildGrid();
+}
+
 //grid menu listeners _______________________
 function gridmenu() {
 	clearAllMenus();
@@ -100,10 +134,98 @@ function setrowsonoff(item) {
 	buildGrid();
 }
 
-function setrowH(item) {
-	cleargridbox();
-	Project.states[Project.currentstate].grid.rowratio=parseFloat(item.options[item.selectedIndex].text);
-	buildGrid();
+
+//content menu listeners ************************************
+function contentmenu() {
+	clearAllMenus();
+	$('menucontent').style.visibility="visible";
+	$('butcontent').style.height='50px';
+}
+
+function addlevel() {
+	var psa=$("drop_zone").first; // paragraph start at
+	var txt=$("drop_zone").value;
+	var tabs=(txt.charCodeAt(psa)==9)+(txt.charCodeAt(psa+1)==9);
+	tabs+=1;
+	var upto=txt.slice(0,psa)+"\t";
+	var after=txt.slice(psa);
+	$("drop_zone").value=upto+after;
+	if(tabs==1) {
+		$("tabright").style.visibility="inherit";
+		$("tabback").style.visibility="inherit";
+	}
+	if(tabs>1) {
+		$("tabright").style.visibility="hidden";
+		$("tabback").style.visibility="inherit";
+	}
+	if(tabs<1) {
+		$("tabback").style.visibility="hidden";
+		$("tabright").style.visibility="inherit";
+	}
+}
+
+function dellevel() {
+	var psa=$("drop_zone").first; // paragraph start at
+	var txt=$("drop_zone").value;
+	var tabs=(txt.charCodeAt(psa)==9)+(txt.charCodeAt(psa+1)==9);
+	tabs-=1;
+	var upto=txt.slice(0,psa);
+	var after=txt.slice(psa+1);
+	$("drop_zone").value=upto+after;
+	if(tabs==1) {
+		$("tabright").style.visibility="inherit";
+		$("tabback").style.visibility="inherit";
+	}
+	if(tabs>1) {
+		$("tabright").style.visibility="hidden";
+		$("tabback").style.visibility="inherit";
+	}
+	if(tabs<1) {
+		$("tabback").style.visibility="hidden";
+		$("tabright").style.visibility="inherit";
+	}
+}
+
+function showcontainers(t) {
+	var txt=$('drop_zone').value;
+	if(t.checked) {
+		//replace three or more new lines with container break symbol
+		var re=/\n\n\n\n*/g
+		$('drop_zone').value=txt.replace(re,"\n\u2616\n");
+	}
+	else {
+		//replace container break symbol with new line
+		var re=/\u2616/g
+		$('drop_zone').value=txt.replace(re,"\n");
+	}
+}
+
+function tocont(t) {
+	var C=[];
+	var tmptxt;
+	var re, endre, end;
+	var txt=$('drop_zone').value;
+	if(!t.checked) {
+		//replace container break symbol with new line
+		re=/\u2616/g
+		txt=txt.replace(re,"\n");
+	}
+	//removes any white space characters after the last alphanumeric character
+	endre=/\s*$/
+	txt=txt.replace(endre,"");
+	//check for three or more new line to split into containers
+	var re=/\n\n\n\n*/g
+	var start=0
+	while (re.test(txt)) {
+		end=re.lastIndex;
+		tmptxt=txt.slice(start,end);
+		C.push(textToHTML(tmptxt));
+		start=end;
+	}
+	tmptxt=txt.slice(start);
+	C.push(textToHTML(tmptxt));
+	
+	fillCont(C);
 }
 
 //state menu listeners *************************************
@@ -130,7 +252,6 @@ function setTheState(item) {
 	$('SMargs').options[grid.sideMargins-1].selected="selected";
 	$('Gutts').options[Math.floor(grid.gutters)].selected="selected";
 	$('rowH').options[ratios[grid.rowratio*100]].selected="selected";
-	$('rowsonoff').checked=grid.rowson;
 	
 	buildGrid();
 }
@@ -147,11 +268,9 @@ function addrow() {
 	state.grid.height=Project.height/Project.dfs;;
 	state.grid.columns=Project.states[r].grid.columns;
 	state.grid.rows=0;
-	state.grid.rowratio=1;
-	state.grid.rowson=false;
 	state.grid.topMargin=2;
 	state.grid.sideMargins=2;
-	state.grid.gutters=2;
+	state.grid.gutters=1;
 	Project.states.push(state);
 	Project.states.sort(compareBreaks);
 	if(Project.currentstate>r) {
@@ -186,18 +305,8 @@ function containermenu() {
 	$('butcontainer').style.height='50px';
 }
 
-//content menu listeners *************************************
-function contentmenu() {
-	clearAllMenus();
-	$('menucontent').style.visibility="visible";
-	$('butcontent').style.height='50px';
-}
 
-function setTheContent(item) {
-	$("contentedit").style.visibility="visible"
-}
-
-// All mernus ********************************************************
+// All menus ********************************************************
 function clearAllMenus() {
 	var Mbuttons=getElementsByClassName("leftbutton");
 	for(var i=0; i<Mbuttons.length; i++)
