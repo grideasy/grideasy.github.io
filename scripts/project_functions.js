@@ -177,7 +177,6 @@ function fillCont(C) {
 		Project.containers.push(cn);
 		Box(cn);
 	}
-	
 }
 
 //Grid functions ***********************************************************************************************

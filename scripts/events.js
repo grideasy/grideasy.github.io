@@ -17,10 +17,10 @@ function addListeners() {
 	
 		
 	//Container menu listeners ***************************************************
-	//$("States").addEventListener('change', function() {setTheState(this)});
-	//$("editstates").addEventListener('click', function() {$("stateedit").style.visibility="visible"}, false);
-	//$("addstate").addEventListener('click', addrow, false);
-	//$("delstate").addEventListener('click', delrow, false);
+	//$("editcontainer").addEventListener('click', function() {setTheState(this)});
+	$("hidecontainer").addEventListener('click', function() {$("contbox").style.visibility="hidden"}, false);
+	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
+	//$("createcontainer").addEventListener('click', delrow, false);
 	
 	//Content menu listeners *************************************************
 	$("tabright").addEventListener('click', addlevel, false);

@@ -12,6 +12,15 @@ select {
 	border-radius: 5px;
 }
 
+h1 {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+p {
+	margin-left:5%;
+}
+
 textarea {
 	width:90%;
 	height:80%;
@@ -147,6 +156,7 @@ textarea {
 
 #contbox div {
 	position:static;
+	opacity:0.4;
 }
 #topspacer {
 	width:100%;
@@ -217,7 +227,6 @@ textarea {
 #tabright {
 	margin-left:10%;
 }
-
 
 
 #statetable input:hover, #contenttable input:hover {
