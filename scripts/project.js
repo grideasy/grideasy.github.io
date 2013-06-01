@@ -16,6 +16,7 @@ Project={
 	toedge:true, //when true containers snap to edges of grid, when false containers snap to semi-gutters around them
 	bodycolor:"transparent", //body colour for project
 	default_styles: { //default styles for all containers
+		centred:false,
 		backgroundColor:"#FFFFFF",
 		h1: new Tag(2),
 		h2: new Tag(1.5),
@@ -48,14 +49,15 @@ function State()
 	};
 }	
 
-function Container(id)  //container object storing data that does not change with states
+function Container(id)  //container object
 {
 	this.id=id;
 	this.start=0;  //start column
-	this.rows=1; //height of container in rows. 
+	this.columns={}; // associative array for width of container in columns for each state
+	this.rows={}; // associative array for height of container in rows for each state. 
 	this.content; //content text HTML format
 	this.box; //HTML element containing content
-	this.styles=Project.default_styles;
+	this.styles=Project.default_styles; //data that does not change with states
 }
 
 function GridBox(left,top,width,height,colour)

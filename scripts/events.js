@@ -17,10 +17,13 @@ function addListeners() {
 	
 		
 	//Container menu listeners ***************************************************
-	//$("editcontainer").addEventListener('click', function() {setTheState(this)});
+	$("editcontainer").addEventListener('click', function() {$("containeredit").style.visibility="visible";setContEdit()});
 	$("hidecontainer").addEventListener('click', function() {$("contbox").style.visibility="hidden"}, false);
 	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
 	//$("createcontainer").addEventListener('click', delrow, false);
+	
+	$("colwidth").addEventListener('change', function() {setContWidth(this)}, false);
+	$("rowheight").addEventListener('change', function() {setRowHeight(this)}, false);
 	
 	//Content menu listeners *************************************************
 	$("tabright").addEventListener('click', addlevel, false);
@@ -227,7 +230,49 @@ function tocont(t) {
 	
 	fillCont(C);
 }
+//container menu listeners *******************************
 
+function setContEdit() {
+	var CR=Project.currentcontainer;
+	if(CR==null) {
+		alert("No container selected");
+		return;
+	}
+	var grid=Project.states[Project.currentstate].grid;
+	var name=Project.states[Project.currentstate].name
+	var optHTML="";
+	for(var i=0;i<grid.columns;i++) {
+		optHTML+="<option>"+(i+1)+"</option>"
+	}
+	$("colwidth").innerHTML=optHTML;
+	$("colwidth").options[CR.columns[name]-1].selected="selected";
+	$("rowheight").value=CR.rows[name];
+	$("contcentre").checked=CR.styles.centred;
+}
+
+function setContWidth(item) {
+	var CR=Project.currentcontainer;
+	var grid=Project.states[Project.currentstate].grid;
+	var name=Project.states[Project.currentstate].name;
+	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
+	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
+	CR.columns[name]=parseInt(item.options[item.selectedIndex].text);
+	var bs=CR.box.style;
+	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
+}
+
+
+function setRowHeight(item) {
+	var CR=Project.currentcontainer;
+	var grid=Project.states[Project.currentstate].grid;
+	var name=Project.states[Project.currentstate].name;
+	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
+	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
+	var gridWHratio=grid.width/grid.height;
+	CR.rows[name]=parseInt(item.value);
+	var bs=CR.box.style;
+	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
+}
 //state menu listeners *************************************
 
 function statemenu() {
@@ -271,11 +316,16 @@ function addrow() {
 	state.grid.topMargin=2;
 	state.grid.sideMargins=2;
 	state.grid.gutters=1;
+	for(var i=0;i<Project.containers.length;i++) {
+		Project.containers[i].columns[state.name]=state.grid.columns;
+		Project.containers[i].rows[state.name]=Math.ceil(1/Project.states[r].grid.rowratio);
+	}
 	Project.states.push(state);
 	Project.states.sort(compareBreaks);
 	if(Project.currentstate>r) {
 		Project.currentstate+=1;
 	}
+	
 	setStateHTML();
 	buildStateTable();
 }

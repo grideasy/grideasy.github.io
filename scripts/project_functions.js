@@ -164,6 +164,7 @@ function textToHTML(txt) {
 
 function fillCont(C) {
 	//create new containers if there are more from the content than exist
+	var grid=Project.states[Project.currentstate].grid;
 	var Plen=Project.containers.length;
 	var diff=C.length-Project.containers.length;
 	for(var i=0;i<Plen;i++) {
@@ -173,6 +174,10 @@ function fillCont(C) {
 	}
 	for(var i=Plen; i<diff;i++) {
 		cn=new Container(i);
+		for(var j=0;j<Project.states.length;j++) {
+			cn.columns[Project.states[j].name]=Project.states[j].grid.columns;
+			cn.rows[Project.states[j].name]=Math.ceil(1/grid.rowratio);
+		}
 		cn.content=C[i];
 		Project.containers.push(cn);
 		Box(cn);
