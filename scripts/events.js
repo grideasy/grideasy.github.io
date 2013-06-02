@@ -23,7 +23,10 @@ function addListeners() {
 	//$("createcontainer").addEventListener('click', delrow, false);
 	
 	$("colwidth").addEventListener('change', function() {setContWidth(this)}, false);
-	$("rowheight").addEventListener('change', function() {setRowHeight(this)}, false);
+	$("rowheight").addEventListener('change', function() {setContHeight(this)}, false);
+	$("contcentre").addEventListener('change', setContCentre, false);
+	$("leftarr").addEventListener('click', forwardDiv, false);
+	$("rightarr").addEventListener('click', backwardDiv, false);
 	
 	//Content menu listeners *************************************************
 	$("tabright").addEventListener('click', addlevel, false);
@@ -235,6 +238,7 @@ function tocont(t) {
 function setContEdit() {
 	var CR=Project.currentcontainer;
 	if(CR==null) {
+		$("containeredit").style.visibility="hidden";
 		alert("No container selected");
 		return;
 	}
@@ -247,7 +251,7 @@ function setContEdit() {
 	$("colwidth").innerHTML=optHTML;
 	$("colwidth").options[CR.columns[name]-1].selected="selected";
 	$("rowheight").value=CR.rows[name];
-	$("contcentre").checked=CR.styles.centred;
+	$("contcentre").checked=CR.style.centred;
 }
 
 function setContWidth(item) {
@@ -259,10 +263,29 @@ function setContWidth(item) {
 	CR.columns[name]=parseInt(item.options[item.selectedIndex].text);
 	var bs=CR.box.style;
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
+	setContCentre();
 }
 
+function setContCentre() {
+	var CR=Project.currentcontainer;
+	var grid=Project.states[Project.currentstate].grid;
+	var name=Project.states[Project.currentstate].name;
+	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
+	var cwidth=(100-totalHorSpace)/grid.columns //percentage
+	var bs=CR.box.style; 
+	CR.style.centred=$("contcentre").checked;
+	if(CR.style.centred) {
+		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);console.log(offset);
+		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";console.log(bs.marginLeft);
+		bs.marginRight=offset+"%";
+	}
+	else {
+		bs.marginLeft=2*grid.gutters+"%"; 
+		bs.marginRight="0%"
+	}
+}
 
-function setRowHeight(item) {
+function setContHeight(item) {
 	var CR=Project.currentcontainer;
 	var grid=Project.states[Project.currentstate].grid;
 	var name=Project.states[Project.currentstate].name;
@@ -273,6 +296,38 @@ function setRowHeight(item) {
 	var bs=CR.box.style;
 	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
 }
+
+
+function forwardDiv() {
+	var elm=Project.currentcontainer.box;
+    var previous = findPrevious(elm);
+    if (previous) {
+        elm.parentNode.insertBefore(elm, previous);
+    }
+}
+
+function findPrevious(elm) {
+   do {
+       elm = elm.previousSibling;console.log(elm.nodeName);
+   } while (elm && elm.nodeName !="DIV");
+   return elm;
+}
+
+function backwardDiv() {
+	var elm=Project.currentcontainer.box;
+    var next = findNext(elm);
+    if (next) {
+        elm.parentNode.insertBefore(next, elm);
+    }
+}
+
+function findNext(elm) {
+   do {
+       elm = elm.nextSibling;console.log(elm.nodeName);
+   } while (elm && elm.nodeName !="DIV");
+   return elm;
+}
+
 //state menu listeners *************************************
 
 function statemenu() {

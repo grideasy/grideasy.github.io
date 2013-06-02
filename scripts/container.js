@@ -12,18 +12,25 @@ function setCRBox(CR) {
 	var gridWHratio=grid.width/grid.height;
 	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
 	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
-	//CR.rows=Math.ceil(1/grid.rowratio);
 	var bs=CR.box.style;
 	bs.cssFloat="left";
 	bs.overflow="auto";
-	bs.marginLeft=2*grid.gutters+"%";
+	if(CR.style.centred) {
+		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);console.log(offset);
+		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";console.log(bs.marginLeft);
+		bs.marginRight=offset+"%";
+	}
+	else {
+		bs.marginLeft=2*grid.gutters+"%"; 
+		bs.marginRight="0%"
+	}
 	bs.marginTop=2*grid.gutters+"%";
 	if(CR.columns[name]>grid.columns) {
 		CR.columns[name]=grid.columns;
 	}
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
 	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
-	bs.backgroundColor=CR.styles.backgroundColor;
+	bs.backgroundColor=CR.style.backgroundColor;
 	
 	var content=CR.content||"<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>";
 	CR.box.innerHTML=content;
@@ -52,8 +59,8 @@ function setContainer(box) {
 function setTagStyles(CR,tag) {	
 	var tags=CR.box.getElementsByTagName(tag);
 	for(var i=0;i<tags.length;i++) {
-		for(var style in CR.styles[tag]) {
-			tags[i].style[style]=CR.styles[tag][style];
+		for(var style in CR.style[tag]) {
+			tags[i].style[style]=CR.style[tag][style];
 		}
 	}
 }

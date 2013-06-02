@@ -29,9 +29,9 @@ textarea {
 }
 
 .close {
-	position:static;
-	float:right;
-	margin: 25px 10px 10px 10px;
+	right:2px;
+	bottom:2px;
+	margin: 4% 1% 1% 1%;
 	font-family: Arial, Helvetica, sans-serif;
 	cursor:default;
 }
@@ -95,7 +95,7 @@ textarea {
 
 .smallbutton {
 	position:static;
-	float:right;
+	float:left;
 	background-color: #C6500A;
 	margin:10px 15px 2px 10px;
 	color:#FFFFFF;
@@ -150,10 +150,12 @@ textarea {
 	opacity:0.4;
 }
 #topspacer {
+	display:block;
 	width:100%;
 }
 
 #leftspacer {
+	display:block;
 	font-size:1pt;
 	float:left;
 }
@@ -191,6 +193,13 @@ textarea {
 	visibility:hidden;
 }
 
+#containeredit {
+	top:-3px;
+	left:990px;
+	width:220px;
+	height:600px;
+}
+
 
 #containeredit label {
 	margin-left:5%;
@@ -199,9 +208,21 @@ textarea {
 	margin-left:5%;
 	font-weight: bold;
 }
+#leftarr, #rightarr {
+	font-size:20pt;
+}
+#leftarr:hover, #rightarr:hover {
+	background-color:#4F801F;
+	color:#FFFFFF;
+	cursor: default;
+}
+
+
+
 #containeredit .after {
 	margin-left:2px;
 }
+
 
 #menucontent {
 	top:45px;
@@ -240,17 +261,21 @@ textarea {
 	top:5%;
 	margin-left:5%;
 	width:90%;
-	height:75%;
+	height:80%;
 	background-color:#FFFFFF;
 	border-radius: 10px;
 }
 
+#contback {
+	height:90%;
+}
+
 
 .tablemenu {
-	top:80%;
+	top:85%;
 	margin-left:5%;
 	width:90%;
-	height:50px;
+	height:2%;
 }
 
 .statecontent {

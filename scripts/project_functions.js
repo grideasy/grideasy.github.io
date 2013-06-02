@@ -20,7 +20,7 @@ function setMenuDefaults() {
 	$('Ncols').options[5].selected="selected";
 	$('TMarg').options[1].selected="selected";
 	$('SMargs').options[1].selected="selected";
-	$('Gutts').options[1].selected="selected";
+	$('Gutts').options[2].selected="selected";
 	$('rowH').options[3].selected="selected";
 	//Content Menu Checkbox;
 	$('showbreaks').checked=false;
