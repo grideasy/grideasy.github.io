@@ -12,6 +12,7 @@ function main() {
 	setStateHTML();
 	buildStateTable();
 	buildGrid();
+	setColors();
 	//console.log(JSON.stringify(Project));
 }
 
@@ -121,6 +122,52 @@ function unsetRow(t) {
 }
 
 //Container functions *****************************************************************
+function setColors() {
+	var colarray=[
+					['white ','#FFFFFF '],	
+					['Silver ','#C0C0C0 '],	
+					['Gray ','#808080 '],	
+					['Black ','#000000 '],	
+					['Red ','#FF0000 '],	
+					['Maroon ','#800000 '],	
+					['Yellow ','#FFFF00 '],	
+					['Olive ','#808000 '],	
+					['Lime ','#00FF00 '],	
+					['Green ','#008000 '],	
+					['Aqua ','#00FFFF '],	
+					['Teal ','#008080 '],	
+					['Blue ','#0000FF '],	
+					['Navy ','#000080 '],	
+					['Fuchsia ','#FF00FF '],	
+					['Purple ','#800080 '],	
+				]
+	var elm=$("backColor").firstChild;
+	for(var i=0;i<16;i++) {
+		elm = findNext(elm);
+		elm.style.backgroundColor=colarray[i][1];
+		elm.title=colarray[i][0];
+		elm.addEventListener('click',function() {setContBackColor(this)}, false)
+	}
+	var elm=$("fontColor").firstChild;
+	for(var i=0;i<16;i++) {
+		elm = findNext(elm);
+		elm.style.backgroundColor=colarray[i][1];
+		elm.title=colarray[i][0];
+		elm.addEventListener('click',function() {setContFontColor(this)}, false)
+	}			
+}
+
+function setContBackColor(item) {
+	Project.currentcontainer.style.backgroundColor=item.style.backgroundColor;
+	Project.currentcontainer.box.style.backgroundColor=item.style.backgroundColor;
+}
+
+function setContFontColor(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	Project.currentcontainer.style[tag].color=item.style.backgroundColor;
+	setTagStyles(Project.currentcontainer,tag)
+}
 
 //Content functions *****************************************************************
 function setContentHTML() {

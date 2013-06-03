@@ -217,7 +217,27 @@ textarea {
 	cursor: default;
 }
 
+#backColor, #fontColor {
+	display:block;
+	width:120px;
+	background-color: #FF0000;
+}
 
+#backColor div, #fontColor div {
+	position:static;
+	float:left;
+	margin-left:2px;
+	margin-bottom:2px;
+	width:10px;
+	height:10px;
+	font-size: 1pt;
+	border: solid 1px #DDDDDD;
+	background-color: #4F801F;
+}
+
+#backColor div:hover, #fontColor div:hover {
+	border:solid black 1px;
+}
 
 #containeredit .after {
 	margin-left:2px;

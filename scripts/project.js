@@ -21,9 +21,9 @@ Project={
 
 function Chic() {
 	this.centred=false;
-	this.backgroundColor="#FFFFFF",
-	this.h1= new Tag(2),
-	this.h2= new Tag(1.5),
+	this.backgroundColor="#FFFFFF";
+	this.h1= new Tag(2);
+	this.h2= new Tag(1.5);
 	this.p= new Tag(1)
 }
 
@@ -35,7 +35,6 @@ function Tag(fs) {
 	this.marginRight="0.5em";
 	this.marginBottom=fs/4+"em";
 }
-
 
 function State()
 {

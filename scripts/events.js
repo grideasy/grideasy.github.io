@@ -308,7 +308,7 @@ function forwardDiv() {
 
 function findPrevious(elm) {
    do {
-       elm = elm.previousSibling;console.log(elm.nodeName);
+       elm = elm.previousSibling;
    } while (elm && elm.nodeName !="DIV");
    return elm;
 }
@@ -323,7 +323,7 @@ function backwardDiv() {
 
 function findNext(elm) {
    do {
-       elm = elm.nextSibling;console.log(elm.nodeName);
+       elm = elm.nextSibling;
    } while (elm && elm.nodeName !="DIV");
    return elm;
 }
