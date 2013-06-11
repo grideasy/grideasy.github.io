@@ -170,7 +170,7 @@ textarea {
 }
 
 #menucontainer {
-	width:480px;
+	width:680px;
 }
 
 
@@ -239,17 +239,41 @@ textarea {
 	border:solid black 1px;
 }
 
-#containeredit .after {
-	margin-left:2px;
+#containeredit li label {
+	position:relative;
+	display:inline-block;
+	width:100px;
+	
 }
 
+#containeredit .after {
+	margin-left:2px;
+	width:10px;
+}
+
+#containeredit  input {
+	text-align:right;
+}
+
+#containeredit  ul {
+	list-style-type: none;
+	margin-left: 0px;
+  	padding-left: 0px
+}
+
+
+#containeredit li input {
+	text-align:right;
+	position:relative;
+	left:1px;
+}
 
 #menucontent {
 	top:45px;
 	height:450px;
 }
 
-#menucontent span {
+#menucontent span, #menuHTML span {
 	display:block;
 	float:left;
 	margin-top:-1.5%;
@@ -264,11 +288,11 @@ textarea {
 	font-size:12pt;
 }
 
-#menucontent span:hover {
+#menucontent span:hover, #menuHTML span:hover {
 	color:#000000;
 }
 
-#tabright {
+#tabright, #Ttabright {
 	margin-left:10%;
 }
 

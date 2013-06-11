@@ -123,6 +123,8 @@
 				<div id="createcontainer" class="smallbutton">New</div>
 				<div id="showcontainer" class="smallbutton">Show</div>
 				<div id="hidecontainer" class="smallbutton">Hide</div>
+				<div id="deletecontainer" class="smallbutton">Delete</div>
+				<div id="htmlcontainer" class="smallbutton">Text</div>
 				<div id="editcontainer" class="smallbutton">Edit</div>
 			</div>
 			<!--  *****************content *********************-->
@@ -157,7 +159,6 @@
 			
 			<div id="stateedit" class="edit">
 				<div class="back">
-					<p></p>
 					<span id="content" class="statecontent">State Name</span>
 					<span id="break" class="statebreak">Max Size Ems &lt; 60</span>
 					<span id="statetable">
@@ -209,7 +210,7 @@
 						<option>heading</option>
 						<option>sub-heading</option>
 						<option>paragraph</option>
-					</select>
+					</select><br>
 					<label for = "fontColor">Text Colour </label><br>
 					<span id="fontColor">
 						<div></div>
@@ -228,11 +229,30 @@
 						<div></div>
 						<div></div>
 						<div></div>
-					</span><br><br>
+					</span><br>
+					<ul>
+						<li><label for = "fontSize">Text Size </label><input type="text" value=1 id="fontSize" size=3> Ems</li>
+						<li><label for = "marginLeft">Left Margin </label><input type="text" value=0.5 id="marginLeft" size=3> Ems</li>
+						<li><label for = "marginTop">Top Margin </label><input type="text" value=0.5 id="marginTop" size=3> Ems</li>
+						<li><label for = "marginRight">Right Margin </label><input type="text" value=0.5 id="marginRight" size=3> Ems</li>
+						<li><label for = "marginBottom">Bottom Margin </label><input type="text" value=0.5 id="marginBottom" size=3> Ems</li>
+					</ul>
 				</div>
 				<div class="close" alt="close" title="close">X</div>
 			</div>
-			
+			<div id="menuHTML" class="edit">
+				<div class="back">
+					<span id="Ttabright" alt="Tab Right" title="Tab Right">&rArr;</span >
+					<span id="Ttabback" alt="Tab Back" title="Tab Back">&lArr;</span>
+					<textarea id="HTML_zone"> </textarea>
+					
+				</div>
+				<div class="tablemenu">
+					<div id="saveHTML" class="editbutton">Save</div>
+					<div id="cancelHTML" class="editbutton">Cancel</div>
+				</div>
+				<div class="close" alt="close" title="close">X</div>
+			</div>
 		</div>
 	</body>
 </html>

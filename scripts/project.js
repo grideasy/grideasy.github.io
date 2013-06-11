@@ -51,9 +51,8 @@ function State()
 	};
 }	
 
-function Container(id)  //container object
+function Container()  //container object
 {
-	this.id=id;
 	this.start=0;  //start column
 	this.columns={}; // associative array for width of container in columns for each state
 	this.rows={}; // associative array for height of container in rows for each state. 

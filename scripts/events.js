@@ -20,19 +20,34 @@ function addListeners() {
 	$("editcontainer").addEventListener('click', function() {$("containeredit").style.visibility="visible";setContEdit()});
 	$("hidecontainer").addEventListener('click', function() {$("contbox").style.visibility="hidden"}, false);
 	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
-	//$("createcontainer").addEventListener('click', delrow, false);
+	$("deletecontainer").addEventListener('click', delcont, false);
+	$("createcontainer").addEventListener('click', createCont, false);
+	$("htmlcontainer").addEventListener('click',editHTML,false);
+	$("saveHTML").addEventListener('click',saveText,false);
+	$("cancelHTML").addEventListener('click', clearAllMenus, false);
 	
 	$("colwidth").addEventListener('change', function() {setContWidth(this)}, false);
 	$("rowheight").addEventListener('change', function() {setContHeight(this)}, false);
 	$("contcentre").addEventListener('change', setContCentre, false);
 	$("leftarr").addEventListener('click', forwardDiv, false);
 	$("rightarr").addEventListener('click', backwardDiv, false);
+	$("tagtype").addEventListener('change', function() {setTag(this)}, false);
+	$("fontSize").addEventListener('change', function() {setContTagValue(this)}, false);
+	$("marginLeft").addEventListener('change', function() {setContTagValue(this)}, false);
+	$("marginTop").addEventListener('change', function() {setContTagValue(this)}, false);
+	$("marginRight").addEventListener('change', function() {setContTagValue(this)}, false);
+	$("marginBottom").addEventListener('change', function() {setContTagValue(this)}, false);
+	$("Ttabright").addEventListener('click', function() {addlevel("HTML_zone")}, false);
+	$("Ttabback").addEventListener('click', function() {dellevel("HTML_zone")}, false);
+	$("HTML_zone").addEventListener('click', function() {storeCursorPosition(this)}, false);
+	$("HTML_zone").addEventListener('keyup', function() {storeCursorPosition(this)}, false);
 	
 	//Content menu listeners *************************************************
-	$("tabright").addEventListener('click', addlevel, false);
-	$("tabback").addEventListener('click', dellevel, false);
+	$("tabright").addEventListener('click', function() {addlevel("drop_zone")}, false);
+	$("tabback").addEventListener('click', function() {dellevel("drop_zone")}, false);
 	$("showbreaks").addEventListener('change',function() {showcontainers(this)},false);
 	$("pushto").addEventListener('click', function() {tocont(this)}, false);
+	$("pullfrom").addEventListener('click', function() {fromcont(this)}, false);
 		
 	//State menu listeners ***************************************************
 	$("States").addEventListener('change', function() {setTheState(this)}, false);
@@ -46,8 +61,8 @@ function addListeners() {
 		dropZone.value="";
 		dropZone.addEventListener('dragover', handleDragOver, false);
 		dropZone.addEventListener('drop', handleFileSelect, false);
-		dropZone.addEventListener('click', storeCursorPosition, false);
-		dropZone.addEventListener('keyup', storeCursorPosition, false);
+		dropZone.addEventListener('click', function() {storeCursorPosition(this)}, false);
+		dropZone.addEventListener('keyup', function() {storeCursorPosition(this)}, false);
 	}
 	else {
 		
@@ -64,30 +79,35 @@ function addListeners() {
 //event listener functions ******************************************************************
 
 //drop_zone listeners ****************************************
-function storeCursorPosition() {
-	var dropZone=$('drop_zone');
-	dropZone.cursor=dropZone.selectionStart;
-	var upto=dropZone.value.slice(0,dropZone.cursor);
-	var after=dropZone.value.slice(dropZone.cursor+1);
+function storeCursorPosition(zone) {
+	zone.cursor=zone.selectionStart;
+	var upto=zone.value.slice(0,zone.cursor);
+	var after=zone.value.slice(zone.cursor+1);
 	var re=/\n/g;
-	dropZone.first=0;
+	zone.first=0;
 	while (re.test(upto)) {
-		dropZone.first=re.lastIndex;
+		zone.first=re.lastIndex;
 	}
 	re=/\n/;
-	dropZone.last=after.search(re)+dropZone.cursor;
-	var tabs=(dropZone.value.charCodeAt(dropZone.first)==9)+(dropZone.value.charCodeAt(dropZone.first+1)==9);
+	zone.last=after.search(re)+zone.cursor;
+	var tabs=(zone.value.charCodeAt(zone.first)==9)+(zone.value.charCodeAt(zone.first+1)==9);
 	if(tabs==1) {
 		$("tabright").style.visibility="inherit";
 		$("tabback").style.visibility="inherit";
+		$("Ttabright").style.visibility="inherit";
+		$("Ttabback").style.visibility="inherit";
 	}
 	if(tabs>1) {
 		$("tabright").style.visibility="hidden";
 		$("tabback").style.visibility="inherit";
+		$("Ttabright").style.visibility="hidden";
+		$("Ttabback").style.visibility="inherit";
 	}
 	if(tabs<1) {
 		$("tabback").style.visibility="hidden";
 		$("tabright").style.visibility="inherit";
+		$("Ttabback").style.visibility="hidden";
+		$("Ttabright").style.visibility="inherit";
 	}
 }
 // project menu listeners ____________________________-
@@ -148,47 +168,59 @@ function contentmenu() {
 	$('butcontent').style.height='50px';
 }
 
-function addlevel() {
-	var psa=$("drop_zone").first; // paragraph start at
-	var txt=$("drop_zone").value;
+function addlevel(zone) {
+	var psa=$(zone).first; // paragraph start at
+	var txt=$(zone).value;
 	var tabs=(txt.charCodeAt(psa)==9)+(txt.charCodeAt(psa+1)==9);
 	tabs+=1;
 	var upto=txt.slice(0,psa)+"\t";
 	var after=txt.slice(psa);
-	$("drop_zone").value=upto+after;
+	$(zone).value=upto+after;
 	if(tabs==1) {
 		$("tabright").style.visibility="inherit";
 		$("tabback").style.visibility="inherit";
+		$("Ttabright").style.visibility="inherit";
+		$("Ttabback").style.visibility="inherit";
 	}
 	if(tabs>1) {
 		$("tabright").style.visibility="hidden";
 		$("tabback").style.visibility="inherit";
+		$("Ttabright").style.visibility="hidden";
+		$("Ttabback").style.visibility="inherit";
 	}
 	if(tabs<1) {
 		$("tabback").style.visibility="hidden";
 		$("tabright").style.visibility="inherit";
+		$("Ttabback").style.visibility="hidden";
+		$("Ttabright").style.visibility="inherit";
 	}
 }
 
-function dellevel() {
-	var psa=$("drop_zone").first; // paragraph start at
-	var txt=$("drop_zone").value;
+function dellevel(zone) {
+	var psa=$(zone).first; // paragraph start at
+	var txt=$(zone).value;
 	var tabs=(txt.charCodeAt(psa)==9)+(txt.charCodeAt(psa+1)==9);
 	tabs-=1;
 	var upto=txt.slice(0,psa);
 	var after=txt.slice(psa+1);
-	$("drop_zone").value=upto+after;
+	$(zone).value=upto+after;
 	if(tabs==1) {
 		$("tabright").style.visibility="inherit";
 		$("tabback").style.visibility="inherit";
+		$("Ttabright").style.visibility="inherit";
+		$("Ttabback").style.visibility="inherit";
 	}
 	if(tabs>1) {
 		$("tabright").style.visibility="hidden";
 		$("tabback").style.visibility="inherit";
+		$("Ttabright").style.visibility="hidden";
+		$("Ttabback").style.visibility="inherit";
 	}
 	if(tabs<1) {
 		$("tabback").style.visibility="hidden";
 		$("tabright").style.visibility="inherit";
+		$("Ttabback").style.visibility="hidden";
+		$("Ttabright").style.visibility="inherit";
 	}
 }
 
@@ -233,7 +265,36 @@ function tocont(t) {
 	
 	fillCont(C);
 }
+
+function fromcont() {
+	var tmptxt;
+	var re;
+	var txt="";
+	for(var i=0;i<Project.containers.length;i++) {
+		tmptxt=Project.containers[i].box.innerHTML;
+		re=/<h1[ -;=?-}]*>/g;
+		tmptxt=tmptxt.replace(re,"");
+		re=/<\/h1>/g;
+		tmptxt=tmptxt.replace(re,"\n");
+		re=/<h2[ -;=?-}]*>/g;
+		tmptxt=tmptxt.replace(re,"\t");
+		re=/<\/h2>/g;
+		tmptxt=tmptxt.replace(re,"\n");
+		re=/<p[ -;=?-}]*>/g;
+		tmptxt=tmptxt.replace(re,"\t\t");
+		re=/<\/p>/g;
+		tmptxt=tmptxt.replace(re,"\n");
+		txt+=tmptxt+"\n\n\n"
+	}
+	$('drop_zone').value=txt;
+}
 //container menu listeners *******************************
+
+function containermenu() {
+	clearAllMenus();
+	$('menucontainer').style.visibility="visible";
+	$('butcontainer').style.height='50px';
+}
 
 function setContEdit() {
 	var CR=Project.currentcontainer;
@@ -252,6 +313,23 @@ function setContEdit() {
 	$("colwidth").options[CR.columns[name]-1].selected="selected";
 	$("rowheight").value=CR.rows[name];
 	$("contcentre").checked=CR.style.centred;
+	if(CR.box.getElementsByTagName("h1").length>0) {
+		$("tagtype").options[0].selected="selected";
+		var tag="h1"
+	}
+	else if(CR.box.getElementsByTagName("h2").length>0) {
+		$("tagtype").options[1].selected="selected";
+		var tag="h2";
+	}
+	else {
+		$("tagtype").options[2].selected="selected";
+		var tag="p";
+	}
+	$("fontSize").value=parseFloat(CR.style[tag].fontSize);
+	$("marginLeft").value=parseFloat(CR.style[tag].marginLeft);
+	$("marginTop").value=parseFloat(CR.style[tag].marginTop);
+	$("marginRight").value=parseFloat(CR.style[tag].marginRight);
+	$("marginBottom").value=parseFloat(CR.style[tag].marginBottom);
 }
 
 function setContWidth(item) {
@@ -328,6 +406,79 @@ function findNext(elm) {
    return elm;
 }
 
+function setTag(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	var CR=Project.currentcontainer;
+	$("fontSize").value=parseFloat(CR.style[tag].fontSize);
+	$("marginLeft").value=parseFloat(CR.style[tag].marginLeft);
+	$("marginTop").value=parseFloat(CR.style[tag].marginTop);
+	$("marginRight").value=parseFloat(CR.style[tag].marginRight);
+	$("marginBottom").value=parseFloat(CR.style[tag].marginBottom);
+}
+
+function setContTagValue(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	Project.currentcontainer.style[tag][item.id]=parseFloat(item.value)+"em";
+	setTagStyles(Project.currentcontainer,tag)
+}
+
+function delcont() {
+	var elm=$("contbox").firstChild;
+	var contcount=0;
+	elm=findNext(elm);
+	while (elm!=Project.currentcontainer.box) {
+		elm=findNext(elm);
+		contcount++;
+	}
+	Project.currentcontainer.box.parentNode.removeChild(Project.currentcontainer.box);
+	Project.containers.splice(contcount,1);
+	Project.currentcontainer=null;
+	$("containeredit").style.visibility="hidden";
+}
+
+function editHTML() {
+	if(Project.currentcontainer==null) {
+		return;
+	}
+	$("menuHTML").style.visibility="visible";
+	var tmptxt=Project.currentcontainer.box.innerHTML;
+	re=/<h1[ -;=?-}]*>/g;
+	tmptxt=tmptxt.replace(re,"");
+	re=/<\/h1>/g;
+	tmptxt=tmptxt.replace(re,"\n");
+	re=/<h2[ -;=?-}]*>/g;
+	tmptxt=tmptxt.replace(re,"\t");
+	re=/<\/h2>/g;
+	tmptxt=tmptxt.replace(re,"\n");
+	re=/<p[ -;=?-}]*>/g;
+	tmptxt=tmptxt.replace(re,"\t\t");
+	re=/<\/p>/g;
+	tmptxt=tmptxt.replace(re,"\n");
+	$("HTML_zone").value=tmptxt;
+}
+
+function saveText() {
+	var CR=Project.currentcontainer;
+	var txt=$("HTML_zone").value;
+	txt=textToHTML(txt);
+	CR.content=txt;
+	setTagStyles(CR,"h1");
+	setTagStyles(CR,"h2");
+	setTagStyles(CR,"p");
+	buildGrid();
+}
+
+function createCont() {
+	var state=Project.states[Project.currentstate];
+	var grid=state.grid;
+	cn=new Container();
+	cn.columns[state.name]=state.grid.columns;
+	cn.rows[state.name]=Math.ceil(1/grid.rowratio);
+	Project.containers.push(cn);
+	Box(cn);
+}
 //state menu listeners *************************************
 
 function statemenu() {
@@ -403,12 +554,6 @@ function delrow() {
 	}
 }
 
-//container menu listeners *************************************
-function containermenu() {
-	clearAllMenus();
-	$('menucontainer').style.visibility="visible";
-	$('butcontainer').style.height='50px';
-}
 
 
 // All menus ********************************************************

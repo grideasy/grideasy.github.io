@@ -213,14 +213,14 @@ function fillCont(C) {
 	//create new containers if there are more from the content than exist
 	var grid=Project.states[Project.currentstate].grid;
 	var Plen=Project.containers.length;
-	var diff=C.length-Project.containers.length;
+	//var diff=C.length-Project.containers.length;console.log(C.length,Project.containers.length)
 	for(var i=0;i<Plen;i++) {
 		cn=Project.containers[i];
 		cn.content=C[i];
 		setCRBox(cn);
 	}
-	for(var i=Plen; i<diff;i++) {
-		cn=new Container(i);
+	for(var i=Plen; i<C.length;i++) {
+		cn=new Container();
 		for(var j=0;j<Project.states.length;j++) {
 			cn.columns[Project.states[j].name]=Project.states[j].grid.columns;
 			cn.rows[Project.states[j].name]=Math.ceil(1/grid.rowratio);
