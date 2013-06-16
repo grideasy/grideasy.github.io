@@ -18,6 +18,7 @@ function addListeners() {
 		
 	//Container menu listeners ***************************************************
 	$("editcontainer").addEventListener('click', function() {$("containeredit").style.visibility="visible";setContEdit()});
+	$("imagecontainer").addEventListener('click', function() {$("containerimage").style.visibility="visible";});
 	$("hidecontainer").addEventListener('click', function() {$("contbox").style.visibility="hidden"}, false);
 	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
 	$("deletecontainer").addEventListener('click', delcont, false);

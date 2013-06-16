@@ -169,11 +169,6 @@ textarea {
 	width:100px;
 }
 
-#menucontainer {
-	width:680px;
-}
-
-
 #menustate {
 	width:350px;
 }
@@ -193,18 +188,17 @@ textarea {
 	visibility:hidden;
 }
 
-#containeredit {
+#containeredit, #containerimage {
 	top:-3px;
 	left:990px;
 	width:220px;
 	height:600px;
 }
 
-
-#containeredit label {
+#containeredit label, #containerimage label {
 	margin-left:5%;
 }
-#containeredit span {
+#containeredit span, #containerimage span {
 	margin-left:5%;
 	font-weight: bold;
 }
@@ -239,34 +233,82 @@ textarea {
 	border:solid black 1px;
 }
 
-#containeredit li label {
+#containeredit li label, #containerimage li label {
 	position:relative;
 	display:inline-block;
 	width:100px;
 	
 }
 
-#containeredit .after {
+#containeredit .after, #containerimage .after {
 	margin-left:2px;
 	width:10px;
 }
 
-#containeredit  input {
+#containeredit  input, #containerimage  input {
 	text-align:right;
 }
 
-#containeredit  ul {
+#containeredit  ul, #containerimage  ul {
 	list-style-type: none;
 	margin-left: 0px;
   	padding-left: 0px
 }
 
 
-#containeredit li input {
+#containeredit li input, #containerimage li input {
 	text-align:right;
 	position:relative;
 	left:1px;
 }
+
+
+.imgPosit {
+	position:static;
+	float:left;
+	word-wrap: break-word;
+	margin-left:2%;
+	margin-right:2%;
+	margin-top:2%;
+	margin-bottom:2%;
+	width:20%;
+	height:40px;
+	font-size: 1pt;
+	border: solid 1px #000000;
+	background-color: #FFFFFF;
+}
+
+.imgPosit div {
+	position:static;
+	margin-left:2%;
+	margin-right:2%;
+	margin-top:2%;
+	margin-bottom:2%;
+	width:20%;
+	height:10px;
+	font-size: 1pt;
+	border: solid 1px #666666;
+	background-color: #666666;
+}
+
+.ilw {
+	float:left;
+}
+
+.icw {
+	display:block;
+	width:25%;
+	height:10px;
+	font-size: 1pt;
+	border: solid 1px #666666;
+	background-color: #666666;
+	margin:0px auto;
+}
+
+.irw {
+	float:right;
+}
+
 
 #menucontent {
 	top:45px;

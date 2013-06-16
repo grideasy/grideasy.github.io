@@ -57,6 +57,7 @@ function Container()  //container object
 	this.columns={}; // associative array for width of container in columns for each state
 	this.rows={}; // associative array for height of container in rows for each state. 
 	this.content; //content text HTML format
+	this.image=null; //URL for image;
 	this.box; //HTML element containing content
 	this.style=new Chic(); //data that does not change with states
 }
