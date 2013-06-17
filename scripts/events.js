@@ -18,7 +18,7 @@ function addListeners() {
 		
 	//Container menu listeners ***************************************************
 	$("editcontainer").addEventListener('click', function() {$("containeredit").style.visibility="visible";setContEdit()});
-	$("imagecontainer").addEventListener('click', function() {$("containerimage").style.visibility="visible";});
+	$("imagecontainer").addEventListener('click', function() {$("containerimage").style.visibility="visible";setContImgEdit()});
 	$("hidecontainer").addEventListener('click', function() {$("contbox").style.visibility="hidden"}, false);
 	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
 	$("deletecontainer").addEventListener('click', delcont, false);
@@ -42,6 +42,13 @@ function addListeners() {
 	$("Ttabback").addEventListener('click', function() {dellevel("HTML_zone")}, false);
 	$("HTML_zone").addEventListener('click', function() {storeCursorPosition(this)}, false);
 	$("HTML_zone").addEventListener('keyup', function() {storeCursorPosition(this)}, false);
+	$('imgurl').addEventListener('change', loadNsetImage, false);
+	//container images listeners
+	var imgbuttons=getElementsByClassName("imgPosit");
+	for(var i=0; i<imgbuttons.length; i++)
+	{
+		imgbuttons[i].addEventListener('click', function() {setContImg(this.src)}, false);
+	}
 	
 	//Content menu listeners *************************************************
 	$("tabright").addEventListener('click', function() {addlevel("drop_zone")}, false);
@@ -304,6 +311,7 @@ function setContEdit() {
 		alert("No container selected");
 		return;
 	}
+	$("containerimage").style.visibility="hidden";
 	var grid=Project.states[Project.currentstate].grid;
 	var name=Project.states[Project.currentstate].name
 	var optHTML="";
@@ -480,6 +488,49 @@ function createCont() {
 	Project.containers.push(cn);
 	Box(cn);
 }
+
+function setContImgEdit() {
+	if(Project.currentcontainer==null) {
+		$("containerimage").style.visibility="hidden";
+		alert("No container selected");
+		return;
+	}
+	$("containeredit").style.visibility="hidden";
+	var grid=Project.states[Project.currentstate].grid;
+}
+
+function loadNsetImage() {
+	var img=new Image();
+	try {
+		img.src=$('imgurl').value;
+		img.addEventListener('load',showImg,false);
+		img.addEventListener('error',imgerror,false);
+	}
+	catch(e) {
+		imgerror();
+	}
+}
+
+function imgerror() {
+	alert("Image not found");
+	Project.currentcontainer.image.src=null;
+}
+
+function setContImg(imgsrc) {
+	var image=imgsrc.substr(-7,3);
+	var CR=Project.currentcontainer;
+	CRbox.innerHTML='<img src="'+$('imgurl').value+'" width="25%" style="float:left">'+CRbox.innerHTML;
+	
+	CR.image.src=
+	CR.image.centre=$("imgCentre").checked;
+	CR.image.width=parseFloat($("imgWidth").value);
+	CR.image.mLeft=parseFloat($("imgMarginLeft").value);
+	CR.image.mTop=parseFloat($("imgMarginTop").value);
+	CR.image.mRight=parseFloat($("imgMarginRight").value);
+	CR.image.mBottom=parseFloat($("imgMarginBottom").value);
+}
+
+
 //state menu listeners *************************************
 
 function statemenu() {

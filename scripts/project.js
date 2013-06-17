@@ -57,7 +57,19 @@ function Container()  //container object
 	this.columns={}; // associative array for width of container in columns for each state
 	this.rows={}; // associative array for height of container in rows for each state. 
 	this.content; //content text HTML format
-	this.image=null; //URL for image;
+	this.image={
+				src:null, //URL for image
+				top:true, //image is placed top if true, bottom if false;
+				left:true, //float left if true, right if false
+				wrap:true, //text wraps if true not if false
+				centre:false, //centres image if true
+				width:50, //percentage
+				mLeft:1,
+				mRight:1,
+				mTop:1,
+				mBottom:1
+			}
+	
 	this.box; //HTML element containing content
 	this.style=new Chic(); //data that does not change with states
 }
