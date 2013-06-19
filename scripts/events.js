@@ -285,23 +285,12 @@ function fromcont() {
 	var re;
 	var txt="";
 	for(var i=0;i<Project.containers.length;i++) {
-		tmptxt=Project.containers[i].box.innerHTML;
-		re=/<h1[ -;=?-}]*>/g;
-		tmptxt=tmptxt.replace(re,"");
-		re=/<\/h1>/g;
-		tmptxt=tmptxt.replace(re,"\n");
-		re=/<h2[ -;=?-}]*>/g;
-		tmptxt=tmptxt.replace(re,"\t");
-		re=/<\/h2>/g;
-		tmptxt=tmptxt.replace(re,"\n");
-		re=/<p[ -;=?-}]*>/g;
-		tmptxt=tmptxt.replace(re,"\t\t");
-		re=/<\/p>/g;
-		tmptxt=tmptxt.replace(re,"\n");
-		txt+=tmptxt+"\n\n\n"
+		tmptxt=Project.containers[i].text;
+		txt+=tmptxt;
 	}
 	$('drop_zone').value=txt;
 }
+
 //container menu listeners *******************************
 
 function containermenu() {
@@ -458,21 +447,9 @@ function editHTML() {
 		return;
 	}
 	$("menuHTML").style.visibility="visible";
-	var tmptxt=Project.currentcontainer.box.innerHTML;
-	re=/<h1[ -;=?-}]*>/g;
-	tmptxt=tmptxt.replace(re,"");
-	re=/<\/h1>/g;
-	tmptxt=tmptxt.replace(re,"\n");
-	re=/<h2[ -;=?-}]*>/g;
-	tmptxt=tmptxt.replace(re,"\t");
-	re=/<\/h2>/g;
-	tmptxt=tmptxt.replace(re,"\n");
-	re=/<p[ -;=?-}]*>/g;
-	tmptxt=tmptxt.replace(re,"\t\t");
-	re=/<\/p>/g;
-	tmptxt=tmptxt.replace(re,"\n");
-	$("HTML_zone").value=tmptxt;
+	$("HTML_zone").value=Project.currentcontainer.text;
 }
+
 
 function saveText() {
 	var CR=Project.currentcontainer;
