@@ -16,8 +16,8 @@ function setCRBox(CR) {
 	bs.cssFloat="left";
 	bs.overflow="auto";
 	if(CR.style.centred) {
-		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);console.log(offset);
-		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";console.log(bs.marginLeft);
+		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);
+		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";
 		bs.marginRight=offset+"%";
 	}
 	else {
@@ -31,9 +31,9 @@ function setCRBox(CR) {
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
 	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
 	bs.backgroundColor=CR.style.backgroundColor;
-	
-	var content=CR.content||"<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>";
-	CR.box.innerHTML=content;
+	CR.text=CR.text||"/t/tLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	textToHTML(CR);
+	CR.box.innerHTML=CR.content;
 	setTagStyles(CR,"h1");
 	setTagStyles(CR,"h2");
 	setTagStyles(CR,"p");

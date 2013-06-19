@@ -56,9 +56,11 @@ function Container()  //container object
 	this.start=0;  //start column
 	this.columns={}; // associative array for width of container in columns for each state
 	this.rows={}; // associative array for height of container in rows for each state. 
-	this.content; //content text HTML format
+	this.text; //content in text format
+	this.content; //content text HTML format, 
 	this.image={
 				src:null, //URL for image
+				object:{}, //images as object
 				top:true, //image is placed top if true, bottom if false;
 				left:true, //float left if true, right if false
 				wrap:true, //text wraps if true not if false

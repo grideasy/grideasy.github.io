@@ -47,8 +47,14 @@ function addListeners() {
 	var imgbuttons=getElementsByClassName("imgPosit");
 	for(var i=0; i<imgbuttons.length; i++)
 	{
-		imgbuttons[i].addEventListener('click', function() {setContImg(this.src)}, false);
+		imgbuttons[i].addEventListener('click', function() {setContImg(this)}, false);
 	}
+	//container image styles listeners
+	$('imgWidth').addEventListener('change', function() {setContImgStyle()}, false);
+	$('imgMarginLeft').addEventListener('change', function() {setContImgStyle()}, false);
+	$('imgMarginTop').addEventListener('change', function() {setContImgStyle()}, false);
+	$('imgMarginRight').addEventListener('change', function() {setContImgStyle()}, false);
+	$('imgMarginBottom').addEventListener('change', function() {setContImgStyle()}, false);
 	
 	//Content menu listeners *************************************************
 	$("tabright").addEventListener('click', function() {addlevel("drop_zone")}, false);
@@ -265,11 +271,11 @@ function tocont(t) {
 	while (re.test(txt)) {
 		end=re.lastIndex;
 		tmptxt=txt.slice(start,end);
-		C.push(textToHTML(tmptxt));
+		C.push(tmptxt);
 		start=end;
 	}
 	tmptxt=txt.slice(start);
-	C.push(textToHTML(tmptxt));
+	C.push(tmptxt);
 	
 	fillCont(C);
 }
@@ -362,8 +368,8 @@ function setContCentre() {
 	var bs=CR.box.style; 
 	CR.style.centred=$("contcentre").checked;
 	if(CR.style.centred) {
-		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);console.log(offset);
-		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";console.log(bs.marginLeft);
+		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);
+		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";
 		bs.marginRight=offset+"%";
 	}
 	else {
@@ -470,9 +476,8 @@ function editHTML() {
 
 function saveText() {
 	var CR=Project.currentcontainer;
-	var txt=$("HTML_zone").value;
-	txt=textToHTML(txt);
-	CR.content=txt;
+	CR.text=$("HTML_zone").value;
+	textToHTML(CR);
 	setTagStyles(CR,"h1");
 	setTagStyles(CR,"h2");
 	setTagStyles(CR,"p");
@@ -501,36 +506,86 @@ function setContImgEdit() {
 
 function loadNsetImage() {
 	var img=new Image();
-	try {
-		img.src=$('imgurl').value;
-		img.addEventListener('load',showImg,false);
-		img.addEventListener('error',imgerror,false);
-	}
-	catch(e) {
-		imgerror();
-	}
+	img.src=$('imgurl').value;
+	img.addEventListener('load',function() {showImg(this)},false);
+	img.addEventListener('error',imgerror,false);
 }
 
 function imgerror() {
 	alert("Image not found");
-	Project.currentcontainer.image.src=null;
+	//Project.currentcontainer.image.src=null;
 }
 
-function setContImg(imgsrc) {
-	var image=imgsrc.substr(-7,3);
+function setContImg(img) {
+	var imgButtons=getElementsByClassName("imgPosit");
+	for(var i=0; i<imgButtons.length; i++)
+	{
+		imgButtons[i].style.border='solid 1px #FFFFFF';
+	}
+	img.style.border='solid 1px #000000';
+	var place=img.src.substr(-7,3);
 	var CR=Project.currentcontainer;
-	CRbox.innerHTML='<img src="'+$('imgurl').value+'" width="25%" style="float:left">'+CRbox.innerHTML;
-	
-	CR.image.src=
-	CR.image.centre=$("imgCentre").checked;
+	placeImage(place);
+	CR.image.centre=false;
+	if(place.charAt(1)=="c") {
+		CR.image.centre=true;	
+	}
+	if(CR.image.src!=null) {
+		showImg(CR.image.object)
+	}
+}
+
+function showImg(img) {
+	Project.currentcontainer.image.src=img.src;
+	Project.currentcontainer.image.object=img;
+	textToHTML(Project.currentcontainer);
+}
+
+function placeImage(place) {
+	var image=Project.currentcontainer.image;
+	switch (place.charAt(0)) {
+		case "t":
+			image.top=true;
+		break
+		case "b":
+			image.top=false;
+		break
+	}
+	switch (place.charAt(1)) {
+		case "l":
+			image.left=true;
+			image.centre=false;
+		break
+		case "r":
+			image.left=false;
+			image.centre=false;
+		break
+		case "c":
+			image.centre=true;
+		break
+	}
+	switch (place.charAt(2)) {
+		case "w":
+			image.wrap=true;
+		break
+		case "c":
+			image.wrap=false;
+		break
+	}
+}
+
+function setContImgStyle() {
+	CR=Project.currentcontainer;
 	CR.image.width=parseFloat($("imgWidth").value);
 	CR.image.mLeft=parseFloat($("imgMarginLeft").value);
 	CR.image.mTop=parseFloat($("imgMarginTop").value);
 	CR.image.mRight=parseFloat($("imgMarginRight").value);
 	CR.image.mBottom=parseFloat($("imgMarginBottom").value);
+	if(CR.image.src!=null) {
+		cssImage();
+		showImg(CR.image.object);
+	}
 }
-
-
 //state menu listeners *************************************
 
 function statemenu() {

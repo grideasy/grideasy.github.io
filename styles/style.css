@@ -28,6 +28,11 @@ textarea {
   visibility:hidden;
 }
 
+#HTMLholder {
+	visibility:hidden;
+	left:-1000px;
+	top:-1000px;
+}
 .close {
 	right:2px;
 	bottom:2px;
@@ -245,7 +250,7 @@ textarea {
 	width:10px;
 }
 
-#containeredit  input, #containerimage  input {
+#containeredit  input {
 	text-align:right;
 }
 
@@ -272,11 +277,12 @@ textarea {
 	margin-bottom:2%;
 	width:42px;
 	height:42px;
-	border: solid 1px #666666;
+	border: solid 1px #FFFFFF;
+	cursor:pointer;
 }
 
-#imgurl {
-	text-align: left;
+.imgPosit:hover {
+	border: solid 1px #666666;
 }
 
 #menucontent {
@@ -381,6 +387,10 @@ textarea {
 	background-color: #4F801F;
 	border:1px solid #4F801F;
 	color:#FFFFFF;
+}
+
+#imgurl {
+	text-align: left;
 }
 
 #advertbox {

@@ -185,7 +185,8 @@ function setContentHTML() {
 }
 
 
-function textToHTML(txt) {
+function textToHTML(CR) {
+	txt=CR.text;
 	var TTre, Tre;
 	//remove any white space characters after the last alphanumeric character
 	var endre=/\s*$/
@@ -206,17 +207,77 @@ function textToHTML(txt) {
 			tmparray[i]="<h1>"+tmparray[i]+"</h1>"
 		}
 	}
-	return tmparray.join("");
+	txt=tmparray.join("");
+	CR.content=txt;
+	if(CR.image.src!=null) {
+		cssImage();
+		addImage();
+	}
+}
+
+function cssImage() {
+	var image=Project.currentcontainer.image;
+	var img=image.object;
+	if(image.src!=null) {
+		img.style.display="block";
+		img.style.width=image.width+"%";
+		img.style.marginTop=image.mTop+"%";
+		img.style.marginBottom=image.mBottom+"%";
+		if(image.centre) {
+			img.style.cssFloat="none";
+			img.style.marginLeft="auto";
+			img.style.marginRight="auto";
+		}
+		else if(image.left) {
+			img.style.cssFloat="left";
+			img.style.marginLeft=image.mLeft+"%";
+			img.style.marginRight=image.mRight+"%";
+		}
+		else {
+			img.style.cssFloat="right";
+			img.style.marginLeft=image.mLeft+"%";
+			img.style.marginRight=image.mRight+"%";
+		}
+		var CR=Project.currentcontainer;
+		var HH=$("HTMLholder");
+		HH.innerHTML=CR.content;
+		if(image.top) {
+			var node=HH.firstChild;
+		}
+		else {
+			var node=HH.lastChild
+		}
+		if (image.wrap) {
+			node.style.clear="none";
+		}
+		else {
+			node.style.clear="both";
+		}
+		CR.content=HH.innerHTML;
+	}
+}
+
+function addImage() {
+	var CR=Project.currentcontainer;
+	var HH=$("HTMLholder");
+	HH.innerHTML=CR.content;
+	if(CR.image.top){
+		HH.insertBefore(CR.image.object,HH.firstChild);
+	}
+	else {
+		HH.appendChild(CR.image.object);
+	}
+	CR.content=HH.innerHTML;
+	CR.box.innerHTML=CR.content;
 }
 
 function fillCont(C) {
 	//create new containers if there are more from the content than exist
 	var grid=Project.states[Project.currentstate].grid;
 	var Plen=Project.containers.length;
-	//var diff=C.length-Project.containers.length;console.log(C.length,Project.containers.length)
 	for(var i=0;i<Plen;i++) {
 		cn=Project.containers[i];
-		cn.content=C[i];
+		cn.text=C[i];
 		setCRBox(cn);
 	}
 	for(var i=Plen; i<C.length;i++) {
@@ -225,7 +286,7 @@ function fillCont(C) {
 			cn.columns[Project.states[j].name]=Project.states[j].grid.columns;
 			cn.rows[Project.states[j].name]=Math.ceil(1/grid.rowratio);
 		}
-		cn.content=C[i];
+		cn.text=C[i];
 		Project.containers.push(cn);
 		Box(cn);
 	}
