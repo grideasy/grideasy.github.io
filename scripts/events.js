@@ -478,7 +478,47 @@ function setContImgEdit() {
 		return;
 	}
 	$("containeredit").style.visibility="hidden";
-	var grid=Project.states[Project.currentstate].grid;
+	CR=Project.currentcontainer;
+	if(CR.image.src!=null) {
+		$('imgurl').value=CR.image.src;	
+	}
+	else {
+		$('imgurl').value="";
+	}
+	if(CR.image.top) {
+		var place="t";
+	}
+	else {
+		var place="b";
+	}
+	if (CR.image.centre) {
+		place+="c";
+	}
+	else if(CR.image.left) {
+		place+="l";
+	}
+	else {
+		place+="r";
+	}
+	if(CR.image.wrap) {
+		place+="w";
+	}
+	else{
+		place+="c";
+	}
+	var imgbuttons=getElementsByClassName("imgPosit");
+	for(var i=0; i<imgbuttons.length; i++)
+	{
+		imgbuttons[i].style.border="solid 1px #FFFFFF";
+		if(imgbuttons[i].src.substr(-7,3)==place) {
+			imgbuttons[i].style.border="solid 1px #000000";
+		}
+	}
+	$("imgWidth").value=CR.image.width
+	$("imgMarginLeft").value=CR.image.mLeft;
+	$("imgMarginTop").value=CR.image.mTop;
+	$("imgMarginRight").value=CR.image.mRight;
+	$("imgMarginBottom").value=CR.image.mBottom;
 }
 
 function loadNsetImage() {
@@ -490,7 +530,6 @@ function loadNsetImage() {
 
 function imgerror() {
 	alert("Image not found");
-	//Project.currentcontainer.image.src=null;
 }
 
 function setContImg(img) {
