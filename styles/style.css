@@ -268,7 +268,7 @@ textarea {
 }
 
 
-.imgPosit {
+.imgPosit, .alignPosit, #gap {
 	display:block;
 	float:left;
 	margin-left:1%;
@@ -281,7 +281,16 @@ textarea {
 	cursor:pointer;
 }
 
-.imgPosit:hover {
+.alignPosit, #gap {
+	width:20px;
+	height:17px;
+}
+
+#gap {
+	cursor:default;
+}
+
+.imgPosit:hover, .alignPosit:hover {
 	border: solid 1px #666666;
 }
 

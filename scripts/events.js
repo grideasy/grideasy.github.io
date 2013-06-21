@@ -33,6 +33,11 @@ function addListeners() {
 	$("leftarr").addEventListener('click', forwardDiv, false);
 	$("rightarr").addEventListener('click', backwardDiv, false);
 	$("tagtype").addEventListener('change', function() {setTag(this)}, false);
+	var alignButtons=getElementsByClassName("alignPosit");
+	for(var i=0; i<alignButtons.length; i++)
+	{
+		alignButtons[i].addEventListener('click', function() {setContTagAlign(this)}, false);
+	}
 	$("fontSize").addEventListener('change', function() {setContTagValue(this)}, false);
 	$("marginLeft").addEventListener('change', function() {setContTagValue(this)}, false);
 	$("marginTop").addEventListener('change', function() {setContTagValue(this)}, false);
@@ -42,8 +47,10 @@ function addListeners() {
 	$("Ttabback").addEventListener('click', function() {dellevel("HTML_zone")}, false);
 	$("HTML_zone").addEventListener('click', function() {storeCursorPosition(this)}, false);
 	$("HTML_zone").addEventListener('keyup', function() {storeCursorPosition(this)}, false);
+	
+	
 	$('imgurl').addEventListener('change', loadNsetImage, false);
-	//container images listeners
+	//container positional images listeners
 	var imgbuttons=getElementsByClassName("imgPosit");
 	for(var i=0; i<imgbuttons.length; i++)
 	{
@@ -334,6 +341,13 @@ function setContEdit() {
 	$("marginTop").value=parseFloat(CR.style[tag].marginTop);
 	$("marginRight").value=parseFloat(CR.style[tag].marginRight);
 	$("marginBottom").value=parseFloat(CR.style[tag].marginBottom);
+	var alignButtons=getElementsByClassName("alignPosit");
+	for(var i=0; i<alignButtons.length; i++)
+	{
+		alignButtons[i].style.border='solid 1px #FFFFFF';
+	}
+	var img=$("align"+CR.style[tag].textAlign);
+	img.style.border='solid 1px #000000';
 }
 
 function setContWidth(item) {
@@ -425,7 +439,21 @@ function setContTagValue(item) {
 	var tags=["h1","h2","p"]
 	var tag=tags[$("tagtype").selectedIndex];
 	Project.currentcontainer.style[tag][item.id]=parseFloat(item.value)+"em";
-	setTagStyles(Project.currentcontainer,tag)
+	setTagStyles(Project.currentcontainer,tag);
+}
+
+function setContTagAlign(item) {
+	var alignButtons=getElementsByClassName("alignPosit");
+	for(var i=0; i<alignButtons.length; i++)
+	{
+		alignButtons[i].style.border='solid 1px #FFFFFF';
+	}
+	item.style.border='solid 1px #000000';
+	var alnmnt=item.src.slice(7,-3);
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	Project.currentcontainer.style[tag].textAlign=alnmnt;
+	setTagStyles(Project.currentcontainer,tag);
 }
 
 function delcont() {

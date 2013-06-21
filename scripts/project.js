@@ -34,6 +34,7 @@ function Tag(fs) {
 	this.marginTop=fs/4+"em";
 	this.marginRight="0.5em";
 	this.marginBottom=fs/4+"em";
+	this.textAlign="left";
 }
 
 function State()
