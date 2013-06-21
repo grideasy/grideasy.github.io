@@ -433,6 +433,13 @@ function setTag(item) {
 	$("marginTop").value=parseFloat(CR.style[tag].marginTop);
 	$("marginRight").value=parseFloat(CR.style[tag].marginRight);
 	$("marginBottom").value=parseFloat(CR.style[tag].marginBottom);
+	var alignButtons=getElementsByClassName("alignPosit");
+	for(var i=0; i<alignButtons.length; i++)
+	{
+		alignButtons[i].style.border='solid 1px #FFFFFF';
+	}
+	var img=$("align"+CR.style[tag].textAlign);
+	img.style.border='solid 1px #000000';
 }
 
 function setContTagValue(item) {
@@ -449,10 +456,11 @@ function setContTagAlign(item) {
 		alignButtons[i].style.border='solid 1px #FFFFFF';
 	}
 	item.style.border='solid 1px #000000';
-	var alnmnt=item.src.slice(7,-3);
+	var alnindx=parseInt(item.src.substr(-5,1));
 	var tags=["h1","h2","p"]
 	var tag=tags[$("tagtype").selectedIndex];
-	Project.currentcontainer.style[tag].textAlign=alnmnt;
+	var aligns=["left","center","right","justify"];
+	Project.currentcontainer.style[tag].textAlign=aligns[alnindx];
 	setTagStyles(Project.currentcontainer,tag);
 }
 
