@@ -1,8 +1,16 @@
+var iop=navigator.appName=='Opera';
+
 function $(id) {	
 	return document.getElementById(id);
 }
 
 function main() {
+	if(iop) {
+		addDropZone()
+	}
+	if(!(window.File && window.FileReader && window.FileList && window.Blob)) {
+		addInputZone();
+	}
 	setMenuDefaults();
 	addListeners();
 	Project.dfs=getDefaultFontSize();
@@ -16,6 +24,31 @@ function main() {
 	//console.log(JSON.stringify(Project));
 }
 
+function addDropZone() {
+	var dz=document.createElement('div');
+	dz.id="drop_zone";
+	dz.style.position="static";
+	dz.style.width="90%";
+	dz.style.height="80%";
+	dz.style.marginLeft="5%";
+	dz.style.marginTop="6%";
+	dz.style.backgroundColor="#EEEEEE";
+	dz.style.border="solid 1px #CCCCCC";
+	
+	$("text_zone").style.width="80%";
+	$("text_zone").style.height="98%";
+	$("text_zone").style.marginLeft="0%";
+	$("text_zone").style.marginTop="0%";
+	$("text_zone").style.backgroundColor="#FFFFFF";
+	$("text_zone").parentNode.insertBefore(dz,$("text_zone"));
+	dz.appendChild($("text_zone"));
+}
+
+function addInputZone() {
+	$("instruct").innerHTML="Write or Paste Text Below";
+	$("instruct").style.marginLeft="150px";
+}
+	
 function setMenuDefaults() {
 	//Grid Menu Options *********************************************
 	$('Ncols').options[5].selected="selected";

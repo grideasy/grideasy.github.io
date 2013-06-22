@@ -59,7 +59,7 @@ function setContainer(box) {
 function setTagStyles(CR,tag) {	
 	var tags=CR.box.getElementsByTagName(tag);
 	for(var i=0;i<tags.length;i++) {
-		for(var style in CR.style[tag]) {console.log("style",style);console.log(tags[i].style[style],CR.style[tag][style]);
+		for(var style in CR.style[tag]) {
 			tags[i].style[style]=CR.style[tag][style];
 		}
 	}

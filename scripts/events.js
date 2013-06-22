@@ -64,8 +64,8 @@ function addListeners() {
 	$('imgMarginBottom').addEventListener('change', function() {setContImgStyle()}, false);
 	
 	//Content menu listeners *************************************************
-	$("tabright").addEventListener('click', function() {addlevel("drop_zone")}, false);
-	$("tabback").addEventListener('click', function() {dellevel("drop_zone")}, false);
+	$("tabright").addEventListener('click', function() {addlevel("text_zone")}, false);
+	$("tabback").addEventListener('click', function() {dellevel("text_zone")}, false);
 	$("showbreaks").addEventListener('change',function() {showcontainers(this)},false);
 	$("pushto").addEventListener('click', function() {tocont(this)}, false);
 	$("pullfrom").addEventListener('click', function() {fromcont(this)}, false);
@@ -78,16 +78,22 @@ function addListeners() {
 	
 	//drop_zone listeners *************************************************
 	if(window.File && window.FileReader && window.FileList && window.Blob) {	
-		dropZone = $('drop_zone');
-		dropZone.value="";
+		if(iop) { //Opera Browser
+			dropZone = $('drop_zone');
+		}
+		else {
+			dropZone=$("text_zone");
+		}
 		dropZone.addEventListener('dragover', handleDragOver, false);
 		dropZone.addEventListener('drop', handleFileSelect, false);
-		dropZone.addEventListener('click', function() {storeCursorPosition(this)}, false);
-		dropZone.addEventListener('keyup', function() {storeCursorPosition(this)}, false);
-	}
-	else {
 		
 	}
+	else {  //Safari browser
+		//awaiting developments
+	}
+	$("text_zone").value="";
+	$("text_zone").addEventListener('click', function() {storeCursorPosition(this)}, false);
+	$("text_zone").addEventListener('keyup', function() {storeCursorPosition(this)}, false);
 	
 	//**************all menus************************
 	var closers=getElementsByClassName("close");
@@ -246,16 +252,16 @@ function dellevel(zone) {
 }
 
 function showcontainers(t) {
-	var txt=$('drop_zone').value;
+	var txt=$('text_zone').value;
 	if(t.checked) {
 		//replace three or more new lines with container break symbol
 		var re=/\n\n\n\n*/g
-		$('drop_zone').value=txt.replace(re,"\n\u2616\n");
+		$('text_zone').value=txt.replace(re,"\n\u2616\n");
 	}
 	else {
 		//replace container break symbol with new line
 		var re=/\u2616/g
-		$('drop_zone').value=txt.replace(re,"\n");
+		$('text_zone').value=txt.replace(re,"\n");
 	}
 }
 
@@ -263,7 +269,7 @@ function tocont(t) {
 	var C=[];
 	var tmptxt;
 	var re, endre, end;
-	var txt=$('drop_zone').value;
+	var txt=$('text_zone').value;
 	if(!t.checked) {
 		//replace container break symbol with new line
 		re=/\u2616/g
@@ -295,7 +301,7 @@ function fromcont() {
 		tmptxt=Project.containers[i].text;
 		txt+=tmptxt;
 	}
-	$('drop_zone').value=txt;
+	$('text_zone').value=txt;
 }
 
 //container menu listeners *******************************

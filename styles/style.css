@@ -18,7 +18,9 @@ textarea {
 	margin-left:5%;
 	margin-top:2%;
 	resize:none;
+	background-color: #EEEEEE;
 }
+
 
 #defaultEm {
   font-size:1em;
@@ -322,6 +324,14 @@ textarea {
 	margin-left:10%;
 }
 
+#menucontent #instruct {
+	font-size:12pt;
+	color:#000000;
+	margin-top:25px;
+	margin-left:220px;
+	background-color: #EEEEEE;
+
+}
 
 #statetable input:hover, #contenttable input:hover {
 	background-color:#FFFFFF;

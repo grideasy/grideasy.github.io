@@ -1,17 +1,16 @@
-function handleDragOver(evt) {	
+function handleDragOver(evt) {		
    evt.stopPropagation();
    evt.preventDefault();
 }
-
-function handleBodyDrop(evt) {
+/*
+function handleBodyDrop(evt) {	
 	evt.stopPropagation();
     evt.preventDefault();
 }
-
-function handleFileSelect(evt) {	
+*/
+function handleFileSelect(evt) {
     evt.stopPropagation();
     evt.preventDefault();
-
     var files = evt.dataTransfer.files; // FileList object.
 	var f = files[0];
 	if (f) 
@@ -28,5 +27,5 @@ function handleFileSelect(evt) {
 
 
  function extract(a) {
-	 $('drop_zone').value=a;
+	 $('text_zone').value=a;
  }
