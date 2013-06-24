@@ -21,7 +21,6 @@ function main() {
 	buildStateTable();
 	buildGrid();
 	setColors();
-	//console.log(JSON.stringify(Project));
 }
 
 function addDropZone() {

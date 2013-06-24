@@ -5,6 +5,8 @@ function addListeners() {
 	$("butcontainer").addEventListener('click', containermenu, false);
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
+	$("butsave").addEventListener('click', savemenu, false);
+	$("butopen").addEventListener('click', function() {$("menusaved").style.visibility="visible"}, false);
 	
 	//Project Menu listeners *****************************************
 	$('rowH').addEventListener('change', function() {setrowH(this)}, false);
@@ -86,6 +88,9 @@ function addListeners() {
 		}
 		dropZone.addEventListener('dragover', handleDragOver, false);
 		dropZone.addEventListener('drop', handleFileSelect, false);
+		fileZone=$('infile');
+		fileZone.addEventListener('dragover', handleDragOver, false);
+		fileZone.addEventListener('drop', handleOpenFileSelect, false);
 		
 	}
 	else {  //Safari browser
@@ -719,7 +724,40 @@ function delrow() {
 	}
 }
 
+//Save Menu *******************************************************
 
+function savemenu() {
+	var CR,img,tmp;
+	var Plen=Project.containers.length;
+	for(i=0;i<Plen;i++) {
+		CR=Project.containers[i];
+		delete CR["box"];
+		delete CR["content"];
+		delete CR.image["object"];
+	}
+	newwindow=window.open("","output");
+	newwindow.document.write(JSON.stringify(Project));
+	newwindow.document.close();
+	var elm=$("contbox").firstChild;
+    var next = findNext(elm);
+    while (next) {
+        next.parentNode.removeChild(next);
+        next = findNext(elm);
+    }
+	for(var i=0;i<Plen;i++) {
+		CR=Project.containers[i];
+		tmp=CR.image.src;
+		CR.image.src=null;
+		Box(CR);
+		CR.image.src=tmp;
+		if(CR.image.src!=null) {
+			img=new Image();
+			img.src=CR.image.src;
+			img.addEventListener('load',function() {showImg(this)},false);
+			img.addEventListener('error',imgerror,false);
+		}
+	}
+}
 
 // All menus ********************************************************
 function clearAllMenus() {

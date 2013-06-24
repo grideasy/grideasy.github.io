@@ -301,7 +301,7 @@ textarea {
 	height:450px;
 }
 
-#menucontent span, #menuHTML span {
+#menucontent span, #menuHTML span, #menusaved span {
 	display:block;
 	float:left;
 	margin-top:-1.5%;
@@ -330,7 +330,21 @@ textarea {
 	margin-top:25px;
 	margin-left:220px;
 	background-color: #EEEEEE;
+}
 
+#menusaved #infile {
+	width:90%;
+	height:80%;
+	margin-left:5%;
+	margin-top:2%;
+	background-color:#FFFFFF;
+	border:solid 1px #CCCCCC;
+}
+
+#menusaved span {
+	font-size:12pt;
+	margin-top:5px;
+	color:#000000;
 }
 
 #statetable input:hover, #contenttable input:hover {
