@@ -1,5 +1,18 @@
 var iop=navigator.appName=='Opera';
 
+function str_rep(n) 
+{
+   var s = "", t = this.toString();
+   while (--n >= 0) 
+   {
+     s += t
+   }
+   return s;
+}
+
+String.prototype.repeat = str_rep;
+var SPACES =" ".repeat(100);
+
 function $(id) {	
 	return document.getElementById(id);
 }
@@ -186,7 +199,21 @@ function setColors() {
 		elm.style.backgroundColor=colarray[i][1];
 		elm.title=colarray[i][0];
 		elm.addEventListener('click',function() {setContFontColor(this)}, false)
-	}			
+	}
+	var elm=$("bodyColor").firstChild;
+	for(var i=0;i<16;i++) {
+		elm = findNext(elm);
+		elm.style.backgroundColor=colarray[i][1];
+		elm.title=colarray[i][0];
+		elm.addEventListener('click',function() {setContBodyColor(this)}, false)
+	}
+	var elm=$("marginColor").firstChild;
+	for(var i=0;i<16;i++) {
+		elm = findNext(elm);
+		elm.style.backgroundColor=colarray[i][1];
+		elm.title=colarray[i][0];
+		elm.addEventListener('click',function() {setContMarginColor(this)}, false)
+	}				
 }
 
 function setContBackColor(item) {
@@ -201,6 +228,16 @@ function setContFontColor(item) {
 	setTagStyles(Project.currentcontainer,tag)
 }
 
+function setContBodyColor(item) {
+	Project.bodycolor=item.style.backgroundColor;
+	buildGrid();
+}
+
+function setContMarginColor(item) {
+	Project.margincolor=item.style.backgroundColor;
+	buildGrid();
+	
+}
 //Content functions *****************************************************************
 function setContentHTML() {
 	var cHTML="";
@@ -242,13 +279,13 @@ function textToHTML(CR) {
 	txt=tmparray.join("");
 	CR.content=txt;
 	if(CR.image.src!=null) {
-		cssImage();
-		addImage();
+		cssImage(CR);
+		addImage(CR);
 	}
 }
 
-function cssImage() {
-	var image=Project.currentcontainer.image;
+function cssImage(CR) {
+	var image=CR.image;
 	var img=image.object;
 	if(image.src!=null) {
 		img.style.display="block";
@@ -270,7 +307,6 @@ function cssImage() {
 			img.style.marginLeft=image.mLeft+"%";
 			img.style.marginRight=image.mRight+"%";
 		}
-		var CR=Project.currentcontainer;
 		var HH=$("HTMLholder");
 		HH.innerHTML=CR.content;
 		if(image.top) {
@@ -289,8 +325,7 @@ function cssImage() {
 	}
 }
 
-function addImage() {
-	var CR=Project.currentcontainer;
+function addImage(CR) {
 	var HH=$("HTMLholder");
 	HH.innerHTML=CR.content;
 	if(CR.image.top){
@@ -333,17 +368,18 @@ function buildGrid() {
 	$("gridbox").style.width=grid.width+"em";
 	$("gridbox").style.height=grid.height+"em";
 	$("gridbox").style.left=((Project.width/Project.dfs)-grid.width)/2+"em";
+	$("gridbox").style.backgroundColor=Project.bodycolor;
 	$("contbox").style.width=$("gridbox").style.width;
 	$("contbox").style.left=$("gridbox").style.left;
 	$("contbox").style.height=$("gridbox").style.height;
 	$("topspacer").style.height=(grid.topMargin-grid.gutters)*gridWHratio+"%";
-	$("topspacer").style.backgroundColor="#FF00FF";
+	$("topspacer").style.backgroundColor=Project.margincolor;
 	$("leftspacer").style.width=(grid.sideMargins-grid.gutters)+"%";
 	$("leftspacer").style.height=(100-grid.topMargin*gridWHratio)+"%";
-	$("leftspacer").style.backgroundColor="#0000FF";
-	setBox("topmargin",0,0,100,grid.topMargin*gridWHratio,'#999999');
-	setBox("leftmargin",0,0,grid.sideMargins,100,'#999999');
-	setBox("rightmargin",100-grid.sideMargins,0,grid.sideMargins,100,'#999999');
+	$("leftspacer").style.backgroundColor=Project.margincolor;
+	setBox("topmargin",0,0,100,grid.topMargin*gridWHratio,Project.margincolor);
+	setBox("leftmargin",0,0,grid.sideMargins,100,Project.margincolor);
+	setBox("rightmargin",100-grid.sideMargins,0,grid.sideMargins,100,Project.margincolor);
 	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
 	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
 	var cleft=grid.sideMargins+grid.gutters;
@@ -365,7 +401,7 @@ function buildGrid() {
 		row=document.createElement('div');
 		row.id="row"+(i);
 		$('gridbox').appendChild(row);
-		setBox(row.id,rleft,rtop,rwidth,rheight,'#CCCCCC');
+		setBox(row.id,rleft,rtop,rwidth,rheight,Project.bodycolor);
 		rtop+=rheight+cwidth*gridWHratio*grid.rowratio;
 		i++;
 	}

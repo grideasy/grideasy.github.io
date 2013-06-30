@@ -14,7 +14,8 @@ Project={
 	staterows:3, //number of rows in state table containing states;
 	content:"", //content as text
 	toedge:true, //when true containers snap to edges of grid, when false containers snap to semi-gutters around them
-	bodycolor:"transparent", //body colour for project
+	bodycolor:"#CCCCCC", //body colour for project
+	margincolor:"#999999", //margin colour for project
 	default_styles:new Chic() //default styles for all containers
 
 }
@@ -54,7 +55,6 @@ function State()
 
 function Container()  //container object
 {
-	this.start=0;  //start column
 	this.columns={}; // associative array for width of container in columns for each state
 	this.rows={}; // associative array for height of container in rows for each state. 
 	this.text; //content in text format

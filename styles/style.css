@@ -195,17 +195,17 @@ textarea {
 	visibility:hidden;
 }
 
-#containeredit, #containerimage {
+#containeredit, #containerimage, #bodyedit {
 	top:-3px;
 	left:990px;
 	width:220px;
 	height:600px;
 }
 
-#containeredit label, #containerimage label {
+#containeredit label, #containerimage label, #bodyedit label {
 	margin-left:5%;
 }
-#containeredit span, #containerimage span {
+#containeredit span, #containerimage span, #bodyedit span {
 	margin-left:5%;
 	font-weight: bold;
 }
@@ -218,13 +218,13 @@ textarea {
 	cursor: default;
 }
 
-#backColor, #fontColor {
+#backColor, #fontColor, #bodyColor, #marginColor {
 	display:block;
 	width:120px;
 	background-color: #FF0000;
 }
 
-#backColor div, #fontColor div {
+#backColor div, #fontColor div, #bodyColor div, #marginColor div {
 	position:static;
 	float:left;
 	margin-left:2px;
@@ -236,7 +236,7 @@ textarea {
 	background-color: #4F801F;
 }
 
-#backColor div:hover, #fontColor div:hover {
+#backColor div:hover, #fontColor div:hover, #bodyColor div:hover, #marginColor div:hover {
 	border:solid black 1px;
 }
 

@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="scripts/container.js"></script>
 		<script type="text/javascript" src="scripts/events.js"></script>
 		<script type="text/javascript" src="scripts/dropcontent.js"></script>
+		<script type="text/javascript" src="scripts/export.js"></script>
 		<script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
 		<script>
 			window.onload=main;
@@ -31,6 +32,7 @@
 			</div>
 		</div>
 		<div id="menubox">
+			<div id="butproject" class="leftbutton">Body</div>
 			<div id="butgrid" class="leftbutton">Grid</div>
 			<div id="butcontainer" class="leftbutton">Container</div>
 			<div id="butcontent" class="leftbutton">Content</div>
@@ -41,7 +43,7 @@
 			<div id="butcreate" class="rightbutton">Create</div>
 			<!--  *****************menus for each button *********************-->
 			
-			<!--  *****************grid *********************-->
+			<!--  *****************grid ********************* -->
 			<div id="menugrid" class="menu">
 				<label for = "Ncols">No&#772; of Cols</label>
 				<select id="Ncols">
@@ -280,6 +282,51 @@
 						<li><label for = "imgMarginRight">Right Margin </label><input type="text" value=1 id="imgMarginRight" size=3> %</li>
 						<li><label for = "imgMarginBottom">Bottom Margin </label><input type="text" value=1 id="imgMarginBottom" size=3> %</li>
 					</ul>
+				</div>
+				<div class="close" alt="close" title="close">X</div>
+			</div>
+			<div id="bodyedit" class="edit">
+				<div class="back" id="contbody">
+					<p></p>
+					<label for = "bodyColor">Background Colour </label><br>
+					<span id="bodyColor">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</span><br><br>
+				
+					<label for = "marginColor">Margins Colour </label><br>
+					<span id="marginColor">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</span><br>
 				</div>
 				<div class="close" alt="close" title="close">X</div>
 			</div>

@@ -1,22 +1,21 @@
 
 function addListeners() {
 	// Menu listeners ***********************************************
+	$('butproject').addEventListener('click', function() {$("bodyedit").style.visibility="visible"}, false);
 	$('butgrid').addEventListener('click', gridmenu, false);
 	$("butcontainer").addEventListener('click', containermenu, false);
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
 	$("butsave").addEventListener('click', savemenu, false);
 	$("butopen").addEventListener('click', function() {$("menusaved").style.visibility="visible"}, false);
-	
-	//Project Menu listeners *****************************************
-	$('rowH').addEventListener('change', function() {setrowH(this)}, false);
-	
+	$("butcreate").addEventListener('click', exportHTML, false);
+
 	// Grid Menu listeners *****************************
 	$('Ncols').addEventListener('change', function() {setNcols(this)}, false);
 	$('TMarg').addEventListener('change', function() {setTMarg(this)}, false);
 	$('SMargs').addEventListener('change', function() {setSMargs(this)}, false);
 	$('Gutts').addEventListener('change', function() {setGutts(this)}, false);
-	
+	$('rowH').addEventListener('change', function() {setrowH(this)}, false);
 		
 	//Container menu listeners ***************************************************
 	$("editcontainer").addEventListener('click', function() {$("containeredit").style.visibility="visible";setContEdit()});
@@ -149,12 +148,6 @@ function projectmenu() {
 	$('butproject').style.height='50px';
 }
 
-function setrowH(item) {
-	cleargridbox();
-	Project.states[Project.currentstate].grid.rowratio=parseFloat(item.options[item.selectedIndex].text);
-	buildGrid();
-}
-
 //grid menu listeners _______________________
 function gridmenu() {
 	clearAllMenus();
@@ -192,6 +185,11 @@ function setrowsonoff(item) {
 	buildGrid();
 }
 
+function setrowH(item) {
+	cleargridbox();
+	Project.states[Project.currentstate].grid.rowratio=parseFloat(item.options[item.selectedIndex].text);
+	buildGrid();
+}
 
 //content menu listeners ************************************
 function contentmenu() {
@@ -319,11 +317,13 @@ function containermenu() {
 
 function setContEdit() {
 	var CR=Project.currentcontainer;
+	
 	if(CR==null) {
 		$("containeredit").style.visibility="hidden";
 		alert("No container selected");
 		return;
 	}
+	setCRBox(CR);
 	$("containerimage").style.visibility="hidden";
 	var grid=Project.states[Project.currentstate].grid;
 	var name=Project.states[Project.currentstate].name
@@ -370,7 +370,7 @@ function setContWidth(item) {
 	CR.columns[name]=parseInt(item.options[item.selectedIndex].text);
 	var bs=CR.box.style;
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
-	setContCentre();
+	setCRBox(CR)
 }
 
 function setContCentre() {
@@ -390,6 +390,7 @@ function setContCentre() {
 		bs.marginLeft=2*grid.gutters+"%"; 
 		bs.marginRight="0%"
 	}
+	setCRBox(CR)
 }
 
 function setContHeight(item) {
@@ -402,6 +403,7 @@ function setContHeight(item) {
 	CR.rows[name]=parseInt(item.value);
 	var bs=CR.box.style;
 	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
+	setCRBox(CR)
 }
 
 
@@ -673,7 +675,6 @@ function setTheState(item) {
 	$('SMargs').options[grid.sideMargins-1].selected="selected";
 	$('Gutts').options[Math.floor(grid.gutters)].selected="selected";
 	$('rowH').options[ratios[grid.rowratio*100]].selected="selected";
-	
 	buildGrid();
 }
 

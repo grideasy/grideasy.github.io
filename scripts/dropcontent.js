@@ -55,16 +55,26 @@ function setProject(p) {
 	for(var i=0;i<Project.containers.length;i++) {
 		CR=Project.containers[i];
 		tmp=CR.image.src;
-		CR.image.src=null;
+		CR.image.src=null; //so that Box does not try to deal with an unloaded image
 		Box(CR);
-		CR.image.src=tmp;
+		CR.box.style.opacity=0.4;
+		CR.image.src=tmp; //reset image source
 		if(CR.image.src!=null) {
 			img=new Image();
 			img.src=CR.image.src;
-			Project.currentcontainer=CR;
-			img.addEventListener('load',function() {showImg(this)},false);
+			img.container=CR
+			img.addEventListener('load',function() {showContImg(this)},false);
 			img.addEventListener('error',imgerror,false);
 		}
 	}
+	Project.currentcontainer=CR;
+	setContainer(CR.box)
 	$("menusaved").style.visibility="hidden";
+}
+
+function showContImg(img) {
+	img.container.image.src=img.src;
+	img.container.image.object=img;
+	textToHTML(img.container);
+	delete img["container"];
 }
