@@ -46,10 +46,10 @@ function State()
 		height:1920, //grid height in pixels will be changed to ems
 		columns:6,
 		rows:0,
-		rowratio:1,
-		topMargin:2,
-		sideMargins:2,
-		gutters:1
+		rowratio:1, // percent
+		topMargin:2, // percent
+		sideMargins:2, // percent
+		gutters:1 // percent
 	};
 }	
 

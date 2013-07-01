@@ -380,7 +380,7 @@ function buildGrid() {
 	setBox("topmargin",0,0,100,grid.topMargin*gridWHratio,Project.margincolor);
 	setBox("leftmargin",0,0,grid.sideMargins,100,Project.margincolor);
 	setBox("rightmargin",100-grid.sideMargins,0,grid.sideMargins,100,Project.margincolor);
-	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
+	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	of horizontal space
 	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
 	var cleft=grid.sideMargins+grid.gutters;
 	var ctop=(grid.topMargin+grid.gutters)*gridWHratio;
