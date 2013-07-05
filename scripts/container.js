@@ -34,7 +34,7 @@ function setCRBox(CR) {
 	bs.backgroundColor=CR.style.backgroundColor;
 	CR.text=CR.text||"\t\tLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	textToHTML(CR);
-	CR.box.innerHTML=CR.content;console.log(CR.content);
+	CR.box.innerHTML=CR.content;
 	setTagStyles(CR,"h1");
 	setTagStyles(CR,"h2");
 	setTagStyles(CR,"p");

@@ -290,7 +290,7 @@ function setContentHTML() {
 }
 
 
-function textToHTML(CR) {console.log("txt");
+function textToHTML(CR) {
 	txt=CR.text;
 	var TTre, Tre;
 	//remove any white space characters after the last alphanumeric character
@@ -303,13 +303,13 @@ function textToHTML(CR) {console.log("txt");
 		TTre=/\t\t/g;
 		Tre=/\t/g;
 		if(TTre.test(tmparray[i])) {
-			tmparray[i]=tmparray[i].replace(TTre,"<p>")+"</p>";console.log("p",tmparray[i]);
+			tmparray[i]=tmparray[i].replace(TTre,"<p>")+"</p>";
 		}
 		else if(Tre.test(tmparray[i])) {
-			tmparray[i]=tmparray[i].replace(Tre,"<h2>")+"</h2>";console.log("h2",tmparray[i]);
+			tmparray[i]=tmparray[i].replace(Tre,"<h2>")+"</h2>";
 		}
 		else {
-			tmparray[i]="<h1>"+tmparray[i]+"</h1>";console.log("h1",tmparray[i]);
+			tmparray[i]="<h1>"+tmparray[i]+"</h1>";
 		}
 	}
 	txt=tmparray.join("");
@@ -387,7 +387,7 @@ function fillCont(C) {
 		cn=new Container();
 		for(var j=0;j<Project.states.length;j++) {
 			cn.columns[Project.states[j].name]=Project.states[j].grid.columns;
-			cn.rows[Project.states[j].name]=Math.ceil(1/grid.rowratio);
+			cn.rows[Project.states[j].name]=Math.ceil(1/Project.states[j].grid.rowratio);
 		}
 		cn.text=C[i];
 		Project.containers.push(cn);

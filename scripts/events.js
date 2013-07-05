@@ -621,11 +621,11 @@ function saveText() {
 }
 
 function createCont() {
-	var state=Project.states[Project.currentstate];
-	var grid=state.grid;
 	cn=new Container();
-	cn.columns[state.name]=state.grid.columns;
-	cn.rows[state.name]=Math.ceil(1/grid.rowratio);
+	for(var j=0;j<Project.states.length;j++) {
+		cn.columns[Project.states[j].name]=Project.states[j].grid.columns;
+		cn.rows[Project.states[j].name]=Math.ceil(1/Project.states[j].grid.rowratio);
+	}
 	Project.containers.push(cn);
 	Box(cn);
 }

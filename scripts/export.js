@@ -81,6 +81,10 @@ function exportStyles(newwindow) {
 		//container heading 1 styles
 		newwindow.document.writeln(SPACES.substr(0,12)+"#container"+i+" h1 {");
 		newwindow.document.writeln(SPACES.substr(0,16)+'color:'+CR[i].style.h1.color+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-family:'+CR[i].style.h1.fontFamily+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-weight:'+CR[i].style.h1.fontWeight+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-style:'+CR[i].style.h1.fontStyle+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'text-decoration:'+CR[i].style.h1.textDecoration+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'font-size:'+CR[i].style.h1.fontSize+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'margin-left:'+CR[i].style.h1.marginLeft+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'margin-top:'+CR[i].style.h1.marginTop+';');
@@ -93,6 +97,10 @@ function exportStyles(newwindow) {
 		//container heading 2 styles
 		newwindow.document.writeln(SPACES.substr(0,12)+"#container"+i+" h2 {");
 		newwindow.document.writeln(SPACES.substr(0,16)+'color:'+CR[i].style.h2.color+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-family:'+CR[i].style.h2.fontFamily+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-weight:'+CR[i].style.h2.fontWeight+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-style:'+CR[i].style.h2.fontStyle+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'text-decoration:'+CR[i].style.h2.textDecoration+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'font-size:'+CR[i].style.h2.fontSize+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'margin-left:'+CR[i].style.h2.marginLeft+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'margin-top:'+CR[i].style.h2.marginTop+';');
@@ -105,6 +113,10 @@ function exportStyles(newwindow) {
 		//container paragraph styles
 		newwindow.document.writeln(SPACES.substr(0,12)+"#container"+i+" p {");
 		newwindow.document.writeln(SPACES.substr(0,16)+'color:'+CR[i].style.p.color+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-family:'+CR[i].style.p.fontFamily+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-weight:'+CR[i].style.p.fontWeight+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'font-style:'+CR[i].style.p.fontStyle+';');
+		newwindow.document.writeln(SPACES.substr(0,16)+'text-decoration:'+CR[i].style.p.textDecoration+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'font-size:'+CR[i].style.p.fontSize+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'margin-left:'+CR[i].style.p.marginLeft+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'margin-top:'+CR[i].style.p.marginTop+';');
@@ -273,7 +285,7 @@ function gridHtoW(s) {
 		if(CR[i].style.centred) {
 			totalrows+=CR[i++].rows[name];
 		}
-		else {
+		else {console.log(CR[i].columns[name],grid.columns)
 			while (i<CR.length && colcount+CR[i].columns[name]<=grid.columns) {
 				colcount+=CR[i].columns[name];
 				maxonline=Math.max(maxonline,CR[i++].rows[name]);
