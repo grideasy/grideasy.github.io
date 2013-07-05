@@ -211,26 +211,26 @@ textarea {
 }
 #leftarr, #rightarr {
 	font-size:20pt;
+	color:#888888;
 }
 #leftarr:hover, #rightarr:hover {
-	background-color:#4F801F;
-	color:#FFFFFF;
-	cursor: default;
+	color:#000000;
+	cursor: pointer;
 }
 
 #backColor, #fontColor, #bodyColor, #marginColor {
 	display:block;
-	width:120px;
+	width:180px;
 	background-color: #FF0000;
 }
 
 #backColor div, #fontColor div, #bodyColor div, #marginColor div {
 	position:static;
 	float:left;
-	margin-left:2px;
-	margin-bottom:2px;
-	width:10px;
-	height:10px;
+	margin-left:1px;
+	margin-bottom:1px;
+	width:8px;
+	height:8px;
 	font-size: 1pt;
 	border: solid 1px #DDDDDD;
 	background-color: #4F801F;
@@ -238,6 +238,41 @@ textarea {
 
 #backColor div:hover, #fontColor div:hover, #bodyColor div:hover, #marginColor div:hover {
 	border:solid black 1px;
+}
+
+.colchange {
+	opacity:0.5;
+	cursor: pointer;
+}
+
+#containeredit .colchange,  #bodyedit .colchange {
+	margin:1px;
+}
+
+#containeredit .coldiv,  #bodyedit .coldiv {
+	display: block;
+	float:right;
+	margin-right:5px;
+	margin-top:8px;
+	width:8px;
+	height:8px;
+	font-size: 1pt;
+	border: solid 1px #000000;
+	background-color: #FF0000;
+}
+
+.colchange:hover {
+	opacity:1;
+}
+
+#containeredit .fontType {
+	margin-left:10px;
+	width:20px;
+	box-shadow: 3px 3px 2px #FFFFFF;
+}
+
+#containeredit #bold {
+	margin-left:30px;
 }
 
 #containeredit li label, #containerimage li label {
@@ -267,6 +302,27 @@ textarea {
 	text-align:right;
 	position:relative;
 	left:1px;
+}
+
+#containeredit #bold {
+	font-weight:bold;
+	cursor: pointer;
+}
+
+#containeredit #italic {
+	font-weight:normal;
+	font-style:italic;
+	cursor: pointer;
+}
+
+#containeredit #underline {
+	font-weight:normal;
+	text-decoration:underline;
+	cursor: pointer;
+}
+
+#fonttype option {
+	font-size: 8pt;
 }
 
 

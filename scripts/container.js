@@ -32,9 +32,9 @@ function setCRBox(CR) {
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
 	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
 	bs.backgroundColor=CR.style.backgroundColor;
-	CR.text=CR.text||"\n\n\n\t\tLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	CR.text=CR.text||"\t\tLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	textToHTML(CR);
-	CR.box.innerHTML=CR.content;
+	CR.box.innerHTML=CR.content;console.log(CR.content);
 	setTagStyles(CR,"h1");
 	setTagStyles(CR,"h2");
 	setTagStyles(CR,"p");

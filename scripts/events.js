@@ -1,13 +1,13 @@
 
 function addListeners() {
 	// Menu listeners ***********************************************
-	$('butproject').addEventListener('click', function() {$("bodyedit").style.visibility="visible"}, false);
+	$('butproject').addEventListener('click', setBodyEdit, false);
 	$('butgrid').addEventListener('click', gridmenu, false);
 	$("butcontainer").addEventListener('click', containermenu, false);
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
 	$("butsave").addEventListener('click', savemenu, false);
-	$("butopen").addEventListener('click', function() {$("menusaved").style.visibility="visible"}, false);
+	$("butopen").addEventListener('click', function() {clearAllMenus();$("menusaved").style.visibility="visible"}, false);
 	$("butcreate").addEventListener('click', exportHTML, false);
 
 	// Grid Menu listeners *****************************
@@ -34,6 +34,10 @@ function addListeners() {
 	$("leftarr").addEventListener('click', forwardDiv, false);
 	$("rightarr").addEventListener('click', backwardDiv, false);
 	$("tagtype").addEventListener('change', function() {setTag(this)}, false);
+	$("fontFam").addEventListener('change', function() {setFontFamily(this)}, false);
+	$("bold").addEventListener('click', function() {setFontBold(this)}, false);
+	$("italic").addEventListener('click', function() {setFontItalic(this)}, false);
+	$("underline").addEventListener('click', function() {setFontUL(this)}, false);
 	var alignButtons=getElementsByClassName("alignPosit");
 	for(var i=0; i<alignButtons.length; i++)
 	{
@@ -323,6 +327,8 @@ function setContEdit() {
 		alert("No container selected");
 		return;
 	}
+	$("containerimage").style.visibility="hidden";
+	$("bodyedit").style.visibility="hidden";
 	setCRBox(CR);
 	$("containerimage").style.visibility="hidden";
 	var grid=Project.states[Project.currentstate].grid;
@@ -335,6 +341,7 @@ function setContEdit() {
 	$("colwidth").options[CR.columns[name]-1].selected="selected";
 	$("rowheight").value=CR.rows[name];
 	$("contcentre").checked=CR.style.centred;
+	$("backcol").style.backgroundColor=CR.style.backgroundColor;
 	if(CR.box.getElementsByTagName("h1").length>0) {
 		$("tagtype").options[0].selected="selected";
 		var tag="h1"
@@ -347,6 +354,26 @@ function setContEdit() {
 		$("tagtype").options[2].selected="selected";
 		var tag="p";
 	}
+	if(CR.style[tag].fontWeight=="normal") {
+		$("bold").style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	else {
+		$("bold").style.boxShadow="3px 3px 2px #888888";
+	}
+	if(CR.style[tag].fontStyle=="normal") {
+		$("italic").style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	else {
+		$("italic").style.boxShadow="3px 3px 2px #888888";
+	}
+	if(CR.style[tag].textDecoration=="none") {
+		$("underline").style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	else {
+		$("underline").style.boxShadow="3px 3px 2px #888888";
+	}
+	$("fontcol").style.backgroundColor=CR.style[tag].color;
+	$("fontFam").options[CR.style[tag].fontOpt].selected="selected";
 	$("fontSize").value=parseFloat(CR.style[tag].fontSize);
 	$("marginLeft").value=parseFloat(CR.style[tag].marginLeft);
 	$("marginTop").value=parseFloat(CR.style[tag].marginTop);
@@ -441,6 +468,26 @@ function setTag(item) {
 	var tags=["h1","h2","p"]
 	var tag=tags[$("tagtype").selectedIndex];
 	var CR=Project.currentcontainer;
+	if(CR.style[tag].fontWeight=="normal") {
+		$("bold").style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	else {
+		$("bold").style.boxShadow="3px 3px 2px #888888";
+	}
+	if(CR.style[tag].fontStyle=="normal") {
+		$("italic").style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	else {
+		$("italic").style.boxShadow="3px 3px 2px #888888";
+	}
+	if(CR.style[tag].textDecoration=="none") {
+		$("underline").style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	else {
+		$("underline").style.boxShadow="3px 3px 2px #888888";
+	}
+	$("fontcol").style.backgroundColor=CR.style[tag].color;
+	$("fontFam").options[CR.style[tag].fontOpt].selected="selected";
 	$("fontSize").value=parseFloat(CR.style[tag].fontSize);
 	$("marginLeft").value=parseFloat(CR.style[tag].marginLeft);
 	$("marginTop").value=parseFloat(CR.style[tag].marginTop);
@@ -474,6 +521,69 @@ function setContTagAlign(item) {
 	var tag=tags[$("tagtype").selectedIndex];
 	var aligns=["left","center","right","justify"];
 	Project.currentcontainer.style[tag].textAlign=aligns[alnindx];
+	setTagStyles(Project.currentcontainer,tag);
+}
+
+function setFontFamily(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	var fams=[	'Arial, Arial, Helvetica, sans-serif',
+				'Arial Black, Arial Black, Gadget, sans-serif',
+				'Comic Sans MS, Comic Sans MS, cursive',
+				'Courier New, Courier New, monospace',
+				'Georgia, Georgia, serif',
+				'Impact, Impact, Charcoal, sans-serif',
+				'Lucida Console, Monaco, monospace',
+				'Lucida Sans Unicode, Lucida Grande, sans-serif',
+				'Palatino Linotype, Book Antiqua, Palatino, serif',
+				'Tahoma, Geneva, sans-serif',
+				'Times New Roman, Times New Roman, Times, serif',
+				'Trebuchet MS, Trebuchet MS, sans-serif',
+				'Verdana, Verdana, Geneva, sans-serif'];
+	Project.currentcontainer.style[tag].fontOpt=item.selectedIndex;			
+	Project.currentcontainer.style[tag].fontFamily=fams[item.selectedIndex];
+	setTagStyles(Project.currentcontainer,tag);
+}
+
+function setFontBold(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	if(Project.currentcontainer.style[tag].fontWeight=="normal") {
+		Project.currentcontainer.style[tag].fontWeight="bold";
+		item.style.boxShadow="3px 3px 2px #888888";
+	}
+	else {
+		Project.currentcontainer.style[tag].fontWeight="normal";
+		item.style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	setTagStyles(Project.currentcontainer,tag);
+}
+
+function setFontItalic(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	if(Project.currentcontainer.style[tag].fontStyle=="normal") {
+		Project.currentcontainer.style[tag].fontStyle="italic";
+		item.style.boxShadow="3px 3px 2px #888888";
+	}
+	else {
+		Project.currentcontainer.style[tag].fontStyle="normal";
+		item.style.boxShadow="3px 3px 2px #FFFFFF";
+	}
+	setTagStyles(Project.currentcontainer,tag);
+}
+
+function setFontUL(item) {
+	var tags=["h1","h2","p"]
+	var tag=tags[$("tagtype").selectedIndex];
+	if(Project.currentcontainer.style[tag].textDecoration=="none") {
+		Project.currentcontainer.style[tag].textDecoration="underline";
+		item.style.boxShadow="3px 3px 2px #888888";
+	}
+	else {
+		Project.currentcontainer.style[tag].textDecoration="none";
+		item.style.boxShadow="3px 3px 2px #FFFFFF";
+	}
 	setTagStyles(Project.currentcontainer,tag);
 }
 
@@ -527,6 +637,7 @@ function setContImgEdit() {
 		return;
 	}
 	$("containeredit").style.visibility="hidden";
+	$("bodyedit").style.visibility="hidden";
 	CR=Project.currentcontainer;
 	if(CR.image.src!=null) {
 		$('imgurl').value=CR.image.src;	
@@ -758,6 +869,13 @@ function savemenu() {
 			img.addEventListener('error',imgerror,false);
 		}
 	}
+}
+
+function setBodyEdit() {
+	clearAllMenus();
+	$("bodycol").style.backgroundColor=Project.bodycolor;
+	$("margincol").style.backgroundColor=Project.margincolor;
+	$("bodyedit").style.visibility="visible";
 }
 
 // All menus ********************************************************

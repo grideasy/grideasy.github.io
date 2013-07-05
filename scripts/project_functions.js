@@ -64,9 +64,9 @@ function addInputZone() {
 function setMenuDefaults() {
 	//Grid Menu Options *********************************************
 	$('Ncols').options[5].selected="selected";
-	$('TMarg').options[1].selected="selected";
-	$('SMargs').options[1].selected="selected";
-	$('Gutts').options[2].selected="selected";
+	$('TMarg').options[2].selected="selected";
+	$('SMargs').options[2].selected="selected";
+	$('Gutts').options[3].selected="selected";
 	$('rowH').options[3].selected="selected";
 	//Content Menu Checkbox;
 	$('showbreaks').checked=false;
@@ -169,72 +169,108 @@ function unsetRow(t) {
 //Container functions *****************************************************************
 function setColors() {
 	var colarray=[
-					['white ','#FFFFFF '],	
-					['Silver ','#C0C0C0 '],	
-					['Gray ','#808080 '],	
-					['Black ','#000000 '],	
-					['Red ','#FF0000 '],	
-					['Maroon ','#800000 '],	
-					['Yellow ','#FFFF00 '],	
-					['Olive ','#808000 '],	
-					['Lime ','#00FF00 '],	
-					['Green ','#008000 '],	
-					['Aqua ','#00FFFF '],	
-					['Teal ','#008080 '],	
-					['Blue ','#0000FF '],	
-					['Navy ','#000080 '],	
-					['Fuchsia ','#FF00FF '],	
-					['Purple ','#800080 '],	
+					['#FFAAAA','#FF5555','#FF0000','#AA0000','#550000'],
+					['#FFCCAA','#FF9955','#FF6600','#AA4400','#552200'],
+					['#FFE3AA','#FFC655','#FFAA00','#AA7100','#553900'],
+					['#FFEEAA','#FFDD55','#FFCC00','#AA8800','#554400'],
+					['#FFFFAA','#FFFF55','#FFFF00','#AAAA00','#555500'],
+					['#EEFFAA','#DDFF55','#CCFF00','#88AA00','#445500'],
+					['#AAFFAA','#55FF55','#00FF00','#00AA00','#005500'],
+					['#AAFFEE','#55FFDD','#00FFCC','#00AA88','#005544'],
+					['#AAEEFF','#55DDFF','#00CCFF','#0088AA','#004455'],
+					['#AACCFF','#5599FF','#0066FF','#0044AA','#002255'],
+					['#AAAAFF','#5555FF','#0000FF','#0000AA','#000055'],
+					['#CCAAFF','#9955FF','#6600FF','#4400AA','#220055'],
+					['#EEAAFF','#DD55FF','#CC00FF','#8800AA','#440055'],
+					['#FFAAEE','#FF55DD','#FF00CC','#AA0088','#550044'],
+					['#FFAACC','#FF5599','#FF0066','#AA0044','#550022'],
+					['#FFFFFF','#AAAAAA','#888888','#555555','#000000']
 				]
+
+
 	var elm=$("backColor").firstChild;
 	for(var i=0;i<16;i++) {
 		elm = findNext(elm);
-		elm.style.backgroundColor=colarray[i][1];
-		elm.title=colarray[i][0];
+		elm.style.backgroundColor=colarray[i][2];
 		elm.addEventListener('click',function() {setContBackColor(this)}, false)
 	}
 	var elm=$("fontColor").firstChild;
 	for(var i=0;i<16;i++) {
 		elm = findNext(elm);
-		elm.style.backgroundColor=colarray[i][1];
-		elm.title=colarray[i][0];
+		elm.style.backgroundColor=colarray[i][2];
 		elm.addEventListener('click',function() {setContFontColor(this)}, false)
 	}
 	var elm=$("bodyColor").firstChild;
 	for(var i=0;i<16;i++) {
 		elm = findNext(elm);
-		elm.style.backgroundColor=colarray[i][1];
-		elm.title=colarray[i][0];
+		elm.style.backgroundColor=colarray[i][2];
 		elm.addEventListener('click',function() {setContBodyColor(this)}, false)
 	}
 	var elm=$("marginColor").firstChild;
 	for(var i=0;i<16;i++) {
 		elm = findNext(elm);
-		elm.style.backgroundColor=colarray[i][1];
-		elm.title=colarray[i][0];
+		elm.style.backgroundColor=colarray[i][2];
 		elm.addEventListener('click',function() {setContMarginColor(this)}, false)
+	}
+	
+	var colchg=getElementsByClassName("colchange");
+	for(var i=0; i<colchg.length; i++)
+	{
+		colchg[i].addEventListener('click', function() {setColRow(this)}, false);
+		colchg[i].r=2;
+	}
+	
+	function setColRow(item) {
+		var d=item.id.substr(0,2);
+		var t=item.id.substr(2);
+		var id=item.id.substr(2)+"Color";
+		if(d=="up" && item.r>0) {
+			item.r--;
+			$("dw"+t).r--;
+			var elm=$(id).firstChild;
+			for(var i=0;i<16;i++) {
+				elm = findNext(elm);
+				elm.style.backgroundColor=colarray[i][item.r];
+			}
+		}
+		if(d=="dw" && item.r<4) {
+			item.r++;
+			$("up"+t).r++;
+			var elm=$(id).firstChild;
+			for(var i=0;i<16;i++) {
+				elm = findNext(elm);
+				elm.style.backgroundColor=colarray[i][item.r];
+			}
+		}
 	}				
 }
+
+
 
 function setContBackColor(item) {
 	Project.currentcontainer.style.backgroundColor=item.style.backgroundColor;
 	Project.currentcontainer.box.style.backgroundColor=item.style.backgroundColor;
+	$("backcol").style.backgroundColor=item.style.backgroundColor;
+	
 }
 
 function setContFontColor(item) {
 	var tags=["h1","h2","p"]
 	var tag=tags[$("tagtype").selectedIndex];
 	Project.currentcontainer.style[tag].color=item.style.backgroundColor;
+	$("fontcol").style.backgroundColor=item.style.backgroundColor;
 	setTagStyles(Project.currentcontainer,tag)
 }
 
 function setContBodyColor(item) {
 	Project.bodycolor=item.style.backgroundColor;
+	$("bodycol").style.backgroundColor=item.style.backgroundColor;
 	buildGrid();
 }
 
 function setContMarginColor(item) {
 	Project.margincolor=item.style.backgroundColor;
+	$("margincol").style.backgroundColor=item.style.backgroundColor;
 	buildGrid();
 	
 }
@@ -254,7 +290,7 @@ function setContentHTML() {
 }
 
 
-function textToHTML(CR) {
+function textToHTML(CR) {console.log("txt");
 	txt=CR.text;
 	var TTre, Tre;
 	//remove any white space characters after the last alphanumeric character
@@ -267,13 +303,13 @@ function textToHTML(CR) {
 		TTre=/\t\t/g;
 		Tre=/\t/g;
 		if(TTre.test(tmparray[i])) {
-			tmparray[i]=tmparray[i].replace(TTre,"<p>")+"</p>";
+			tmparray[i]=tmparray[i].replace(TTre,"<p>")+"</p>";console.log("p",tmparray[i]);
 		}
 		else if(Tre.test(tmparray[i])) {
-			tmparray[i]=tmparray[i].replace(Tre,"<h2>")+"</h2>";
+			tmparray[i]=tmparray[i].replace(Tre,"<h2>")+"</h2>";console.log("h2",tmparray[i]);
 		}
 		else {
-			tmparray[i]="<h1>"+tmparray[i]+"</h1>"
+			tmparray[i]="<h1>"+tmparray[i]+"</h1>";console.log("h1",tmparray[i]);
 		}
 	}
 	txt=tmparray.join("");

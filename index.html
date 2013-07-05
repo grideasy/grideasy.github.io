@@ -66,6 +66,7 @@
 				</select>
 				<label for = "TMarg">Top Margin</label>
 				<select id="TMarg">
+					<option>0</option>
 					<option>1</option>
 					<option selected="selected">2</option>
 					<option>3</option>
@@ -85,6 +86,7 @@
 				<label for = "TMarg"  class="after">%</label>
 				<label for = "SMargs">Side Margins</label>
 				<select id="SMargs">
+					<option>0</option>
 					<option>1</option>
 					<option selected="selected">2</option>
 					<option>3</option>
@@ -104,6 +106,7 @@
 				<label for = "SMargs"  class="after">%</label>
 				<label for = "Gutts">Gutters</label>
 				<select id="Gutts">
+					<option>0</option>
 					<option>0.1</option>
 					<option>0.5</option>
 					<option>1</option>
@@ -194,11 +197,11 @@
 						
 					</select><label for = "colwidth" class="after">Columns</label><br>
 					<label for="rowheight">Height </label><input type="text" value="" name="rowheight" id="rowheight" size=5 ><label for="rowheight" class="after"> Rows</label><br><br>
-					<label for="contcentre"> </label><input type="checkbox" id="contcentre"><label for="contcentre" class="after"> Centred</label><br>
+					<label for="contcentre"> </label><input type="checkbox" id="contcentre"><label for="contcentre" class="after"> Centred</label>
 					<span id="leftarr">&lArr;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="rightarr">&rArr;</span><br>
 					<span>-----------------------------</span>
 					<span>Container Styling</span><br>
-					<label for = "backColor">Background Colour </label><br>
+					<label for = "backColor">Background Colour<span id="upback" class="colchange">&#9651</span><span id="dwback" class="colchange">&#9660</span><span id="backcol" class="coldiv"></span></label><br>
 					<span id="backColor">
 						<div></div>
 						<div></div>
@@ -216,14 +219,30 @@
 						<div></div>
 						<div></div>
 						<div></div>
-					</span><br><br>
+					</span><br>
 					<label for = "tagtype">For: </label>
 					<select id="tagtype">
 						<option>heading</option>
 						<option>sub-heading</option>
 						<option>paragraph</option>
 					</select><br>
-					<label for = "fontColor">Text Colour </label><br>
+					<label for = "fontFam">Font : </label>
+					<select id="fontFam">
+						<option style='font-family:Arial, Arial, Helvetica, sans-serif'>Arial</option>
+						<option style='font-family:Arial Black, Arial Black, Gadget, sans-serif'>Arial Black</option>
+						<option style='font-family:Comic Sans MS, Comic Sans MS, cursive'>Comic Sans MS</option>
+						<option style='font-family:Courier New, Courier New, monospace'>Courier New</option>
+						<option style='font-family:Georgia, Georgia, serif'>Georgia</option>
+						<option style='font-family:Impact, Impact, Charcoal, sans-serif'>Impact</option>
+						<option style='font-family:Lucida Console, Monaco, monospace'>Lucida Console</option>
+						<option style='font-family:Lucida Sans Unicode, Lucida Grande, sans-serif'>Lucida Sans Uni</option>
+						<option style='font-family:Palatino Linotype, Book Antiqua, Palatino, serif'>Palatino Linotype</option>
+						<option style='font-family:Tahoma, Geneva, sans-serif'>Tahoma</option>
+						<option style='font-family:Times New Roman, Times New Roman, Times, serif'>Times New Roman</option>
+						<option style='font-family:Trebuchet MS, Trebuchet MS, sans-serif'>Trebuchet MS</option>
+						<option style='font-family:Verdana, Verdana, Geneva, sans-serif'>Verdana</option>
+					</select><br>
+					<label for = "fontColor">Text Colour <span id="upfont" class="colchange">&#9651</span><span id="dwfont" class="colchange">&#9660</span><span id="fontcol" class="coldiv"></span></label><br>
 					<span id="fontColor">
 						<div></div>
 						<div></div>
@@ -241,7 +260,7 @@
 						<div></div>
 						<div></div>
 						<div></div>
-					</span><br>
+					</span>
 					<ul>
 						<li><label for = "fontSize">Text Size </label><input type="text" value=1 id="fontSize" size=3> Ems</li>
 						<li><label for = "marginLeft">Left Margin </label><input type="text" value=0.5 id="marginLeft" size=3> Ems</li>
@@ -249,7 +268,7 @@
 						<li><label for = "marginRight">Right Margin </label><input type="text" value=0.5 id="marginRight" size=3> Ems</li>
 						<li><label for = "marginBottom">Bottom Margin </label><input type="text" value=0.5 id="marginBottom" size=3> Ems</li>
 					</ul>
-					<span id="gap"> </span>
+					<span id="gap"> </span><span id="bold" class="fontType">B</span><span id="italic" class="fontType">I</span><span id="underline"  class="fontType">U</span> <br>
 					<img class="alignPosit" id="alignleft" src="images/A0.jpg">
 					<img class="alignPosit" id="aligncenter" src="images/A1.jpg">
 					<img class="alignPosit" id="alignright" src="images/A2.jpg">
@@ -288,7 +307,7 @@
 			<div id="bodyedit" class="edit">
 				<div class="back" id="contbody">
 					<p></p>
-					<label for = "bodyColor">Background Colour </label><br>
+					<label for = "bodyColor">Background Colour<span id="upbody" class="colchange">&#9651</span><span id="dwbody" class="colchange">&#9660</span><span id="bodycol" class="coldiv"></span></label><br>
 					<span id="bodyColor">
 						<div></div>
 						<div></div>
@@ -308,7 +327,7 @@
 						<div></div>
 					</span><br><br>
 				
-					<label for = "marginColor">Margins Colour </label><br>
+					<label for = "marginColor">Margins Colour <span id="upmargin" class="colchange">&#9651</span><span id="dwmargin" class="colchange">&#9660</span><span id="margincol" class="coldiv"></span></label><br>
 					<span id="marginColor">
 						<div></div>
 						<div></div>
