@@ -20,10 +20,10 @@
 
             function setScale() {
                 var scale=1.745;
-                enquire.register("screen and (min-width:28.75em)", function() {
+                enquire.register("screen and (min-width:60em)", function() {
                     scale=1.14;
                 });
-                enquire.register("screen and (min-width:40.5em)", function() {
+                enquire.register("screen and (min-width:100em)", function() {
                     scale=0.98;
                 });
                 document.getElementById("holder").style.height=(pageWidth()*scale)+"px"
@@ -795,7 +795,7 @@
 
 
 /* styles for state Tablet ---------------------------------------------------------  */
-            @media screen and (min-width:28.75em) {
+            @media screen and (min-width:60em) {
 /* margins ---------------------------------------------------------  */
             #topmargin {
                 left:0;
@@ -933,7 +933,7 @@
             }
 
 /* styles for state Computer ---------------------------------------------------------  */
-            @media screen and (min-width:40.5em) {
+            @media screen and (min-width:100em) {
 /* margins ---------------------------------------------------------  */
             #topmargin {
                 left:0;
