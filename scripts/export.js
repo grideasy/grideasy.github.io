@@ -44,7 +44,7 @@ function exportStyles(newwindow) {
 	newwindow.document.writeln(SPACES.substr(0,12)+"span {");
 	newwindow.document.writeln(SPACES.substr(0,16)+'display:block;');
 	newwindow.document.writeln(SPACES.substr(0,16)+'float:left;');
-	newwindow.document.writeln(SPACES.substr(0,16)+'overflow:auto;');
+	newwindow.document.writeln(SPACES.substr(0,16)+'overflow:hidden;');
 	newwindow.document.writeln(SPACES.substr(0,12)+"}");
 	newwindow.document.writeln("");
 	//All img styles

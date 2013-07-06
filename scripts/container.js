@@ -15,7 +15,7 @@ function setCRBox(CR) {
 	var bs=CR.box.style;
 	bs.display="block";
 	bs.cssFloat="left";
-	bs.overflow="auto";
+	bs.overflow="hidden";
 	if(CR.style.centred) {
 		var offset=((100-(CR.columns[name]*cwidth+(CR.columns[name]-1)*2*grid.gutters))/2);
 		bs.marginLeft=(offset-parseFloat($("leftspacer").style.width))+"%";

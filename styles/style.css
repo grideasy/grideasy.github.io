@@ -388,7 +388,7 @@ textarea {
 	background-color: #EEEEEE;
 }
 
-#menusaved #infile {
+#menusaved #infile, #menusavednotDnD #infilenotDnD, {
 	width:90%;
 	height:80%;
 	margin-left:5%;
@@ -397,7 +397,7 @@ textarea {
 	border:solid 1px #CCCCCC;
 }
 
-#menusaved span {
+#menusaved span,  #menusavednotDnD span{
 	font-size:12pt;
 	margin-top:5px;
 	color:#000000;

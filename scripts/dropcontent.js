@@ -43,6 +43,11 @@ function handleOpenFileSelect(evt) {
 	}
 }
 
+function openTextFile() {
+	setProject($("notDnD").value);
+	$("menusavednotDnD").style.visibility="hidden";
+}
+
 function setProject(p) {
 	var tmp;
 	Project=JSON.parse(p);

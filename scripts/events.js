@@ -7,7 +7,7 @@ function addListeners() {
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
 	$("butsave").addEventListener('click', savemenu, false);
-	$("butopen").addEventListener('click', function() {clearAllMenus();$("menusaved").style.visibility="visible"}, false);
+	$("butopen").addEventListener('click', openmenu, false);
 	$("butcreate").addEventListener('click', exportHTML, false);
 
 	// Grid Menu listeners *****************************
@@ -97,7 +97,7 @@ function addListeners() {
 		
 	}
 	else {  //Safari browser
-		//awaiting developments
+		$('pushtoproj').addEventListener('click', openTextFile, false);
 	}
 	$("text_zone").value="";
 	$("text_zone").addEventListener('click', function() {storeCursorPosition(this)}, false);
@@ -758,7 +758,7 @@ function setContImgStyle() {
 	CR.image.mRight=parseFloat($("imgMarginRight").value);
 	CR.image.mBottom=parseFloat($("imgMarginBottom").value);
 	if(CR.image.src!=null) {
-		cssImage();
+		cssImage(CR);
 		showImg(CR.image.object);
 	}
 }
@@ -871,12 +871,23 @@ function savemenu() {
 	}
 }
 
+function openmenu() {
+	clearAllMenus();
+	if(window.File && window.FileReader && window.FileList && window.Blob) {
+		$("menusaved").style.visibility="visible";
+	}
+	else {
+		$("menusavednotDnD").style.visibility="visible";
+	}
+}
+
 function setBodyEdit() {
 	clearAllMenus();
 	$("bodycol").style.backgroundColor=Project.bodycolor;
 	$("margincol").style.backgroundColor=Project.margincolor;
 	$("bodyedit").style.visibility="visible";
 }
+
 
 // All menus ********************************************************
 function clearAllMenus() {
