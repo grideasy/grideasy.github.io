@@ -397,7 +397,8 @@ function fillCont(C) {
 
 //Grid functions ***********************************************************************************************
 
-function buildGrid() {
+function buildGrid(chk) {
+	chk=chk||0;
 	var col;
 	var grid=Project.states[Project.currentstate].grid;
 	var gridWHratio=grid.width/grid.height;
@@ -443,8 +444,10 @@ function buildGrid() {
 	}
 	grid.rows=i;
 	
-	for(var i=0;i<Project.containers.length;i++) {
-		setCRBox(Project.containers[i]);
+	if(chk==0) {
+		for(var i=0;i<Project.containers.length;i++) {
+			setCRBox(Project.containers[i]);
+		}
 	}
 	
 	function setBox(id,left,top,width,height,colour) {	

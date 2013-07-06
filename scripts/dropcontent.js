@@ -45,12 +45,14 @@ function handleOpenFileSelect(evt) {
 
 function openTextFile() {
 	setProject($("notDnD").value);
-	$("menusavednotDnD").style.visibility="hidden";
 }
 
 function setProject(p) {
 	var tmp;
+	cleargridbox();
+	var curstate=Project.currentstate;
 	Project=JSON.parse(p);
+	Project.currentstate=curstate;
 	var elm=$("contbox").firstChild;
     var next = findNext(elm);
     while (next) {
@@ -73,8 +75,10 @@ function setProject(p) {
 		}
 	}
 	Project.currentcontainer=CR;
-	setContainer(CR.box)
+	setContainer(CR.box);
+	buildGrid(1);
 	$("menusaved").style.visibility="hidden";
+	$("menusavednotDnD").style.visibility="hidden";
 }
 
 function showContImg(img) {
