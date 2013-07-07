@@ -20,10 +20,10 @@
 
             function setScale() {
                 var scale=1.745;
-                enquire.register("screen and (min-width:460px)", function() {
+                enquire.register("screen and (min-width:700px)", function() {
                     scale=1.14;
                 });
-                enquire.register("screen and (min-width:648px)", function() {
+                enquire.register("screen and (min-width:1200px)", function() {
                     scale=0.98;
                 });
                 document.getElementById("holder").style.height=(pageWidth()*scale)+"px"
@@ -315,7 +315,7 @@
             }
 
             #container5 {
-                background-color:rgb(255, 0, 0);
+                background-color:rgb(255, 255, 0);
             }
 
             #container5 h1 {
@@ -794,7 +794,7 @@
 
 
 /* styles for state Tablet ---------------------------------------------------------  */
-            @media screen and (min-width:460px) {
+            @media screen and (min-width:700px) {
 /* margins ---------------------------------------------------------  */
             #topmargin {
                 left:0;
@@ -932,7 +932,7 @@
             }
 
 /* styles for state Computer ---------------------------------------------------------  */
-            @media screen and (min-width:648px) {
+            @media screen and (min-width:1200px) {
 /* margins ---------------------------------------------------------  */
             #topmargin {
                 left:0;
