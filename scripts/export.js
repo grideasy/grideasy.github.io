@@ -146,7 +146,7 @@ function exportStateStyles(newwindow) {
 		offset1=12;
 		offset2=16;
 		if(s>0) {
-			newwindow.document.writeln(SPACES.substr(0,12)+'@media screen and (min-width:'+Project.states[s-1].grid.width+'em) {');
+			newwindow.document.writeln(SPACES.substr(0,12)+'@media screen and (min-width:'+Project.states[s-1].grid.width*16+'px) {');
 			offset1=16;
 			offset2=20;
 		}
@@ -262,7 +262,7 @@ function exportScaleScript(newwindow) {
 		name=Project.states[s].name;
 		grid=Project.states[s].grid;
 		gridHWratio=gridHtoW(s)/grid.columns;
-		newwindow.document.writeln(SPACES.substr(0,16)+'enquire.register("screen and (min-width:'+Project.states[s-1].grid.width+'em)", function() {');
+		newwindow.document.writeln(SPACES.substr(0,16)+'enquire.register("screen and (min-width:'+Project.states[s-1].grid.width*16+'px)", function() {');
        	newwindow.document.writeln(SPACES.substr(0,20)+'scale='+gridHtoW(s)+';');
 		newwindow.document.writeln(SPACES.substr(0,16)+'});');
 	}
