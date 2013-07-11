@@ -398,6 +398,10 @@ function setContWidth(item) {
 	var bs=CR.box.style;
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
 	setCRBox(CR)
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight>100) {
+		buildGrid();
+	}
 }
 
 function setContCentre() {
@@ -417,7 +421,11 @@ function setContCentre() {
 		bs.marginLeft=2*grid.gutters+"%"; 
 		bs.marginRight="0%"
 	}
-	setCRBox(CR)
+	setCRBox(CR);
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight>100) {
+		buildGrid();
+	}
 }
 
 function setContHeight(item) {
@@ -426,11 +434,14 @@ function setContHeight(item) {
 	var name=Project.states[Project.currentstate].name;
 	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
 	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
-	var gridWHratio=grid.width/grid.height;
 	CR.rows[name]=parseInt(item.value);
 	var bs=CR.box.style;
-	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
-	setCRBox(CR)
+	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)+"%";
+	setCRBox(CR);
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight>100) {
+		buildGrid();
+	}
 }
 
 
@@ -628,6 +639,11 @@ function createCont() {
 	}
 	Project.containers.push(cn);
 	Box(cn);
+	setContainer(cn.box)
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight>100) {
+		buildGrid();
+	}
 }
 
 function setContImgEdit() {
@@ -798,7 +814,7 @@ function addrow() {
 	var state=new State();
 	state.name="New_State"+(Project.nsc++);
 	state.grid.width=Math.round((Project.states[r].grid.width+Project.states[r+1].grid.width)*50)/100;
-	state.grid.height=Project.height/Project.dfs;;
+	state.grid.height=state.grid.width;
 	state.grid.columns=Project.states[r].grid.columns;
 	state.grid.rows=0;
 	state.grid.topMargin=2;

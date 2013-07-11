@@ -9,7 +9,6 @@ function Box(CR) {  //CR is a container
 function setCRBox(CR) {
 	var grid=Project.states[Project.currentstate].grid;
 	var name=Project.states[Project.currentstate].name;
-	var gridWHratio=grid.width/grid.height;
 	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	
 	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
 	var bs=CR.box.style;
@@ -30,7 +29,7 @@ function setCRBox(CR) {
 		CR.columns[name]=grid.columns;
 	}
 	bs.width=(CR.columns[name]*cwidth +2*(CR.columns[name]-1)*grid.gutters)+"%";
-	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)*gridWHratio+"%";
+	bs.height=((cwidth*grid.rowratio)*CR.rows[name]+(CR.rows[name]-1)*2*grid.gutters)+"%";
 	bs.backgroundColor=CR.style.backgroundColor;
 	CR.text=CR.text||"\t\tLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	textToHTML(CR);
@@ -40,7 +39,7 @@ function setCRBox(CR) {
 	setTagStyles(CR,"p");
 	CR.box.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
 	CR.box.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
-	CR.box.addEventListener("click", function() {setContainer(this)}, false);
+	CR.box.addEventListener("click", function() {setContainer(this);setContEdit();}, false);
 	if(CR.box.style.opacity==1) {
 		CR.box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
 		CR.box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
@@ -55,11 +54,12 @@ function setContainer(box) {
 		oldbox.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
 	}
 	Project.currentcontainer=box.container;
-	setContEdit();
 	box.style.opacity=1;
 	box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
 	box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
 }
+
+
 
 function setTagStyles(CR,tag) {	
 	var tags=CR.box.getElementsByTagName(tag);

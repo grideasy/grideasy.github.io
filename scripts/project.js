@@ -5,7 +5,7 @@ Project={
 	currentcontainer:null,
 	maxstates:8, //maximum possible number of states
 	width:960,  //px
-	height:2*960, //px
+	height:960, //px
 	states:[],  // array of state objects in order of max-widths
 	containers:[], //array of content container objects in order from top to bottom and left to right
 	default_states:["Smart Phone","Tablet","Computer"],

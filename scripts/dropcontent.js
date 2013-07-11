@@ -76,6 +76,7 @@ function setProject(p) {
 	}
 	Project.currentcontainer=CR;
 	setContainer(CR.box);
+	setContEdit();
 	buildGrid(1);
 	$("menusaved").style.visibility="hidden";
 	$("menusavednotDnD").style.visibility="hidden";

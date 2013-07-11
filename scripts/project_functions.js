@@ -88,7 +88,7 @@ function setStates() {
 		state.name=Project.default_states[i];
 		state.grid.width=Project.default_breaks[i][0];
 		state.grid.columns=Project.default_breaks[i][1];
-		state.grid.height=Project.height/Project.dfs;
+		state.grid.height=state.grid.width;
 		Project.states.push(state);
 	}
 }
@@ -401,27 +401,33 @@ function buildGrid(chk) {
 	chk=chk||0;
 	var col;
 	var grid=Project.states[Project.currentstate].grid;
-	var gridWHratio=grid.width/grid.height;
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight<100) {
+		totHeight=100;
+	}
 	$("gridbox").style.width=grid.width+"em";
 	$("gridbox").style.height=grid.height+"em";
 	$("gridbox").style.left=((Project.width/Project.dfs)-grid.width)/2+"em";
 	$("gridbox").style.backgroundColor=Project.bodycolor;
+	$("backbox").style.width=$("gridbox").style.width;
+	$("backbox").style.height=totHeight+"%";
+	$("backbox").style.backgroundColor=Project.bodycolor;
 	$("contbox").style.width=$("gridbox").style.width;
 	$("contbox").style.left=$("gridbox").style.left;
 	$("contbox").style.height=$("gridbox").style.height;
-	$("topspacer").style.height=(grid.topMargin-grid.gutters)*gridWHratio+"%";
+	$("topspacer").style.height=(grid.topMargin-grid.gutters)+"%";
 	$("topspacer").style.backgroundColor=Project.margincolor;
 	$("leftspacer").style.width=(grid.sideMargins-grid.gutters)+"%";
-	$("leftspacer").style.height=(100-grid.topMargin*gridWHratio)+"%";
+	$("leftspacer").style.height=(totHeight-grid.topMargin+grid.gutters)+"%";
 	$("leftspacer").style.backgroundColor=Project.margincolor;
-	setBox("topmargin",0,0,100,grid.topMargin*gridWHratio,Project.margincolor);
-	setBox("leftmargin",0,0,grid.sideMargins,100,Project.margincolor);
-	setBox("rightmargin",100-grid.sideMargins,0,grid.sideMargins,100,Project.margincolor);
+	setBox("topmargin",0,0,100,grid.topMargin,Project.margincolor);
+	setBox("leftmargin",0,0,grid.sideMargins,totHeight,Project.margincolor);
+	setBox("rightmargin",100-grid.sideMargins,0,grid.sideMargins,totHeight,Project.margincolor);
 	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins;  //percentage	of horizontal space
 	var cwidth=(100-totalHorSpace)/grid.columns //percentage 
 	var cleft=grid.sideMargins+grid.gutters;
-	var ctop=(grid.topMargin+grid.gutters)*gridWHratio;
-	var cheight=100-ctop;
+	var ctop=(grid.topMargin+grid.gutters);
+	var cheight=totHeight-ctop;
 	for (var i=0;i<grid.columns;i++) {
 		col=document.createElement('div');
 		col.id="col"+i;
@@ -429,17 +435,17 @@ function buildGrid(chk) {
 		setBox(col.id,cleft,ctop,cwidth,cheight,'#F0AA8C');
 		cleft+=cwidth+2*grid.gutters;
 	}	
-	var rtop=ctop+cwidth*gridWHratio*grid.rowratio;
-	var rheight=2*grid.gutters*gridWHratio;
+	var rtop=ctop+cwidth*grid.rowratio;
+	var rheight=2*grid.gutters;
 	rleft=grid.sideMargins+grid.gutters;
 	rwidth=100-2*rleft;
 	var i=0;
-	while(rtop+rheight<100) {
+	while(rtop+rheight<totHeight) {
 		row=document.createElement('div');
 		row.id="row"+(i);
 		$('gridbox').appendChild(row);
 		setBox(row.id,rleft,rtop,rwidth,rheight,Project.bodycolor);
-		rtop+=rheight+cwidth*gridWHratio*grid.rowratio;
+		rtop+=rheight+cwidth*grid.rowratio;
 		i++;
 	}
 	grid.rows=i;
@@ -472,5 +478,32 @@ function cleargridbox()
 		row=$("row"+i);
 		row.parentNode.removeChild(row);
 	}
+}
+
+function gridHtoW(s) {
+	var name=Project.states[s].name;
+	var grid=Project.states[s].grid;
+	var totalHorSpace=grid.columns*2*grid.gutters+2*grid.sideMargins; //percentage
+	var cwidth=(100-totalHorSpace)/grid.columns //percentage
+	CR=Project.containers;
+	var i=0;
+	var maxonline;
+	var totalrows=0;
+	var colcount=0;
+	while (i<CR.length) {
+		maxonline=0;
+		if(CR[i].style.centred) {
+			totalrows+=CR[i++].rows[name];
+		}
+		else {
+		while (i<CR.length && colcount+CR[i].columns[name]<=grid.columns) {
+			colcount+=CR[i].columns[name];
+			maxonline=Math.max(maxonline,CR[i++].rows[name]);
+		}
+		totalrows+=maxonline;
+		colcount=0;
+		}
+	}
+	return totalrows*cwidth*grid.rowratio+totalrows*2*grid.gutters+grid.topMargin+2; //percentage
 }
 

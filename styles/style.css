@@ -148,8 +148,20 @@ textarea {
 	left:0px;
 	top:0px;
 	width:960px;
-	height:1920px;
+	height:960px;
 	background-color:#CCCCCC;
+}
+
+#backbox {
+	left:0px;
+	top:0px;
+	width:100%;
+	height:200%;
+	background-color:#CCCCCC;
+}
+
+#contbox {
+	overflow: visible;
 }
 
 #contbox div {
