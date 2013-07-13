@@ -446,8 +446,8 @@ function setContHeight(item) {
 
 
 function forwardDiv() {
-	var elm=Project.currentcontainer.box;
-    var previous = findPrevious(elm);
+	var elm=Project.currentcontainer.box;console.log(elm.style.backgroundColor)
+    var previous = findPrevious(elm);console.log(previous.style.backgroundColor)
     if (previous) {
         elm.parentNode.insertBefore(elm, previous);
     }
@@ -455,14 +455,14 @@ function forwardDiv() {
 
 function findPrevious(elm) {
    do {
-       elm = elm.previousSibling;
-   } while (elm && elm.nodeName !="DIV");
+       elm = elm.previousSibling;console.log(elm.nodeName)
+   } while (elm && elm.nodeName !="SPAN");
    return elm;
 }
 
 function backwardDiv() {
 	var elm=Project.currentcontainer.box;
-    var next = findNext(elm);
+    var next = findNextSpan(elm);
     if (next) {
         elm.parentNode.insertBefore(next, elm);
     }
@@ -472,6 +472,13 @@ function findNext(elm) {
    do {
        elm = elm.nextSibling;
    } while (elm && elm.nodeName !="DIV");
+   return elm;
+}
+
+function findNextSpan(elm) {
+   do {
+       elm = elm.nextSibling;
+   } while (elm && elm.nodeName !="SPAN");
    return elm;
 }
 
