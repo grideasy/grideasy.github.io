@@ -523,7 +523,7 @@ function setTag(item) {
 function setContTagValue(item) {
 	var tags=["h1","h2","p"]
 	var tag=tags[$("tagtype").selectedIndex];
-	Project.currentcontainer.style[tag][item.id]=parseFloat(item.value)+"em";
+	Project.currentcontainer.style[tag][item.id]=parseFloat(item.value)+"rem";
 	setTagStyles(Project.currentcontainer,tag);
 }
 
@@ -608,9 +608,9 @@ function setFontUL(item) {
 function delcont() {
 	var elm=$("contbox").firstChild;
 	var contcount=0;
-	elm=findNext(elm);
+	elm=findNextSpan(elm);
 	while (elm!=Project.currentcontainer.box) {
-		elm=findNext(elm);
+		elm=findNextSpan(elm);
 		contcount++;
 	}
 	Project.currentcontainer.box.parentNode.removeChild(Project.currentcontainer.box);

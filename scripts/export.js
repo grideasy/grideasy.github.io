@@ -149,7 +149,7 @@ function exportStateStyles(newwindow) {
 		offset1=12;
 		offset2=16;
 		if(s>0) {
-			newwindow.document.writeln(SPACES.substr(0,12)+'@media screen and (min-width:'+Project.states[s-1].grid.width+'em) {');
+			newwindow.document.writeln(SPACES.substr(0,12)+'@media screen and (min-width:'+Project.states[s-1].grid.width+'rem) {');
 			offset1=16;
 			offset2=20;
 		}

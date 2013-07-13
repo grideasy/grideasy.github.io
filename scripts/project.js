@@ -32,11 +32,11 @@ function Tag(fs) {
 	this.color="#000000";
 	this.fontFamily="Times New Roman, Times New Roman, Times, serif";
 	this.fontOpt=10;
-	this.fontSize=fs+"em";
-	this.marginLeft="0.5em";
-	this.marginTop=fs/4+"em";
-	this.marginRight="0.5em";
-	this.marginBottom=fs/4+"em";
+	this.fontSize=fs+"rem";
+	this.marginLeft="0.5rem";
+	this.marginTop=fs/4+"rem";
+	this.marginRight="0.5rem";
+	this.marginBottom=fs/4+"rem";
 	this.textAlign="left";
 	this.fontWeight="normal";
 	this.fontStyle="normal";
