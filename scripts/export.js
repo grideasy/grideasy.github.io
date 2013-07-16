@@ -4,6 +4,7 @@ function exportHTML() {
 	newwindow.document.writeln('<html>');
 	newwindow.document.writeln(SPACES.substr(0,4)+'<head>');
 	newwindow.document.writeln(SPACES.substr(0,8)+'<meta http-equiv="Content-Type" content="text/html; charset=utf-8">');
+	newwindow.document.writeln(SPACES.substr(0,8)+'<meta name="viewport" content="width=device-width, initial-scale=1">');
 	newwindow.document.writeln(SPACES.substr(0,8)+'<title>GridEasy Exported HTML</title>');
 	exportScript(newwindow);
 	exportStyles(newwindow);
@@ -11,7 +12,6 @@ function exportHTML() {
 	exportBody(newwindow);
 	newwindow.document.writeln('</html>');
 	newwindow.document.close();
-	
 }
 
 function exportStyles(newwindow) {
