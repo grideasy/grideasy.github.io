@@ -1,5 +1,12 @@
 var iop=navigator.appName=='Opera';
 
+function ctrldown(e)
+{
+	
+	e = e || window.event;
+	return e.ctrlKey;
+}
+
 function str_rep(n) 
 {
    var s = "", t = this.toString();
@@ -248,18 +255,26 @@ function setColors() {
 
 
 function setContBackColor(item) {
-	Project.currentcontainer.style.backgroundColor=item.style.backgroundColor;
-	Project.currentcontainer.box.style.backgroundColor=item.style.backgroundColor;
+	var CR;
+	for(var i=0;i<currentcontainers.length;i++) {
+		CR=currentcontainers[i];
+		CR.style.backgroundColor=item.style.backgroundColor;
+		CR.box.style.backgroundColor=item.style.backgroundColor;
+	}
 	$("backcol").style.backgroundColor=item.style.backgroundColor;
-	
+	$("backcol").style.visibility="visible";
 }
 
 function setContFontColor(item) {
-	var tags=["h1","h2","p"]
+	var tags=["h1","h2","p"];
 	var tag=tags[$("tagtype").selectedIndex];
-	Project.currentcontainer.style[tag].color=item.style.backgroundColor;
-	$("fontcol").style.backgroundColor=item.style.backgroundColor;
-	setTagStyles(Project.currentcontainer,tag)
+	var CR;
+	for(var i=0;i<currentcontainers.length;i++) {
+		CR=currentcontainers[i];
+		CR.style[tag].color=item.style.backgroundColor;
+		$("fontcol").style.backgroundColor=item.style.backgroundColor;
+		setTagStyles(CR,tag);
+	}
 }
 
 function setContBodyColor(item) {
@@ -505,5 +520,17 @@ function gridHtoW(s) {
 		}
 	}
 	return totalrows*cwidth*grid.rowratio+totalrows*2*grid.gutters+grid.topMargin+2; //percentage
+}
+
+function setContainers() {
+	currentcontainers=[];
+	var elm=$("contbox").firstChild;
+	elm=findNextSpan(elm);
+	while (elm) {
+		if(elm.style.opacity==1) {
+			currentcontainers.push(elm.container);
+		}
+		elm=findNextSpan(elm);
+	}
 }
 

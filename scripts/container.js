@@ -39,24 +39,39 @@ function setCRBox(CR) {
 	setTagStyles(CR,"p");
 	CR.box.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
 	CR.box.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
-	CR.box.addEventListener("click", function() {setContainer(this);setContEdit();}, false);
+	CR.box.addEventListener("click", function(e) {setContainer(ctrldown(e),this);setContEdit();}, false);
 	if(CR.box.style.opacity==1) {
 		CR.box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
 		CR.box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
 	}
 }
 
-function setContainer(box) {
-	if(Project.currentcontainer!=null) {
-		var oldbox=Project.currentcontainer.box;
-		oldbox.style.opacity=0.4;
-		oldbox.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
-		oldbox.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
+function setContainer(ctrldown,box) {
+	if(ctrldown) {
+		if (box.style.opacity<1) {
+			box.style.opacity=1;
+			box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
+			box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
+		}
+		else {
+			box.style.opacity=0.4;
+			box.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
+			box.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
+		}
 	}
-	Project.currentcontainer=box.container;
-	box.style.opacity=1;
-	box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
-	box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
+	else {
+		var elm=$("contbox").firstChild;
+		elm=findNextSpan(elm);
+		while (elm) {
+			elm.style.opacity=0.4;
+			elm.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
+			elm.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
+			elm=findNextSpan(elm);
+		}
+		box.style.opacity=1;
+		box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
+		box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
+	}
 }
 
 

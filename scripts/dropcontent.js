@@ -74,8 +74,8 @@ function setProject(p) {
 			img.addEventListener('error',imgerror,false);
 		}
 	}
-	Project.currentcontainer=CR;
-	setContainer(CR.box);
+	currentcontainers=[CR];
+	setContainer(false,CR.box);
 	setContEdit();
 	buildGrid(1);
 	$("menusaved").style.visibility="hidden";

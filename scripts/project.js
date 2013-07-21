@@ -1,8 +1,9 @@
+var currentcontainers=[];
+
 Project={
 	nsc:0, //new state count;
 	dfs:16,  //default font size, will be re-read
 	currentstate:2,  //need default values for state values
-	currentcontainer:null,
 	maxstates:8, //maximum possible number of states
 	width:960,  //px
 	height:960, //px
