@@ -2,6 +2,7 @@ function Box(CR) {  //CR is a container
 	var grid=Project.states[Project.currentstate].grid;	
 	CR.box=document.createElement('span');
 	CR.box.container=CR;
+	CR.box.style.opacity=0.4;
 	$('contbox').appendChild(CR.box);
 	setCRBox(CR);
 }

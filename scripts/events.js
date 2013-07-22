@@ -24,6 +24,7 @@ function addListeners() {
 	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
 	$("deletecontainer").addEventListener('click', delcont, false);
 	$("createcontainer").addEventListener('click', createCont, false);
+	$("copycontainer").addEventListener('click', copyCont, false);
 	$("htmlcontainer").addEventListener('click',editHTML,false);
 	$("saveHTML").addEventListener('click',saveText,false);
 	$("cancelHTML").addEventListener('click', clearAllMenus, false);
@@ -344,8 +345,8 @@ function setContEdit() {
 	$("leftarr").style.visibility="hidden";
 	$("rightarr").style.visibility="hidden";
 	if(currentcontainers.length==1) {
-		$("leftarr").style.visibility="visible";
-		$("rightarr").style.visibility="visible";
+		$("leftarr").style.visibility="inherit";
+		$("rightarr").style.visibility="inherit";
 	}
 	CR=currentcontainers[0];
 	var colW=CR.columns[name];
@@ -459,7 +460,7 @@ function setContEdit() {
 	}
 	if (comStyle[tag].color!=null) {
 		$("fontcol").style.backgroundColor=comStyle[tag].color;
-		$("fontcol").style.visibility="visible";
+		$("fontcol").style.visibility="inherit";
 	}
 	else {
 		$("fontcol").style.visibility="hidden";
@@ -681,7 +682,7 @@ function setTag(item) {
 	}
 	if (comStyle[tag].color!=null) {
 		$("fontcol").style.backgroundColor=comStyle[tag].color;
-		$("fontcol").style.visibility="visible";
+		$("fontcol").style.visibility="inherit";
 	}
 	else {
 		$("fontcol").style.visibility="hidden";
@@ -832,7 +833,7 @@ function setFontItalic(item) {
 
 function setFontUL(item) {
 	var CR;
-	var tags=["h1","h2","p"]
+	var tags=["h1","h2","p"];
 	var tag=tags[$("tagtype").selectedIndex];
 	if(item.set=="underline") {
 		item.style.boxShadow="3px 3px 2px #FFFFFF";
@@ -903,7 +904,64 @@ function createCont() {
 	}
 	Project.containers.push(cn);
 	Box(cn);
-	setContainer(false,cn.box)
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight>100) {
+		buildGrid();
+	}
+}
+
+function copyCont () {
+	if(currentcontainers.length<1) {
+		$("containerimage").style.visibility="hidden";
+		alert("No container selected");
+		return;
+	}
+	if(currentcontainers.length>1) {
+		$("containerimage").style.visibility="hidden";
+		alert("Too many containers selected");
+		return;
+	}
+	CR=currentcontainers[0];
+	cn=new Container();
+	for(var j=0;j<Project.states.length;j++) {
+		cn.columns[Project.states[j].name]=CR.columns[Project.states[j].name];
+		cn.rows[Project.states[j].name]=CR.rows[Project.states[j].name];
+	}
+	cn.text=CR.text;
+	cn.content=CR.content;
+	cn.image.src=CR.image.src;
+	cn.image.object=CR.image.object; 
+	cn.image.top=CR.image.top; 
+	cn.image.left=CR.image.left; 
+	cn.image.wrap=CR.image.wrap; 
+	cn.image.centre=CR.image.centre;
+	cn.image.width=CR.image.width;
+	cn.image.mLeft=CR.image.mLeft;
+	cn.image.mRight=CR.image.mRight;
+	cn.image.mTop=CR.image.mTop;
+	cn.image.mBottom=CR.image.mBottom;
+	cn.style.centred=CR.style.centred;
+	cn.style.backgroundColor=CR.style.backgroundColor;
+	var tags=["h1","h2","p"];
+	for(var t=0;t<tags.length;t++) {
+		cn.style[tags[t]].color=CR.style[tags[t]].color;
+		cn.style[tags[t]].fontFamily=CR.style[tags[t]].fontFamily;
+		cn.style[tags[t]].fontOpt=CR.style[tags[t]].fontOpt;
+		cn.style[tags[t]].fontSize=CR.style[tags[t]].fontSize;
+		cn.style[tags[t]].marginLeft=CR.style[tags[t]].marginLeft;
+		cn.style[tags[t]].marginTop=CR.style[tags[t]].marginTop;
+		cn.style[tags[t]].marginRight=CR.style[tags[t]].marginRight;
+		cn.style[tags[t]].marginBottom=CR.style[tags[t]].marginBottom;
+		cn.style[tags[t]].textAlign=CR.style[tags[t]].textAlign;
+		cn.style[tags[t]].fontWeight=CR.style[tags[t]].fontWeight;
+		cn.style[tags[t]].fontStyle=CR.style[tags[t]].fontStyle;
+		cn.style[tags[t]].textDecoration=CR.style[tags[t]].textDecoration;
+	}
+	Box(cn);
+	var totHeight=gridHtoW(Project.currentstate);
+	if(totHeight>100) {
+		buildGrid();
+	}
 	var totHeight=gridHtoW(Project.currentstate);
 	if(totHeight>100) {
 		buildGrid();
