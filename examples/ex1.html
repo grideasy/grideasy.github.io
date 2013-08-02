@@ -3,9 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>GridEasy Exported HTML</title>
+        <title>GridEasy showhtmled HTML</title>
         <script type="text/javascript">
-            window.onload=function() {document.getElementById("holder").style.height=(screen.availWidth)+"px"};
+            window.onload=function() {document.getElementById("holder").style.height=(window.innerWidth)+"px"};
+            window.onresize=doResize;
+            function doResize() {location.reload()};
         </script>
         <style>
 /* Body Styles**********************************************************************  */
@@ -41,7 +43,7 @@
 
 /* Container Styles Independent of State**********************************************************************  */
             #container0 {
-                background-color:#00FF00;
+                background-color:rgb(85, 221, 255);
             }
 
             #container0 h1 {
@@ -55,7 +57,7 @@
                 margin-top:0.5rem;
                 margin-right:0.5rem;
                 margin-bottom:0.5rem;
-                text-align:left;
+                text-align:center;
                 clear:none;
             }
 
@@ -80,7 +82,7 @@
                 font-weight:normal;
                 font-style:normal;
                 text-decoration:none;
-                font-size:2rem;
+                font-size:1rem;
                 margin-left:0.5rem;
                 margin-top:0.25rem;
                 margin-right:0.5rem;
@@ -241,9 +243,8 @@
             #back {
                 left:0;
                 top:0;
-                background-color:#CCCCCC;
-                width:100%;
-                height:388%;
+                background-color:#CCCCCC;                width:100%;
+                height:208%;
                 z-index:-1
             }
 
@@ -259,14 +260,14 @@
                 left:0;
                 top:0;
                 width:2%;
-                height:388%;
+                height:208%;
             }
 
             #rightmargin {
                 left:98%;
                 top:0;
                 width:2%;
-                height:388%;
+                height:208%;
             }
 
 /* spacers ---------------------------------------------------------  */
@@ -280,14 +281,14 @@
             #leftspacer {
                 font-size:1pt;
                 width:1%;
-                height:387%;
+                height:207%;
                 background-color:#999999;
             }
 
 /* containers ---------------------------------------------------------  */
             #container0{
                 width:94%;
-                height:94%;
+                height:23.5%;
                 margin-left:2%;
                 margin-right:0%;
                 margin-top:2%;
@@ -295,7 +296,7 @@
 
             #container1{
                 width:94%;
-                height:94%;
+                height:74.5%;
                 margin-left:2%;
                 margin-right:0%;
                 margin-top:2%;
@@ -303,7 +304,7 @@
 
             #container2{
                 width:94%;
-                height:94%;
+                height:49%;
                 margin-left:2%;
                 margin-right:0%;
                 margin-top:2%;
@@ -311,7 +312,7 @@
 
             #container3{
                 width:94%;
-                height:94%;
+                height:49%;
                 margin-left:2%;
                 margin-right:0%;
                 margin-top:2%;
@@ -319,13 +320,12 @@
 
 
 /* styles for state Tablet ---------------------------------------------------------  */
-            @media screen and (min-width:28.75em) {
+            @media screen and (min-width:28.75rem) {
 /* background ---------------------------------------------------------  */
             #back {
                 left:0;
                 top:0;
-                background-color:#CCCCCC;
-                width:100%;
+                background-color:#CCCCCC;                width:100%;
                 height:100%;
                 z-index:-1
             }
@@ -356,60 +356,59 @@
             #topspacer {
                 font-size:1pt;
                 width:100%;
-                height:1%;
+                height:1.9%;
                 background-color:#999999;
             }
 
             #leftspacer {
                 font-size:1pt;
-                width:1%;
-                height:99%;
+                width:1.9%;
+                height:98.1%;
                 background-color:#999999;
             }
 
 /* containers ---------------------------------------------------------  */
                 #container0{
-                    width:46%;
-                    height:22%;
-                    margin-left:2%;
+                    width:95.8%;
+                    height:12.1%;
+                    margin-left:0.2%;
                     margin-right:0%;
-                    margin-top:2%;
+                    margin-top:0.2%;
                 }
 
                 #container1{
-                    width:46%;
-                    height:22%;
-                    margin-left:2%;
+                    width:95.8%;
+                    height:30.55%;
+                    margin-left:0.2%;
                     margin-right:0%;
-                    margin-top:2%;
+                    margin-top:0.2%;
                 }
 
                 #container2{
-                    width:46%;
-                    height:22%;
-                    margin-left:2%;
+                    width:47.800000000000004%;
+                    height:42.85%;
+                    margin-left:0.2%;
                     margin-right:0%;
-                    margin-top:2%;
+                    margin-top:0.2%;
                 }
 
                 #container3{
-                    width:46%;
-                    height:22%;
-                    margin-left:2%;
+                    width:47.800000000000004%;
+                    height:42.85%;
+                    margin-left:0.2%;
                     margin-right:0%;
-                    margin-top:2%;
+                    margin-top:0.2%;
                 }
 
             }
 
 /* styles for state Computer ---------------------------------------------------------  */
-            @media screen and (min-width:40.5em) {
+            @media screen and (min-width:40.5rem) {
 /* background ---------------------------------------------------------  */
             #back {
                 left:0;
                 top:0;
-                background-color:#CCCCCC;
-                width:100%;
+                background-color:#CCCCCC;                width:100%;
                 height:100%;
                 z-index:-1
             }
@@ -453,32 +452,32 @@
 
 /* containers ---------------------------------------------------------  */
                 #container0{
-                    width:14%;
-                    height:30%;
+                    width:94%;
+                    height:14%;
                     margin-left:2%;
                     margin-right:0%;
                     margin-top:2%;
                 }
 
                 #container1{
-                    width:14%;
-                    height:30%;
+                    width:30%;
+                    height:46%;
                     margin-left:2%;
                     margin-right:0%;
                     margin-top:2%;
                 }
 
                 #container2{
-                    width:14%;
-                    height:30%;
+                    width:30%;
+                    height:46%;
                     margin-left:2%;
                     margin-right:0%;
                     margin-top:2%;
                 }
 
                 #container3{
-                    width:14%;
-                    height:30%;
+                    width:30%;
+                    height:46%;
                     margin-left:2%;
                     margin-right:0%;
                     margin-top:2%;
@@ -497,16 +496,16 @@
             <span id="topspacer"></span>
             <span id="leftspacer"></span>
             <span id="container0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h1>GridEasy</h1>
             </span>
             <span id="container1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2>Introduction</h2><p>The idea behind GridEasy is a simple to use, but limited, introduction to trying out a grid design system for the first time. It provides a method of producing layouts that will appear differently depending on the viewing screen dimensions. Check out the examples section by altering the browser window size or viewing on a laptop, tablet or smarphone. GridEasy will allow you to produce single webpages with basic text content and images. If the idea of fluid grid design appeals to you and you want a more extensive design system checkout the commercial products mentioned in the above sites.</p>
             </span>
             <span id="container2">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2>Content First Approach</h2><p>Use you favourite text editor to write your content. Any new line with no tab set will be taken to be a heading, with a single tab a sub-heading and two tabs a paragraph. Three or more newlines between paragraphs will result in a new container for any following lines. Containers can then be edited in terms of size, position and format.</p>
             </span>
             <span id="container3">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2>Layout First Approach</h2><p>Breakpoints can be added for upto eight different states for various screen sizes. Grid dimesions can be set for each state. New containers can be created within any state which will then appear in all states. Text can be edited within any container and an image added if required. Whilst the text, image, position and format of a container remain consistent across all states their size is adjustable within each state.</p>
             </span>
         </div>
     </body>

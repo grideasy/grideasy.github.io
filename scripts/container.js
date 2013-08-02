@@ -6,7 +6,7 @@ function Box(CR) {  //CR is a container
 	$('contbox').appendChild(CR.box);
 	setCRBox(CR);
 }
-
+zzz=0;
 function setCRBox(CR) {
 	var grid=Project.states[Project.currentstate].grid;
 	var name=Project.states[Project.currentstate].name;
@@ -40,15 +40,21 @@ function setCRBox(CR) {
 	setTagStyles(CR,"p");
 	CR.box.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
 	CR.box.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
-	CR.box.addEventListener("click", function(e) {setContainer(ctrldown(e),this);setContEdit();}, false);
+	CR.box.addEventListener("click", clicklisten, false);
 	if(CR.box.style.opacity==1) {
 		CR.box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
 		CR.box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
 	}
 }
 
-function setContainer(ctrldown,box) {
-	if(ctrldown) {
+function clicklisten(e) {
+	$("showcontainer").innerHTML="Preview";
+	setContainer(ctrldown(e),this);
+	setContEdit();
+}
+
+function setContainer(cdown,box) {	
+	if(cdown) {
 		if (box.style.opacity<1) {
 			box.style.opacity=1;
 			box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
@@ -72,10 +78,8 @@ function setContainer(ctrldown,box) {
 		box.style.opacity=1;
 		box.addEventListener("mouseout", function() {this.style.opacity=1}, false);
 		box.addEventListener("mouseover", function() {this.style.opacity=1}, false);
-	}
+	}	
 }
-
-
 
 function setTagStyles(CR,tag) {	
 	var tags=CR.box.getElementsByTagName(tag);
