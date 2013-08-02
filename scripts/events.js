@@ -6,9 +6,11 @@ function addListeners() {
 	$("butcontainer").addEventListener('click', containermenu, false);
 	$("butcontent").addEventListener('click', contentmenu, false);
 	$("butstate").addEventListener('click', statemenu, false);
+	$("butoptions").addEventListener('click', optionsmenu, false);
 	$("butsave").addEventListener('click', savemenu, false);
 	$("butopen").addEventListener('click', openmenu, false);
 	$("butcreate").addEventListener('click', exportHTML, false);
+	$("buthtml").addEventListener('click', showhtml, false);
 
 	// Grid Menu listeners *****************************
 	$('Ncols').addEventListener('change', function() {setNcols(this)}, false);
@@ -20,8 +22,8 @@ function addListeners() {
 	//Container menu listeners ***************************************************
 	$("editcontainer").addEventListener('click', function() {$("containeredit").style.visibility="visible";setContEdit()});
 	$("imagecontainer").addEventListener('click', function() {$("containerimage").style.visibility="visible";setContImgEdit()});
-	$("hidecontainer").addEventListener('click', function() {$("contbox").style.visibility="hidden"}, false);
-	$("showcontainer").addEventListener('click', function() {$("contbox").style.visibility="visible"}, false);
+	$("hidecontainer").addEventListener('click', hideCont, false);
+	$("showcontainer").addEventListener('click', showCont, false);
 	$("deletecontainer").addEventListener('click', delcont, false);
 	$("createcontainer").addEventListener('click', createCont, false);
 	$("copycontainer").addEventListener('click', copyCont, false);
@@ -83,6 +85,9 @@ function addListeners() {
 	$("editstates").addEventListener('click', function() {$("stateedit").style.visibility="visible"}, false);
 	$("addstate").addEventListener('click', addrow, false);
 	$("delstate").addEventListener('click', delrow, false);
+	
+	//Option menu listeners **************************************************
+	$('redow').addEventListener('click', setRedow, false);
 	
 	//drop_zone listeners *************************************************
 	if(window.File && window.FileReader && window.FileList && window.Blob) {	
@@ -202,11 +207,13 @@ function setrowH(item) {
 function contentmenu() {
 	clearAllMenus();
 	$('menucontent').style.visibility="visible";
+	$("tabright").style.visibility="hidden";
+	$("tabback").style.visibility="hidden";
 	$('butcontent').style.height='50px';
 }
 
 function addlevel(zone) {
-	var psa=$(zone).first; // paragraph start at
+	var psa=$(zone).first||0; // paragraph start at
 	var txt=$(zone).value;
 	var tabs=(txt.charCodeAt(psa)==9)+(txt.charCodeAt(psa+1)==9);
 	tabs+=1;
@@ -234,7 +241,7 @@ function addlevel(zone) {
 }
 
 function dellevel(zone) {
-	var psa=$(zone).first; // paragraph start at
+	var psa=$(zone).first||0; // paragraph start at
 	var txt=$(zone).value;
 	var tabs=(txt.charCodeAt(psa)==9)+(txt.charCodeAt(psa+1)==9);
 	tabs-=1;
@@ -350,7 +357,7 @@ function setContEdit() {
 	}
 	CR=currentcontainers[0];
 	var colW=CR.columns[name];
-	var rowH=CR.rows[name];console.log(0,rowH);
+	var rowH=CR.rows[name];
 	var centrd=CR.style.centred;
 	var bckCol=CR.style.backgroundColor;
 	if(CR.box.getElementsByTagName("h1").length>0) {
@@ -422,7 +429,7 @@ function setContEdit() {
 		$("backcol").style.visibility="hidden";
 	}
 	else { 
-		$("backcol").style.visibility="visible";
+		$("backcol").style.visibility="inherit";
 		$("backcol").style.backgroundColor=CR.style.backgroundColor;
 	}
 	if(tag=="h1") {
@@ -796,7 +803,7 @@ function setFontFamily(item) {
 function setFontBold(item) {
 	var CR;
 	var tags=["h1","h2","p"]
-	var tag=tags[$("tagtype").selectedIndex];console.log(tag,item.style.boxShadow,item.style.boxShadow=="3px 3px 2px #888888")
+	var tag=tags[$("tagtype").selectedIndex];
 	if(item.weight=="bold") {
 		item.style.boxShadow="3px 3px 2px #FFFFFF";
 		item.weight="normal";
@@ -850,6 +857,45 @@ function setFontUL(item) {
 	}
 }
 
+function hideCont() {
+	if($("hidecontainer").innerHTML=="Hide") {
+		$("contbox").style.visibility="hidden";
+		$("hidecontainer").innerHTML="Show";
+	}
+	else {
+		$("contbox").style.visibility="inherit";
+		$("hidecontainer").innerHTML="Hide";
+	}
+}
+
+function showCont() {
+	if($("showcontainer").innerHTML=="Preview") {
+		$("showcontainer").innerHTML="Design";
+		var elm=$("contbox").firstChild;
+		elm=findNextSpan(elm);
+		while (elm) {
+			elm.style.opacity=1;
+			elm.addEventListener("mouseover", function() {this.style.opacity=1}, false);
+			elm.addEventListener("mouseout", function() {this.style.opacity=1}, false);
+			elm=findNextSpan(elm);
+		}
+		currentcontainers=[];
+		$("containeredit").style.visibility="hidden";
+	}
+	else {
+		$("showcontainer").innerHTML="Preview";
+		var elm=$("contbox").firstChild;
+		elm=findNextSpan(elm);
+		while (elm) {
+			elm.style.opacity=0.4;
+			elm.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
+			elm.addEventListener("mouseout", function() {this.style.opacity=0.4}, false);
+			elm=findNextSpan(elm);
+		}
+		$("containeredit").style.visibility="hidden";
+	}
+}
+
 function delcont() {
 	if(currentcontainers.length<1) {
 		alert("No container selected");
@@ -882,6 +928,8 @@ function editHTML() {
 		return;
 	}
 	$("menuHTML").style.visibility="visible";
+	$("Ttabright").style.visibility="hidden";
+	$("Ttabback").style.visibility="hidden";
 	$("HTML_zone").value=currentcontainers[0].text;
 }
 
@@ -923,6 +971,7 @@ function copyCont () {
 	}
 	CR=currentcontainers[0];
 	cn=new Container();
+	Project.containers.push(cn);
 	for(var j=0;j<Project.states.length;j++) {
 		cn.columns[Project.states[j].name]=CR.columns[Project.states[j].name];
 		cn.rows[Project.states[j].name]=CR.rows[Project.states[j].name];
@@ -1179,6 +1228,21 @@ function delrow() {
 		return;
 	}
 }
+
+//Options menu ********************************************************
+function setRedow() {
+	console.log("redow",$('redow').checked);
+	if($('redow').checked) {
+		$('innerw').checked=true;
+	}
+}
+
+
+function optionsmenu() {
+	clearAllMenus();
+	$("menuoptions").style.visibility="visible";
+	$('butoptions').style.height='50px';
+	}
 
 //Save Menu *******************************************************
 

@@ -2,7 +2,6 @@ var iop=navigator.appName=='Opera';
 
 function ctrldown(e)
 {
-	
 	e = e || window.event;
 	return e.ctrlKey;
 }
@@ -77,6 +76,9 @@ function setMenuDefaults() {
 	$('rowH').options[3].selected="selected";
 	//Content Menu Checkbox;
 	$('showbreaks').checked=false;
+	//Options menu
+	$('screenw').checked=true;
+	$('redow').checked=false;
 }
 
 function getDefaultFontSize() {

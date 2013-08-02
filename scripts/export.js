@@ -229,7 +229,16 @@ function exportStateStyles(newwindow) {
 
 function exportScript(newwindow) {
 	newwindow.document.writeln(SPACES.substr(0,8)+'<script type="text/javascript">');
-	newwindow.document.writeln(SPACES.substr(0,12)+'window.onload=function() {document.getElementById("holder").style.height=(screen.availWidth)+"px"};');
+	if($('screenw').checked) {
+		newwindow.document.writeln(SPACES.substr(0,12)+'window.onload=function() {document.getElementById("holder").style.height=(screen.availWidth)+"px"};');
+	}
+	else {
+		newwindow.document.writeln(SPACES.substr(0,12)+'window.onload=function() {document.getElementById("holder").style.height=(window.innerWidth)+"px"};');
+	}
+	if($('redow').checked) {
+		newwindow.document.writeln(SPACES.substr(0,12)+'window.onresize=doResize;');
+	}
+	newwindow.document.writeln(SPACES.substr(0,12)+'function doResize() {location.reload()};');
     newwindow.document.writeln(SPACES.substr(0,8)+'</script>');
 }
 

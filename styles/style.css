@@ -21,6 +21,9 @@ textarea {
 	background-color: #EEEEEE;
 }
 
+#screenw, #innerw, redow {
+	margin:10px 0px 10px 2px;
+}
 
 #defaultEm {
   font-size:1em;

@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="scripts/events.js"></script>
 		<script type="text/javascript" src="scripts/dropcontent.js"></script>
 		<script type="text/javascript" src="scripts/export.js"></script>
+		<script type="text/javascript" src="scripts/showtext.js"></script>
 		<script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
 		<script>
 			window.onload=main;
@@ -39,10 +40,12 @@
 			<div id="butcontainer" class="leftbutton">Container</div>
 			<div id="butcontent" class="leftbutton">Content</div>
 			<div id="butstate" class="leftbutton">State</div>
+			<div id="butoptions" class="leftbutton">Options</div>
 			<div id="buthelp" class="rightbutton">Help</div>
 			<div id="butsave" class="rightbutton">Save</div>
 			<div id="butopen" class="rightbutton">Open</div>
 			<div id="butcreate" class="rightbutton">Create</div>
+			<div id="buthtml" class="rightbutton">HTML</div>
 			<!--  *****************menus for each button *********************-->
 			
 			<!--  *****************grid ********************* -->
@@ -130,7 +133,7 @@
 				<div class="close" alt="close" title="close">X</div>
 				<div id="createcontainer" class="smallbutton">New</div>
 				<div id="copycontainer" class="smallbutton">Copy</div>
-				<div id="showcontainer" class="smallbutton">Show</div>
+				<div id="showcontainer" class="smallbutton">Preview</div>
 				<div id="hidecontainer" class="smallbutton">Hide</div>
 				<div id="deletecontainer" class="smallbutton">Delete</div>
 				<div id="htmlcontainer" class="smallbutton">Text</div>
@@ -153,6 +156,19 @@
 				</div>
 				<div class="close" alt="close" title="close">X</div>
 			</div>
+			
+			
+			<!--  *****************Create and HTML ********************* -->
+			<div id="menuoptions" class="menu">
+				<label for='screenw'>&nbsp;&nbsp;&nbsp;Height based on :&nbsp;&nbsp;&nbsp;</label><input type='radio' name='wide' id='screenw' value='scrw'><label for='screenw' class='after'>Screen Width</label>
+				&nbsp;&nbsp;&nbsp;<input type='radio' name='wide' id='innerw' value='inw'><label for='innerw' class='after'>Browser Width</label>
+				&nbsp;&nbsp;&nbsp;<input type='checkbox' id='redow'><label for='redow' class='after'>Reload on Resize</label>
+				<div class="close" alt="close" title="close">X</div>
+			</div>
+			
+			
+			
+			
 			<!--  *****************open *********************-->
 			<div id="menusaved" class="edit">
 				<div class="back">
@@ -375,6 +391,12 @@
 				<div class="tablemenu">
 					<div id="saveHTML" class="editbutton">Save</div>
 					<div id="cancelHTML" class="editbutton">Cancel</div>
+				</div>
+				<div class="close" alt="close" title="close">X</div>
+			</div>
+			<div id="showtextHTML" class="edit">
+				<div class="back">
+					<textarea id="export_zone"> </textarea>
 				</div>
 				<div class="close" alt="close" title="close">X</div>
 			</div>
