@@ -1255,9 +1255,11 @@ function savemenu() {
 		delete CR["content"];
 		delete CR.image["object"];
 	}
-	newwindow=window.open("","output");
-	newwindow.document.write(JSON.stringify(Project));
-	newwindow.document.close();
+//	newwindow=window.open("","output");
+//	newwindow.document.write(JSON.stringify(Project));
+//	newwindow.document.close();
+	$("export_zone").value=JSON.stringify(Project);
+	$("showtextHTML").style.visibility='visible';
 	var elm=$("contbox").firstChild;
     var next = findNext(elm);
     while (next) {

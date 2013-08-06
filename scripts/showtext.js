@@ -1,5 +1,4 @@
 function showhtml() {
-	$("showtextHTML").style.visibility='visible';
 	var htmltext="";
 	htmltext+='<!DOCTYPE HTML>'+'\n';
 	htmltext+='<html>'+'\n';
@@ -13,6 +12,7 @@ function showhtml() {
 	htmltext+=showhtmlBody();
 	htmltext+='</html>'+'\n';
 	$("export_zone").value=htmltext;
+	$("showtextHTML").style.visibility='visible';
 }
 
 function showhtmlStyles() {
