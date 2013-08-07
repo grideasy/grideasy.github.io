@@ -54,10 +54,14 @@ function setProject(p) {
 	Project=JSON.parse(p);
 	Project.currentstate=curstate;
 	var elm=$("contbox").firstChild;
-    var next = findNext(elm);
-    while (next) {
+    var next = findNextSpan(elm);  //topspacer
+    next=findNextSpan(next); //leftspacer
+    next=findNextSpan(next); //first container if any exist
+    while (next) {   	
         next.parentNode.removeChild(next);
-        next = findNext(elm);
+        next = findNextSpan(elm);  //topspacer
+    	next=findNextSpan(next); //leftspacer
+    	next=findNextSpan(next); //first container if any exist
     }
 	for(var i=0;i<Project.containers.length;i++) {
 		CR=Project.containers[i];

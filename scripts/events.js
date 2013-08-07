@@ -11,6 +11,7 @@ function addListeners() {
 	$("butopen").addEventListener('click', openmenu, false);
 	$("butcreate").addEventListener('click', exportHTML, false);
 	$("buthtml").addEventListener('click', showhtml, false);
+	$("buthelp").addEventListener('click', function() {window.open('https://sites.google.com/site/grideasyhelp/','_blank')}, false);
 
 	// Grid Menu listeners *****************************
 	$('Ncols').addEventListener('change', function() {setNcols(this)}, false);
@@ -592,11 +593,11 @@ function setContHeight(item) {
 }
 
 
-function forwardDiv() {
+function forwardDiv() {	
 	var elm=currentcontainers[0].box;
     var previous = findPrevious(elm);
-    if (previous) {
-        elm.parentNode.insertBefore(elm, previous);
+    if (previous && previous.id!="leftspacer") {
+       	elm.parentNode.insertBefore(elm, previous);
     }
 }
 
@@ -607,7 +608,7 @@ function findPrevious(elm) {
    return elm;
 }
 
-function backwardDiv() {
+function backwardDiv() {		
 	var elm=currentcontainers[0].box;
     var next = findNextSpan(elm);
     if (next) {
@@ -872,7 +873,9 @@ function showCont() {
 	if($("showcontainer").innerHTML=="Preview") {
 		$("showcontainer").innerHTML="Design";
 		var elm=$("contbox").firstChild;
-		elm=findNextSpan(elm);
+		elm=findNextSpan(elm); //topspacer
+		elm=findNextSpan(elm); //leftspacer
+		elm=findNextSpan(elm); //first container if exists
 		while (elm) {
 			elm.style.opacity=1;
 			elm.addEventListener("mouseover", function() {this.style.opacity=1}, false);
@@ -885,7 +888,9 @@ function showCont() {
 	else {
 		$("showcontainer").innerHTML="Preview";
 		var elm=$("contbox").firstChild;
-		elm=findNextSpan(elm);
+		elm=findNextSpan(elm); //topspacer
+		elm=findNextSpan(elm); //leftspacer
+		elm=findNextSpan(elm); //first container if exists
 		while (elm) {
 			elm.style.opacity=0.4;
 			elm.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
@@ -1255,9 +1260,6 @@ function savemenu() {
 		delete CR["content"];
 		delete CR.image["object"];
 	}
-//	newwindow=window.open("","output");
-//	newwindow.document.write(JSON.stringify(Project));
-//	newwindow.document.close();
 	$("export_zone").value=JSON.stringify(Project);
 	$("showtextHTML").style.visibility='visible';
 	var elm=$("contbox").firstChild;

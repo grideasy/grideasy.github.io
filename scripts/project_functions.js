@@ -527,7 +527,9 @@ function gridHtoW(s) {
 function setContainers() {
 	currentcontainers=[];
 	var elm=$("contbox").firstChild;
-	elm=findNextSpan(elm);
+	elm=findNextSpan(elm); //topspacer
+	elm=findNextSpan(elm); //leftspacer
+	elm=findNextSpan(elm); //first container if exists
 	while (elm) {
 		if(elm.style.opacity==1) {
 			currentcontainers.push(elm.container);

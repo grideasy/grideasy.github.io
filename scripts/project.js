@@ -11,7 +11,6 @@ Project={
 	containers:[], //array of content container objects in order from top to bottom and left to right
 	default_states:["Smart Phone","Tablet","Computer"],
 	default_breaks:[[28.75,1],[40.5,3]],  //breakpoints in ems and number of columns
-	//breaks:[[28.75,1],[40.5,3]], //active breakpoints in ems and number of columns
 	staterows:3, //number of rows in state table containing states;
 	content:"", //content as text
 	toedge:true, //when true containers snap to edges of grid, when false containers snap to semi-gutters around them

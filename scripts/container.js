@@ -68,7 +68,9 @@ function setContainer(cdown,box) {
 	}
 	else {
 		var elm=$("contbox").firstChild;
-		elm=findNextSpan(elm);
+		elm=findNextSpan(elm); //topspacer
+		elm=findNextSpan(elm); //leftspacer
+		elm=findNextSpan(elm); //first container if exists
 		while (elm) {
 			elm.style.opacity=0.4;
 			elm.addEventListener("mouseover", function() {this.style.opacity=0.6}, false);
