@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Babylon.js Centre Of Mass</title>
+    <!-- Babylon.js -->
+    <script src="babylon26JK.js"></script>
+	
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+if (BABYLON.Engine.isSupported()) {
+    var canvas = document.getElementById("renderCanvas");
+    var engine = new BABYLON.Engine(canvas, true);
+	
+BABYLON.Mesh.prototype.increaseFacets = function(pps) { //pps points per side        
+    var _gaps = pps+1;
+    var _n = _gaps + 1;
+    var _fvs =[];
+    for(var _i=0; _i<_n; _i++) {
+        _fvs[_i] = [];
+    }    
+    var _A,_B;
+    var _d ={x:0,y:0,z:0};
+    var _u ={x:0,y:0};
+    var _indices = [];
+    var _vertexIndex = [];
+    var _side = [];
+    var _l; //holds lengths
+    var _uvs = this.getVerticesData(BABYLON.VertexBuffer.UVKind);
+    var _meshIndices = this.getIndices();
+    var _positions = this.getVerticesData(BABYLON.VertexBuffer.PositionKind);    
+    var _normals =[];    
+
+    for(var _i = 0; _i<_meshIndices.length; _i+=3) {
+        _vertexIndex[0] = _meshIndices[_i];
+        _vertexIndex[1] = _meshIndices[_i + 1];
+        _vertexIndex[2] = _meshIndices[_i + 2];        
+        for(var _j = 0; _j<3; _j++) {
+            _A = _vertexIndex[_j];
+            _B = _vertexIndex[(_j+1)%3];        
+            if(_side[_A] === undefined  && _side[_B] ===  undefined) {            
+                _side[_A] = [];
+                _side[_B] = [];            
+            }
+            else {
+                if(_side[_A] === undefined) {                    
+                    _side[_A] = [];
+                }
+                if(_side[_B] === undefined) {                    
+                    _side[_B] = [];                                
+                }
+            }
+            if(_side[_A][_B]  === undefined  && _side[_B][_A] === undefined) {            
+                _side[_A][_B] = [];
+                _d.x = (_positions[3 * _B] - _positions[3 * _A])/_gaps;
+                _d.y = (_positions[3 * _B + 1] - _positions[3 * _A + 1])/_gaps;
+                _d.z = (_positions[3 * _B + 2] - _positions[3 * _A + 2])/_gaps;
+                _u.x = (_uvs[2*_B] - _uvs[2*_A])/_gaps;
+                _u.y = (_uvs[2*_B + 1] - _uvs[2*_A + 1])/_gaps;
+                _side[_A][_B].push(_A);                
+                for(var _k=1; _k<_gaps; _k++) {                
+                    _side[_A][_B].push(_positions.length/3);                
+                    _positions.push(_positions[3 * _A] + _k*_d.x, _positions[3 * _A + 1] + _k*_d.y, _positions[3 * _A + 2] + _k*_d.z);
+                    _uvs.push(_uvs[2*_A] + _k*_u.x, _uvs[2*_A + 1] + _k*_u.y);
+                }                
+                _side[_A][_B].push(_B);
+                _side[_B][_A]=[];
+                _l = _side[_A][_B].length;
+                for(var _a=0; _a<_l; _a++) {
+                    _side[_B][_A][_a] = _side[_A][_B][_l-1-_a];
+                }
+            }
+            else {
+                if(_side[_A][_B] === undefined) {            
+                    _side[_A][_B]=[];
+                    _l = _side[_B][_A].length;
+                    for(var _a=0; _a<_l; _a++) {
+                        _side[_A][_B][_a] = _side[_B][_A][_l-1-_a];
+                    }
+                }
+                if(_side[_B][_A] === undefined) {            
+                    _side[_B][_A]=[];                
+                    _l = _side[_A][_B].length;
+                    for(var _a=0; _a<_l; _a++) {
+                        _side[_B][_A][_a] = _side[_A][_B][_l-1-_a];
+                    }
+                }
+            }                    
+        }    
+        _fvs[0][0] = _meshIndices[_i];
+        _fvs[1][0] = _side[_meshIndices[_i]][_meshIndices[_i + 1]][1];
+        _fvs[1][1] = _side[_meshIndices[_i]][_meshIndices[_i + 2]][1];        
+        for(var _k = 2; _k<_gaps; _k++) {
+            _fvs[_k][0] = _side[_meshIndices[_i]][_meshIndices[_i + 1]][_k];
+            _fvs[_k][_k] = _side[_meshIndices[_i]][_meshIndices[_i + 2]][_k];        
+            _d.x = (_positions[3 * _fvs[_k][_k]] - _positions[3 * _fvs[_k][0]])/_k;
+            _d.y = (_positions[3 * _fvs[_k][_k] + 1] - _positions[3 * _fvs[_k][0] + 1])/_k;
+            _d.z = (_positions[3 * _fvs[_k][_k] + 2] - _positions[3 * _fvs[_k][0] + 2])/_k;
+            _u.x = (_uvs[2*_fvs[_k][_k]] - _uvs[2*_fvs[_k][0]])/_k;
+            _u.y = (_uvs[2*_fvs[_k][_k] + 1] - _uvs[2*_fvs[_k][0] + 1])/_k;
+            for(var _j = 1; _j<_k; _j++) {                
+                _fvs[_k][_j] = _positions.length/3;                
+                _positions.push(_positions[3 * _fvs[_k][0]] + _j*_d.x, _positions[3 * _fvs[_k][0] + 1] + _j*_d.y, _positions[3 * _fvs[_k][0] + 2] + _j*_d.z);
+                _uvs.push(_uvs[2*_fvs[_k][0]] + _j*_u.x, _uvs[2*_fvs[_k][0] + 1] + _j*_u.y);
+            }        
+        }
+        _fvs[_gaps] = _side[_meshIndices[_i + 1]][_meshIndices[_i + 2]];
+
+        _indices.push(_fvs[0][0],_fvs[1][0],_fvs[1][1]);
+        for(var _k = 1; _k<_gaps; _k++) {
+            for(var _j = 0; _j<_k; _j++) {            
+                _indices.push(_fvs[_k][_j],_fvs[_k+1][_j],_fvs[_k+1][_j+1]);
+                _indices.push(_fvs[_k][_j],_fvs[_k+1][_j+1],_fvs[_k][_j+1]);
+            }        
+            _indices.push(_fvs[_k][_j],_fvs[_k+1][_j],_fvs[_k+1][_j+1]);
+        }
+
+    }                            
+
+    var vertexData = new BABYLON.VertexData();
+    vertexData.positions = _positions;
+    vertexData.indices = _indices;
+    vertexData.uvs = _uvs;
+
+    BABYLON.VertexData.ComputeNormals(_positions, _indices, _normals);
+    vertexData.normals = _normals;
+
+    vertexData.applyToMesh(this);
+
+}	
+
+BABYLON.Mesh.prototype.getFacetPositions = function () {
+	var world = this.getWorldMatrix();
+    return this.getFacetLocalPositions().map(function(localPos){
+	var pos = new BABYLON.Vector3.Zero();
+		BABYLON.Vector3.TransformCoordinatesToRef(localPos, world, pos);
+		return pos;
+	});
+};
+	
+BABYLON.Mesh.prototype.boundingOverlapBox = function(mesh, precise) {
+	if(!this.intersectsMesh(mesh, precise)) {
+		return null;
+	};
+	var TMX = this.getBoundingInfo().boundingBox.maximumWorld;
+	var MMX = mesh.getBoundingInfo().boundingBox.maximumWorld;
+	var TMN = this.getBoundingInfo().boundingBox.minimumWorld;
+	var MMN = mesh.getBoundingInfo().boundingBox.minimumWorld;
+	var maxX = (TMX.x >= MMX.x) ? MMX.x : TMX.x;
+	var maxY = (TMX.y >= MMX.y) ? MMX.y : TMX.y;
+	var maxZ = (TMX.z >= MMX.z) ? MMX.z : TMX.z;
+	var minX = (TMN.x >= MMN.x) ? TMN.x : MMN.x;
+	var minY = (TMN.y >= MMN.y) ? TMN.y : MMN.y;
+	var minZ = (TMN.z >= MMN.z) ? TMN.z : MMN.z;
+	var maximum = new BABYLON.Vector3(maxX, maxY, maxZ);
+	var minimum = new BABYLON.Vector3(minX, minY, minZ);
+	var overlap = new BABYLON.BoundingBox(minimum, maximum);
+	return overlap;
+};
+
+BABYLON.BoundingBox.prototype.blockIntersectPosition = function(mesh, minimum, maximum, lowestBound) {
+	var diagonal = maximum.subtract(minimum).scale(0.5);
+	var mid = BABYLON.Vector3.Zero();
+	var leftFrontBaseMin = minimum;
+	var leftFrontBaseMax = leftFrontBaseMin.add(diagonal);
+	if(this.intersectsMinMax(leftFrontBaseMin, leftFrontBaseMax)){
+		mid = leftFrontBaseMax.add(leftFrontBaseMin).scaleToRef(0.5, mid)	
+		if(leftFrontBaseMax.subtract(leftFrontBaseMin).length() > lowestBound && !mesh.extrusion.getClosestFacetAtCoordinates(mid.x, mid.y, mid.z)) {	
+			return this.blockIntersectPosition(leftFrontBaseMin, leftFrontBaseMax, lowestBound);
+		}
+		else {
+			return mid = leftFrontBaseMax.add(leftFrontBaseMin).scale(0.5);
+		}
+	};
+	var leftBackBaseMin = new BABYLON.Vector3(minimum.x, minimum.y, maximum.z/2);
+	var leftBackBaseMax = leftBackBaseMin.add(diagonal);
+	if(this.intersectsMinMax(leftBackBaseMin, leftBackBaseMax)){
+		if(leftBackBaseMax.subtract(leftBackBaseMin).length() > lowestBound) {
+			return this.blockIntersectPosition(leftBackBaseMin, leftBackBaseMax, lowestBound);
+		}
+		else {
+			return mid = leftBackBaseMax.add(leftBackBaseMin).scale(0.5);
+		}	
+	};
+	var rightFrontBaseMin = new BABYLON.Vector3(maximum.x/2, minimum.y, minimum.z);
+	var rightFrontBaseMax = rightFrontBaseMin.add(diagonal);
+	if(this.intersectsMinMax(rightFrontBaseMin, rightFrontBaseMax)){
+		if(rightFrontBaseMax.subtract(rightFrontBaseMin).length() > lowestBound) {
+			return this.blockIntersectPosition(rightFrontBaseMin, rightFrontBaseMax, lowestBound);
+		}
+		else {
+			return mid = rightFrontBaseMax.add(rightFrontBaseMin).scale(0.5);
+		}	
+	};
+	var rightBackBaseMin = new BABYLON.Vector3(maximum.x/2, minimum.y, maximum.z/2);
+	var rightBackBaseMax = rightBackBaseMin.add(diagonal);
+	if(this.intersectsMinMax(rightBackBaseMin, rightBackBaseMax)){
+		if(rightBackBaseMax.subtract(rightBackBaseMin).length() > lowestBound) {
+	
+			return this.blockIntersectPosition(rightBackBaseMin, rightBackBaseMax, lowestBound);
+		}
+		else {
+			return mid = rightBackBaseMax.add(rightBackBaseMin).scale(0.5);
+		}		
+	};
+	var leftFrontTopMin = new BABYLON.Vector3(minimum.x, maximum.y/2, minimum.z);
+	var leftFrontTopMax = leftFrontTopMin.add(diagonal);
+	if(this.intersectsMinMax(leftFrontTopMin, leftFrontTopMax)){
+		if(leftFrontTopMax.subtract(leftFrontTopMin).length() > lowestBound) {
+			return this.blockIntersectPosition(leftFrontTopMin, leftFrontTopMax, lowestBound);
+		}
+		else {
+			return mid = leftFrontTopMax.add(leftFrontTopMin).scale(0.5);
+		}	
+	};
+	var leftBackTopMin = new BABYLON.Vector3(minimum.x, maximum.y/2, maximum.z/2);
+	var leftBackTopMax = leftBackTopMin.add(diagonal);
+	if(this.intersectsMinMax(leftBackTopMin, leftBackTopMax)){
+		if(leftBackFrontMax.subtract(leftBackTopMin).length() > lowestBound) {
+			return this.blockIntersectPosition(leftBackFrontTopMin, leftBackFrontTopMax, lowestBound);
+		}
+		else {
+			return mid = leftBackFrontMax.add(leftBackFrontMin).scale(0.5);
+		}	
+	};
+	var rightFrontTopMin = new BABYLON.Vector3(maximum.x/2, maximum.y/2, minimum.z);
+	var rightFrontTopMax = rightFrontTopMin.add(diagonal);
+	if(this.intersectsMinMax(rightFrontTopMin, rightFrontTopMax)){
+		if(rightFrontTopMax.subtract(rightFrontTopMin).length() > lowestBound) {
+			return this.blockIntersectPosition(rightFrontTopMin, rightFrontTopMax, lowestBound);
+		}
+		else {
+			return mid = rightFrontTopMax.add(rightFrontTopMin).scale(0.5);
+		}	
+	};
+	var rightBackTopMin = new BABYLON.Vector3(maximum.x/2, maximum.y/2, maximum.z/2);
+	var rightBackTopMax = rightBackTopMin.add(diagonal);
+	if(this.intersectsMinMax(rightBackTopMin, rightBackTopMax)){
+		if(rightBackFrontMax.subtract(rightBackTopMin).length() > lowestBound) {
+			return this.blockIntersectPosition(rightBackTopMin, rightBackTopMax, lowestBound);
+		}
+		else {
+			return mid = rightBackTopMax.add(rightBackTopMin).scale(0.5);
+		}	
+	};
+	return null;
+}
+
+//Approximation - assume all facets have same density 
+BABYLON.Mesh.prototype.getCenterOfMass = function() {
+	var localPositions = this.getFacetLocalPositions();	
+	var areas = this.getFacetAreas();
+	var nbFacets = localPositions.length;
+	var sumOfAreas = 0;
+	var sumOfMoments = BABYLON.Vector3.Zero();
+	for(var f = 0; f<nbFacets; f++) {
+		sumOfMoments.addInPlace(localPositions[f].scale(areas[f]));
+		sumOfAreas += areas[f];
+	}	
+	return sumOfMoments.scale(1/sumOfAreas);
+};
+
+
+var createScene = function() {
+	var scene = new BABYLON.Scene(engine);
+	var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 2, 20, BABYLON.Vector3.Zero(), scene);
+	camera.attachControl(canvas, true);
+
+    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+    light.intensity = 0.2;
+    var pl = new BABYLON.PointLight('pl', camera.position, scene);
+    pl.intensity = 0.3;
+
+    var myShape = [
+		 	new BABYLON.Vector3(-3, 1, 0),
+			new BABYLON.Vector3(1, 1, 0),
+			new BABYLON.Vector3(1, 3, 0),
+			new BABYLON.Vector3(3, 3, 0),
+			new BABYLON.Vector3(3, -3, 0),
+			new BABYLON.Vector3(1, -3, 0),
+			new BABYLON.Vector3(1, -1, 0),
+			new BABYLON.Vector3(-3, -1, 0)
+	];
+	
+	myShape.reverse();
+	
+	myShape.push(myShape[0]);
+	
+	var myPath = [
+			new BABYLON.Vector3(0, 0, -1),
+			new BABYLON.Vector3(0, 0, 1),
+	];
+	
+	var extrusion = BABYLON.MeshBuilder.ExtrudeShape("T", {shape: myShape, path: myPath, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+	extrusion.material = new BABYLON.StandardMaterial("", scene);
+	//extrusion.increaseFacets(4);
+	extrusion.material.wireframe = true;
+	
+	var com = extrusion.getCenterOfMass();
+	
+	
+	extrusion.rotation.z = Math.PI/4;
+	
+	//approach from right
+	extrusion.position.x = 0.75;
+	extrusion.position.y = 3;
+	
+	//approach from left
+	//extrusion.position.x = -8;
+	//extrusion.position.y = 3;
+	
+	
+	var world = extrusion.computeWorldMatrix(true);
+	com = BABYLON.Vector3.TransformCoordinates(com, world);
+	
+	box = BABYLON.MeshBuilder.CreateBox("bx0", {size:0.5}, scene);
+	box.position = com;
+	
+	return scene;
+};
+
+
+            var scene = createScene();
+            var time = 0;
+            engine.runRenderLoop(function () {
+  
+
+                scene.render();
+            });
+
+            window.addEventListener("resize", function () {
+                engine.resize();
+            });
+        }
+    </script>
+</body>
+</html>
