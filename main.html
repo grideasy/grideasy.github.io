@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Simonds Garage</title>
+	
+    <style>
+        html, body {
+            width: 100%;
+            height: 200%;
+            margin: 0;
+            padding: 0;
+            background-color: #555555;
+        }
+
+        div {
+            position: absolute;
+        }
+
+        .subheader {
+            left:10%;
+            height:50%;
+            width:90%;
+        }
+
+        .menus {
+            height:80%;
+            width:20%;
+            top:4%;
+            padding:3px;
+            font-size: 22pt;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #00AAFF;
+            border: solid 2px #FFFFFF;
+            border-radius: 6px;
+            box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.1);
+            cursor: default;
+        }
+
+        .menus:hover {
+           border: solid 4px #0000FF;
+        }
+
+        .slide {
+            width:98%;
+            height:600px;
+            left:1%;
+            border: solid 2px #FFFFFF;
+            
+        }
+
+        #home_frame {
+            background-color: #0000FF;
+            top:0px;
+        }
+
+        #services_frame {
+            background-color: #FF0000;
+            top: -600px;
+        }
+
+        #location_frame {
+            background-color: #00FF00;
+            top: -600px;
+        }
+
+        #contact_frame {
+            background-color: #FF00FF;
+            top: -600px;
+        }
+
+        #header {
+            position:fixed;
+            width:100%;
+            height:14%;
+            background-color: #FFFFFF;
+            box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.5);
+            z-index:50;
+        }
+
+        #menu {
+            top: 50%;
+        }
+
+        #home {
+            left: 4%;
+        }
+
+        #services {
+            left:26%;
+        }
+
+        #location {
+            left: 48%;
+        }
+
+        #contact {
+            left: 70%;
+        }
+
+    </style>
+    <script>
+    // Variables
+    var head =[];
+    var frame = [];
+    var slideNb = 0;
+
+     
+    var slideChange = function() {  
+console.log("nb",this.Nb, slideNb)                          
+        if(this.Nb == slideNb) return;
+        frame[slideNb].style.zIndex = 10;
+        slideNb = this.Nb;
+        var slide = frame[slideNb] 
+        slide.style.zIndex = 20;
+        head[slideNb].style.backgroundColor = "#0055FF";
+        head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)";    
+
+        var slideUp = function() {
+            for(var i = 0; i < 4; i++) {
+                if (i != slideNb) {
+                    head[i].style.backgroundColor = "#00AAFF";
+                    head[i].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.1)";
+                    frame[i].style.zIndex = 0;
+                    frame[i].style.top = "-600px";                      
+                }
+            }
+        }
+            
+        var slideDown = function() {              
+            if(parseInt(slide.style.top) < 0) {
+                slide.style.top = (parseInt(slide.style.top) + 12) + "px";
+                setTimeout(slideDown, 1);
+            }
+            else {
+                slide.style.top = "0px";
+                slideUp();
+            }
+        }
+
+        slideDown();
+    }
+
+    var reset = function() {
+console.log(screen.availWidth, screen.availHeight, screen.availWidth > screen.availHeight)        
+        if(screen.availWidth > screen.availHeight) {
+            for (var i = 0; i < 4; i++) {
+                head[i].addEventListener("click", slideChange);
+                frame[i].style.height = screen.availHeight + "px";
+                frame[i].style.top = (-1 * screen.availHeight) + "px";
+            }
+            frame[slideNb].style.top = "0px";
+        }
+        else {
+console.log("here");            
+            for (var i = 0; i < 4; i++) {
+                head[i].style.visibility = "hidden";
+                frame[i].style.height = (2 * screen.availHeight) + "px";
+                frame[i].style.top = (i * screen.availHeight) + "px";
+            }
+        }
+    }
+
+    var main = function() { 
+        head[0] = document.getElementById("home");
+        head[1] = document.getElementById("services");
+        head[2] = document.getElementById("location");
+        head[3] = document.getElementById("contact"); 
+
+        
+        frame[0] = document.getElementById("home_frame");
+        frame[1] = document.getElementById("services_frame");
+        frame[2] = document.getElementById("location_frame");
+        frame[3] = document.getElementById("contact_frame");
+
+        frame[0].style.top = "0px";
+        frame[1].style.top = "-600px";
+        frame[2].style.top = "-600px";
+        frame[3].style.top = "-600px";
+        
+        head[slideNb].style.backgroundColor = "#0055FF";
+        head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)"; 
+
+        for (var i = 0; i < 4; i++) {
+            head[i].Nb = i;
+            frame[i].Nb = i;
+        }
+
+        reset();
+    
+    }
+
+    window.onload = main;
+    window.onorientationchange = reset;
+    window.onresize = reset;
+
+    </script>
+</head>
+<body>
+    <div id="home_frame" class = "slide"></div>
+    <div id="services_frame" class = "slide"></div>
+    <div id="location_frame" class = "slide"></div>
+    <div id="contact_frame" class = "slide"></div>
+    <div id="header">
+        <div id = "logo" class = "subheader">LOGO</div>
+        <div id = "menu" class = "subheader">
+            <div id = "home" class = "menus">Home</div>
+            <div id = "services" class = "menus">Services</div>
+            <div id = "location" class = "menus">Location</div>
+            <div id = "contact" class = "menus">Contact</div>
+        </div>
+    </div>
+</body>
+</html>
