@@ -51,6 +51,19 @@
             
         }
 
+        .frame_header {
+            left: 1%;
+            width: 98%;
+            height: 14%;
+            font-size: 22pt;  
+        }
+
+        .frame_content {
+            left:1%;
+            width:98%;
+            top: 15%;
+        }
+
         #home_frame {
             background-color: #0000FF;
             top:0px;
@@ -86,18 +99,22 @@
 
         #home {
             left: 4%;
+            visibility: inherit;
         }
 
         #services {
             left:26%;
+            visibility: inherit;
         }
 
         #location {
             left: 48%;
+            visibility: inherit;
         }
 
         #contact {
             left: 70%;
+            visibility: inherit;
         }
 
     </style>
@@ -108,8 +125,7 @@
     var slideNb = 0;
 
      
-    var slideChange = function() {  
-console.log("nb",this.Nb, slideNb)                          
+    var slideChange = function() {                           
         if(this.Nb == slideNb) return;
         frame[slideNb].style.zIndex = 10;
         slideNb = this.Nb;
@@ -143,9 +159,11 @@ console.log("nb",this.Nb, slideNb)
         slideDown();
     }
 
-    var reset = function() {
-console.log(screen.availWidth, screen.availHeight, screen.availWidth > screen.availHeight)        
+    var reset = function() {       
         if(screen.availWidth > screen.availHeight) {
+            document.getElementById("header").style.height = (0.14 * screen.availHeight) + "px";
+            menu.style.visibility = "visible";
+            document.getElementById("logo").style.height = (0.5 * parseInt(document.getElementById("header").style.height)) + "px";
             for (var i = 0; i < 4; i++) {
                 head[i].addEventListener("click", slideChange);
                 frame[i].style.height = screen.availHeight + "px";
@@ -153,14 +171,20 @@ console.log(screen.availWidth, screen.availHeight, screen.availWidth > screen.av
             }
             frame[slideNb].style.top = "0px";
         }
-        else {
-console.log("here");            
+        else { 
+            document.getElementById("header").style.height = (0.07 * screen.availHeight) + "px";
+            menu.style.visibility = "hidden";
+            document.getElementById("logo").style.height = document.getElementById("header").style.height;          
             for (var i = 0; i < 4; i++) {
-                head[i].style.visibility = "hidden";
                 frame[i].style.height = (2 * screen.availHeight) + "px";
-                frame[i].style.top = (i * screen.availHeight) + "px";
+                frame[i].style.top = (parseInt(document.getElementById("header").style.height) + 2 * i * screen.availHeight) + "px";
             }
         }
+        var frameHeader=getElementsByClassName("frame_header");
+	    for(var i=0; i<frameHeader.length; i++)
+	    {
+		    frameHeader[i].style.height = document.getElementById("header").style.height;
+	    }
     }
 
     var main = function() { 
@@ -199,10 +223,38 @@ console.log("here");
     </script>
 </head>
 <body>
-    <div id="home_frame" class = "slide"></div>
-    <div id="services_frame" class = "slide"></div>
-    <div id="location_frame" class = "slide"></div>
-    <div id="contact_frame" class = "slide"></div>
+    <div id="home_frame" class = "slide">
+        <div class="frame_header">Home</div>
+        <div class="frame_content"> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
+
+            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+        </div>
+    </div>
+    <div id="services_frame" class = "slide">
+        <div class="frame_header">Services</div>
+        <div class="frame_content"> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
+
+            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+        </div>
+    </div>
+    <div id="location_frame" class = "slide">
+        <div class="frame_header">Location</div>
+        <div class="frame_content"> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
+
+            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+        </div>
+    </div>
+    <div id="contact_frame" class = "slide">
+    <div class="frame_header">Contact</div>
+        <div class="frame_content"> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
+
+            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+        </div>
+    </div>    
     <div id="header">
         <div id = "logo" class = "subheader">LOGO</div>
         <div id = "menu" class = "subheader">
