@@ -125,6 +125,7 @@
      
     var slideChange = function() {                           
         if(this.Nb == slideNb) return;
+        window.scroll(0,0);
         frame[slideNb].style.zIndex = 10;
         slideNb = this.Nb;
         var slide = frame[slideNb] 
@@ -138,6 +139,7 @@
                     head[i].style.backgroundColor = "#00AAFF";
                     head[i].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.1)";
                     frame[i].style.zIndex = 0;
+                    frame[i].scrollTop = "0px";
                     frame[i].style.top = "-600px";                      
                 }
             }
@@ -160,14 +162,15 @@
     var reset = function() {       
         if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
             header.style.visibility = "visible";
+            window.scroll(0,0);
             document.getElementById("logo").style.height = (0.5 * parseInt(header.style.height)) + "px";
             fontSize = "1em";
             marginTop = (0.14 * screen.availHeight) + "px";
             for (var i = 0; i < 4; i++) {
                 frame[i].style.position = "absolute";
                 frame[i].style.height = window.innerHeight + "px";
+                frame[i].scrollTop = "0px";
                 frame[i].style.top = (-1 * window.innerHeight) + "px";
-                frame[i].scrollTop = 0;
             }
             frame[slideNb].style.top = "0px";
         }
@@ -175,8 +178,8 @@
             header.style.visibility = "hidden";
             document.getElementById("logo").style.height = document.getElementById("header").style.height;          
             for (var i = 0; i < 4; i++) {
-                frame[i].style.position = "static";
-                frame[i].style.minHeight = window.innerHeight + "px";
+                frame[i].style.position = "static";               
+                frame[i].style.height = "auto";               
             }
             fontSize = "1.6em";
             marginTop = "5%";
@@ -184,9 +187,9 @@
         var frameContent=getElementsByClassName("frame_content");
 	    for(var i=0; i<frameContent.length; i++)
 	    {            
-		    frameContent[i].style.fontSize = fontSize;
+            frameContent[i].style.fontSize = fontSize;
             frameContent[i].style.marginTop = marginTop;
-            frameContent[i].style.minHeight = "fit-content";
+            frameContent[i].style.height = "auto";            
 	    }
     }
 
