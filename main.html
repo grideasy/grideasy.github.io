@@ -52,16 +52,13 @@
         }
 
         .frame_header {
-            left: 1%;
-            width: 98%;
-            height: 14%;
+            margin: 1%;
             font-size: 2em;  
         }
 
         .frame_content {
-            left:1%;
-            width:98%;
-            top: 15%;
+            margin:2%;
+            margin-top: 10%;
         }
 
         #home_frame {
@@ -95,6 +92,7 @@
 
         #menu {
             top: 50%;
+            visibility: inherit;
         }
 
         #home {
@@ -160,32 +158,37 @@
     }
 
     var reset = function() {       
-        if(screen.availWidth > screen.availHeight) {
-            menu.style.visibility = "visible";
+        if(screen.availWidth == screen.availHeight) {
+            header.style.visibility = "visible";
             document.getElementById("logo").style.height = (0.5 * parseInt(document.getElementById("header").style.height)) + "px";
             fontSize = "1em";
+            marginTop = "10%";
             for (var i = 0; i < 4; i++) {
                 head[i].addEventListener("click", slideChange);
-                frame[i].style.height = screen.availHeight + "px";
+                frame[i].style.position = "absolute";
+                frame[i].style.height = 0.8 * screen.availHeight + "px";
                 frame[i].style.top = (-1 * screen.availHeight) + "px";
             }
             frame[slideNb].style.top = "0px";
         }
         else { 
-            menu.style.visibility = "hidden";
+            header.style.visibility = "hidden";
             document.getElementById("logo").style.height = document.getElementById("header").style.height;          
             for (var i = 0; i < 4; i++) {
-                frame[i].style.height = (2 * screen.availHeight) + "px";
-                frame[i].style.top = (parseInt(document.getElementById("header").style.height) + 2 * i * screen.availHeight) + "px";
+                frame[i].style.position = "static";
+                frame[i].style.minHeight = "10px";
+                //frame[i].style.top = (2 * i * screen.availHeight) + "px";
             }
             fontSize = "1.2em";
+            marginTop = "5%";
         }
         var frameHeader=getElementsByClassName("frame_header");
         var frameContent=getElementsByClassName("frame_content");
 	    for(var i=0; i<frameContent.length; i++)
 	    {            
 		    frameContent[i].style.fontSize = fontSize;
-            frameContent[i].style.top = (parseInt(document.getElementById("header").style.height) * 0.07 * screen.availHeight/parseInt(document.getElementById("logo").style.height)) + "px";
+            frameContent[i].style.marginTop = marginTop;
+            //frameContent[i].style.top = (parseInt(header.style.height) * 0.07 * screen.availHeight/parseInt(document.getElementById("logo").style.height)) + "px";
 	    }
     }
 
@@ -214,7 +217,8 @@
             frame[i].Nb = i;
         }
 
-        document.getElementById("header").style.height = (0.14 * screen.availHeight) + "px";
+        var header = document.getElementById("header");
+        header.style.height = (0.14 * screen.availHeight) + "px";
 
         reset();
     
