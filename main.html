@@ -29,7 +29,7 @@
             width:20%;
             top:4%;
             padding:3px;
-            font-size: 22pt;
+            font-size: 2em;
             text-align: center;
             vertical-align: middle;
             background-color: #00AAFF;
@@ -55,7 +55,7 @@
             left: 1%;
             width: 98%;
             height: 14%;
-            font-size: 22pt;  
+            font-size: 2em;  
         }
 
         .frame_content {
@@ -172,7 +172,6 @@
             frame[slideNb].style.top = "0px";
         }
         else { 
-            document.getElementById("header").style.height = (0.07 * screen.availHeight) + "px";
             menu.style.visibility = "hidden";
             document.getElementById("logo").style.height = document.getElementById("header").style.height;          
             for (var i = 0; i < 4; i++) {
@@ -181,9 +180,10 @@
             }
         }
         var frameHeader=getElementsByClassName("frame_header");
-	    for(var i=0; i<frameHeader.length; i++)
+        var frameContent=getElementsByClassName("frame_Content");
+	    for(var i=0; i<frameContent.length; i++)
 	    {
-		    frameHeader[i].style.height = document.getElementById("header").style.height;
+		    frameContent[i].style.top = parseInt(document.getElementById("logo").style.height) * screen.availHeight/parseInt(document.getElementById("header").style.height);
 	    }
     }
 
