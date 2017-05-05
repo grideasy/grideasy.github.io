@@ -45,23 +45,20 @@
 
         .slide {
             width:98%;
-            height:600px;
-            left:1%;
+
             border: solid 2px #FFFFFF;
             
         }
 
         .frame_header {
-            left: 1%;
-            width: 98%;
-            height: 14%;
-            font-size: 2em;  
+            margin: 2% 2% 2% 2%;
+            font-size: 2.4em; 
+            position: inherit; 
         }
 
         .frame_content {
-            left:1%;
-            width:98%;
-            top: 15%;
+            margin: 2% 2% 2% 2%;
+            position: inherit;
         }
 
         #home_frame {
@@ -95,6 +92,7 @@
 
         #menu {
             top: 50%;
+            visibility: inherit;
         }
 
         #home {
@@ -160,32 +158,34 @@
     }
 
     var reset = function() {       
-        if(screen.availWidth > screen.availHeight) {
-            menu.style.visibility = "visible";
-            document.getElementById("logo").style.height = (0.5 * parseInt(document.getElementById("header").style.height)) + "px";
+        if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
+            header.style.visibility = "visible";
+            document.getElementById("logo").style.height = (0.5 * parseInt(header.style.height)) + "px";
             fontSize = "1em";
+            marginTop = (0.14 * screen.availHeight) + "px";
             for (var i = 0; i < 4; i++) {
-                head[i].addEventListener("click", slideChange);
-                frame[i].style.height = screen.availHeight + "px";
-                frame[i].style.top = (-1 * screen.availHeight) + "px";
+                frame[i].style.position = "absolute";
+                frame[i].style.height = window.innerHeight + "px";
+                frame[i].style.top = (-1 * window.innerHeight) + "px";
             }
             frame[slideNb].style.top = "0px";
         }
         else { 
-            menu.style.visibility = "hidden";
+            header.style.visibility = "hidden";
             document.getElementById("logo").style.height = document.getElementById("header").style.height;          
             for (var i = 0; i < 4; i++) {
-                frame[i].style.height = (2 * screen.availHeight) + "px";
-                frame[i].style.top = (parseInt(document.getElementById("header").style.height) +  i * screen.availHeight) + "px";
+                frame[i].style.position = "static";
+                frame[i].style.minHeight = window.innerHeight + "px";
             }
             fontSize = "1.6em";
+            marginTop = "5%";
         }
-        var frameHeader=getElementsByClassName("frame_header");
         var frameContent=getElementsByClassName("frame_content");
 	    for(var i=0; i<frameContent.length; i++)
 	    {            
 		    frameContent[i].style.fontSize = fontSize;
-            frameContent[i].style.top = (parseInt(document.getElementById("header").style.height) * 0.07 * screen.availHeight/parseInt(document.getElementById("logo").style.height)) + "px";
+            frameContent[i].style.marginTop = marginTop;
+            frameContent[i].style.minHeight = "fit-content";
 	    }
     }
 
@@ -210,6 +210,7 @@
         head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)"; 
 
         for (var i = 0; i < 4; i++) {
+            head[i].addEventListener("click", slideChange);
             head[i].Nb = i;
             frame[i].Nb = i;
         }
