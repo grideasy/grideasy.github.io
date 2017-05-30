@@ -18,6 +18,12 @@
             position: absolute;
         }
 
+        span {
+            float:right;
+            margin-right: 1%;
+            font-size: inherit
+        }
+
         .subheader {
             left:10%;
             height:50%;
@@ -45,15 +51,18 @@
 
         .slide {
             width:98%;
-
             border: solid 2px #FFFFFF;
-            
         }
 
         .frame_header {
             margin: 2% 2% 2% 2%;
             font-size: 2.2em; 
+            background-color: #FFFFFF;
             position: inherit; 
+        }
+
+        .info {
+            font-size: 0.65em;
         }
 
         .frame_content {
@@ -91,7 +100,24 @@
         }
 
         #menu {
+            left: 25%;
+            width: 75%;
             top: 50%;
+            visibility: inherit;
+        }
+
+        #logo {
+            left:1%;
+            width:25%;
+            height:100%;
+            visibility: inherit;
+        }
+
+        #details {
+            top: 2%;
+            left: 25%;
+            width: 75%;
+            font-size: 16pt;
             visibility: inherit;
         }
 
@@ -115,6 +141,8 @@
             visibility: inherit;
         }
 
+        
+
     </style>
     <script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
     <script>
@@ -122,6 +150,9 @@
     var head =[];
     var frame = [];
     var slideNb = 0;
+    var header;
+    var frameHeader = [];
+    var frameContent = [];
      
     var slideChange = function() {                           
         if(this.Nb == slideNb) return;
@@ -171,22 +202,23 @@
                 frame[i].style.height = window.innerHeight + "px";
                 frame[i].scrollTop = "0px";
                 frame[i].style.top = (-1 * window.innerHeight) + "px";
+                frameHeader[i].style.visibility = "hidden";
             }
             frame[slideNb].style.top = "0px";
         }
         else { 
             header.style.visibility = "hidden";
-            document.getElementById("logo").style.height = document.getElementById("header").style.height;          
+            document.getElementById("logo").style.height = header.style.height;          
             for (var i = 0; i < 4; i++) {
                 frame[i].style.position = "static";               
-                frame[i].style.height = "auto";               
+                frame[i].style.height = "auto"; 
+                frameHeader[i].style.visibility = "visible";              
             }
             fontSize = "1.6em";
             marginTop = "5%";
         }
-        var frameContent=getElementsByClassName("frame_content");
-	    for(var i=0; i<frameContent.length; i++)
-	    {            
+        
+	    for(var i=0; i<frameContent.length; i++)  {            
             frameContent[i].style.fontSize = fontSize;
             frameContent[i].style.marginTop = marginTop;
             frameContent[i].style.height = "auto";            
@@ -219,8 +251,11 @@
             frame[i].Nb = i;
         }
 
-        var header = document.getElementById("header");
+        header = document.getElementById("header");
         header.style.height = (0.14 * screen.availHeight) + "px";
+
+        frameHeader=getElementsByClassName("frame_header");
+        frameContent=getElementsByClassName("frame_content");
 
         reset();
     
@@ -234,7 +269,7 @@
 </head>
 <body>
     <div id="home_frame" class = "slide">
-        <div class="frame_header">Home</div>
+        <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Home</span> <span class ="info">Address etc</span></div>
         <div class="frame_content"> 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
 
@@ -242,7 +277,7 @@
         </div>
     </div>
     <div id="services_frame" class = "slide">
-        <div class="frame_header">Services</div>
+        <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Services</span> <span class = "info">Address etc</span></div>
         <div class="frame_content"> 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
 
@@ -250,7 +285,7 @@
         </div>
     </div>
     <div id="location_frame" class = "slide">
-        <div class="frame_header">Location</div>
+        <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Location</span> <span class = "info">Address etc</span></div>
         <div class="frame_content"> 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
 
@@ -258,7 +293,7 @@
         </div>
     </div>
     <div id="contact_frame" class = "slide">
-    <div class="frame_header">Contact</div>
+    <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Contact</span> <span class = "info">Address etc</span></div>
         <div class="frame_content"> 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
 
@@ -266,7 +301,8 @@
         </div>
     </div>    
     <div id="header">
-        <div id = "logo" class = "subheader">LOGO</div>
+        <div id = "logo"><img src = "SimondsGarage.jpg" width ="95%"></div>
+        <div id = "details" class = "subheader">Address and Telephone Number etc</div>
         <div id = "menu" class = "subheader">
             <div id = "home" class = "menus">Home</div>
             <div id = "services" class = "menus">Services</div>
