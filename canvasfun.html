@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Babylon.js sample code</title>
+    <!-- Babylon.js -->
+    <script src="BABYLON/babylon.js"></script>
+	
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 25%;
+            height: 25%;
+			position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+if (BABYLON.Engine.isSupported()) {
+    var canvas = document.getElementById("renderCanvas");
+    var engine = new BABYLON.Engine(canvas, true);
+}
+	
+var createScene = function () {
+
+    // This creates a basic Babylon Scene object (non-mesh)
+    var scene = new BABYLON.Scene(engine);
+
+    // This creates and positions a free camera (non-mesh)
+    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+
+    // This targets the camera to scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
+
+    // This attaches the camera to the canvas
+    camera.attachControl(canvas, true);
+
+    // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+    var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+
+    // Default intensity is 1. Let's dim the light a small amount
+    light.intensity = 0.7;
+
+    // Our built-in 'sphere' shape. Params: name, subdivs, size, scene
+    var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
+
+    // Move the sphere upward 1/2 its height
+    sphere.position.y = 1;
+
+    // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
+    var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
+
+    return scene;
+
+};
+var scene = createScene();
+var canvasX = 0;
+var canvasY = 0;
+var angle = 0;
+
+engine.runRenderLoop(function () {
+    scene.render();
+	canvasX += 1;
+	canvasX %= 400;
+	canvasY += 1;
+	canvasY %= 400;
+	angle +=0.01;
+	canvas.style.top = canvasY +"px";
+	canvas.style.left = canvasX+"px";
+	canvas.style.transform = "rotate(" +angle+"rad)";
+	
+});
+
+window.addEventListener("resize", function () {
+    engine.resize();
+});
+
+    </script>
+</body>
+</html>
