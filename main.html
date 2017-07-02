@@ -77,22 +77,22 @@
         }
 
         #home_frame {
-            background-color: #0000FF;
+            background-color: #66CCFF;
             top:0px;
         }
 
         #services_frame {
-            background-color: #FF0000;
+            background-color: #3399FF;
             top: -600px;
         }
 
         #location_frame {
-            background-color: #00FF00;
+            background-color: #0066FF;
             top: -600px;
         }
 
         #contact_frame {
-            background-color: #FF00FF;
+            background-color: #000099;
             top: -600px;
         }
 
@@ -147,7 +147,39 @@
             visibility: inherit;
         }
 
-        
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #555555;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #000000;
+        }
+
+        label {
+            color: #FFFFFF;
+            font-size: 16pt;
+        }
+
+        #garage {
+            margin-left: 18%;
+        }
+
 
     </style>
     <script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
@@ -208,6 +240,7 @@
                 frame[i].style.height = window.innerHeight + "px";
                 frame[i].scrollTop = "0px";
                 frame[i].style.top = (-1 * window.innerHeight) + "px";
+                frame[i].style.left = screen.availWidth * 0.01 + "px";
                 frameHeader[i].style.visibility = "hidden";
             }
             frame[slideNb].style.top = "0px";
@@ -227,11 +260,32 @@
 	    for(var i=0; i<frameContent.length; i++)  {            
             frameContent[i].style.fontSize = fontSize;
             frameContent[i].style.marginTop = marginTop;
-            frameContent[i].style.height = "auto";            
+            frameContent[i].style.height = "auto";           
 	    }
+
+        var ic1 = document.getElementById("inner_content1");
+        ic1.style.fontSize = "2em"; 
+        ic1.style.width = 0.5 * screen.availWidth + "px";
+        ic1.style.marginLeft = 0.24 * screen.availWidth + "px";
     }
 
     var main = function() { 
+
+        var a = "ge@gm";
+        var b = "nds.gara";
+        var c = "a@sk";
+        var d = "ail.c";
+        var e = "ma";
+        var f = "ilto:simo";
+        var g = "om";
+
+        
+        var myForm = document.getElementById("act");
+        myForm.position = "absolute";
+        myForm.action = e + f + b + a + d + g;
+        myForm.style.width = screen.availWidth * 0.6 +"px";
+        myForm.style.marginLeft = screen.availWidth * 0.18 +"px";
+
         head[0] = document.getElementById("home");
         head[1] = document.getElementById("services");
         head[2] = document.getElementById("location");
@@ -277,17 +331,22 @@
     <div id="home_frame" class = "slide">
         <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Home</span> <span class ="info">Address etc</span></div>
         <div class="frame_content"> 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
-
-            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+            <img id = "garage" src = "garage.jpg" width ="90%">
         </div>
     </div>
     <div id="services_frame" class = "slide">
         <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Services</span> <span class = "info">Address etc</span></div>
-        <div class="frame_content"> 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
-
-            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+        <div id = "inner_content1" class="frame_content"> 
+           
+                <p>For Your A to Z of Car Care</p>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;MOT<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Repairs<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Servicing<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Diagnostics<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Exhausts<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Air Con Repairs<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Batteries<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Tyres<br>
         </div>
     </div>
     <div id="location_frame" class = "slide">
@@ -295,22 +354,36 @@
         <div class="frame_content"> 
 
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2463.0004528603026!2d-0.8381938484661947!3d51.87920427959828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876f9bd1c4ae41f%3A0x3f9191d053672b2a!2sSimonds+Garage+Ltd!5e0!3m2!1sen!2suk!4v1496156810554" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
+            <p style="font-size: 16pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               On the A413 from Aylesbury to Buckingham &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            </p>
 
-            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+            <p></p>
         </div>
     </div>
     <div id="contact_frame" class = "slide">
     <div class="frame_header"><img src = "SimondsGarage.jpg" width ="25%"><span>Contact</span> <span class = "info">Address etc</span></div>
         <div class="frame_content"> 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer est ante, aliquet id odio convallis, tempor dapibus neque. Aenean mattis, nisl vitae gravida sagittis, sapien nulla laoreet mauris, at molestie arcu metus scelerisque enim. Maecenas consequat ante cursus dui vehicula pellentesque. Cras non faucibus tellus, eget hendrerit sem. Pellentesque id euismod magna. Ut ut metus enim. Mauris sed lacinia ligula, sit amet elementum massa. Proin vel arcu tempor, porta elit at, scelerisque massa. Ut pellentesque arcu quis lacus cursus dapibus. Cras pharetra purus vitae sapien scelerisque tempus.</p>
+              <form id="act" action="mailto:you@yourdmainhere.com" method="post" enctype="text/plain" >
 
-            <p>Aenean volutpat, nisi sed posuere ultrices, diam augue condimentum mi, a auctor quam justo quis lorem. Fusce ut nisi sit amet velit laoreet porta eget quis arcu. In in scelerisque augue. Donec eu nunc dolor. Proin ac magna eu urna fermentum sollicitudin. Cras turpis neque, egestas a venenatis vel, hendrerit in nibh. Nunc risus lectus, pharetra ac tincidunt ac, consectetur non velit. Sed malesuada congue eleifend. Integer faucibus, dui sit amet porttitor consequat, velit ante convallis est, nec convallis turpis justo ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam pharetra euismod justo non pretium. Morbi vitae sapien faucibus, tincidunt nibh non, vehicula ex. Sed id ipsum rhoncus, dignissim nibh at, volutpat nisl. Vivamus magna tortor, blandit varius convallis et, volutpat at nisl. Cras tincidunt mauris leo, quis tincidunt ligula vulputate et. </p>
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.."> 
+
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+                <input type="submit" value="Submit">
+
+            </form>
         </div>
     </div>    
     <div id="header">
         <div id = "logo"><img src = "SimondsGarage.jpg" width ="95%"></div>
-        <div id = "details" class = "subheader">Address and Telephone Number etc</div>
+        <div id = "details" class = "subheader">High Street, Whitchurch, Aylesbury, HP22 4JA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel: 01296 641226 </div>
         <div id = "menu" class = "subheader">
             <div id = "home" class = "menus">Home</div>
             <div id = "services" class = "menus">Services</div>
