@@ -1,0 +1,166 @@
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #555555;
+}
+
+div {
+   position: absolute;
+}
+
+p {
+    width: 50%;
+    display: block;  
+    margin: auto;
+}
+
+span {
+    float:right;
+    margin-right: 1%;
+    font-size: inherit
+}
+
+.subheader {
+    left:25%;
+    height:50%;
+    width:90%;
+    text-align: left;
+}
+
+.menus {
+    height:80%;
+    width:19%;
+    top:100%;
+    padding:3px;
+    font-size: 1.8em;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #00AAFF;
+    border: solid 2px #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.1);
+    cursor: default;
+}
+
+.menus:hover {
+     border: solid 4px #0000FF;
+}
+
+.slide {
+        width:100%;
+        border: solid 2px #FFFFFF;
+        visibility: hidden;
+    }
+
+.frame_content {
+        margin: 2% 2% 2% 2%;
+        width: 90%;
+    }
+
+.frame_content iframe {
+        width: 80%;
+        display: block;      
+        margin: auto;
+    }
+
+#home_frame {
+        background-color: #66CCFF;
+        top:0px;
+    }
+
+#services_frame {
+        background-color: #3399FF;
+        top: -600px;
+    }
+
+#location_frame {
+        background-color: #0066FF;
+        top: -600px;
+    }
+
+#contact_frame {
+        background-color: #000099;
+        top: -600px;
+    }
+
+#header {
+    position:fixed;
+    width:100%;
+    height:14%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.5);
+    z-index:50;
+}
+
+#logo {
+    left:1%;
+    width:25%;
+    height:100%;
+    visibility: inherit;
+}
+
+#details {
+    top: 2%;
+    width: 75%;
+    font-size: 16pt;
+    visibility: inherit;
+    text-align: left;
+}
+
+#home {
+    left: 0%;
+    visibility: inherit;
+}
+
+#services {
+    left:21%;
+    visibility: inherit;
+    }
+
+#location {
+        left: 42%;
+        visibility: inherit;
+    }
+
+#contact {
+        left: 63%;
+        visibility: inherit;
+    }
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #555555;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #000000;
+}
+
+label {
+    color: #FFFFFF;
+    font-size: 16pt;
+}
+
+#garage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:60%;
+}
+
