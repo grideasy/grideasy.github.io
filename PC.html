@@ -1,0 +1,345 @@
+   <!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Simonds Garage</title>
+	
+    <style>
+        html, body {
+            width: 100%;
+            height: 200%;
+            margin: 0;
+            padding: 0;
+            background-color: #555555;
+        }
+
+        div {
+            position: absolute;
+        }
+
+        span {
+            float:right;
+            margin-right: 1%;
+            font-size: inherit
+        }
+
+        .subheader {
+            left:10%;
+            height:50%;
+            width:90%;
+        }
+
+        .menus {
+            height:80%;
+            width:20%;
+            top:4%;
+            padding:3px;
+            font-size: 1.8em;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #00AAFF;
+            border: solid 2px #FFFFFF;
+            border-radius: 6px;
+            box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.1);
+            cursor: default;
+        }
+
+        .menus:hover {
+           border: solid 4px #0000FF;
+        }
+
+        .slide {
+            width:100%;
+            border: solid 2px #FFFFFF;
+            visibility: hidden;
+        }
+
+        .info {
+            font-size: 0.65em;
+        }
+
+        .frame_content {
+            margin: 2% 2% 2% 2%;
+        }
+
+        .frame_content iframe {
+            width: 50%;
+            display: block;      
+            margin: auto;
+        }
+
+        #home_frame {
+            background-color: #66CCFF;
+            top:0px;
+        }
+
+        #services_frame {
+            background-color: #3399FF;
+            top: -600px;
+        }
+
+        #location_frame {
+            background-color: #0066FF;
+            top: -600px;
+        }
+
+        #contact_frame {
+            background-color: #000099;
+            top: -600px;
+        }
+
+        #header {
+            position:fixed;
+            width:100%;
+            height:14%;
+            background-color: #FFFFFF;
+            box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.5);
+            z-index:50;
+        }
+
+        #menu {
+            left: 25%;
+            width: 75%;
+            top: 50%;
+            visibility: inherit;
+        }
+
+        #logo {
+            left:1%;
+            width:25%;
+            height:100%;
+            visibility: inherit;
+        }
+
+        #details {
+            top: 2%;
+            left: 25%;
+            width: 75%;
+            font-size: 16pt;
+            visibility: inherit;
+        }
+
+        #home {
+            left: 4%;
+            visibility: inherit;
+        }
+
+        #services {
+            left:26%;
+            visibility: inherit;
+        }
+
+        #location {
+            left: 48%;
+            visibility: inherit;
+        }
+
+        #contact {
+            left: 70%;
+            visibility: inherit;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #555555;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #000000;
+        }
+
+        label {
+            color: #FFFFFF;
+            font-size: 16pt;
+        }
+
+        #garage {
+            margin-left: 18%;
+        }
+
+
+    </style>
+    <script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
+    <script>
+    // Variables
+    var head =[];
+    var frame = [];
+    var slideNb = 0;
+    var header;
+    var frameHeader = [];
+    var frameContent = [];
+     
+    var slideChange = function() {                           
+        if(this.Nb == slideNb) return;
+        window.scroll(0,0);
+        frame[slideNb].style.zIndex = 10;
+        slideNb = this.Nb;
+        var slide = frame[slideNb] 
+        slide.style.zIndex = 20;
+        head[slideNb].style.backgroundColor = "#0055FF";
+        head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)";    
+
+        var slideUp = function() {
+            for(var i = 0; i < 4; i++) {
+                if (i != slideNb) {
+                    head[i].style.backgroundColor = "#00AAFF";
+                    head[i].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.1)";
+                    frame[i].style.zIndex = 0;
+                    frame[i].scrollTop = "0px";
+                    frame[i].style.top = "-600px";                      
+                }
+            }
+        }
+            
+        var slideDown = function() {              
+            if(parseInt(slide.style.top) < 0) {
+                slide.style.top = (parseInt(slide.style.top) + 12) + "px";
+                setTimeout(slideDown, 1);
+            }
+            else {
+                slide.style.top = "0px";
+                slideUp();
+            }
+        }
+
+        slideDown();
+    }
+
+    var reset = function() { 
+        document.body.innerHTML = "";
+        
+        // script importation
+        if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
+        var url = "PC.html";
+        var s = document.createElement("script");
+s.src = url;
+document.head.appendChild(s);
+
+        if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
+            header.style.visibility = "visible";
+            frame[0] = document.getElementById("home_frame");
+            document.getElementById("home_frame").visibility = "visible";
+            document.getElementById("mobile_home_frame").visibility = "hidden";
+            window.scroll(0,0);
+            document.getElementById("logo").style.height = (0.5 * parseInt(header.style.height)) + "px";
+            fontSize = "1em";
+            marginTop = (0.17 * screen.availHeight) + "px";
+            for (var i = 0; i <frame.length; i++) {
+                frame[i].style.position = "absolute";
+                frame[i].style.height = window.innerHeight + "px";
+                frame[i].scrollTop = "0px";
+                frame[i].style.top = (-1 * window.innerHeight) + "px";
+                //frame[i].style.left = screen.availWidth * 0.01 + "px";
+            }
+            frame[slideNb].style.top = "0px";
+        }
+        else { 
+            header.style.visibility = "hidden";
+            frame[0] = document.getElementById("mobile_home_frame");
+            document.getElementById("home_frame").visibility = "hidden";
+            document.getElementById("mobile_home_frame").visibility = "visible";
+            document.getElementById("logo").style.height = header.style.height;          
+            for (var i = 0; i < 4; i++) {
+                frame[i].style.position = "static";               
+                frame[i].style.height = "auto";            
+            }
+            fontSize = "1.6em";
+            marginTop = "5%";
+        }
+        
+	    for(var i=0; i<frameContent.length; i++)  {            
+            frameContent[i].style.fontSize = fontSize;
+            frameContent[i].style.marginTop = marginTop;
+            frameContent[i].style.height = "auto";           
+	    }
+
+        var ic1 = document.getElementById("inner_content1");
+        ic1.style.fontSize = "2em"; 
+        ic1.style.width = 0.5 * screen.availWidth + "px";
+        ic1.style.marginLeft = 0.24 * screen.availWidth + "px";
+    }
+
+    var main = function() { 
+
+        var a = "ge@gm";
+        var b = "nds.gara";
+        var c = "a@sk";
+        var d = "ail.c";
+        var e = "ma";
+        var f = "ilto:simo";
+        var g = "om";
+
+        
+        var myForm = document.getElementById("act");
+        myForm.position = "absolute";
+        myForm.action = e + f + b + a + d + g;
+        myForm.style.width = screen.availWidth * 0.6 +"px";
+        myForm.style.marginLeft = screen.availWidth * 0.18 +"px";
+
+        head[0] = document.getElementById("home");
+        head[1] = document.getElementById("services");
+        head[2] = document.getElementById("location");
+        head[3] = document.getElementById("contact"); 
+
+        if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
+            frame[0] = document.getElementById("home_frame");
+        }
+        else {
+            frame[0] = document.getElementById("mobile_home_frame");
+        }
+        frame[1] = document.getElementById("services_frame");
+        frame[2] = document.getElementById("location_frame");
+        frame[3] = document.getElementById("contact_frame");
+        
+
+        frame[0].style.top = "0px";
+        frame[1].style.top = "-600px";
+        frame[2].style.top = "-600px";
+        frame[3].style.top = "-600px";
+        
+        head[slideNb].style.backgroundColor = "#0055FF";
+        head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)"; 
+
+        for (var i = 0; i < 4; i++) {
+            head[i].addEventListener("click", slideChange);
+            head[i].Nb = i;
+            frame[i].Nb = i;
+            frame[i].style.visibility = "visible";
+        }
+
+        header = document.getElementById("header");
+        header.style.height = (0.14 * screen.availHeight) + "0px";
+
+        frameHeader=getElementsByClassName("frame_header");
+        frameContent=getElementsByClassName("frame_content");
+
+        reset();
+    
+    }
+
+    window.onload = main;
+    window.onorientationchange = reset;
+    window.onresize = reset;
+
+    </script>
+</head>
+<body>
+ 
+</body>
+</html>

@@ -14,9 +14,6 @@
             background-color: #555555;
         }
 
-        div {
-            position: absolute;
-        }
 
         span {
             float:right;
@@ -24,35 +21,16 @@
             font-size: inherit
         }
 
-        .subheader {
-            left:10%;
-            height:50%;
-            width:90%;
-        }
-
-        .menus {
-            height:80%;
-            width:20%;
-            top:4%;
-            padding:3px;
-            font-size: 1.8em;
-            text-align: center;
-            vertical-align: middle;
-            background-color: #00AAFF;
-            border: solid 2px #FFFFFF;
-            border-radius: 6px;
-            box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.1);
-            cursor: default;
-        }
-
-        .menus:hover {
-           border: solid 4px #0000FF;
+        p {
+            width: 50%;
+            display: block;      
+            margin: auto;                            
         }
 
         .slide {
             width:100%;
             border: solid 2px #FFFFFF;
-            visibility: hidden;
+            font-size: 2.2em;
         }
 
         .info {
@@ -71,41 +49,30 @@
 
         #home_frame {
             background-color: #66CCFF;
-            top:0px;
         }
 
         #services_frame {
             background-color: #3399FF;
-            top: -600px;
         }
 
         #location_frame {
             background-color: #0066FF;
-            top: -600px;
         }
 
         #contact_frame {
             background-color: #000099;
-            top: -600px;
         }
 
         #header {
-            position:fixed;
             width:100%;
-            height:14%;
+            height:110px;
             background-color: #FFFFFF;
             box-shadow: 0px 12px 6px 2px rgba(0, 0, 0, 0.5);
             z-index:50;
         }
 
-        #menu {
-            left: 25%;
-            width: 75%;
-            top: 50%;
-            visibility: inherit;
-        }
-
         #logo {
+            position: absolute;
             left:1%;
             width:25%;
             height:100%;
@@ -113,6 +80,7 @@
         }
 
         #details {
+            position:absolute;
             top: 2%;
             left: 25%;
             width: 75%;
@@ -170,201 +138,44 @@
         }
 
         #garage {
-            margin-left: 18%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
 
     </style>
-    <script type="text/javascript" src="scripts/getElementsByClassName-1.0.1.js" ></script>
-    <script>
-    // Variables
-    var head =[];
-    var frame = [];
-    var slideNb = 0;
-    var header;
-    var frameHeader = [];
-    var frameContent = [];
-     
-    var slideChange = function() {                           
-        if(this.Nb == slideNb) return;
-        window.scroll(0,0);
-        frame[slideNb].style.zIndex = 10;
-        slideNb = this.Nb;
-        var slide = frame[slideNb] 
-        slide.style.zIndex = 20;
-        head[slideNb].style.backgroundColor = "#0055FF";
-        head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)";    
 
-        var slideUp = function() {
-            for(var i = 0; i < 4; i++) {
-                if (i != slideNb) {
-                    head[i].style.backgroundColor = "#00AAFF";
-                    head[i].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.1)";
-                    frame[i].style.zIndex = 0;
-                    frame[i].scrollTop = "0px";
-                    frame[i].style.top = "-600px";                      
-                }
-            }
-        }
-            
-        var slideDown = function() {              
-            if(parseInt(slide.style.top) < 0) {
-                slide.style.top = (parseInt(slide.style.top) + 12) + "px";
-                setTimeout(slideDown, 1);
-            }
-            else {
-                slide.style.top = "0px";
-                slideUp();
-            }
-        }
-
-        slideDown();
-    }
-
-    var reset = function() {       
-        if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
-            header.style.visibility = "visible";
-            frame[0] = document.getElementById("home_frame");
-            document.getElementById("home_frame").visibility = "visible";
-            document.getElementById("mobile_home_frame").visibility = "hidden";
-            window.scroll(0,0);
-            document.getElementById("logo").style.height = (0.5 * parseInt(header.style.height)) + "px";
-            fontSize = "1em";
-            marginTop = (0.17 * screen.availHeight) + "px";
-            for (var i = 0; i <frame.length; i++) {
-                frame[i].style.position = "absolute";
-                frame[i].style.height = window.innerHeight + "px";
-                frame[i].scrollTop = "0px";
-                frame[i].style.top = (-1 * window.innerHeight) + "px";
-                //frame[i].style.left = screen.availWidth * 0.01 + "px";
-            }
-            frame[slideNb].style.top = "0px";
-        }
-        else { 
-            header.style.visibility = "hidden";
-            frame[0] = document.getElementById("mobile_home_frame");
-            document.getElementById("home_frame").visibility = "hidden";
-            document.getElementById("mobile_home_frame").visibility = "visible";
-            document.getElementById("logo").style.height = header.style.height;          
-            for (var i = 0; i < 4; i++) {
-                frame[i].style.position = "static";               
-                frame[i].style.height = "auto";            
-            }
-            fontSize = "1.6em";
-            marginTop = "5%";
-        }
-        
-	    for(var i=0; i<frameContent.length; i++)  {            
-            frameContent[i].style.fontSize = fontSize;
-            frameContent[i].style.marginTop = marginTop;
-            frameContent[i].style.height = "auto";           
-	    }
-
-        var ic1 = document.getElementById("inner_content1");
-        ic1.style.fontSize = "2em"; 
-        ic1.style.width = 0.5 * screen.availWidth + "px";
-        ic1.style.marginLeft = 0.24 * screen.availWidth + "px";
-    }
-
-    var main = function() { 
-
-        var a = "ge@gm";
-        var b = "nds.gara";
-        var c = "a@sk";
-        var d = "ail.c";
-        var e = "ma";
-        var f = "ilto:simo";
-        var g = "om";
-
-        
-        var myForm = document.getElementById("act");
-        myForm.position = "absolute";
-        myForm.action = e + f + b + a + d + g;
-        myForm.style.width = screen.availWidth * 0.6 +"px";
-        myForm.style.marginLeft = screen.availWidth * 0.18 +"px";
-
-        head[0] = document.getElementById("home");
-        head[1] = document.getElementById("services");
-        head[2] = document.getElementById("location");
-        head[3] = document.getElementById("contact"); 
-
-        if(screen.availWidth > screen.availHeight && window.innerWidth > 750) {
-            frame[0] = document.getElementById("home_frame");
-        }
-        else {
-            frame[0] = document.getElementById("mobile_home_frame");
-        }
-        frame[1] = document.getElementById("services_frame");
-        frame[2] = document.getElementById("location_frame");
-        frame[3] = document.getElementById("contact_frame");
-        
-
-        frame[0].style.top = "0px";
-        frame[1].style.top = "-600px";
-        frame[2].style.top = "-600px";
-        frame[3].style.top = "-600px";
-        
-        head[slideNb].style.backgroundColor = "#0055FF";
-        head[slideNb].style.boxShadow = "0px 12px 6px 2px rgba(0, 0, 0, 0.5)"; 
-
-        for (var i = 0; i < 4; i++) {
-            head[i].addEventListener("click", slideChange);
-            head[i].Nb = i;
-            frame[i].Nb = i;
-            frame[i].style.visibility = "visible";
-        }
-
-        header = document.getElementById("header");
-        header.style.height = (0.14 * screen.availHeight) + "0px";
-
-        frameHeader=getElementsByClassName("frame_header");
-        frameContent=getElementsByClassName("frame_content");
-
-        reset();
-    
-    }
-
-    window.onload = main;
-    window.onorientationchange = reset;
-    window.onresize = reset;
-
-    </script>
 </head>
-<body>
-    <div id="mobile_home_frame" class = "slide">
-        <div class="frame_content"> 
-            <img id = "garage" src = "SimondsGarage.jpg" width ="90%">
-            <p><span class ="info">High Street, Whitchurch, Aylesbury, HP22</p>
-            <p>Tel: 01296 641226</span></p>
-        </div>
-    </div>        
+<body>  
+    <div id="header">
+        <div id = "logo"><img src = "SimondsGarage.jpg" width ="95%"></div>
+        <div id = "details" class = "subheader">High Street, Whitchurch, Aylesbury, HP22 4JA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel: 01296 641226 </div>
+    </div>     
     <div id="home_frame" class = "slide">
         <div class="frame_content"> 
-            <img id = "garage" src = "garage.jpg" width ="90%">
+            <img id ="garage" src = "garage.jpg" width ="90%">
         </div>
     </div>
     <div id="services_frame" class = "slide">
         <div id = "inner_content1" class="frame_content"> 
            
                 <p>For Your A to Z of Car Care</p>
-                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;MOT<br>
+                <p>&nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;MOT<br>
                 &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Repairs<br>
                 &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Servicing<br>
                 &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Diagnostics<br>
                 &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Exhausts<br>
                 &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Air Con Repairs<br>
                 &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Batteries<br>
-                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Tyres<br>
+                &nbsp;&nbsp;&#x27A2;&nbsp;&nbsp;Tyres<br></p>
         </div>
     </div>
     <div id="location_frame" class = "slide">
         <div class="frame_content"> 
 
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2463.0004528603026!2d-0.8381938484661947!3d51.87920427959828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876f9bd1c4ae41f%3A0x3f9191d053672b2a!2sSimonds+Garage+Ltd!5e0!3m2!1sen!2suk!4v1496156810554" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            <p style="font-size: 16pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               On the A413 from Aylesbury to Buckingham &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            </p>
+            <p>On the A413 from Aylesbury to Buckingham </p>
 
             <p></p>
         </div>
@@ -387,15 +198,6 @@
             </form>
         </div>
     </div>    
-    <div id="header">
-        <div id = "logo"><img src = "SimondsGarage.jpg" width ="95%"></div>
-        <div id = "details" class = "subheader">High Street, Whitchurch, Aylesbury, HP22 4JA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel: 01296 641226 </div>
-        <div id = "menu" class = "subheader">
-            <div id = "home" class = "menus">Home</div>
-            <div id = "services" class = "menus">Services</div>
-            <div id = "location" class = "menus">Location</div>
-            <div id = "contact" class = "menus">Contact</div>
-        </div>
-    </div>
+    
 </body>
 </html>
