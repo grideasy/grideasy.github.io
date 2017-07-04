@@ -6,7 +6,7 @@ html, body {
 }
 
 p {
-    width: 50%;
+    width: 90%;
     display: block;  
     margin: auto;
     }
@@ -14,7 +14,7 @@ p {
 .slide {
         width:100%;
         border: solid 2px #FFFFFF;
-        font-size: 1.8em;
+        font-size: 1.2em;
     }
 
 .frame_content {
@@ -22,7 +22,7 @@ p {
     }
 
 .frame_content iframe {
-        width: 50%;
+        width: 80%;
         display: block;      
         margin: auto;
     }
@@ -61,6 +61,12 @@ p {
         width:100%;
         text-align: center;
     }
+
+#inner_content1 {
+    width:80%;
+    margin-left: auto;
+    margin-right:auto;
+}    
 
 
 input[type=text], select, textarea {

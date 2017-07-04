@@ -50,6 +50,7 @@ span {
 .slide {
         width:100%;
         border: solid 2px #FFFFFF;
+        font-size: 2em;
         visibility: hidden;
     }
 
