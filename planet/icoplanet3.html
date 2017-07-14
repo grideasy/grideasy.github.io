@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Babylon.js sample code</title>
+    <!-- Babylon.js -->
+    <script src="babylonico.max.js"></script>
+	<script src="furshader.js"></script>
+	
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+if (BABYLON.Engine.isSupported()) {
+    var canvas = document.getElementById("renderCanvas");
+    var engine = new BABYLON.Engine(canvas, true);
+
+function showNormals(mesh, size, color, sc) {
+    var normals = mesh.getVerticesData(BABYLON.VertexBuffer.NormalKind);
+    var positions = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
+    color = color || BABYLON.Color3.White();
+    sc = sc || scene;
+    size = size || 1;
+
+    var lines = [];
+    for (var i = 0; i < normals.length; i += 3) {
+        var v1 = BABYLON.Vector3.FromArray(positions, i);
+        var v2 = v1.add(BABYLON.Vector3.FromArray(normals, i).scaleInPlace(size));
+        lines.push([v1.add(mesh.position), v2.add(mesh.position)]);
+    }
+    var normalLines = BABYLON.MeshBuilder.CreateLineSystem("normalLines", {lines: lines}, sc);
+    normalLines.color = color;
+    return normalLines;
+}
+
+var createScene = function() {
+  var scene = new BABYLON.Scene(engine);
+
+  // camera
+  var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, Math.PI / 3, 25, new BABYLON.Vector3(0, 0, 4.5), scene);
+    camera.attachControl(canvas, true);
+
+	var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(10, 10, 0), scene);
+
+		var icosphere = BABYLON.MeshBuilder.CreateIcoSphere("ico", {radius: 5, subdivisions: 32, flat: false}, scene);
+		
+		//showNormals(icosphere, .4, new BABYLON.Color3(0, 1, 0), scene);
+		
+		var furMaterial = new BABYLON.FurMaterial("furT", scene);
+		furMaterial.highLevelFur = false;
+		furMaterial.furLength = 5; // Represents the maximum length of the fur, which is then adjusted randomly. Default value is 1.
+		//furMaterial.furAngle = Math.PI/6; // Represents the angle the fur lies on the mesh from 0 to Math.PI/2. The default angle of 0 gives fur sticking straight up and PI/2 lies along the mesh.
+		furMaterial.furColor = new BABYLON.Color3(0.5, 0.5, 0.5); 
+		furMaterial.heightTexture = new BABYLON.Texture("http://2.bp.blogspot.com/-sTvFL0vGFXE/VncKTkHuR7I/AAAAAAAAD1A/vDokBOMvxqk/s1600/Fuller-ico-uv.jpg", scene);
+		furMaterial.diffuseTexture = new BABYLON.Texture("http://2.bp.blogspot.com/-sTvFL0vGFXE/VncKTkHuR7I/AAAAAAAAD1A/vDokBOMvxqk/s1600/Fuller-ico-uv.jpg", scene);
+		
+		icosphere.material = furMaterial;
+		
+						 
+    return scene;
+
+}
+
+
+var scene = createScene();
+
+engine.runRenderLoop(function () {
+  scene.render();
+
+});
+
+window.addEventListener("resize", function () {
+    engine.resize();
+});
+        }
+    </script>
+</body>
+</html>
