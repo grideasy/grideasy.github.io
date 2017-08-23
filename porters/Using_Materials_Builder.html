@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item active" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>porters</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Using the Materials Builder (for developers)</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#opening-the-materials-builder">Opening the Materials Builder</a></li>
+<li><a href="#adding-a-new-material">Adding a new material</a></li>
+<li><a href="#using-the-materials-builder">Using the Materials Builder</a></li>
+<li><a href="#the-configuration">The configuration</a></li>
+<li><a href="#the-vertex-shader">The vertex shader</a></li>
+<li><a href="#the-pixel-shader">The pixel shader</a></li>
+<li><a href="#building-the-material">Building the material</a></li>
+<li><a href="#applying-your-new-material-on-a-mesh">Applying your new material on a mesh</a><ul>
+<li><a href="#known-limitations">Known limitations</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="using-the-materials-builder" class="anchor" href="#using-the-materials-builder"></a>Using the Materials Builder</h1><h2><a name="opening-the-materials-builder" class="anchor" href="#opening-the-materials-builder"></a>Opening the Materials Builder</h2><p>As for the Post-Processes Builder, you are able to develop custom materials using a JSON configuration.
+Just select it in the main tool bar.</p>
+<p>Features available:</p>
+<ul>
+<li>Develop GLSL code directly in the Editor (vertex and pixel)</li>
+<li>Manage custom uniforms (float, Vector2, Vector3, Vector4)</li>
+<li>Manage custom samplers (textures)</li>
+</ul>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/OpeningMaterialsBuilder.png" alt="OpeningMaterialsBuilder"></p>
+<h2><a name="adding-a-new-material" class="anchor" href="#adding-a-new-material"></a>Adding a new material</h2><p>Before opening the Materials Builder, you can add a new material or select an existing one in order to edit it.
+To add a new material, just click &quot;<strong>Add New</strong>: then, a new material with default vertex, pixel and configuration files is created.</p>
+<p>To edit a material, just select one and click the button &quot;<strong>Select</strong>&quot;</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/AddingMaterial.png" alt="AddingMaterial"></p>
+<h2><a name="using-the-materials-builder" class="anchor" href="#using-the-materials-builder"></a>Using the Materials Builder</h2><p>Once opened, you are now able to configure the uniforms &amp; samplers, and edit the vertex &amp; pixel shaders code.</p>
+<p>On the left, you have an edition tool which allows you to configure the material:</p>
+<ul>
+<li>The material&#39;s name</li>
+<li>Build the material</li>
+</ul>
+<p>And the preview scene:</p>
+<ul>
+<li>Enable / disable shadows</li>
+<li>Enable / disable lights (to test if all light types are supported by your shader)</li>
+</ul>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/MaterialsBuilder.png" alt="MaterialsBuilder"></p>
+<h2><a name="the-configuration" class="anchor" href="#the-configuration"></a>The configuration</h2><p>The configuration tab allows you to declare custom uniforms and samplers.
+In the default material all available options, like &quot;<strong>time</strong>&quot;, are used as example (here, time is used by waves function in default vertex shader).</p>
+<p>For samplers, the parameter &quot;<strong>uniformName</strong>&quot; is important: the name is used to declare the texture matrix and texture infos in the vertex shader.</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/Configuration.png" alt="Configuration"></p>
+<h2><a name="the-vertex-shader" class="anchor" href="#the-vertex-shader"></a>The vertex shader</h2><p>The vertex and pixel shaders follow the way to create materials with Babylon.js. A lot of code is already written then you only have to include files (<strong>#include</strong>).
+All default &quot;includes&quot; are already implemented in default material.
+In the default material, a custom waves function is available as an example line 64</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/VertexShader.png" alt="VertexShader"></p>
+<p>On line 26, the uniforms related to the sampler named &quot;<strong>myTexture</strong>&quot; (in samplers configuration) are available as example.
+The uniforms &quot;<strong>myTextureMatrix</strong>&quot; and &quot;<strong>vMyTextureInfos</strong>&quot; are sent automatically by the engine following the name you set in configuration: here &quot;<strong>myTexture</strong>&quot;.</p>
+<p>Free to you to use it in your vertex shader :)</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/VertexShaderTexture.png" alt="VertexShaderTexture"></p>
+<h2><a name="the-pixel-shader" class="anchor" href="#the-pixel-shader"></a>The pixel shader</h2><p>As for vertex shader, the uniforms &quot;<strong>vMyTextureInfos</strong>&quot; and &quot;<strong>myTextureSampler</strong>&quot; are set automatically by the engine.
+Free to you to use it in the pixel shader</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/PixelShader.png" alt="PixelShader"></p>
+<h2><a name="building-the-material" class="anchor" href="#building-the-material"></a>Building the material</h2><p>In order to preview the material in the preview scene, just click the button &quot;<strong>Build Material</strong>&quot; in the edition tool (on the left).
+Then, the material is applied on the mesh you specified in the edition tool (default &quot;<strong>Box</strong>&quot;).</p>
+<p>Once built, new fields are created in edition tool:</p>
+<ul>
+<li>Uniforms</li>
+<li>Samplers</li>
+</ul>
+<p>These fields are used to realtime customize your material in order to get your configuration perfect.</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/MaterialApplied.png" alt="MaterialApplied"></p>
+<h2><a name="applying-your-new-material-on-a-mesh" class="anchor" href="#applying-your-new-material-on-a-mesh"></a>Applying your new material on a mesh</h2><p>Once built, you can apply your material in the main scene of your project. Then, apply the material on one/multiple meshes.
+Just click &quot;<strong>Apply on scene</strong>&quot;.</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/ApplyOnScene.png" alt="ApplyOnScene"></p>
+<p>Then, select a mesh in your scene and set the material you created :)</p>
+<p><img src="/img/extensions/Editor/MaterialsBuilder/ApplyOnMesh.png" alt="ApplyOnMesh"></p>
+<h1><a name="known-limitations" class="anchor" href="#known-limitations"></a>Known limitations</h1><ul>
+<li>Once the material is built, only 2D textures preview are supported in &quot;<strong>Samplers</strong>&quot; menu, in edition tool</li>
+</ul>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

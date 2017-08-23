@@ -1,0 +1,119 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>WebGL2</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#shaders">Shaders</a></li>
+<li><a href="#supported-features">Supported features</a></li>
+<li><a href="#multisample-render-targets">Multisample render targets</a></li>
+<li><a href="#vertex-array-objects">Vertex array objects</a></li>
+<li><a href="#uniform-buffer-objets">Uniform buffer objets</a></li>
+<li><a href="#multiple-render-target">Multiple Render Target</a></li>
+</ul>
+</div></div><div id="staticContent"><h2><a name="introduction" class="anchor" href="#introduction"></a>Introduction</h2><p>Starting with v3.0, Babylon.js supports rendering using WebGL1 and WebGL2 contexts. 
+The support is transparent for developers. By default the engine tries to get a WebGL2 context. If none is available then a WebGL1 one is retrieved.</p>
+<p>You can test which version of WebGL is enabled with: <code>engine.webGLVersion</code> property.</p>
+<h2><a name="shaders" class="anchor" href="#shaders"></a>Shaders</h2><p>When WebGL2 is enabled, the shaders are automatically converted to GLSL v3.0. Babylon.js will then automatically take advantage of extended instruction/uniform counts.</p>
+<p>If you are using custom shaders, the best idea would be to provide GLSL v2.0 shaders. This way your code will work on both contexts.
+You can obviously provide only v3.0 shaders but in this case your code will only work when WebGL2 is enabled.</p>
+<h2><a name="supported-features" class="anchor" href="#supported-features"></a>Supported features</h2><p>You can find here the list of supported features and the backward compatibility options (when available)</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>WebGL1 compatibility</th>
+<th>Demo</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Depth Frag</td>
+<td>Used to compute logarithmic depth buffer</td>
+<td>Yes through an <a href="https://www.khronos.org/registry/webgl/extensions/EXT_frag_depth/">extension</a></td>
+<td><a href="https://www.babylonjs-playground.com/#1180R5#15">PG</a> - <i class="fa fa-eye" onclick="createIframe('1180R5#15', this)"></i><br/><div class="iframeContainer"></div><br/></td>
+<td><a href="http://doc.babylonjs.com/tutorials/using_logarithmic_depth_buffer">Documentation</a></td>
+</tr>
+<tr>
+<td>Multisample render targets</td>
+<td>Rendertarget textures can be multisampled to get antialiasing effect</td>
+<td>No. Has no effect on WebGL1 context</td>
+<td><a href="https://www.babylonjs-playground.com/#12MKMN">PG</a> - <i class="fa fa-eye" onclick="createIframe('12MKMN', this)"></i><br/><div class="iframeContainer"></div><br/></td>
+<td><a href="http://doc.babylonjs.com/overviews/webgl2#multisample-render-targets">See below</a></td>
+</tr>
+<tr>
+<td>Standard derivatives</td>
+<td>Standard derivatites are used in Babylon.js to help compute realtime bump</td>
+<td>Yes through an <a href="https://www.khronos.org/registry/webgl/extensions/OES_standard_derivatives">extension</a></td>
+<td><a href="http://www.babylonjs.com/Demos/Bump/">Demo</a></td>
+<td><a href="http://doc.babylonjs.com/tutorials/advanced_texturing">Documentation</a></td>
+</tr>
+<tr>
+<td>Texture LOD</td>
+<td>Used by PRBMaterial to simulate microsurface</td>
+<td>Yes through an <a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_shader_texture_lod.txt">extension</a></td>
+<td><a href="http://www.babylonjs.com/Demos/HDRMap/">Demo</a></td>
+<td><a href="http://doc.babylonjs.com/overviews/physically_based_rendering">Documentation</a></td>
+</tr>
+<tr>
+<td>Vertex array objects (VAO)</td>
+<td>A Vertex Array Object (or VAO) is an object that describes how the vertex attributes are stored in a Vertex Buffer Object (or VBO)</td>
+<td>Yes through an <a href="https://www.khronos.org/registry/webgl/extensions/OES_vertex_array_object/">extension</a></td>
+<td>N/A. Every rendering is done with VAO by default</td>
+<td><a href="http://doc.babylonjs.com/overviews/webgl2#vertex-array-objects">See below</a></td>
+</tr>
+<tr>
+<td>Uniform buffer objects (UBO)</td>
+<td>An uniform buffer object (or UBO) let you specify a group of uniforms from a buffer</td>
+<td>No. Uniforms are handled independently on WebGL1 context</td>
+<td>N/A. Materials supporting UBO automatically uses them</td>
+<td><a href="http://doc.babylonjs.com/overviews/webgl2#uniform-buffer-objects">See below</a></td>
+</tr>
+<tr>
+<td>Multiple Render Target (MRT)</td>
+<td>Several Render Targets can be rendered in the same draw call.</td>
+<td>Yes through an <a href="https://www.khronos.org/registry/webgl/extensions/WEBGL_draw_buffers">extension</a></td>
+<td><a href="https://www.babylonjs-playground.com/#NZ6P07">Demo</a> - <i class="fa fa-eye" onclick="createIframe('NZ6P07', this)"></i><br/><div class="iframeContainer"></div><br/></td>
+<td><a href="http://doc.babylonjs.com/overviews/webgl2#multiple-render-target">See below</a></td>
+</tr>
+</tbody>
+</table>
+<h2><a name="multisample-render-targets" class="anchor" href="#multisample-render-targets"></a>Multisample render targets</h2><p>By default render targets (like mirrors for instance) are created without support for multisampling. To turn it on, just define a value for <code>renderTarget.samples</code> &gt; 1.
+On WebGL1 context, this will do nothing. On WebGL2 context, this will enable multisampling (more samples imply better antialiasing but a slower rendering).</p>
+<p>Here is an example of a mirror (512x512) with and without multisampling:</p>
+<table>
+<thead>
+<tr>
+<th>No MSAA (1 sample)</th>
+<th>MSAA (8 samples)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/img/overviews/nomsaa.jpg" alt="Title"></td>
+<td><img src="/img/overviews/msaa.jpg" alt="Title"></td>
+</tr>
+</tbody>
+</table>
+<h2><a name="vertex-array-objects" class="anchor" href="#vertex-array-objects"></a>Vertex array objects</h2><p>When possible (either on WebGL2 context or when extension is available on WebGL1 context), Babylon.js will use VAO to control rendering. VAO are a kind of geometry objects. Instead of sending all attributes and buffers used by a mesh (one for position, one for normal, one for indices, one for texture coordinates, etc..), you can build a VAO which will keep track of all attributes / buffers used. </p>
+<p>At rendering time, you just have to define one VAO instead of multiple VBO (vertex buffer object).</p>
+<p>You can find more details on <a href="http://blog.tojicode.com/2012/10/oesvertexarrayobject-extension.html">Tojicode&#39;s blog</a>.</p>
+<h2><a name="uniform-buffer-objets" class="anchor" href="#uniform-buffer-objets"></a>Uniform buffer objets</h2><p>On WebGL1 context all uniforms are sent to GPU independently. This means that if your shader uses 16 matrices, you will call WebGL API 16 times to update all matrices before using your shader.</p>
+<p>On WebGL2 context, you can use a UBO to set the values in a typed array all inside JavaScript. This means that it&#39;s much faster. When all the values are set you can then send them to the GPU with only one call.</p>
+<p>You can find more details on <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#3.7.16">WebGL 2 specification</a></p>
+<h2><a name="multiple-render-target" class="anchor" href="#multiple-render-target"></a>Multiple Render Target</h2><p>On former WebGL1, one draw call meant 1 target texture. Now you can bind several target textures to a shader and specify inside the fragment shader the colors you want to put on each texture. Essentially it saves you a lot of CPU time and you can achieve advanced effects like <a href="https://fr.wikipedia.org/wiki/Deferred_Shading">Deferred Shading</a>.</p>
+<p>In Babylon.js, our first use of this technique is to render a geometry buffer of the scene.</p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

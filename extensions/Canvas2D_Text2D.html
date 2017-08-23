@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item active" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>extensions</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Text2D Primitive overview</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#different-text-rendering-modes">Different Text Rendering modes</a><ul>
+<li><a href="#using-fontname-css-style">Using fontName, CSS Style</a><ul>
+<li><a href="#which-mode-to-use">Which mode to use?</a></li>
+</ul>
+</li>
+<li><a href="#using-a-bitmapfonttexture">Using a BitmapFontTexture</a></li>
+</ul>
+</li>
+<li><a href="#features">Features</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<li><a href="#example">Example</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="text2d-primitive-overview" class="anchor" href="#text2d-primitive-overview"></a>Text2D Primitive overview</h1><p>As its name would suggest, this primitive is used to render text in the Canvas2D (little fact, the Canvas2D feature was born because this requirement and the ambition to extend it to many more things).</p>
+<p>Text2D rendering is <strong>efficient</strong>/<strong>fast</strong>, it&#39;s not based on a render to texture approach (well, a little bit, but not as one would expect). It was designed to be flexible and fast to render. Each letter is rendered using two triangles mapping a FontTexture that contains the font&#39;s characters with the coordinates of the character to display.</p>
+<h2><a name="different-text-rendering-modes" class="anchor" href="#different-text-rendering-modes"></a>Different Text Rendering modes</h2><h3><a name="using-fontname-css-style" class="anchor" href="#using-fontname-css-style"></a>Using fontName, CSS Style</h3><p>During construction of the Text2D object, you will specify the <code>fontName</code> setting, using the CSS convention. This will internally create/use a FontTexture that matches your settings. </p>
+<p>In this mode you have three different rendering qualities</p>
+<p>1) Standard: the FontTexture will be created with a standard resolution
+2) SuperSampled: using the <code>fontSuperSample</code> setting with <code>true</code> at the Text2D construction you will have a FontTexture that will be created using a 2x2 pixels for a regular font pixel. So the texture will take four time the memory space than the standard mode but the rendering quality will be better.
+3) Signed Distance Field: using the <code>fontSignedDistanceField</code> setting with <code>true</code> at the Text2D construction you will have a FontTexture that will be created using the Signed Distance Field (SDF) algorithm. More about this algo <a href="http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf">here</a>. See the <a href="https://www.babylonjs-playground.com/#143CL7#1">Playground</a> - <i class="fa fa-eye" onclick="createIframe('143CL7#1', this)"></i><br/><div class="iframeContainer"></div><br/>.</p>
+<h4><a name="which-mode-to-use" class="anchor" href="#which-mode-to-use"></a>Which mode to use?</h4><p>SDF is the only mode that provides a text quality good whatever the resolution your text is, so if you use WorldSpaceCanvas or Scale, you should consider it. SDF is also the <strong>only</strong> mode where the Text is rendered in Alpha Test mode (more about rendering mode <a href="/overviews/Rendering">here</a>) which is far better in term of performance than the transparency mode used by the two other modes.</p>
+<p>The drawback of SDF is that SDF is not suited for thin/small fonts, it also takes as much memory as the super sample mode. So experiment.</p>
+<p>I would go for SDF any time if possible, only because I avoid Transparency. Now for simple text drawn in a ScreenSpaceCanvas with a scale of 1 the Standard mode may be enough.</p>
+<h3><a name="using-a-bitmapfonttexture" class="anchor" href="#using-a-bitmapfonttexture"></a>Using a BitmapFontTexture</h3><p>You can render text using a BitmapFont Texture along with a BMFont description file.</p>
+<p>BMFont is a software that can be found <a href="http://www.angelcode.com/products/bmfont/">here</a>, this <a href="http://gamedev.stackexchange.com/questions/74010/how-do-you-create-fnt-angelcode-format-files-from-existing-bitmaps">stack exchange post</a> is also interested.</p>
+<p>To use a BitmapFont with Text2D you must before create an instance of the <code>BitmapFontTexture</code>, then passing the texture as a parameter of the <code>bitmapFontTexture</code> setting during the construction of the Text2D.</p>
+<p>See a <a href="https://www.babylonjs-playground.com/#GKBEH">playground here</a> - <i class="fa fa-eye" onclick="createIframe('GKBEH', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="features" class="anchor" href="#features"></a>Features</h2><ul>
+<li>With fontName, text is Unicode based, so any kind of characters can be rendered.</li>
+<li>Support line return, tabulation.</li>
+<li>Text measure.</li>
+</ul>
+<p>Soon to be supported:</p>
+<ul>
+<li>Character based color.</li>
+</ul>
+<h2><a name="properties" class="anchor" href="#properties"></a>Properties</h2><ul>
+<li><code>fontName</code>: A <a href="https://www.w3.org/wiki/CSS/Properties/font">W3C CSS</a> font property used to create the FontTexture used to render the text.</li>
+<li><code>fontSuperSample</code>: to enhance the font quality</li>
+<li><code>fontSignedDistanceField</code>: to use the SDF rendering algorithm</li>
+<li><code>bitmapFontText</code>: to render the text with a BMFont based BitmapFont texture.</li>
+<li><code>text</code>: a string property containing the text to render.</li>
+<li><code>areaSize</code>: a <code>Size</code> optional property that represent the area where the text will be rendered. If null the area is computed based on the text content. Default value is null.</li>
+</ul>
+<h2><a name="remarks" class="anchor" href="#remarks"></a>Remarks</h2><p>Right now the intersection API is very rough, the whole text area is tested and return true if the intersection point is inside.</p>
+<p>The rendering quality of the text depends on the Web Browser implementation, right now FireFox seems to be below the other that could have been tested. We will focus soon on quality of rendering as it&#39;s a very important part of Canvas2D.</p>
+<h2><a name="example" class="anchor" href="#example"></a>Example</h2><p><a href="https://www.babylonjs-playground.com/#1ONKPJ#5">Primitive with Action Manager</a> - <i class="fa fa-eye" onclick="createIframe('1ONKPJ#5', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

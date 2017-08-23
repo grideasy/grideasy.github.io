@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Observables</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#so-how-does-it-works">So how does it works</a><ul>
+<li><a href="#observablet">Observable\<T\></a></li>
+<li><a href="#observert">Observer\<T\></a></li>
+<li><a href="#give-me-an-example">Give me an example!</a></li>
+</ul>
+</li>
+<li><a href="#where-are-they">Where are they?</a></li>
+</ul>
+</div></div><div id="staticContent"><h2><a name="introduction" class="anchor" href="#introduction"></a>Introduction</h2><p>Babylon.js provides a lot of events (like scene.beforeRender) and before v2.4 there were not a unified way to handle them.
+Starting with v2.4, we introduced (without breaking backward compatibility of course) a new pattern: the Obervables.</p>
+<h2><a name="so-how-does-it-works" class="anchor" href="#so-how-does-it-works"></a>So how does it works</h2><p>There&#39;re two parts: the Observable and the Observer. The Observable is a property of an object which represent a given event (like beforeRender for instance). 
+Users that want to have their own piece of code running in response of such event will register an Observer to the adequate Observable. Then it&#39;s the duty of the Observable to execute the Observers, when appropriate.</p>
+<p>So we are here with two classes (In typescript):</p>
+<h3><a name="observablet" class="anchor" href="#observablet"></a>Observable\<T\></h3><p>The implementer uses it to create a property which will trigger all the registered observers.The Generic type T is used to communicate a given data type from the Observable to the Observer.</p>
+<p>You have the following method/properties:</p>
+<ul>
+<li>add(): to add an Observer</li>
+<li>remove(): to remove a previously registered Observer</li>
+<li>removeCallback(): same as above but giving the callback instead of the Observer instance</li>
+<li>notifyObservers(): used to notify all the registered Observers (with a little special feature I&#39;ll detail at the end of this post)</li>
+<li>hasObserver: a property that returns true if at least one Observer is registered</li>
+<li>hasSpecificMask(mask): a function that returns true if at least one Observer is registered with this mask</li>
+<li>clear() to remove all Observers</li>
+<li>clone() to simply clone the object but not the registered Observers.</li>
+</ul>
+<h3><a name="observert" class="anchor" href="#observert"></a>Observer\<T\></h3><p>An instance of this class is created when you call the Observable.add() method to create a new Observer. 
+When you no longer want to be notified, you call Observable.remove() giving the same object and you&#39;re done!</p>
+<h3><a name="give-me-an-example" class="anchor" href="#give-me-an-example"></a>Give me an example!</h3><p>Let&#39;s consider you want to be called on every frame before the scene starts the rendering:</p>
+<pre><code>var alpha = 0;
+scene.onBeforeRenderObservable.add(function () {
+    sphere.scaling.y = Math.cos(alpha);
+
+    alpha += 0.01;
+});
+</code></pre><p>And here is the associated playground:  <a href="https://www.babylonjs-playground.com/#UP2O8#0">https://www.babylonjs-playground.com/#UP2O8#0</a> - <i class="fa fa-eye" onclick="createIframe('UP2O8#0', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>If you want to later remove your observer, you just need to capture it after calling add, then use it with remove:</p>
+<pre><code>var alpha = 0;
+var observer = scene.onBeforeRenderObservable.add(function () {
+    sphere.scaling.y = Math.cos(alpha);
+
+    alpha += 0.01;
+});
+
+scene.onBeforeRenderObservable.remove(observer);
+</code></pre><p>And here is the associated playground:  <a href="https://www.babylonjs-playground.com/#UP2O8#1">https://www.babylonjs-playground.com/#UP2O8#1</a> - <i class="fa fa-eye" onclick="createIframe('UP2O8#1', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="where-are-they" class="anchor" href="#where-are-they"></a>Where are they?</h2><p>Babylon.js uses them a lot! Here is the current list (as of v2.4) of available observables:</p>
+<ul>
+<li>scene.onDisposeObservable</li>
+<li>scene.onBeforeRenderObservable</li>
+<li>scene.onAfterRenderObservable</li>
+<li>scene.onReadyObservable</li>
+<li>scene.onBeforeCameraRenderObservable</li>
+<li>scene.onAfterCameraRenderObservable</li>
+<li>scene.onNewCameraAddedObservable</li>
+<li>scene.onCameraRemovedObservable</li>
+<li>scene.onNewLightAddedObservable</li>
+<li>scene.onLightRemovedObservable</li>
+<li>scene.onNewGeometryAddedObservable</li>
+<li>scene.onGeometryRemovedObservable</li>
+<li>scene.onNewMeshAddedObservable</li>
+<li>scene.onMeshRemovedObservable</li>
+<li>scene.onPrePointerObservable</li>
+<li>scene.onPointerObservable</li>
+<li>layer.onDisposeObservable</li>
+<li>layer.onBeforeRenderObservable</li>
+<li>layer.onAfterRenderObservable</li>
+<li>material.onDisposeObservable</li>
+<li>material.onBindObservable</li>
+<li>baseTexture.onDisposeObservable</li>
+<li>renderTargetTexture.onAfterUnbindObservable</li>
+<li>renderTargetTexture.onBeforeRenderObservable</li>
+<li>renderTargetTexture.onAfterRenderObservable</li>
+<li>renderTargetTexture.onClearObservable</li>
+<li>abstractMesh.onDisposeObservable</li>
+<li>abstractMesh.onCollideObservable</li>
+<li>abstractMesh.onCollisionPositionChangeObservable</li>
+<li>abstractMesh.onAfterWorldMatrixUpdateObservable</li>
+<li>mesh.onBeforeRenderObservable</li>
+<li>mesh.onAfterRenderObservable</li>
+<li>mesh.onBeforeDrawObservable</li>
+<li>particleSystem.onDisposeObservable</li>
+<li>postProcess.onActivateObservable</li>
+<li>postProcess.onSizeChangedObservable</li>
+<li>postProcess.onApplyObservable</li>
+<li>postProcess.onBeforeRenderObservable</li>
+<li>postProcess.onAfterRenderObservable.</li>
+<li>spriteManager.onDisposeObservable</li>
+</ul>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

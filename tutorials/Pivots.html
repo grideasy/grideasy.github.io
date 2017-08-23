@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item active" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>tutorials</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Using a Pivot</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#using-a-pivot">Using a Pivot</a><ul>
+<li><a href="#setting-the-pivot-matrix">Setting the Pivot Matrix.</a><ul>
+<li><a href="#example">Example</a></li>
+</ul>
+</li>
+<li><a href="#aligning-pivoted-meshes">Aligning Pivoted Meshes</a></li>
+<li><a href="#setting-mesh-and-pivot-position-at-the-same-time">Setting Mesh and Pivot Position at the Same Time</a></li>
+<li><a href="#resetting-the-pivot-without-moving-the-mesh">Resetting the Pivot without Moving the Mesh.</a></li>
+<li><a href="#set-and-get-a-pivot-point">Set and Get a Pivot Point</a></li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a><ul>
+<li><a href="#more-advanced-l3">More Advanced - L3</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="using-a-pivot" class="anchor" href="#using-a-pivot"></a>Using a Pivot</h1><p>In all the diagrams the red box gives the local origin, the grey box shows the intial created position of the box to tranform and the green box the transformed box.</p>
+<p>Rotations of a mesh always take place around its local origin. In other words the local origin of the mesh is the pivot of the mesh.</p>
+<p><img src="/img/tutorials/Mesh/pivot0.jpg" alt="Rotation about Local Origin"></p>
+<p>There are times when you would like to rotate a mesh around a different pivot point.</p>
+<p>This is achieved NOT by translating the local origin onto the pivot point BUT by translating the mesh in the opposite direction so that the local origin is not re-positioned within the world axes.</p>
+<h2><a name="setting-the-pivot-matrix" class="anchor" href="#setting-the-pivot-matrix"></a>Setting the Pivot Matrix.</h2><p>A pivot is set using a matrix that when applied to the mesh translates it relative to the local origin. </p>
+<p>The method needed is </p>
+<pre><code class="lang-javascript">mesh.setPivotMatrix(BABYLON.Matrix.Translation(x, y, z));
+</code></pre>
+<h3><a name="example" class="anchor" href="#example"></a>Example</h3><p>Create a box.</p>
+<p><img src="/img/tutorials/Mesh/pivot1.jpg" alt="Initial Creation of The Box">  </p>
+<p>You now want the box to rotate not about the centre but about the front lower right corner, which has coordinates (4, -2, -1).</p>
+<p>To place the pivot point as required a translation of (-4, 2, 1) is needed. This is done using</p>
+<pre><code class="lang-javascript">greenBox.setPivotMatrix(BABYLON.Matrix.Translation(-4, 2, 1));
+</code></pre>
+<p>Giving</p>
+<p><img src="/img/tutorials/Mesh/pivot3.jpg" alt="Setting the Pivot Matrix"></p>
+<p>If you now want the box back in its starting position you will need to place the local origin of the box at (4, -2, -1) to take 
+into account the translation of the box relative to the pivot.</p>
+<p><img src="/img/tutorials/Mesh/pivot2.jpg" alt="original position"></p>
+<p>Now when you apply a rotation it will be about the pivot</p>
+<p><img src="/img/tutorials/Mesh/pivot4.jpg" alt="rotated"></p>
+<p><a href="http://www.babylonjs-playground.com/#AGXDE#1">Playground Example - Pivoted Mesh</a> - <i class="fa fa-eye" onclick="createIframe('AGXDE#1', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="aligning-pivoted-meshes" class="anchor" href="#aligning-pivoted-meshes"></a>Aligning Pivoted Meshes</h2><p>Ordinarily it is easy enough to align the centres of meshes because the position of each of their local origins can be set relative to the world origin.<br>However when a pivot has been applied to the meshes each mesh will already have been translated and their local origins are no longer at their centres.</p>
+<p>If the centre of a pivoted mesh is to be positioned at (xc, yc, zc) and the pivot was positioned using the translation (-xt, -yt, -zt) then the centre of the 
+mesh can be placed using</p>
+<pre><code class="lang-javascript">var centreAt = new BABYLON.Vector3(xc, yc, zc);
+var pivotAt = new BABYLON.Vector3(xt, yt, zt);
+mesh.position = centreAt.add(pivotAt);
+</code></pre>
+<p><a href="http://www.babylonjs-playground.com/#AGXDE#2">Playground Example - Aligned Pivoted Meshes</a> - <i class="fa fa-eye" onclick="createIframe('AGXDE#2', this)"></i><br/><div class="iframeContainer"></div><br/>
+<a href="http://www.babylonjs-playground.com/#AGXDE#3">Playground Example - Aligned Pivoted Meshes Rotated</a> - <i class="fa fa-eye" onclick="createIframe('AGXDE#3', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="setting-mesh-and-pivot-position-at-the-same-time" class="anchor" href="#setting-mesh-and-pivot-position-at-the-same-time"></a>Setting Mesh and Pivot Position at the Same Time</h2><p>When you want to position a mesh with its centre at (xc, yc, zc) and a pivot at (xp, yp, zp) just follow these steps</p>
+<ol>
+<li>Position the mesh at the pivot cordinates;</li>
+<li>Work out the translation that takes the pivot to the meshes centre (xc - xp, yc - yp, zc - zp);</li>
+<li>Set the pivot matrix using this translation</li>
+</ol>
+<p>In Javascript</p>
+<pre><code class="lang-javascript">var centreAt = new BABYLON.Vector3(xc, yc, zc);
+var pivotAt = new BABYLON.Vector3(xp, yp, zp);
+mesh.position = pivotAt;
+var pivotTranslate = centreAt.substract(pivotAt);
+mesh.setPivotMatrix(BABYLON.Matrix.Translation(pivotTranslate.x, pivotTranslate.y, pivotTranslate.z));
+</code></pre>
+<p>The mesh will now be positioned with its centre at (xc, yc, zc) and all rotations and scaling will take place with reference to 
+the pivot at (xp, yp, zp).</p>
+<p><a href="http://www.babylonjs-playground.com/#AGXDE#4">Playground Example - Rotation about a Pivot</a> - <i class="fa fa-eye" onclick="createIframe('AGXDE#4', this)"></i><br/><div class="iframeContainer"></div><br/>
+<a href="http://www.babylonjs-playground.com/#AGXDE#5">Playground Example - Scaling from a Pivot</a> - <i class="fa fa-eye" onclick="createIframe('AGXDE#5', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>In the above playgrounds the sphere(s) allow you to vary the rotation and scaling and check that they do take place with reference to the pivot.</p>
+<h2><a name="resetting-the-pivot-without-moving-the-mesh" class="anchor" href="#resetting-the-pivot-without-moving-the-mesh"></a>Resetting the Pivot without Moving the Mesh.</h2><p>When you want the mesh to stay in the same place but move the pivot to a new position (xp, yp, zp) you need to have stored and kept the current centre of the mesh. 
+Then the steps are as above.</p>
+<p>In Javascript</p>
+<pre><code class="lang-javascript">pivotAt = new BABYLON.Vector3(xp, yp, zp);
+mesh.position = pivotAt;
+pivotTranslate = centreAt.substract(pivotAt);  //centreAt retained from previous pivot setting
+mesh.setPivotMatrix(BABYLON.Matrix.Translation(pivotTranslate.x, pivotTranslate.y, pivotTranslate.z));
+</code></pre>
+<p>The following sequence of playgrounds goes from setting the first pivot position to scaling about the second pivot position</p>
+<p><a href="http://www.babylonjs-playground.com/#1MKHR9#9">Playground Example - Set First Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#9', this)"></i><br/><div class="iframeContainer"></div><br/>
+<a href="http://www.babylonjs-playground.com/#1MKHR9#13">Playground Example - Set Second Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#13', this)"></i><br/><div class="iframeContainer"></div><br/>
+<a href="http://www.babylonjs-playground.com/#1MKHR9#14">Playground Example - Scaling from Second Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#14', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p><strong>NOTE:</strong> Restting the pivot this way resets it relative to the unrotated mesh. That is if the mesh has been rotated before resetting 
+the pivot the actual order remains reset pivot do rotation.</p>
+<p>The following sequence of playgrounds shows setting the first pivot, rotating the pivot then resetting the pivot.</p>
+<p><a href="http://www.babylonjs-playground.com/#1MKHR9#9">Playground Example - Set First Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#9', this)"></i><br/><div class="iframeContainer"></div><br/>
+<a href="http://www.babylonjs-playground.com/#1MKHR9#10">Playground Example - Rotate About First Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#10', this)"></i><br/><div class="iframeContainer"></div><br/>
+<a href="http://www.babylonjs-playground.com/#1MKHR9#11">Playground Example - Set Second Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#11', this)"></i><br/><div class="iframeContainer"></div><br/>  </p>
+<h2><a name="set-and-get-a-pivot-point" class="anchor" href="#set-and-get-a-pivot-point"></a>Set and Get a Pivot Point</h2><p>There are three useful functions to aid setting and getting a pivot point. These are</p>
+<pre><code class="lang-javascript">mesh.setPivotPoint(Vector3);
+mesh.getPivotPoint(); // returns Vector3
+mesh.getAbsolutePivotPoint(); // returns Vector3
+</code></pre>
+<p>The following sequence of playgrounds goes from setting the first pivot point to scaling about the second pivot point</p>
+<p><a href="http://www.babylonjs-playground.com/#1MKHR9#17">Playground Example - Set First Pivot Point</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#17', this)"></i><br/><div class="iframeContainer"></div><br/><br><a href="http://www.babylonjs-playground.com/#1MKHR9#18">Playground Example - Set Second Pivot Point</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#18', this)"></i><br/><div class="iframeContainer"></div><br/><br><a href="http://www.babylonjs-playground.com/#1MKHR9#19">Playground Example - Scaling from Second Pivot Point</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#19', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>It is possible to reset the pivot point and maintain the position and rotation of the mesh.  </p>
+<p>To do this the current rotation of the mesh has to be stored and its rotation set to (0, 0, 0) before the pivot point is reset. The current rotation is then re-applied to the mesh.</p>
+<p>The following sequence of playgrounds shows setting the first pivot point, rotating the pivot then resetting the pivot point and re-applying the rotation.</p>
+<p><a href="http://www.babylonjs-playground.com/#1MKHR9#17">Playground Example - Set First Pivot Point</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#17', this)"></i><br/><div class="iframeContainer"></div><br/><br><a href="http://www.babylonjs-playground.com/#1MKHR9#20">Playground Example - Rotate About First Pivot Point</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#20', this)"></i><br/><div class="iframeContainer"></div><br/><br><a href="http://www.babylonjs-playground.com/#1MKHR9#21">Playground Example - Set Second Pivot Point and Rotate</a> - <i class="fa fa-eye" onclick="createIframe('1MKHR9#21', this)"></i><br/><div class="iframeContainer"></div><br/> </p>
+<h1><a name="further-reading" class="anchor" href="#further-reading"></a>Further Reading</h1><h2><a name="more-advanced-l3" class="anchor" href="#more-advanced-l3"></a>More Advanced - L3</h2><p><a href="/tutorials/Pivot">Rotation Around an Axis Through a Pivot</a></p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item active" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>tutorials</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Raycasts</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#detect-the-first-mesh-touched-by-the-ray">Detect the first mesh touched by the ray</a></li>
+<li><a href="#predicate-function">Predicate function</a></li>
+<li><a href="#multi-pick">Multi pick</a></li>
+<li><a href="#debugging">Debugging</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="raycasts" class="anchor" href="#raycasts"></a>Raycasts</h1><p>The rays are like sunrays.
+It&#39;s used to check collision or interesection in the scene between meshes and thin line.</p>
+<p>In the previous tutorial, we used it to select meshes with the mouse (a ray goes from camera to mouse position in 3D),
+using the function scene.pick(scene.pointerX, scene.pointerY) : 
+<a href="http://doc.babylonjs.com/tutorials/picking_collisions">http://doc.babylonjs.com/tutorials/picking_collisions</a></p>
+<p>But here we will see that we can throw ray from any point and in any direction. 
+For example in a shooting game at 3rd person view : collisions between our bullets and obstacles.</p>
+<p><strong>Documentation of classes :</strong></p>
+<p><a href="http://doc.babylonjs.com/classes/3.0/ray">http://doc.babylonjs.com/classes/3.0/ray</a>
+You have first to create a ray.</p>
+<p><a href="http://doc.babylonjs.com/classes/3.0/scene">http://doc.babylonjs.com/classes/3.0/scene</a>
+The method scene.pickWithRay() throws a ray in your scene to pick a mesh.</p>
+<p><a href="http://doc.babylonjs.com/classes/3.0/pickinginfo">http://doc.babylonjs.com/classes/3.0/pickinginfo</a>
+And get the picking info.</p>
+<hr>
+<h2><a name="detect-the-first-mesh-touched-by-the-ray" class="anchor" href="#detect-the-first-mesh-touched-by-the-ray"></a>Detect the first mesh touched by the ray</h2><p> <a href="https://www.babylonjs-playground.com/#KNE0O#4">https://www.babylonjs-playground.com/#KNE0O#4</a> - <i class="fa fa-eye" onclick="createIframe('KNE0O#4', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p><img src="/img/tutorials/raycast01.jpg" alt="Raycast simple"></p>
+<p>In all our playgrounds, we will imagine that our character is the main box at the center.
+It will shoot laser beams continually forward and detect which enemy (other boxes) is hitten.
+So with the mouse, you don&#39;t need to click but move to turn the box with this trigonometry function mousemovef (l34). 
+A ray requires when its created : an origin, a direction and a length. </p>
+<p>First, we set <em>box.isPickable</em> to false to avoid the ray touching the box from the inside (l16).
+Because we set the starting point (origin) of the ray in the center of the box.</p>
+<p>The most important part is to get the good directional vector (l57) :</p>
+<pre><code>var forward = new BABYLON.Vector3(0,0,1);        
+    forward = vecToLocal(forward, box);
+
+    var direction = forward.subtract(origin);
+    direction = BABYLON.Vector3.Normalize(direction);
+</code></pre><p>We want the forward vector relative to the box space and orientation. 
+Then, to get the direction, we subtract it from the origin, the box position.
+The function vecToLocal is designed to transform a position from a mesh point of view by multiplicating a vector by the mesh matrix.</p>
+<p>Then, we create the ray with all elements given and a length of 100 for example (l65) : 
+<em>var ray = new BABYLON.Ray(origin, direction, length);</em></p>
+<p>Finally, we get the hit point of the ray if it touches a mesh (l68) :
+<em>var hit = scene.pickWithRay(ray);</em></p>
+<p>And if a mesh is hitten, we do what we want with the picking info like getting the mesh name, the position of the point etc...
+Here we change its size because it&#39;s funnier ! </p>
+<hr>
+<p><strong>You&#39;re not forced to set box.isPickable to false</strong>, if you need later to check rays intersection on this box for example. 
+You can set the origin point of the vector in front of the box, the direction a little further and the length that you want (l55) :</p>
+<p> <a href="https://www.babylonjs-playground.com/#KNE0O#17">https://www.babylonjs-playground.com/#KNE0O#17</a> - <i class="fa fa-eye" onclick="createIframe('KNE0O#17', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<hr>
+<h2><a name="predicate-function" class="anchor" href="#predicate-function"></a>Predicate function</h2><p>It is a filter to choose which meshes will be selectable :</p>
+<p> <a href="https://www.babylonjs-playground.com/#KNE0O#18">https://www.babylonjs-playground.com/#KNE0O#18</a> - <i class="fa fa-eye" onclick="createIframe('KNE0O#18', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p><img src="/img/tutorials/raycast02.jpg" alt="Raycast predicate"></p>
+<p>I added a new function predicate (l54) :</p>
+<pre><code>  function predicate(mesh){
+        if (mesh == box2 || mesh == box){
+            return false;
+        }
+        return true;
+    }
+</code></pre><p>and in parameter here :<br><em>scene.pickWithRay(ray, predicate);</em></p>
+<p>The isPickable false argument becomes irrelevant so we have to avoid box.
+We avoid also box2 for testing and allow the rest (box3 and box4 by default).</p>
+<p>And the result is, only box3, the second blue one behind, and box4 will grow.
+So it works fine like if box2 was transparent for the ray !  </p>
+<hr>
+<p>There is one other optional argument to the method pickWithRay.
+It&#39;s the boolean <strong>fastCheck</strong> (false by default).
+True will return the first mesh that intersects with the ray (in the order of the meshes array), and not the closest mesh to the ray&#39;s starting point.</p>
+<hr>
+<h2><a name="multi-pick" class="anchor" href="#multi-pick"></a>Multi pick</h2><p>We can use <em>scene.multiPickWithRay</em> if we don&#39;t want that the ray stops at the first obstacle : </p>
+<p> <a href="https://www.babylonjs-playground.com/#KNE0O#19">https://www.babylonjs-playground.com/#KNE0O#19</a> - <i class="fa fa-eye" onclick="createIframe('KNE0O#19', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p><img src="/img/tutorials/raycast02.jpg" alt="Raycast multipick"></p>
+<p>The picking result will be an array (l68).
+So we do a loop to change all meshes hitten and you can see that the two blue boxes size change. 
+It&#39;s like a strong bullet ! </p>
+<hr>
+<p>An other method is to use directly the <strong>Ray class</strong>.</p>
+<p>To change the ray to a local space :
+<em>Ray.Transform(ray, matrix) → Ray</em></p>
+<p>Checking intersection :
+<em>Ray.intersectsMesh(mesh, fastCheck) → PickingInfo</em></p>
+<hr>
+<h2><a name="debugging" class="anchor" href="#debugging"></a>Debugging</h2><p>It could be tough to understand where a ray starts and is its direction. To help you debug you can then use the RayHelper.</p>
+<p>You can either use a static function to create and show one:</p>
+<pre><code>BABYLON.RayHelper.CreateAndShow(ray, scene, new BABYLON.Color3(1, 1, 0.1));
+</code></pre><p>or you can use a more detailled version:</p>
+<pre><code>var rayHelper = new BABYLON.RayHelper(ray);
+rayHelper.show(scene);
+</code></pre><p>The helper can also be attached to a mesh to track its direction:
+ <a href="https://www.babylonjs-playground.com/#ZHDBJ#37">https://www.babylonjs-playground.com/#ZHDBJ#37</a> - <i class="fa fa-eye" onclick="createIframe('ZHDBJ#37', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<hr>
+<p><strong>Topics related :</strong></p>
+<p><a href="http://www.html5gamedevs.com/topic/26503-scenepickwithray-blues/">http://www.html5gamedevs.com/topic/26503-scenepickwithray-blues/</a></p>
+<p><a href="http://www.html5gamedevs.com/topic/26602-worldlocalray/">http://www.html5gamedevs.com/topic/26602-worldlocalray/</a></p>
+<p><a href="http://www.html5gamedevs.com/topic/7599-convert-global-coordinates-to-local-coordinates/">http://www.html5gamedevs.com/topic/7599-convert-global-coordinates-to-local-coordinates/</a></p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

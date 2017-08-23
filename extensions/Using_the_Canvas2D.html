@@ -1,0 +1,177 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item active" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>extensions</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Using the Canvas2D</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#the-main-types">The main types</a></li>
+<li><a href="#enough-talking-show-me-some-code-and-some-pixels">Enough talking, show me some code and some pixels!</a><ul>
+<li><a href="#hello-world">Hello World!</a></li>
+<li><a href="#lets-spin-it">Let&#39;s spin it!</a></li>
+<li><a href="#world-space-canvas">World Space Canvas</a><ul>
+<li><a href="#accessing-the-3d-scene-node-of-world-space-canvas">Accessing the 3D Scene Node of World Space Canvas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#more-playground">More playground</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="canvas2d-tutorial" class="anchor" href="#canvas2d-tutorial"></a>Canvas2D Tutorial</h1><p>First, for an overview of the overall feature and its architecture you can read <a href="/extensions/Canvas2D_Overview_Architecture">this documentation</a></p>
+<p>The overview <a href="/extensions/Canvas2D_Home">Home Page</a> is also a good place to learn the many different concepts.</p>
+<p>The Canvas2D is the answer to those who need to display 2D content above a 3D Scene (in game UI), which is called a ScreenSpace Canvas or directly inside the Scene as a rectangle containing the Canvas&#39; content, which is called World Space Canvas.</p>
+<p>This is a Small 2D Engine, based on babylon.js core features, giving you the opportunity to finally manage 2D content in your creations.</p>
+<p>This feature was designed to be as fast as possible and yet flexible, future will tell if these target will be met, but so far we are on the right tracks! :)</p>
+<h2><a name="the-main-types" class="anchor" href="#the-main-types"></a>The main types</h2><h6><a name="canvas2d" class="anchor" href="#canvas2d"></a>Canvas2D</h6><p>The main class, is a rectangle that display 2D content. </p>
+<p>A Canvas can be represented in:</p>
+<ul>
+<li>ScreenSpace (above the 3D Scene, coplanar to the screen), then the <code>ScreenSpaceCanvas2D</code> class is used.</li>
+<li>WorldSpace, represented as a Rectangle inside the 3D Scene, the <code>WorldSpaceCanvas2D</code> class is used.</li>
+</ul>
+<p>Both of these classes are simple wrappers to ease the construction time, but all the logic is implemented in the <code>Canvas2D</code> class, so we&#39;ll often refer to this class instead of the two others.</p>
+<h6><a name="group2d" class="anchor" href="#group2d"></a>Group2D</h6><p>Acts as a container, a new frame of reference that contains children primitives. Note that any kind of types involved in the Canvas2D feature can have children, it&#39;s not an exclusive feature of the Group2D.
+In order to optimize performances, the content of a Group2D can be cached into a bitmap to save rendering time as the expense of texture memory holding the content.</p>
+<h6><a name="shape2d-based-types" class="anchor" href="#shape2d-based-types"></a>Shape2D based types</h6><p>A Shape2D is a parametric form which is drawn using brushes, one for the border and another one for the content (also called <em>fill</em>).
+There are three types of Shapes so far: Rectangle2D, Ellipse2D and Lines2D.</p>
+<h6><a name="sprite2d" class="anchor" href="#sprite2d"></a>Sprite2D</h6><p>To display a portion of a texture.</p>
+<h6><a name="text2d" class="anchor" href="#text2d"></a>Text2D</h6><p>To display some text.</p>
+<h2><a name="enough-talking-show-me-some-code-and-some-pixels" class="anchor" href="#enough-talking-show-me-some-code-and-some-pixels"></a>Enough talking, show me some code and some pixels!</h2><h3><a name="hello-world" class="anchor" href="#hello-world"></a>Hello World!</h3><p>The simplest starting point would be created a ScreenSpace Canvas2D with a &quot;Hello World!&quot; text, here we go:</p>
+<pre><code class="lang-javascript">var canvas = new BABYLON.ScreenSpaceCanvas2D(scene, {
+    id: &quot;ScreenCanvas&quot;,
+    size: new BABYLON.Size(300, 100),
+    backgroundFill: &quot;#4040408F&quot;,
+    backgroundRoundRadius: 50,
+    children: [
+        new BABYLON.Text2D(&quot;Hello World!&quot;, {
+            id: &quot;text&quot;,
+            marginAlignment: &quot;h: center, v:center&quot;,
+            fontName: &quot;20pt Arial&quot;,
+        })
+    ]
+});
+</code></pre>
+<p>See it live in this <a href="https://www.babylonjs-playground.com/#2AVSFH#35">playground</a> - <i class="fa fa-eye" onclick="createIframe('2AVSFH#35', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>The code is pretty self explanatory, but let&#39;s run through it:</p>
+<ol>
+<li>First you notice that to create several primitives a simple pattern can be used: <ul>
+<li>you invoke the constructor of the first primitive to create (most likely the Canvas, but can be another type)</li>
+<li>then use the <code>children</code> settings array to create children primitive in a cascading fashion.</li>
+</ul>
+</li>
+<li>We use the <code>ScreenSpaceCanvas2D</code> type and create an instance, the default position of (0,0) will be used, with a width of 300 and a height of 100. The content won&#39;t be cached, hence redraw at every render of the scene as the default caching strategy is <code>CACHESTRATEGY_DONTCACHE</code>.</li>
+<li>Setup the background fill color with a solid brush and alse the round radius with 50.</li>
+<li>Then we create in <code>children</code> array a <code>Text2D</code> primitive which will be centered both horizontally and vertically to its parent (the Canvas), with a font <code>20pt Arial</code>, and the default color (white).</li>
+</ol>
+<h3><a name="let39s-spin-it" class="anchor" href="#lets-spin-it"></a>Let&#39;s spin it!</h3><p>Let&#39;s get something a little bit more complicated:</p>
+<pre><code class="lang-javascript">var canvas = new BABYLON.ScreenSpaceCanvas2D(scene, 
+    { 
+        id: &quot;ScreenCanvas&quot;, size: new BABYLON.Size(500, 500), 
+        backgroundFill: &quot;#C0C0C040&quot;, backgroundRoundRadius: 50 
+    });
+
+var rect = new BABYLON.Rectangle2D({
+    id: &quot;mainRect&quot;, parent: canvas, x: 200, y: 200, width: 100, height: 100, 
+    fill: &quot;#404080FF&quot;, border: &quot;#A040A0D0, #FFFFFFFF&quot;, borderThickness: 10, 
+    roundRadius: 10, 
+    children: 
+    [
+        new BABYLON.Rectangle2D(
+        { 
+            id: &quot;insideRect&quot;, marginAlignment: &quot;v: center, h: center&quot;, 
+            width: 40, height: 40, fill: &quot;#FAFF75FF&quot;, roundRadius: 10 
+        })
+    ]});
+
+var timerId = setInterval(function () {
+    if (rect.isDisposed) {
+        clearInterval(timerId);
+        return;
+    }
+    rect.rotation += 0.003;
+}, 10);
+</code></pre>
+<p>See it live in this <a href="https://www.babylonjs-playground.com/#272WI1#6">playground</a> - <i class="fa fa-eye" onclick="createIframe('272WI1#6', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>Explanations:</p>
+<ol>
+<li>First part is mostly the same as the first example, but with a bigger size for the canvas.</li>
+<li>Then we create a first Rectangle, notice that we use the <code>parent</code> settings to link it to the Canvas itself, it&#39;s called &quot;mainRect&quot; and is centered in the Canvas with the position 200,200 (position is <strong>always</strong> from the bottom/left corner of the primitive relative to the bottom/left corner of its parent). </li>
+<li>The default origin of the Rectangle is 0.5,0.5 which make it at the center of the primitive itself. This will make rotation around the center of the primitive itself.</li>
+<li>Then we have a size of 100,100, a solid brush for fill and a gradient one for border. Finally we change the border thickness and the round radius.</li>
+<li>We create a second rectangle called &quot;insideRect&quot; as a child of &quot;mainRect&quot; using the <code>children</code> array. We use alignment to position it at the center of its parent and with a size of 40,40. We use a solid color brush for the fill content and a custom round radius.</li>
+<li>We create a timer that changes the rotation of &quot;rect&quot; every 10ms.</li>
+</ol>
+<p>You will notice when you run the sample that both rectangles are rotating, which is as expected because &quot;insideRect&quot; is a children of &quot;mainRect&quot;, hence inheriting of the animated transformation.</p>
+<h3><a name="world-space-canvas" class="anchor" href="#world-space-canvas"></a>World Space Canvas</h3><p>Now let&#39;s try the second type of Canvas: the World Space one, as opposed to the Screen Space one, World Space Canvas are part of the 3D Scene, they&#39;re displayed in a rectangle, as a regular scene node.</p>
+<pre><code class="lang-javascript">var canvas = new BABYLON.WorldSpaceCanvas2D(scene, new BABYLON.Size(100, 100), {
+    id: &quot;WorldSpaceCanvas&quot;,
+    worldPosition: new BABYLON.Vector3(0, 0, 0),
+    worldRotation: BABYLON.Quaternion.RotationYawPitchRoll(Math.PI / 4, Math.PI / 4, 0),
+    renderScaleFactor: 8,
+    enableInteraction: true,
+    backgroundFill: &quot;#C0C0C040&quot;,
+    backgroundRoundRadius: 80,
+    children: [
+        new BABYLON.Text2D(&quot;World Space Canvas&quot;, { fontName: &quot;30pt Arial&quot;, marginAlignment: &quot;h: center, v: bottom&quot; })
+    ]
+});
+
+// Create spinning rectangles
+var rect = new BABYLON.Rectangle2D(
+    { parent: canvas, x: 300, y: 300, width: 200, height: 200, fill: null, 
+        border: BABYLON.Canvas2D.GetGradientColorBrush(new BABYLON.Color4(0.9, 0.3, 0.9, 1), new BABYLON.Color4(1.0, 1.0, 1.0, 1)), 
+        borderThickness: 20,
+        children:
+        [
+            new BABYLON.Rectangle2D(
+            { parent: rect, width: 80, height: 80, marginAlignment: &quot;h: center, v: center&quot;, 
+            fill: &quot;#0040F0FF&quot;, roundRadius: 20 })
+        ]});
+
+// Create the &quot;click me!&quot; button
+var buttonRect = new BABYLON.Rectangle2D(
+    { parent: canvas, id: &quot;button&quot;, x: 100, y: 100, width: 200, height: 80, fill: &quot;#40C040FF&quot;, 
+        roundRadius: 10, 
+        children: 
+        [
+            new BABYLON.Text2D(&quot;Click Me!&quot;, { fontName: &quot;30pt Arial&quot;, marginAlignment: &quot;h: center, v: center&quot; })
+        ]});
+
+// Create the &quot;Awesome!&quot; button
+var button2Rect = new BABYLON.Rectangle2D(
+    { parent: canvas, id: &quot;button2&quot;, x: 420, y: 100, width: 200, height: 80, fill: &quot;#4040C0FF&quot;, 
+        roundRadius: 10, isVisible: false, 
+        children: 
+        [
+            new BABYLON.Text2D(&quot;Awesome!&quot;, { fontName: &quot;30pt Arial&quot;, marginAlignment: &quot;h: center, v: center&quot; })
+        ]});
+
+// Add an observable to the &quot;Click me!&quot; button, watch for click the display/hide the second button
+buttonRect.pointerEventObservable.add(function (d, s) {
+    button2Rect.levelVisible = !button2Rect.levelVisible;
+}, BABYLON.PrimitivePointerInfo.PointerUp);
+
+// Animate the two rectangles    
+var timerId = setInterval(function () {
+    if (rect.isDisposed) {
+        clearInterval(timerId);
+        return;
+    }
+    rect.rotation += 0.01;
+}, 10);
+</code></pre>
+<p>See it live in this <a href="https://www.babylonjs-playground.com/#1BKDEO#22">playground</a> - <i class="fa fa-eye" onclick="createIframe('1BKDEO#22', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>This time we create a Canvas that will be present <strong>in the scene</strong> and not above, its position is 0,0,0, the rotation is built from yaw/pitch/roll construct, its scene size is 100,100 but the Canvas cached bitmap is scaled 8 times (to achieve a much better rendering quality).</p>
+<p>We also create two buttons and add an observable on the first one to display/hide the second one.</p>
+<h4><a name="accessing-the-3d-scene-node-of-world-space-canvas" class="anchor" href="#accessing-the-3d-scene-node-of-world-space-canvas"></a>Accessing the 3D Scene Node of World Space Canvas</h4><p>The <code>canvas</code> object is <strong>not</strong> a Scene node, to access the actual SceneNode that positions the Canvas and renders it you have to access the <code>worldSpaceCanvasNode</code> property of the <code>Canvas2D</code> class. This will return you a <code>Node</code> based instance that you can manipulate to change how the Canvas behave in the 3D Scene.</p>
+<h2><a name="more-playground" class="anchor" href="#more-playground"></a>More playground</h2><p> Just go to the Canvas2D <a href="/extensions/Canvas2D_Home">Home Page</a>. All playgrounds are referenced at the end of the document.</p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

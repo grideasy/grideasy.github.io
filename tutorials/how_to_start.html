@@ -1,0 +1,409 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item active" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>tutorials</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>How to Start Contributing to Babylon.js</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#pre-requisite">Pre-Requisite</a><ul>
+<li><a href="#git-client">Git Client</a></li>
+<li><a href="#nodejs-and-npm">NodeJS and NPM</a></li>
+<li><a href="#typescript-and-gulp">Typescript and Gulp</a></li>
+<li><a href="#visual-studio-code">Visual Studio Code</a></li>
+</ul>
+</li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#debug">Debug</a></li>
+<li><a href="#edit-code">Edit Code</a></li>
+<li><a href="#local-dev">Local Dev</a></li>
+<li><a href="#validate-changes">Validate changes</a></li>
+<li><a href="#gulp">Gulp</a></li>
+<li><a href="#custom-builds">Custom builds</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="how-to-start" class="anchor" href="#how-to-start"></a>How to start</h1><h2><a name="introduction" class="anchor" href="#introduction"></a>Introduction</h2><p>Development Ecosystem in Web is becoming more and more difficult to chose due to the diversity of tools and Frameworks. If you want to get started on BJS, we chose to support a set of tools to simplify your first steps with it. This can also be use on a daily basis for your contribution development.</p>
+<p>This document will introduce everything from the tools installation to debugging in BJS. Thid is meant to be OS agnostic to allow developping the same way on Windows, Mac and Linux. </p>
+<h2><a name="pre-requisite" class="anchor" href="#pre-requisite"></a>Pre-Requisite</h2><h3><a name="git-client" class="anchor" href="#git-client"></a>Git Client</h3><p>If you do not already have a git client, you can install one from <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a>.</p>
+<p><em>Hint:</em> if you are developping on Windows, I would recommand using <a href="http://cmder.net/">cmder</a> as your command line host (the full install is worth it and embed a git client).</p>
+<p><img src="/img/tutorials/howToStart/cmder.png" alt="cmder"></p>
+<p>Once done, you can open a command line and configure git globally:</p>
+<pre><code>git config --global user.name &quot;John Doe&quot;
+git config --global user.email johndoe@example.com
+</code></pre><h3><a name="nodejs-and-npm" class="anchor" href="#nodejs-and-npm"></a>NodeJS and NPM</h3><p>The second step is to install nodejs and its package manager. This will be your best friends and the platform helping achieving a X-platform dev experience: <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>.</p>
+<h3><a name="typescript-and-gulp" class="anchor" href="#typescript-and-gulp"></a>Typescript and Gulp</h3><p>Once both git and npm are installed in your environment, please install in global the both major BJS dev dependencies by launching those command lines:</p>
+<ol>
+<li>npm install -g typescript</li>
+<li>npm install -g gulp</li>
+</ol>
+<p>They are respectively for dealing with the Typescript language and the build tools used in the project.</p>
+<p><em>Hint:</em> if you are developping on Windows, I would recommand using <a href="http://cmder.net/">cmder</a> as your command line host (the full install is worth it).</p>
+<h3><a name="visual-studio-code" class="anchor" href="#visual-studio-code"></a>Visual Studio Code</h3><p>Trying to be Opens source and OS agnostic, we chose to support VSCode which offer the quickest approach to get started. For the ones amongst you with already another choice, it is worth giving it a try and see what it brings as the heavy integration has been managed for you.</p>
+<p>You can install VSCode from their site: <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p>Once install, a few pluggins will help you having the best experience. You can search for them in the extension tab (Ctrl+Shift+d):</p>
+<ol>
+<li>Debugger for Chrome (also installing chrome will help but I guess this is already done)</li>
+<li>Shader language support for VS Code (syntax highlighting ang autocompletion in glsl shader)</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=julianchen.babylon-js-viewer">This extension</a> can be used to display the content of a babylon file directly in vscode. It can be useful if you want to quickly check if your artist made a good job with object and their names :)</li>
+</ol>
+<p>Finally, I would recommand adding a few shortcuts to your environment. Follow the <a href="https://code.visualstudio.com/docs/customization/keybindings#_customizing-shortcuts">guide</a>:</p>
+<ol>
+<li>To configure keyboard shortcuts the way you want, go to the menu under File &gt; Preferences &gt; Keyboard Shortcuts. (Code &gt; Preferences &gt; Keyboard Shortcuts on Mac)</li>
+<li>In the left side, add:<pre><code>// Place your key bindings in this file to overwrite the defaults
+[
+{ &quot;key&quot;: &quot;ctrl+shift+alt+s&quot;,         &quot;command&quot;: &quot;workbench.action.files.saveFiles&quot; },
+{ &quot;key&quot;: &quot;ctrl+shift+alt+k&quot;,         &quot;command&quot;: &quot;workbench.action.tasks.terminate&quot; },
+{ &quot;key&quot;: &quot;ctrl+shift+alt+t&quot;,         &quot;command&quot;: &quot;workbench.action.tasks.test&quot; },
+{ &quot;key&quot;: &quot;ctrl+shift+alt+l&quot;,         &quot;command&quot;: &quot;workbench.action.tasks.showLog&quot; },
+{ &quot;key&quot;: &quot;ctrl+shift+alt+r&quot;,         &quot;command&quot;: &quot;workbench.action.tasks.runTask&quot; }
+]
+</code></pre></li>
+</ol>
+<p>This will make the main commands quicker to access. Do not hesitate to adapt the bindings to your Preferences.</p>
+<p><img src="/img/tutorials/howToStart/keybindings.png" alt="keybindings"></p>
+<h2><a name="installation" class="anchor" href="#installation"></a>Installation</h2><p>You are now all setup, and only a few steps from debugging. You now need to clone the project from github. Open a command line, move to the folder that will contain bjs and type:</p>
+<pre><code>git clone https://github.com/BabylonJS/Babylon.js.git
+</code></pre><p>You could clone your own fork of babylon in the same way by using its own git repository url:</p>
+<pre><code>git clone {yourrepo}
+git remote add upstream https://github.com/BabylonJS/Babylon.js.git
+</code></pre><p>Adding the upstream will help syncing back your fork.</p>
+<p>Then navigate to the BJS folder and install the BJS required node modules through npm:</p>
+<pre><code>cd BabylonJS/Tools/Gulp
+npm install
+</code></pre><p>You are good to go !!!</p>
+<h2><a name="debug" class="anchor" href="#debug"></a>Debug</h2><p>Open VSCode on the newly created BabylonJS folder and launch the test task. To do so, 3 solutions:</p>
+<ol>
+<li>Use the shortcut to run a task (Ctrl+Shift+p) and begin to type test. You should be on run test task, so hit enter.</li>
+<li>Use the shortcut you previously bind to the command  in your keyboard bindings (default is Ctrl+Alf+Shift+t)</li>
+<li>Open a terminal on Tools/Gulp and run <code>gulp run</code></li>
+</ol>
+<p>This has been hijacked for your convenience and will watch all the files you are modifying as well as web serve the files for development purpose. As you noticed in the VSCode installation you can easily hook it to a keyboard shortcut.</p>
+<p>Once the task is launched you can kill it by repsectively:</p>
+<ol>
+<li>Use the shortcut to run a task (Ctrl+Shift+p) and begin to type terminate. You should be on Terminate Running Task task, so hit enter.</li>
+<li>Use the shortcut you previously bind to the command  in your keyboard bindings (default is Ctrl+Alf+Shift+k)</li>
+<li>In the terminal press <code>Ctrl+c</code></li>
+</ol>
+<p>In the VSCode debug tab, chose the section you want to debug and launch the debugger (the test task needs to be running).</p>
+<p>This will debug alls the TS and js in chrome and stop on your breakpoints setup in those files in VSCode. This debugs all the code from src, materialsLibrary, procceduralTexturesLibrary, postprocessLibrary...</p>
+<p><em>Hint</em>: If another chrome sesssion already runs in remote debug on port 9222 the debugger will fail to attach as the port is already open. You will have to close the other remote debug first. </p>
+<p>The main entry points in BJS are:</p>
+<ol>
+<li><a href="&quot;http://localhost:1338/sandbox/index-local.html&quot;">Sandbox</a>: <a href="http://localhost:1338/sandbox/index-local.html">http://localhost:1338/sandbox/index-local.html</a></li>
+<li><a href="&quot;http://localhost:1338/Playground/index-local.html&quot;">Playground</a>:  <a href="http://localhost:1338/Playground/index-local.html">http://localhost:1338/Playground/index-local.html</a></li>
+<li><a href="&quot;http://localhost:1338/materialsLibrary/index.html&quot;">Materials Library</a>: <a href="http://localhost:1338/materialsLibrary/index.html">http://localhost:1338/materialsLibrary/index.html</a></li>
+<li><a href="&quot;http://localhost:1338/postProcessLibrary/index.html&quot;">Post Process Library</a>: <a href="http://localhost:1338/postProcessLibrary/index.html">http://localhost:1338/postProcessLibrary/index.html</a></li>
+<li><a href="&quot;http://localhost:1338/proceduralTexturesLibrary/index.html&quot;">Procedural Textures Library</a>: <a href="http://localhost:1338/proceduralTexturesLibrary/index.html">http://localhost:1338/proceduralTexturesLibrary/index.html</a></li>
+<li><a href="&quot;http://localhost:1338/inspector/index.html&quot;">Inspector</a>: <a href="http://localhost:1338/inspector/index.html">http://localhost:1338/inspector/index.html</a></li>
+<li><a href="&quot;http://localhost:1338/localDev/index.html&quot;">Local Dev</a>: <a href="http://localhost:1338/localDev/index.html">http://localhost:1338/localDev/index.html</a></li>
+<li><a href="&quot;http://localhost:1338/tests/validation/index.html&quot;">Build validation</a>: <a href="http://localhost:1338/tests/validation/index.html">http://localhost:1338/tests/validation/index.html</a></li>
+</ol>
+<p>All of those allows debugging the source code of bjs directly from typescript.</p>
+<p><img src="/img/tutorials/howToStart/debug.png" alt="debug"></p>
+<p>If you wish testing the fully compiled version instead of independant files simply append ?dist=true in the different urls.</p>
+<p>You could also test against the minified version by choosing ?dist=min. this will work on all the referenced URLs.</p>
+<h2><a name="edit-code" class="anchor" href="#edit-code"></a>Edit Code</h2><p>Once the test task (gulp run) has been launched through gulp or VSCode, any TS or shader file save will automatically rebuild the associated js. Simply reload your browser to see the changes in effect and begin to debug your new code.</p>
+<p><em>Hint</em>: You may need to refresh the code before adding back a new breakpoint. </p>
+<h2><a name="local-dev" class="anchor" href="#local-dev"></a>Local Dev</h2><p>In order to simplify the quick testing and development. You can copy paste playgrounds code in the devLocal/src/index.js file . The entire devLocal/src folder is git ignored and is meant to be your local test folder.</p>
+<p>You can launch it through: <a href="&quot;http://localhost:1338/localDev/index.html&quot;">Local Dev</a>: <a href="http://localhost:1338/localDev/index.html">http://localhost:1338/localDev/index.html</a></p>
+<p>From there you can easily add breakpoint in your playground js or the BJS ts files for debugging.</p>
+<p>Adding in the url ?dist=true or ?dist=min will help testing against the built files.</p>
+<p>As using only one test file is annoying, feel free to add index.1.js, index.2.js... and so on. In VSCode, copy pasting the file in the same folder results in creating the next available slot in the folder e.g. copy pasting index.1.js will create index.2.js.</p>
+<p>To launch index.{number}.js simply append in the url sample={number} so for launching index.3.js against the unminified released files, use: <a href="http://localhost:1338/localDev/index.html?dist=true&amp;sample=3">http://localhost:1338/localDev/index.html?dist=true&amp;sample=3</a></p>
+<p>This should help playing andd debugging locally.</p>
+<h2><a name="validate-changes" class="anchor" href="#validate-changes"></a>Validate changes</h2><p>As part of your testing process, it is highly recommended to launch the build validator: <a href="http://localhost:1338/tests/validation/index.htm">http://localhost:1338/tests/validation/index.htm</a>.
+It will run several scenes against a reference image to detect any visual changes.</p>
+<h2><a name="gulp" class="anchor" href="#gulp"></a>Gulp</h2><p>The main gulpfile in Tools/Gulp contains a lot of helpfull tasks. So first open a terminal (Ctrl+`) in VScode or your favorite terminal. Navigate to the Tools/Gulp folder and you are ready to run the following commands.</p>
+<ul>
+<li><code>gulp run</code> launches all the watchers and a web server (this is map to the test command in VSCode)</li>
+<li><code>gulp webserver</code> launches the webserver only.</li>
+<li><code>gulp watch</code> launches the watchers only.</li>
+<li><code>gulp typescript-all</code> generates all the distribution files in the dist/preview release folder (This is map to the build command in VSCode Ctrl+Shift+b).</li>
+<li><code>gulp typescript</code> generates the BJS distribution files.</li>
+<li><code>gulp typescript-libraries</code> generates all the library (materials, procedural textures...) files in the dist/preview release folder.</li>
+<li><code>gulp loaders</code> generates all the loaders files in the dist/preview release folder.</li>
+<li><code>gulp serializers</code> generates all the serializers files in the dist/preview release folder.</li>
+<li><code>gulp materialsLibrary</code> generates all the materials files in the dist/preview release folder.</li>
+<li><code>gulp proceduralTexturesLibrary</code> generates all the procedural textures files in the dist/preview release folder.</li>
+<li><code>gulp postProcessesLibrary</code> generates all the post processes files in the dist/preview release folder.</li>
+<li><code>gulp canvas2D</code> generates the canvas2D files in the dist/preview release folder.</li>
+<li><code>gulp inspector</code> generates the inspector files in the dist/preview release folder.</li>
+<li><code>gulp deployLocalDev</code> regenerates your localDev/src/index.js from the template.</li>
+</ul>
+<h2><a name="custom-builds" class="anchor" href="#custom-builds"></a>Custom builds</h2><p>By default, the build process will generate code for all classes in the repo. For size reasons you may want to strip out some classes that you are not using.</p>
+<p>To do so, you will have to edit the config.json file from /tools/gulp folder.</p>
+<p>This file starts like this:</p>
+<pre><code>    &quot;build&quot;: {
+        &quot;filename&quot;: &quot;babylon.max.js&quot;,
+        &quot;minFilename&quot;: &quot;babylon.js&quot;,
+        &quot;minWorkerFilename&quot;: &quot;babylon.worker.js&quot;,
+        &quot;declarationFilename&quot;: &quot;babylon.d.ts&quot;,
+        &quot;declarationModuleFilename&quot;: &quot;babylon.module.d.ts&quot;,
+        &quot;outputDirectory&quot;: &quot;../../dist/preview release&quot;,
+        &quot;srcOutputDirectory&quot;: &quot;../../src/&quot;,
+        &quot;currentConfig&quot;: &quot;all&quot;
+    },
+    &quot;buildConfigurations&quot;: {
+        &quot;all&quot;: [
+                &quot;standardMaterial&quot;, &quot;pbrMaterial&quot;, &quot;freeCamera&quot;, &quot;arcRotateCamera&quot;, &quot;hemisphericLight&quot;, 
+                &quot;pointLight&quot;, &quot;directionalLight&quot;, &quot;spotLight&quot;, &quot;animations&quot;, &quot;actions&quot;, &quot;sprites&quot;, &quot;picking&quot;, &quot;collisions&quot;,
+                &quot;particles&quot;, &quot;solidParticles&quot;, &quot;additionalMeshes&quot;, &quot;meshBuilder&quot;, &quot;audio&quot;, &quot;additionalTextures&quot;, &quot;shadows&quot;,
+                &quot;loader&quot;, &quot;userData&quot;, &quot;offline&quot;, &quot;fresnel&quot;, &quot;multiMaterial&quot;, &quot;touchCamera&quot;, &quot;procedural&quot;, &quot;gamepad&quot;,
+                &quot;additionalCameras&quot;, &quot;postProcesses&quot;, &quot;renderingPipeline&quot;, &quot;depthRenderer&quot;, &quot;additionalPostProcesses&quot;,
+                &quot;bones&quot;, &quot;hdr&quot;, &quot;polygonMesh&quot;, &quot;csg&quot;, &quot;lensFlares&quot;, &quot;physics&quot;, &quot;textureFormats&quot;, &quot;debug&quot;, &quot;morphTargets&quot;,
+                &quot;colorCurves&quot;, &quot;octrees&quot;, &quot;simd&quot;, &quot;vr&quot;, &quot;virtualJoystick&quot;, &quot;optimizations&quot;, &quot;highlights&quot;, &quot;assetsManager&quot;,
+                &quot;mapTexture&quot;, &quot;dynamicFloatArray&quot;, &quot;serialization&quot;, &quot;probes&quot;, &quot;layer&quot;
+        ],
+        &quot;minimal&quot;: [&quot;meshBuilder&quot;, &quot;standardMaterial&quot;, &quot;freeCamera&quot;, &quot;hemisphericLight&quot;]
+    },
+    &quot;workloads&quot; :
+    {
+</code></pre><p>You can see inside the <code>buildConfigurations</code> bucket that two configurations are defined: <code>all</code> and <code>minimal</code>.
+A configuration is an array of workloads. Workloads are sets of file, shaders and dependencies. They define a set of work. You can use then to cherry pick only feature that you want to use.</p>
+<p>For instance the <code>minimal</code> configuration only contains the following workloards: <code>meshBuilder</code>, <code>standardMaterial</code>, <code>freeCamera</code>, <code>hemisphericLight</code>.</p>
+<p>You can change the active configuration by settings the <code>build.currentConfig</code> value (set to <code>all</code> by default).</p>
+<p>Here is the list of available workloads:</p>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>standardMaterial</td>
+<td>Contains standard material and associated shaders</td>
+</tr>
+<tr>
+<td>pbrMaterial</td>
+<td>Contains PBR material and associated shaders</td>
+</tr>
+<tr>
+<td>freeCamera</td>
+<td>Contains FreeCamera</td>
+</tr>
+<tr>
+<td>arcRotateCamera</td>
+<td>Contains ArcRotateCamera</td>
+</tr>
+<tr>
+<td>hemisphericLight</td>
+<td>Contains HemisphericLight</td>
+</tr>
+<tr>
+<td>pointLight</td>
+<td>Contains PointLight</td>
+</tr>
+<tr>
+<td>directionalLight</td>
+<td>Contains DirectionalLight</td>
+</tr>
+<tr>
+<td>spotLight</td>
+<td>Contains SpotLight</td>
+</tr>
+<tr>
+<td>animations</td>
+<td>Contains Animations and Animatables</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>Contains Actions and ActionManagers</td>
+</tr>
+<tr>
+<td>sprites</td>
+<td>Contains Sprites and SpriteManager</td>
+</tr>
+<tr>
+<td>picking</td>
+<td>Contains PickingInfo and Ray</td>
+</tr>
+<tr>
+<td>collisions</td>
+<td>Contains Collider</td>
+</tr>
+<tr>
+<td>particles</td>
+<td>Contains Particle and ParticleSystem</td>
+</tr>
+<tr>
+<td>solidParticles</td>
+<td>Contains SolidParticleSystem</td>
+</tr>
+<tr>
+<td>additionalMeshes</td>
+<td>Contains GroundMesh, InstanceMesh and LinesMesh</td>
+</tr>
+<tr>
+<td>meshBuilder</td>
+<td>Contains MeshBuilder</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>Contains AudioEngine, Sound, Soundtrack and Analyzer</td>
+</tr>
+<tr>
+<td>additionalTextures</td>
+<td>Contains CubeTexture, RenderTargetTexture, MirrorTexture, RefractionTextures, DynamicTexture, VideoTexture and RawTexture</td>
+</tr>
+<tr>
+<td>shadows</td>
+<td>Contains ShadowGenerator</td>
+</tr>
+<tr>
+<td>loader</td>
+<td>Contains SceneLoader, FilesInput and LoadingScreen</td>
+</tr>
+<tr>
+<td>userData</td>
+<td>Contains StringDictionary, Tags and AndOrNotEvaluator</td>
+</tr>
+<tr>
+<td>offline</td>
+<td>Contains Database</td>
+</tr>
+<tr>
+<td>fresnel</td>
+<td>Contains FresnelParameters</td>
+</tr>
+<tr>
+<td>multiMaterial</td>
+<td>Contains MultiMaterial</td>
+</tr>
+<tr>
+<td>procedural</td>
+<td>Contains the ProceduralTexture and CustomProceduralTexture</td>
+</tr>
+<tr>
+<td>gamepad</td>
+<td>Contains FreeCameraGamepadInput, ArcRotateCameraGamepadInput, Gamepads, ExtendedGamepad</td>
+</tr>
+<tr>
+<td>additionalCameras</td>
+<td>Contains FollowCamera, UniversalCamera and GamepadCamera</td>
+</tr>
+<tr>
+<td>touchCamera</td>
+<td>Contains TouchCamera and FreeCameraTouchInput</td>
+</tr>
+<tr>
+<td>postProcesses</td>
+<td>Contains PostProcess and PassPostProcess</td>
+</tr>
+<tr>
+<td>renderingPipeline</td>
+<td>Contains PostProcessRenderPipelineManager, PostProcessRenderPass, PostProcessRenderEffect and PostProcessRenderPipeline</td>
+</tr>
+<tr>
+<td>additionalRenderingPipeline</td>
+<td>Contains SSAORenderingPipeline, LensRenderingPipeline, HDRRenderingPipeline, StandardRenderingPipeline</td>
+</tr>
+<tr>
+<td>depthRenderer</td>
+<td>Contains DepthRenderer</td>
+</tr>
+<tr>
+<td>additionalPostProcesses</td>
+<td>Contains BlurPostProcess, RefractionPostProcess, BlackAndWhitePostProcess, ConvolutionPostProcess, FilterPostProcess, FxaaPostProcess, VolumetricLightScatteringPostProcess, ColorCorrectionPostProcess, TonemapPostProcess and DisplayPassPostProcess</td>
+</tr>
+<tr>
+<td>bones</td>
+<td>Contains Bone, BoneIKController, BoneLookController and Skeleton</td>
+</tr>
+<tr>
+<td>hdr</td>
+<td>Contains CubemapToSphericalPolynomial, PanoramaToCubemap, HDRTools, PMRemgenerator, HDRCubeTexture</td>
+</tr>
+<tr>
+<td>polygonMesh</td>
+<td>Contains PolygonMesh</td>
+</tr>
+<tr>
+<td>csg</td>
+<td>Contains CSG</td>
+</tr>
+<tr>
+<td>lensFlares</td>
+<td>Contains LensFlare and LensFlareSystem</td>
+</tr>
+<tr>
+<td>physics</td>
+<td>Contains PhysicsJoint, PhysicsImpostor, PhysicsEngine, CannonJSPlugin and OimoJSPlugin</td>
+</tr>
+<tr>
+<td>textureFormats</td>
+<td>Contains support for .tga, .dds and .ktc</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>Contains SkeletonViewer, AxesViewer, BoneAxesViewer, RayHelper, DebugLayer and BoundingBoxRenderer</td>
+</tr>
+<tr>
+<td>morphTargets</td>
+<td>Contains MorphTarget and MorphTargetManager</td>
+</tr>
+<tr>
+<td>colorCurves</td>
+<td>Contains ColorGradingTexture and ColorCurves</td>
+</tr>
+<tr>
+<td>octrees</td>
+<td>Contains Octree and OctreeBlock</td>
+</tr>
+<tr>
+<td>simd</td>
+<td>Contains SIMD support for Math</td>
+</tr>
+<tr>
+<td>vr</td>
+<td>Contains VRDistortionCorrectionPostProcess, AnaglyphPostProcess, StereoscopicInterlacePostProcess, FreeCameraDeviceOrientationInput, ArcRotateCameraVRDeviceOrientationInput, VRCameraMetrics, WebVRCamera, DeviceOrientationCamera, VRDeviceOrientationCamera and StereoscopicCameras</td>
+</tr>
+<tr>
+<td>virtualJoystick</td>
+<td>Contains VirtualJoystick, VirtualJoysticksCamera and FreeCameraVirtualJoystickInput</td>
+</tr>
+<tr>
+<td>optimizations</td>
+<td>Contains MeshSimplification, MeshLODLevel and SceneOptimizer</td>
+</tr>
+<tr>
+<td>highlights</td>
+<td>Contains OutlineRenderer, EdgesRenderer and Highlightlayer</td>
+</tr>
+<tr>
+<td>assetsManager</td>
+<td>Contains AssetsManager</td>
+</tr>
+<tr>
+<td>mapTexture</td>
+<td>Contains MapTexture and RectPackingMap</td>
+</tr>
+<tr>
+<td>dynamicFloatArray</td>
+<td>Contains DynamicFloatArray</td>
+</tr>
+<tr>
+<td>serialization</td>
+<td>Contains SceneSerializer</td>
+</tr>
+<tr>
+<td>probes</td>
+<td>Contains ReflectionProbe</td>
+</tr>
+<tr>
+<td>layer</td>
+<td>Contains Layer</td>
+</tr>
+</tbody>
+</table>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>How Rotations and Translations Work</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#basics">Basics</a><ul>
+<li><a href="#position">Position</a></li>
+<li><a href="#rotation">Rotation</a></li>
+<li><a href="#position-and-rotation-for-the-world-matrix">Position and Rotation for the World Matrix</a></li>
+<li><a href="#more-advanced-positioning">More Advanced Positioning</a></li>
+<li><a href="#more-advanced-rotation">More Advanced Rotation</a><ul>
+<li><a href="#addrotation">ddRotation()</a></li>
+<li><a href="#rotate">rotate()</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</li>
+<li><a href="#generating-a-rotation-from-a-target-system">Generating a rotation from a target system</a></li>
+<li><a href="#baking-transform">Baking Transform</a></li>
+<li><a href="#changing-the-frame-of-reference">Changing the Frame of Reference</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="basics" class="anchor" href="#basics"></a>Basics</h1><p>Babylon.js provides many ways to locate and rotate your meshes.</p>
+<h2><a name="position" class="anchor" href="#position"></a>Position</h2><p>The basic way to define the position of a mesh is to use its property <code>position</code>.<br><code>position</code> is a <code>Vector3</code> and its set to (0, 0, 0) by default.  </p>
+<pre><code class="lang-javascript">mesh.position = new BABYLON.Vector3(x, y, z);
+// or 
+mesh.position.x = x;
+mesh.position.y = y;
+mesh.position.z = z;
+</code></pre>
+<p>These define the mesh coordinates in the World space. So the mesh will be translated from the world origin to these final coordinates. 
+The translation is applied <strong>AFTER</strong> the mesh rotation, if any.  </p>
+<h2><a name="rotation" class="anchor" href="#rotation"></a>Rotation</h2><p>A mesh can also be rotated by using either its property <code>rotation</code> (Vector3), either its property <code>rotationQuaternion</code> (Quaternion).<br><code>rotation</code> is a <code>Vector3</code> whose values are the Euler angles in radian to rotate the mesh around each axis x, y and z. Default (0, 0, 0).<br><code>rotationQuaternion</code> is a <code>Quaternion</code> object whose values are the mesh rotation unit quaternion ones. Default <code>null</code>.  </p>
+<pre><code class="lang-javascript">// Euler
+mesh.rotation = new BABYLON.Vector3(x, y, z);                 
+// or
+mesh.rotation.x = x;        // rotation around x axis
+mesh.rotation.y = y;        // rotation around y axis
+mesh.rotation.z = z;        // rotation around z axis
+// Quaternion
+mesh.rotationQuaternion = new BABYLON.Quaternion(x, y, z, w);
+</code></pre>
+<p>The rotation is computed in the mesh local space.<br>The order you assign the <code>rotation</code> property values doesn&#39;t matter (<code>.z</code> before <code>.x</code> for instance) since BJS computes the final mesh rotation always in the same order : around Y first, then around X, finally around Z.<br>In order to understand this order, here&#39;s a short sequence showing how this happens in the World (white axis) :   </p>
+<ul>
+<li>a box is set at the origin, unrotated, its local system is showed with red (x), green (y) and blue (z) lines :  <a href="https://www.babylonjs-playground.com/#BEXX0#1">https://www.babylonjs-playground.com/#BEXX0#1</a> - <i class="fa fa-eye" onclick="createIframe('BEXX0#1', this)"></i><br/><div class="iframeContainer"></div><br/>   </li>
+<li>then it&#39;s rotated for PI/3 radians around its local Y axis :  <a href="https://www.babylonjs-playground.com/#BEXX0#2">https://www.babylonjs-playground.com/#BEXX0#2</a> - <i class="fa fa-eye" onclick="createIframe('BEXX0#2', this)"></i><br/><div class="iframeContainer"></div><br/>  </li>
+<li>then it&#39;s rotated for PI/4 radians around its local X axis :  <a href="https://www.babylonjs-playground.com/#BEXX0#3">https://www.babylonjs-playground.com/#BEXX0#3</a> - <i class="fa fa-eye" onclick="createIframe('BEXX0#3', this)"></i><br/><div class="iframeContainer"></div><br/>  </li>
+<li>finally it&#39;s rotated for PI/6 radians around its local Z axis :  <a href="https://www.babylonjs-playground.com/#BEXX0#4">https://www.babylonjs-playground.com/#BEXX0#4</a> - <i class="fa fa-eye" onclick="createIframe('BEXX0#4', this)"></i><br/><div class="iframeContainer"></div><br/>  </li>
+</ul>
+<p>The property <code>rotation</code> will be used if the property <code>rotationQuaternion</code> is <code>null</code> (default behavior).<br>The property <code>rotationQuaternion</code> only is used if both are set.  </p>
+<p><strong>NOTE : You MUST use <code>rotationQuaternion</code> when creating physics objects because physics engines rely only on them.</strong></p>
+<h2><a name="position-and-rotation-for-the-world-matrix" class="anchor" href="#position-and-rotation-for-the-world-matrix"></a>Position and Rotation for the World Matrix</h2><p>It doesn&#39;t matter whether you assign values several times to the properties <code>position</code> and <code>rotation</code> (or <code>rotationQuaternion</code>) or not before the next rendering.<br>Only the last assigned values are kept for the rendering. In other terms, there&#39;s no accumulation : if you set <code>rotation.y = 2;</code> then later <code>rotation.y = 1;</code> this won&#39;t rotate the mesh for 3 around Y, but only for 1 radian.  </p>
+<p>These properties just depict some mesh state before it must be rendered : it&#39;s located at a given position and rotated to a given orientation.<br>Actually, just before the rendering process, these property values are read and computed in a matrix related to the mesh, called its World Matrix.<br>The mesh World Matrix embbeds all the values to position, rotate and scale the mesh from its local space to the World space.<br>This matrix is then transferred to the GPU what applies all the geometric transformations to each mesh vertex and then renders the whole mesh.<br>The GPU piece of code responsible for this vertex transformation is called the vertex shader.  </p>
+<p>So just think about the properties <code>position</code> and <code>rotation</code> (or <code>rotationQuaternion</code>) as the state values to set the mesh in the World for the next render call.  </p>
+<h2><a name="more-advanced-positioning" class="anchor" href="#more-advanced-positioning"></a>More Advanced Positioning</h2><p>As explained before, the property <code>position</code> sets the mesh in the World space.<br>Nonetheless, you may want to position the mesh in its local space.<br>You can then use the following code:</p>
+<pre><code class="lang-javascript">mesh.setPositionWithLocalVector(new BABYLON.Vector3(x, y, z));
+</code></pre>
+<p>You can also get the current position of the object but in local space and not in parent space with the following code:</p>
+<pre><code class="lang-javascript">var localPosition = mesh.getPositionExpressedInLocalSpace();
+</code></pre>
+<p>If you want to add an extra translation expressed in local space you have to use the following code:</p>
+<pre><code class="lang-javascript">mesh.locallyTranslate(new BABYLON.Vector3(x, y, z));
+</code></pre>
+<p>Each time you call it with the same vector, it will move your mesh whereas <code>setPositionWithLocalVector</code> will move it only the first time. <a href="http://jsfiddle.net/gwenaelhagenmuller/35uFf/12/">http://jsfiddle.net/gwenaelhagenmuller/35uFf/12/</a></p>
+<p>At last, you can also use the most versatile tool to translate a mesh  : <code>translate(axis, distance, space)</code></p>
+<ul>
+<li><code>axis</code> (<em>Vector3</em>) is the vector along what you want to translate the mesh </li>
+<li><code>distance</code> (<em>float</em>) is the length of the translation along this vector  </li>
+<li><code>space</code> (optional, defaut <code>BABYLON.Space.LOCAL</code>), the space where the translation is applied : <code>BABYLON.Space.WORLD</code> or <code>BABYLON.Space.LOCAL</code></li>
+</ul>
+<p>Example :  </p>
+<pre><code class="lang-javascript">mesh.translate(BABYLON.Axis.X, 1.0, BABYLON.Space.WORLD);
+</code></pre>
+<h2><a name="more-advanced-rotation" class="anchor" href="#more-advanced-rotation"></a>More Advanced Rotation</h2><h3><a name="addrotation" class="anchor" href="#addrotation"></a>addRotation()</h3><p>As explained BJS imposes the rotation order YXZ.<br>If you still want to use the Euler angles what are more intuitive than quaternions, this constraint can quickly complicate the way to calculate the required Euler angles to achieve a given final mesh orientation.<br>Indeed, rotations aren&#39;t commutative operations. This means that rotating a mesh first around X, then around Z will lead to a different orientation than rotating it first around Z and then around X with the same values.  </p>
+<p>You can then use <code>mesh.addRotation(x, y, z)</code>.<br>This method updates for you the current property <code>rotation</code> or <code>rotationQuaternion</code> values by adding a rotation step to the initial values.<br><code>x</code>, <code>y</code> and <code>z</code> are the Euler angles in radians to add each call of this method.<br>You can call it as many times you want : it will accumulate the passed rotation values.<br>This means you can decompose your whole rotation in several steps to be done in your own order, not necesseraly the imposed YXZ one, to achieve your final wanted orientation.   </p>
+<p> How does it work ?</p>
+<p>Just give the mesh an initial rotation, or none, (this rotation can be Euler angles or a quaternion, as you want), then add your rotation steps to achieve the wanted final orientation :</p>
+<pre><code class="lang-javascript">mesh.rotation.x = Math.PI / 4.0;        // initial rotation around x
+mesh.addRotation(0, Math.PI / 3.0, 0);  // the mesh is fisrt rotated around X, then only around Y for PI/3
+
+// you can even link all the rotation steps
+// here X first, then Z, finally Y
+mesh.addRotation(x1, 0, 0).addRotation(0, 0, z2).addRotation(0, y3, 0);
+
+// the mesh rotation property is computed for you
+console.log(mesh.rotation);
+</code></pre>
+<p>Example :  <a href="https://www.babylonjs-playground.com/#1PON40#6">https://www.babylonjs-playground.com/#1PON40#6</a> - <i class="fa fa-eye" onclick="createIframe('1PON40#6', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>The left box is the model box. The central box is rotated as usual for PI/3 around X and PI/4 around Y. The BJS rotation order makes it rotate first around Y, then around X.<br>The right box is given an initial rotation for PI/3 around X, then a rotation step is added for PI/4 around Y. You can see that the final orientation differs.<br>If you have a look at the console where the box2 rotation is displayed, you will notice that the Euler angles needed to achieve this final orientation have a z value, although you didn&#39;t specify anything about Z. 
+Simply because this is the Euler rotation to be dapplied in the required BJS rotation order to achieve this final orientation.<br>Something you wouldn&#39;t probably have found by yourself just playing with Euler angles ...  </p>
+<p>In brief, <code>addRotation()</code> accumulates the rotation values each call, allows to choose the rotation order and updates the initial property <code>rotation</code> or <code>rotationQuaternion</code> values.<br>This rotation is computed in the local space as usual.  </p>
+<h3><a name="rotate" class="anchor" href="#rotate"></a>rotate()</h3><p>At last, like for the positions, you can also use the most versatile tool : <code>mesh.rotate(axis, amount, space)</code></p>
+<ul>
+<li><code>axis</code> (<em>Vector3</em>) is the axis around what the rotation is to be done,</li>
+<li><code>amount</code> (<em>float</em>) is the angle in radians to rotate the mesh around this axis,</li>
+<li><code>space</code> (optional, default <code>BABYLON.Space.LOCAL</code>) is the space in what the rotation is to be computed : <code>BABYLON.Space.WORLD</code> or <code>BABYLON.Space.LOCAL</code>.</li>
+</ul>
+<p>Example :  </p>
+<pre><code class="lang-javascript">mesh.rotate(BABYLON.Axis.X, 1.0, BABYLON.Space.WORLD);
+</code></pre>
+<p>Please note that <code>mesh.rotate()</code> generates a new quaternion and then uses <code>mesh.rotationQuaternion</code> while <code>mesh.rotation</code> is set to (0, 0, 0).  </p>
+<p>Like <code>mesh.addRotation()</code>, this method accumulates also the rotation each call. So, if you call it several times, the order really matters : first <code>rotate(x, 3)</code> then <code>rotate(y, 2)</code> will give a different final orientation than first <code>rotate(y, 2</code> then <code>rotate(x, 3)</code>.<br>It updates the <code>mesh.rotationQuaternion</code> before it is read by the World Matrix.  </p>
+<h2><a name="summary" class="anchor" href="#summary"></a>Summary</h2><ul>
+<li>The mesh vertices are positioned and rotated GPU side at the render call by the vertex shader.  </li>
+<li>The vertex shader needs the mesh World matrix in order to compute these transformations.  </li>
+<li>The mesh World matrix is computed automatically by BJS just before the render call.  </li>
+<li>Only the last assigned values of the mesh properties <code>position</code>, <code>rotation</code> or <code>quaternionRotation</code> are read at this moment for the matrix computation.  </li>
+<li>You can set directly these properties before manually and/or you can use helper functions like <code>translate()</code>, <code>rotate()</code>, <code>addRotation()</code>, etc what compute then their values for you.    </li>
+</ul>
+<h1><a name="generating-a-rotation-from-a-target-system" class="anchor" href="#generating-a-rotation-from-a-target-system"></a>Generating a rotation from a target system</h1><p>Sometimes you may know the final orientation you want to give to a mesh in terms of alignment with distant axes, but you don&#39;t know what rotation to apply to it to achieve this wanted orientation.<br>There is a way to compute an Euler rotation from a set of axes : </p>
+<pre><code class="lang-javascript">var rot = BABYLON.Vector3.RotationFromAxis(axis1, axis2, axis3);
+mesh.rotation = rot;
+</code></pre>
+<p>where <em>axis1</em>, <em>axis2</em> and <em>axis3</em> are three left-handed oriented orthogonal vectors.<br>With this code, the mesh will be aligned thus :   </p>
+<ul>
+<li><em>axis1</em> will become x axis in its local system</li>
+<li><em>axis2</em> will become y axis in its local system</li>
+<li><em>axis3</em> will become z axis in its local system</li>
+</ul>
+<p>example :  <a href="https://www.babylonjs-playground.com/#VYM1E#28">https://www.babylonjs-playground.com/#VYM1E#28</a> - <i class="fa fa-eye" onclick="createIframe('VYM1E#28', this)"></i><br/><div class="iframeContainer"></div><br/><br>The textured plane mesh is currently aligned with the axis between spheres (axis1) and &quot;faces&quot; the camera.<br><code>RotationFromAxis()</code> computes the required rotation value (Vector3) to assign to the mesh property <code>.rotation</code> in order to rotate it along the passed axes.<br>If you prefer using quaternions instead of Euler angles, then <code>RotationQuaternionFromAxis()</code> computes the required rotation value (Quaternion) to assign to the mesh property <code>.rotationQuaternion</code> in order to rotate it along the passed axes.<br>The same methods exist also in the <code>toRef()</code> version.  </p>
+<p><code>Vector3.RotationFromAxis()</code><br><code>Vector3.RotationFromAxisToRef()</code> 
+<code>Quaternion.RotationQuaternionFromAxis()</code><br><code>Quaternion.RotationQuaternionFromAxisToRef()</code>  </p>
+<h1><a name="baking-transform" class="anchor" href="#baking-transform"></a>Baking Transform</h1><p>In certain situations you might be interested in applying a transform (position, rotation, scale) directly to the mesh vertices, instead of saving it as a property of the mesh. This is called baking, and can be useful in the following situations:</p>
+<ul>
+<li>building a set of static geometry</li>
+<li>randomizing a series of mesh copies</li>
+<li>mirroring a mesh along an axis</li>
+<li>etc.</li>
+</ul>
+<p>Two methods can be used for this process:</p>
+<p><code>bakeTransformIntoVertices(transform: Matrix)</code>: this will bake the provided matrix directly into the mesh vertices. For example:</p>
+<pre><code>// this will permanently mirror the mesh along the Y axis, while leaving the transform properties untouched
+var matrix = BABYLON.Matrix.Scaling(1, -1, 1);
+mesh.bakeTransformIntoVertices(matrix);
+</code></pre><p><code>bakeCurrentTransformIntoVertices()</code>: this will bake the current transform properties of the mesh into the vertices, and clear those properties. This includes <em>rotation</em>, <em>translation</em> and <em>scaling</em>.</p>
+<p>Note: scaling a mesh will often give unrealistic results for lighting, since the normals will simply be scaled along and not properly recomputed. This is illustrated in the following picture: </p>
+<p><img src="http://i.imgur.com/18wDAH7.png" alt="Normals illustration"> </p>
+<p><em>In the above picture, you can see an untransformed mesh on the left, the same mesh scaled along the X axis in the middle and on the right, the mesh with its normals correctly recomputed.</em></p>
+<p>You can do a recomputation of your normals like so:</p>
+<pre><code>var indices = mesh.getIndices();
+var normals = mesh.getVerticesData(VertexBuffer.NormalKind);
+BABYLON.VertexData.ComputeNormals(positions, indices, normals);
+mesh.updateVerticesData(VertexBuffer.NormalKind, normals, false, false);
+</code></pre><p>Please note that recomputing the normals of your mesh may not be an ideal solution, as the results may be wrong in some parts of the mesh (e.g. seams on a sphere).</p>
+<h1><a name="changing-the-frame-of-reference" class="anchor" href="#changing-the-frame-of-reference"></a>Changing the Frame of Reference</h1><p>Every mathematical vector and transformation is expressed in a certain <em>frame of reference</em>. This is for example handled by the <code>BABYLON.Space.LOCAL</code> and <code>BABYLON.Space.WORLD</code> constants used in the <code>rotate()</code> and <code>translate()</code> functions cited above, or <code>locallyTranslate()</code> and other similar functions.</p>
+<p>A <em>frame of reference</em> is in fact a regular transformation matrix, i.e. an association of rotation, translation and scaling operations.</p>
+<p>You may need to express a certain vector in a precise frame of reference, be it the one of a mesh or an arbitrary one. In this case, the function <code>BABYLON.Vector3.TransformCoordinates()</code> will come in handy. </p>
+<p>Here is how you would compute the <em>up</em> vector (Y+) inside the frame of reference of a mesh:</p>
+<pre><code>mesh.computeWorldMatrix();
+var matrix = mesh.getWorldMatrix();
+var up_local = new BABYLON.Vector3(0,1,0);
+var up_global = BABYLON.Vector3.TransformCoordinates(up_local, matrix);
+</code></pre><p>Potential uses of <code>BABYLON.Vector3.TransformCoordinates()</code> may be:</p>
+<ul>
+<li>computing direction and axis vectors for <code>applyImpulse()</code> and other physics-related functions</li>
+<li>setting the position and speed of a mesh relative to another, without the use of parenting
+(e.g. a spaceship shooting missiles)</li>
+<li>applying a projection matrix to a world position vector to end up with a screen-space position vector</li>
+</ul>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

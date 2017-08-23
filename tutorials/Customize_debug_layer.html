@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item active" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>tutorials</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Customize The Debug Layer</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#customize-the-debug-layer">Customize The Debug Layer</a><ul>
+<li><a href="#setting-the-project">Setting the project</a></li>
+<li><a href="#compile-the-library">Compile the library</a></li>
+<li><a href="#run-the-test-task">Run the test task</a></li>
+<li><a href="#updating-the-test-file">Updating the test file</a></li>
+<li><a href="#adding-a-new-ts-file-in-the-project">Adding a new TS file in the project</a></li>
+<li><a href="#create-a-new-color-theme">Create a new color theme</a></li>
+<li><a href="#creating-a-new-tab">Creating a new tab</a></li>
+<li><a href="#creating-split-panel">Creating split panel</a></li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="customize-the-debug-layer" class="anchor" href="#customize-the-debug-layer"></a>Customize The Debug Layer</h1><p>The debug layer is part of the Babylon.js repository and can be customized in the same way as Babylon.js can. </p>
+<p>Before following any of the steps below knowing how to customizing Babylon.js in general is required.</p>
+<p>This can be gained by reading</p>
+<p><a href="/tutorials/how_to_start">How to Start Contributing to Babylon.js</a></p>
+<p>In addition for those using Visual Studio as an IDE you can read </p>
+<p><a href="/tutorials/setup_visualStudio">Setup Visual Studio to contribute to Babylon.js</a></p>
+<h2><a name="setting-the-project" class="anchor" href="#setting-the-project"></a>Setting the project</h2><p>As all the code of the debug layer lies in Babylon.js repository, you have first to follow <a href="/generals/how_to_start">this tutorial</a> to setting up your IDE.</p>
+<h2><a name="compile-the-library" class="anchor" href="#compile-the-library"></a>Compile the library</h2><p>In a terminal, type : </p>
+<pre><code>cd Tools/Gulp
+gulp typescript
+</code></pre><h2><a name="run-the-test-task" class="anchor" href="#run-the-test-task"></a>Run the test task</h2><p>Once this is done, run the test task (<kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>) and type <code>test</code> then press <kbd>enter</kbd>.</p>
+<p>Open the url : <a href="http://localhost:1338/inspector/index.html">http://localhost:1338/inspector/index.html</a>
+You should be able to see the test file (see next) for the inspector.</p>
+<h2><a name="updating-the-test-file" class="anchor" href="#updating-the-test-file"></a>Updating the test file</h2><p>The test file is: <code>/inspector/test/index.js</code> (<a href="https://github.com/BabylonJS/Babylon.js/tree/master/inspector/test">here</a> in Github)
+You can update the test file, and press F5 in your browser to check the changes.</p>
+<h2><a name="adding-a-new-ts-file-in-the-project" class="anchor" href="#adding-a-new-ts-file-in-the-project"></a>Adding a new TS file in the project</h2><p>If you want your file to be taken into account during the compilation process, you have to add it in the file <code>config.json</code> located in <code>/Tools/Gulp</code> in the <code>inspector</code> rule.</p>
+<h2><a name="create-a-new-color-theme" class="anchor" href="#create-a-new-color-theme"></a>Create a new color theme</h2><p>You can update all variables defined in the file <code>/inspector/sass/defines.scss</code></p>
+<h2><a name="creating-a-new-tab" class="anchor" href="#creating-a-new-tab"></a>Creating a new tab</h2><p>All tabs are in the folder <code>inspector/src/tabs</code>. 
+By default, you can have two kind of tabs: </p>
+<ul>
+<li>A tab with nothing (see StatsTab, TextureTab...) : <em>your class should extend Tab</em></li>
+<li>A tab with a tree list and a detail panel (see MeshTab, MaterialTab...) : <em>your class should extend PropertyTab</em></li>
+</ul>
+<p>Create a new tab that extends one of these class.
+Your tab should be then added to the Tab Bar (class <code>TabBar</code>)</p>
+<h2><a name="creating-split-panel" class="anchor" href="#creating-split-panel"></a>Creating split panel</h2><p>You can create a resize bar with the following code: </p>
+<pre><code class="lang-javascript">Split([element1, element2], {
+    blockDrag: this._inspector.popupMode,
+    direction: direction
+});
+</code></pre>
+<p>Where element1 and element2 are two HTML div, and direction is either &#39;vertical&#39; or &#39;horizontal&#39; (vertical = element1 is above element2)</p>
+<h1><a name="further-reading" class="anchor" href="#further-reading"></a>Further Reading</h1><p><a href="/overviews/playground_debuglayer">The Debug Layer Facilities</a> 
+<a href="/tutorials/debug_layer">The Debug Layer in Projects</a>     </p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

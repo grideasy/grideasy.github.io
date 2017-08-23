@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item active" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>extensions</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Using the Ascii Art post-process</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#how-to-use">How to use ?</a></li>
+<li><a href="#going-further">Going further</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="using-the-ascii-art-post-process" class="anchor" href="#using-the-ascii-art-post-process"></a>Using the Ascii Art post-process</h1><p>How cool (... or nerd - ish) could it be to render all your BJS scene in Ascii ART?</p>
+<p>If you would like it, this tutorial is made for you.</p>
+<h2><a name="how-to-use" class="anchor" href="#how-to-use"></a>How to use ?</h2><p>Ascii Art Post Process Scripts can be found here: </p>
+<ul>
+<li>Normal: <a href="https://github.com/BabylonJS/Babylon.js/blob/master/dist/preview release/postProcessesLibrary/babylon.asciiArtPostProcess.js">https://github.com/BabylonJS/Babylon.js/blob/master/dist/preview release/postProcessesLibrary/babylon.asciiArtPostProcess.js</a></li>
+<li>Minified : <a href="https://github.com/BabylonJS/Babylon.js/blob/master/dist/preview release/postProcessesLibrary/babylon.asciiArtPostProcess.min.js">https://github.com/BabylonJS/Babylon.js/blob/master/dist/preview release/postProcessesLibrary/babylon.asciiArtPostProcess.min.js</a></li>
+</ul>
+<p>Please, first reference this script in your page:</p>
+<pre><code>    &lt;script src=&quot;babylon.asciiArtPostProcess.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>Then, you only need to instantiate the post process attach to your main camera to bring it to life.</p>
+<pre><code>// Creates the post process
+var postProcess = new BABYLON.AsciiArtPostProcess(&quot;AsciiArt&quot;, camera);
+</code></pre><p><a href="https://www.babylonjs-playground.com/#2I28SC#0"><strong>Playground Demo Scene</strong></a> - <i class="fa fa-eye" onclick="createIframe('2I28SC#0', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="going-further" class="anchor" href="#going-further"></a>Going further</h2><p>The first you can do is changing the font used in the post process.</p>
+<pre><code>// Creates the post process
+var postProcess = new BABYLON.AsciiArtPostProcess(&quot;AsciiArt&quot;, camera, &quot;10px Monospace&quot;);
+</code></pre><p><a href="https://www.babylonjs-playground.com/#2I28SC#1"><strong>Playground Demo Scene</strong></a> - <i class="fa fa-eye" onclick="createIframe('2I28SC#1', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>But you could also play with more parameters:</p>
+<pre><code>// Creates the post process
+var postProcess = new BABYLON.AsciiArtPostProcess(&quot;AsciiArt&quot;, camera, 
+    {
+        font: &quot;20px Monospace&quot;,
+        characterSet: &quot; -+@&quot;,
+        mixToNormal: 0.5,
+        mixToTile: 0.5        
+    });
+</code></pre><p><a href="https://www.babylonjs-playground.com/#2I28SC#5"><strong>Playground Demo Scene</strong></a> - <i class="fa fa-eye" onclick="createIframe('2I28SC#5', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>The availables parameters are:</p>
+<ul>
+<li>font: the font to use defined the W3C css way like &quot;30px Monospace&quot;. Note: a monospace font would provide better result.</li>
+<li>caracterSet: the set of caracter to use in order of llight intensity.</li>
+<li>mixToNormal: defines the amount you want to mix the &quot;tile&quot; or caracter space colored in the ascii art (between 0 and 1).</li>
+<li>mixToTile: defines the amount you want to mix the normal rendering pass in the ascii art (between 0 and 1).</li>
+</ul>
+<p>Two of them mixToNormal and mixToTile are also available at run time to allow smoothly fading from matrix to your normal scene.</p>
+<pre><code>// Creates the post process
+var postProcess = new BABYLON.AsciiArtPostProcess(&quot;AsciiArt&quot;, camera);
+// Displays the scene.
+var alpha = 0;
+scene.registerBeforeRender(function() {
+    alpha += 0.01;
+    postProcess.mixToNormal = Math.cos(alpha) * 0.5 + 0.5; // between 0 and 1.
+});
+</code></pre><p><a href="https://www.babylonjs-playground.com/#2I28SC#3"><strong>Playground Demo Scene</strong></a> - <i class="fa fa-eye" onclick="createIframe('2I28SC#3', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

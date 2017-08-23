@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item active" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>extensions</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Using the Post-Process Builder (for developers)</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#creating-post-processes">Creating post-processes</a></li>
+<li><a href="#using-the-editor-to-preview-your-post-processes">Using the editor to preview your post-processes</a></li>
+<li><a href="#showing-the-shader-errors">Showing the shader errors</a></li>
+<li><a href="#reordering-post-processes-chain">Reordering post-processes chain</a></li>
+<li><a href="#the-sampler-originalsampler">The sampler &quot;originalSampler&quot;</a></li>
+<li><a href="#using-the-json-configuration-to-customize-uniforms-and-samplers">Using the JSON configuration to customize uniforms and samplers</a><ul>
+<li><a href="#using-uniform-samplers">Using uniform samplers</a></li>
+<li><a href="#using-uniform-values">Using uniform values</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="using-the-post-processes-builder" class="anchor" href="#using-the-post-processes-builder"></a>Using the Post-Processes Builder</h1><h2><a name="creating-post-processes" class="anchor" href="#creating-post-processes"></a>Creating post-processes</h2><p>Tool provided for developers, you are able to develop custom post-processes, chained, using a JSON configuration.</p>
+<p>Features available:</p>
+<ul>
+<li>Develop GLSL code directly in the Editor</li>
+<li>Manage custom defines</li>
+<li>Manage custom uniforms (float, Vector2, Vector3, Vector4)</li>
+<li>Manage custom samplers (from textures and post-processes)</li>
+</ul>
+<p><img src="/img/extensions/Editor/PostProcessBuilder/OpenPostProcessBuilder.png" alt="OpenPostProcessBuilder"></p>
+<h2><a name="using-the-editor-to-preview-your-post-processes" class="anchor" href="#using-the-editor-to-preview-your-post-processes"></a>Using the editor to preview your post-processes</h2><p><img src="/img/extensions/Editor/PostProcessBuilder/PreviewPostProcessBuilder.png" alt="PreviewPostProcessBuilder"></p>
+<p>To preview the post-process you just developed, you can click the button &quot;<strong>Apply Chain</strong>&quot; on the toolbar, or directly push <strong>CTRL + B</strong>.</p>
+<p>Also, if you want to apply the chain on the current scene, just click the button &quot;<strong>Apply chain on scene</strong>&quot;</p>
+<h2><a name="showing-the-shader-errors" class="anchor" href="#showing-the-shader-errors"></a>Showing the shader errors</h2><p>When the shader is unable to compile, you can use the output console to see what is happening.</p>
+<p><img src="/img/extensions/Editor/PostProcessBuilder/ErrorPostProcessBuilder.png" alt="ErrorPostProcessBuilder"></p>
+<h2><a name="reordering-post-processes-chain" class="anchor" href="#reordering-post-processes-chain"></a>Reordering post-processes chain</h2><p>You can reorder the post-processes chain using the list. Just drag&#39;n&#39;drop the items by clicking on the line number</p>
+<p><img src="/img/extensions/Editor/PostProcessBuilder/ReorderPostProcessBuilder.png" alt="ReorderPostProcessBuilder"></p>
+<h2><a name="the-sampler-quotoriginalsamplerquot" class="anchor" href="#the-sampler-originalsampler"></a>The sampler &quot;originalSampler&quot;</h2><p>This sampler is automatically created by the Post-Process Builder Extension. It just contains the original color of the scene.</p>
+<h2><a name="using-the-json-configuration-to-customize-uniforms-and-samplers" class="anchor" href="#using-the-json-configuration-to-customize-uniforms-and-samplers"></a>Using the JSON configuration to customize uniforms and samplers</h2><p>In the tab &quot;<strong>Configuration</strong>&quot;, you can add custom uniforms and samplers. Here is the definition:</p>
+<pre><code>{
+  &quot;ratio&quot;: number, // The ratio of the post-process in ]0, 1]
+  &quot;defines&quot;:  string[], // Array of defines used when compiling the effect
+  &quot;samplers&quot;: { uniform: string, &quot;source&quot;: string }[], // Array of samplers 
+  &quot;uniforms&quot;: { name: string, value: number | number[] }[] // Array of uniforms
+}
+</code></pre><p>When opening the Post-Process Builder tool, a JSON configuration is provided as example.</p>
+<h3><a name="using-uniform-samplers" class="anchor" href="#using-uniform-samplers"></a>Using uniform samplers</h3><p>To define a new sampler just set its name in the GLSL code and its path.</p>
+<p>Using a texture already loaded:</p>
+<pre><code>&quot;samplers&quot;: [
+    { uniform: &quot;testSampler&quot;, &quot;source&quot;: &quot;myTexture.png&quot; },
+    ... etc.
+]
+</code></pre><p>Using a post-process you already created</p>
+<pre><code>&quot;samplers&quot;: [
+    { uniform: &quot;testSampler&quot;, &quot;source&quot;: &quot;myPostProcessName&quot; },
+    ... etc.
+]
+</code></pre><h3><a name="using-uniform-values" class="anchor" href="#using-uniform-values"></a>Using uniform values</h3><p>To define a new uniform value just set its name in the GLSL code and its value.</p>
+<p>Available value types are:</p>
+<ul>
+<li>number</li>
+<li>Vector2</li>
+<li>Vector3</li>
+<li>Vector4</li>
+</ul>
+<p>Already set values:</p>
+<ul>
+<li>screenSize: represents the size of the post-process in pixels</li>
+</ul>
+<p>Using a number:</p>
+<pre><code>&quot;uniforms&quot;: [
+    { name: &quot;exposure&quot;, &quot;value&quot;: 1.0 },
+    ... etc.
+]
+</code></pre><p>Using a vector (2d, 3d and 4d)</p>
+<pre><code>&quot;samplers&quot;: [
+    { name: &quot;size&quot;, &quot;value&quot;: [0, 1] },
+    ... etc.
+]
+</code></pre></div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

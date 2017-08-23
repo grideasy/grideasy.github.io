@@ -1,0 +1,196 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>The Debug Layer</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#playground-debug-layer">Playground Debug Layer</a><ul>
+<li><a href="#what-is-it">What Is It?</a></li>
+<li><a href="#tool-bar">Tool bar</a></li>
+<li><a href="#tab-bar-overview">Tab Bar Overview</a></li>
+<li><a href="#tab-bar-additional-details">Tab Bar Additional Details</a><ul>
+<li><a href="#scene">Scene</a></li>
+<li><a href="#textures">Textures</a></li>
+<li><a href="#mesh">Mesh</a></li>
+<li><a href="#light">Light</a></li>
+<li><a href="#gui">GUI</a></li>
+<li><a href="#material">Material</a></li>
+<li><a href="#camera">Camera</a></li>
+<li><a href="#audio">Audio</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="playground-debug-layer" class="anchor" href="#playground-debug-layer"></a>Playground Debug Layer</h1><h2><a name="what-is-it" class="anchor" href="#what-is-it"></a>What Is It?</h2><p>Before babylon.js version 3.0, the debug layer was a very simple HTML interface helping the developer to retrieve some basic data about his project : mesh list, mesh names, logs, stats...</p>
+<p>From version 3.0, this debug layer has been replaced by an complete inspector, that can be used to browser a lot of data:</p>
+<ul>
+<li>Scene attributes</li>
+<li>Statistics about performances</li>
+<li>Mesh list and attributes</li>
+<li>Material list</li>
+<li>... and much more</li>
+</ul>
+<p><img src="/img/overviews/debuglayer/debuglayer.jpg" alt="debug layer overview"></p>
+<p>Features are available from either the Tool Bar or the Tab Bar at the top of the debug layer</p>
+<h2><a name="tool-bar" class="anchor" href="#tool-bar"></a>Tool bar</h2><p><img src="/img/overviews/debuglayer/toolbar.jpg" alt="toolbar"></p>
+<p>Several tools are available, from left to right : </p>
+<ul>
+<li>Refresh the current tab - <em>As the debug layer can be created before some information are available, this tool is here to refresh displayed data according to the last version of the game scene</em></li>
+<li>Display mesh names - <em>Display mesh names on the screen</em></li>
+<li>Pick a mesh - <em>A click on a tool and a click on a 3D object display the mesh tab, with the selected mesh opened</em></li>
+<li>Popup mode - <em>Open the debug layer in a popup - Not available on Edge for security reasons</em></li>
+<li>Pause mode - <em>All properties are refreshed automatically every 200ms. This tool pauses and resumes the automatic property refresh.</em></li>
+<li>Close debug layer - <em>Self explainatory</em></li>
+</ul>
+<h2><a name="tab-bar-overview" class="anchor" href="#tab-bar-overview"></a>Tab Bar Overview</h2><p><img src="/img/overviews/debuglayer/tabbar.jpg" alt="tabbar"></p>
+<p>Each feature is represented on a tab: </p>
+<ul>
+<li>Mesh tab</li>
+<li>Scene tab</li>
+<li>Material tab</li>
+<li>...</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Top Panel</th>
+<th>Bottom panel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scene</td>
+<td>Display some information about the current scene</td>
+<td>Toggle render modes</td>
+<td>Display scene properties</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>Display console messages</td>
+<td>Hook all console.log messages</td>
+<td>Display all logs related to babylon.js (callled with BABYLON.Tools.Log)</td>
+</tr>
+<tr>
+<td>Stats</td>
+<td>Display statistics data</td>
+<td>Display stats</td>
+<td></td>
+</tr>
+<tr>
+<td>Textures</td>
+<td>Display all textures</td>
+<td>The list of textures available in the scene (images, render target textures, map textures, font textures and dynamic textures)</td>
+<td>The texture image. You can right-click - open in a new tab to have perfect dimensions</td>
+</tr>
+<tr>
+<td>Mesh</td>
+<td>Display mesh data</td>
+<td>The list of mesh, sorted by their names.</td>
+<td>The selected mesh properties</td>
+</tr>
+<tr>
+<td>Shader</td>
+<td>Display vertex and fragment shader</td>
+<td>A combo list with all custom shaders</td>
+<td>The vertex and fragment shaders</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>Display light data</td>
+<td>The list of light, sorted by their names.</td>
+<td>The selected light properties</td>
+</tr>
+<tr>
+<td>Material</td>
+<td>Display material data</td>
+<td>The list of material, sorted by their names.</td>
+<td>The selected material properties</td>
+</tr>
+<tr>
+<td>GUI</td>
+<td>Display GUI information. Only displayed if BABYLON.GUI is included in the project</td>
+<td>The list of BABYLON.GUI, sorted by their name</td>
+<td>The selected BABYLON.GUI primitive properties</td>
+</tr>
+<tr>
+<td>Physics</td>
+<td>Display physics data</td>
+<td>List of physics objects sorted by name</td>
+<td>The selected physics object properties</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>Display camera data</td>
+<td>The list of camera, sorted by their names.</td>
+<td>The selected camera properties</td>
+</tr>
+</tbody>
+</table>
+<p>| Audio | Display all sounds | The list of sounds, sorted by their names. | The selected sound properties |</p>
+<p>In some tabs, a search bar is available to look for a specific object.</p>
+<h2><a name="tab-bar-additional-details" class="anchor" href="#tab-bar-additional-details"></a>Tab Bar Additional Details</h2><h3><a name="scene" class="anchor" href="#scene"></a>Scene</h3><p>The displayed list of properties for the scene can updated manually by clicking on it, updating the new value and press &#39;Enter&#39;.</p>
+<p><img src="/img/overviews/debuglayer/scenedetails.jpg" alt="scene details"></p>
+<h3><a name="textures" class="anchor" href="#textures"></a>Textures</h3><p><img src="/img/overviews/debuglayer/texturetools.jpg" alt="Texture Tools"></p>
+<ul>
+<li>Displays the texture - <em>Works only for images textures</em></li>
+</ul>
+<h3><a name="mesh" class="anchor" href="#mesh"></a>Mesh</h3><p><img src="/img/overviews/debuglayer/meshtools.jpg" alt="mesh tools"></p>
+<ul>
+<li>Toggles display of children if present (&gt;v)</li>
+<li>Make visible/invisible the selected mesh (eye)</li>
+<li>Display/remove mesh axis (spanner)</li>
+<li>Display/remove mesh bounding box (box)</li>
+<li>Display the number of vertices of the mesh (i)</li>
+<li>Display mesh properties (name)</li>
+</ul>
+<p><img src="/img/overviews/debuglayer/meshdetails.jpg" alt="mesh details"></p>
+<p>As for a scene the displayed list of properties for a mesh can be updated manually.</p>
+<h3><a name="light" class="anchor" href="#light"></a>Light</h3><p><img src="/img/overviews/debuglayer/lighttools.jpg" alt="light tools"></p>
+<ul>
+<li>Switch on/off the light (eye)</li>
+<li>Display properites (name)</li>
+</ul>
+<h3><a name="gui" class="anchor" href="#gui"></a>GUI</h3><p><img src="/img/overviews/debuglayer/GUItools.jpg" alt="GUI tools"></p>
+<ul>
+<li>Toggles the display of children of the selected control (&gt; v)</li>
+<li>Display/hide the selected control (eye)</li>
+<li>Display the properties of the control</li>
+</ul>
+<h3><a name="material" class="anchor" href="#material"></a>Material</h3><p><img src="/img/overviews/debuglayer/materialdetails.jpg" alt="material tools"></p>
+<ul>
+<li>Displays material properties (name)</li>
+</ul>
+<p><img src="/img/overviews/debuglayer/materialtools.jpg" alt="material details"></p>
+<p>As for a scene the displayed list of properties for a material can be updated manually.</p>
+<ul>
+<li>Hover over magnifying glass to display the selected texture - <em>Works only for images textures</em></li>
+</ul>
+<h3><a name="camera" class="anchor" href="#camera"></a>Camera</h3><p><img src="/img/overviews/debuglayer/cameratools.jpg" alt="camera tools"></p>
+<ul>
+<li>Make the selected camera the active camera (camera)</li>
+<li>Displays camera properties (name)</li>
+</ul>
+<p>As for a scene the displayed list of properties for a camera can be updated manually.</p>
+<h3><a name="audio" class="anchor" href="#audio"></a>Audio</h3><p><img src="/img/overviews/debuglayer/soundtools.jpg" alt="sound tools"></p>
+<ul>
+<li>Play the selected sound (&#9658;) </li>
+<li>Display Audio Properties (name)</li>
+</ul>
+<p>As for a scene the displayed list of properties for a sound can be updated manually.</p>
+<h1><a name="further-reading" class="anchor" href="#further-reading"></a>Further Reading</h1><p><a href="/tutorials/debug_layer">The Debug Layer in Projects</a><br><a href="/tutorials/customize_debug_layer">Customizing the Debug Layer</a>  </p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

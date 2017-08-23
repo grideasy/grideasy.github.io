@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item active" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>extensions</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Canvas2D Rendering</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#rendering-chain">Rendering chain</a></li>
+<li><a href="#renderable-group2ds-cache-modes">Renderable Group2D&#39;s cache modes</a></li>
+<li><a href="#rendering-modes">Rendering Modes</a><ul>
+<li><a href="#shaped2d-based-primitives">Shaped2D based primitives</a></li>
+<li><a href="#sprite2d">Sprite2D</a></li>
+<li><a href="#text2d">Text2D</a></li>
+<li><a href="#remember">Remember!</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="canvas2d-rendering" class="anchor" href="#canvas2d-rendering"></a>Canvas2D Rendering</h1><p>You will find more complete information in the <a href="/extensions/Canvas2D_Overview_Architecture">Architecture Overview</a> page.</p>
+<h2><a name="rendering-chain" class="anchor" href="#rendering-chain"></a>Rendering chain</h2><p>In the Canvas2D library, each Canvas2D instance is also a Group2D and there&#39;re two kinds of Group2D:</p>
+<ol>
+<li>Renderable Group2D: the content of the Group2D is processed for rendering through this Group2D instance.</li>
+<li>Logical Group2D: the Group2D is acting more like a Container, a new frame of reference.</li>
+</ol>
+<p>The Canvas is always a Renderable Group2D, but it can contains children Group2D that are also renderable. </p>
+<p>For instance, this the case of when the TOPLEVELGROUPS caching mode is used: all direct children of the Canvas must be Group2D and they are all Renderable ones. In this mode there&#39;s a rendering chains, links are created between the child renderable groups and their parent (the Canvas).</p>
+<p> During the rendering process, it starts from the Canvas which basically does no real rendering and then recurse to its children: all Renderable Group2D, which will be process using the same code as the Canvas (it&#39;s more the Canvas which is using the Group2D&#39;s code) to perform the render of their content.</p>
+<h2><a name="renderable-group2d39s-cache-modes" class="anchor" href="#renderable-group2ds-cache-modes"></a>Renderable Group2D&#39;s cache modes</h2><p>When a Group2D is renderable you can define if its content will be drawn to the canvas at each render (then it&#39;s the DONTCACHE behavior) or if its content will be cached into a bitmap for its content to be rendered only when needed: this is the Cached Mode.</p>
+<p>There are many Caching Behavior for a Cached Renderable Group2D, if you want some information about it I strongly encourage you to read the appropriate section in the <a href="/extensions/Canvas2D_Overview_Architecture">Architecture Overview</a> page.</p>
+<h2><a name="rendering-modes" class="anchor" href="#rendering-modes"></a>Rendering Modes</h2><p>When Primitive are Rendered (either to the 3D Viewport or into a Texture when the content is Cached) their are split into three different groups, one per rendering mode</p>
+<ol>
+<li>Opaque: Primitives that have no transparency, no alpha test, no texture using alpha channel and an actualOpacity of 1.0 will rendered as Opaque.</li>
+<li>Alpha Test: Primitives are rendered with Alpha Test when they have a Texture with a used Alpha Channel but no Alpha Blending required. Basically the Alpha Channel is used to keep or discard a rendered pixel (typically Masking effect).</li>
+<li>Transparent: Primitives with an actualOpacity &lt; 1.0, with texture using their alpha channels are rendered with Alpha Blending on in the Transparent pass.</li>
+</ol>
+<p>What does this all mean for each Primitives type?</p>
+<h3><a name="shaped2d-based-primitives" class="anchor" href="#shaped2d-based-primitives"></a>Shaped2D based primitives</h3><p>All Shape2D primitives (Rectangle2D, Ellipse2D, Lines2D, ...) are following this rule:</p>
+<ul>
+<li>If <code>actualOpacity</code> is less than 1.0: it&#39;s Transparent</li>
+<li>If <code>actualOpacity</code> is 1.0: it&#39;s Opaque</li>
+</ul>
+<h3><a name="sprite2d" class="anchor" href="#sprite2d"></a>Sprite2D</h3><ul>
+<li>If <code>useAlphaFromTexture</code> is true and the texture has an Alpha Channel which is used (<code>BaseTexture.hasAlpha = true</code>) the Sprite2d will be rendered as a <strong>Transparent</strong>.</li>
+<li>if <code>useAlphaFromTexture</code> is false and the texture has an Alpha Channel which is used (<code>BaseTexture.hasAlpha = true</code>) the Sprite2d will be rendered as <strong>Alpha Test</strong>. </li>
+<li><p>If <code>useAlphaFromTexture</code> is false or if the Texture has no alpha or it&#39;s not used (<code>BaseTexture.hasAlpha = false</code>) the Sprite2d will be rendered as <strong>Opaque</strong></p>
+<h3><a name="text2d" class="anchor" href="#text2d"></a>Text2D</h3><ul>
+<li>If the Signed Distance Field mode is used on a FontTexture, then the <strong>Alpha Test</strong> mode is used.</li>
+<li>If a BitmapFontTexture or a FontTexture without Signed Distance Field is used, then the <strong>Transparent</strong> mode is used.</li>
+</ul>
+<h3><a name="remember" class="anchor" href="#remember"></a>Remember!</h3><p>Opaque and Alpha Test Primitives will be rendered in no particular order, which ensure a <strong>minimal Draw Call</strong> count.</p>
+<p>Transparent Primitives must be sorted by their Z order to be rendered from the further one to the nearest one. When the ANGLE_Instance Array Extension is supported: TransparentSegment are built and Transparent Segment is drawn into one Draw Call if it contains more than 5 primitives (otherwise it&#39;s more efficient to render with <em>x</em> Draw Calls for <em>x</em> instances).</p>
+<p>A TransparentSegment contains primitives instances that share the same Rendering Model (see the <a href="/extensions/Canvas2D_Overview_Architecture">Architecture Overview</a> for mode explanation) and which are consecutive in their Z order.</p>
+<p>To summarize: Transparent is rendered as efficiently as possible, but it still potentially waaaaaay more Draw Calls than Opaque or Alpha Test.</p>
+</li>
+</ul>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

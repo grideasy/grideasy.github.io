@@ -1,0 +1,136 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>PBR</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#pbrmetallicroughnessmaterial">PBRMetallicRoughnessMaterial</a></li>
+<li><a href="#pbrspecularglossinessmaterial">PBRSpecularGlossinessMaterial</a></li>
+<li><a href="#light-setup">Light setup</a></li>
+<li><a href="#env-map">Env map</a><ul>
+<li><a href="#creating-a-dds-environment-file-from-an-hdr-image">Creating a dds environment file from an HDR image</a></li>
+<li><a href="#using-a-pure-cube-texture">Using a pure cube texture</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="pbr-materials" class="anchor" href="#pbr-materials"></a>PBR Materials</h1><h2><a name="introduction" class="anchor" href="#introduction"></a>Introduction</h2><p>After following the <a href="/tutorials/Materials">standard material tutorial</a> and also excelling in <a href="https://www.eternalcoding.com/?p=303">unleashing its power</a>, it is a good time to go further and look at another emerging kind of materials called <strong>PBR Materials</strong> standing for <strong>Physically Based Rendering Materials</strong>.</p>
+<p>PBR rendering techniques aim to simulate <strong>real life lighting</strong>.</p>
+<p>PBR is a grouping of techniques; it does not force you to choose one in particular. Among others, we can cite some like: </p>
+<ul>
+<li><a href="http://blog.selfshadow.com/publications/s2012-shading-course/burley/s2012_pbs_disney_brdf_slides_v2.pdf">Disney</a></li>
+<li><a href="http://www.cs.utah.edu/~shirley/papers/jgtbrdf.pdf">Ashkimin Shirley BRDF</a></li>
+<li><a href="http://www.cs.utah.edu/~shirley/papers/facets.pdf">Ashkimin Shirley Microfacets</a>.</li>
+</ul>
+<p>In Babylon.js, PBR is done thanks to PBRMaterial. This material contains all features required by modern physically based rendering. For beginners we also created two additional materials to simplify your first contact with PBR. If you want to directly dig into the richer version, please have a read at <a href="/overviews/Physically_Based_Rendering_Master">Master the PBR</a> for more information on how to use the main material.</p>
+<p>You can find a complete demo of the PBRMaterial <a href="http://www.babylonjs.com/demos/pbrglossy/">here</a></p>
+<p><img src="/img/pbr.jpg" alt="pbrsample"></p>
+<p>The two additional materials are <code>PBRMetallicRoughnessMaterial</code> and <code>PBRSpecularGlossinessMaterial</code>. They both implement a specific convention based on GLTF specifications:</p>
+<ul>
+<li>Metallic roughness convention: <a href="https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#metallic-roughness-material">https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#metallic-roughness-material</a> (This is the recommended convention)</li>
+<li>Specular glossiness convention: <a href="https://github.com/KhronosGroup/glTF/blob/master/extensions/Khronos/KHR_materials_pbrSpecularGlossiness/README.md">https://github.com/KhronosGroup/glTF/blob/master/extensions/Khronos/KHR_materials_pbrSpecularGlossiness/README.md</a></li>
+</ul>
+<h2><a name="pbrmetallicroughnessmaterial" class="anchor" href="#pbrmetallicroughnessmaterial"></a>PBRMetallicRoughnessMaterial</h2><p>This material is based on five main values:</p>
+<ul>
+<li>baseColor / baseTexture: The base color has two different interpretations depending on the value of metalness. When the material is a metal, the base color is the specific measured reflectance value at normal incidence (F0). For a non-metal the base color represents the reflected diffuse color of the material.</li>
+<li>metallic: Specifies the metallic scalar value of the material. Can also be used to scale the metalness values of the metallic texture.</li>
+<li>roughness: Specifies the roughness scalar value of the material. Can also be used to scale the roughness values of the metallic texture.</li>
+<li>metallicRoughnessTexture: Texture containing both the metallic value in the B channel and the roughness value in the G channel to keep better precision. Ambient occlusion can also be saved in R channel.</li>
+<li>environmentTexture: texture</li>
+</ul>
+<p>As you are already really familiar with the Babylon Standard Material now we&#39;ll only try to address here the main differences and as the simplest setup; your only changes will be to instantiate a <strong>PBRMetallicRoughnessMaterial</strong> instead of a <strong>StandardMaterial</strong>.</p>
+<pre><code class="lang-javascript">var pbr = new BABYLON.PBRMetallicRoughnessMaterial(&quot;pbr&quot;, scene);
+</code></pre>
+<p>Apply this material to the object of your choice, e.g.:</p>
+<pre><code class="lang-javascript">sphere.material = pbr;
+</code></pre>
+<p>Now you can define the physical based values of your material to get a great look and feel:</p>
+<pre><code class="lang-javascript">pbr.baseColor = new BABYLON.Color3(1.000, 0.766, 0.336);
+pbr.metallic = 0;
+pbr.roughness = 1.0;
+</code></pre>
+<p>You can see a <a href="https://www.babylonjs-playground.com/#2FDQT5">live version here</a> - <i class="fa fa-eye" onclick="createIframe('2FDQT5', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>With this specific configuration, you can see that there is no reflection at all (metallic set to 0) and no specular (roughness set to 1).</p>
+<p>If we want to introduce more reflection we can just do the opposite:</p>
+<pre><code class="lang-javascript">pbr.baseColor = new BABYLON.Color3(1.000, 0.766, 0.336);
+pbr.metallic = 1.0;
+pbr.roughness = 0;
+</code></pre>
+<p>But in this case we need something to reflect. To define this environment, just add this line:</p>
+<pre><code class="lang-javascript">pbr.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(&quot;/textures/environment.dds&quot;, scene);
+</code></pre>
+<p>This call will create all required data used by the materials to produce final output.</p>
+<p>You can see a <a href="https://www.babylonjs-playground.com/#2FDQT5#11">live version here</a> - <i class="fa fa-eye" onclick="createIframe('2FDQT5#11', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>Perhaps a bit too reflective now, so let&#39;s add more roughness to give it a more golden look: </p>
+<pre><code class="lang-javascript">pbr.baseColor = new BABYLON.Color3(1.0, 0.766, 0.336);
+pbr.metallic = 1.0;
+pbr.roughness = 0.4;
+pbr.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(&quot;/textures/environment.dds&quot;, scene);
+</code></pre>
+<p>You can see a <a href="https://www.babylonjs-playground.com/#2FDQT5#12">live version here</a> - <i class="fa fa-eye" onclick="createIframe('2FDQT5#12', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>To get more precise over how metallic and roughness on your object, you can also specify the metallicRoughnessTexture:</p>
+<pre><code class="lang-javascript">pbr.baseColor = new BABYLON.Color3(1.0, 0.766, 0.336);
+pbr.metallic = 1.0; // set to 1 to only use it from the metallicRoughnessTexture
+pbr.roughness = 1.0; // set to 1 to only use it from the metallicRoughnessTexture
+pbr.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(&quot;/textures/environment.dds&quot;, scene);
+pbr.metallicRoughnessTexture = new BABYLON.Texture(&quot;/textures/mr.jpg&quot;, scene);
+</code></pre>
+<p>You can see a <a href="https://www.babylonjs-playground.com/#2FDQT5#13">live version here</a> - <i class="fa fa-eye" onclick="createIframe('2FDQT5#13', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="pbrspecularglossinessmaterial" class="anchor" href="#pbrspecularglossinessmaterial"></a>PBRSpecularGlossinessMaterial</h2><p>This material is based on five main values:</p>
+<ul>
+<li>diffuseColor / diffuseTexture: Specifies the diffuse color of the material.</li>
+<li>specularColor: Specifies the specular color of the material. This indicates how reflective is the material (none to mirror).</li>
+<li>glossiness: Specifies the glossiness of the material. This indicates &quot;how sharp is the reflection&quot;.</li>
+<li>specularGlossinessTexture: Specifies both the specular color RGB and the glossiness A of the material per pixels.</li>
+<li>environmentTexture: texture</li>
+</ul>
+<p>The setup of this material is comparable to the one used for PBRMetallicRoughnessMaterial:</p>
+<pre><code class="lang-javascript">var pbr = new BABYLON.PBRSpecularGlossinessMaterial(&quot;pbr&quot;, scene);
+pbr.diffuseColor = new BABYLON.Color3(1.0, 0.766, 0.336);
+pbr.specularColor = new BABYLON.Color3(1.0, 0.766, 0.336);
+pbr.glossiness = 0.4;
+pbr.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(&quot;/textures/environment.dds&quot;, scene);
+</code></pre>
+<p>You can see a <a href="https://www.babylonjs-playground.com/#Z1VL3V#5">live version here</a> - <i class="fa fa-eye" onclick="createIframe('Z1VL3V#5', this)"></i><br/><div class="iframeContainer"></div><br/>.</p>
+<p>The specularGlossinessTexture can then (like the metallicRoughnessTexture texture) be used to provide more control over specular and glossiness:</p>
+<pre><code class="lang-javascript">pbr.diffuseColor = new BABYLON.Color3(1.0, 0.766, 0.336);
+pbr.specularColor = new BABYLON.Color3(1.0, 1.0, 1.0);
+pbr.glossiness = 1.0;
+pbr.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(&quot;/textures/environment.dds&quot;, scene);
+pbr.specularGlossinessTexture = new BABYLON.Texture(&quot;/textures/sg.png&quot;, scene);
+</code></pre>
+<p>You can see a <a href="https://www.babylonjs-playground.com/#Z1VL3V#4">live version here</a> - <i class="fa fa-eye" onclick="createIframe('Z1VL3V#4', this)"></i><br/><div class="iframeContainer"></div><br/>.</p>
+<h2><a name="light-setup" class="anchor" href="#light-setup"></a>Light setup</h2><p>Dynamic lights are an important part of your PBR setup. You can decide to have no light and only use the environment texture to light your scene or you can decide to add additional light sources to enhance your rendering.</p>
+<p>By default light intensities are computed using the inverse squared distance from the source. This is a type of falloff that is pretty close from what light does in real life. So the further you are, the bigger your intensity will need to be to reach a surface.</p>
+<p>To even go further, the intensity you define on the lights follows physics notions:</p>
+<ul>
+<li>Point and Spot lights are defined in luminous intensity (candela, m/sr)</li>
+<li>Directionnal and Hemispheric lights in illuminance (nit, cd/m2)</li>
+</ul>
+<p>You&#39;ll find more info about how dynamic lighting works in the <a href="/overviews/Physically_Based_Rendering_Master#light-setup">Master the PBR</a></p>
+<h2><a name="env-map" class="anchor" href="#env-map"></a>Env map</h2><p>As you have seen before, you must provide a DDS file (containing a cube texture) to define a compatible environment. This is the highly recommended way to setup the environment texture.</p>
+<h3><a name="creating-a-dds-environment-file-from-an-hdr-image" class="anchor" href="#creating-a-dds-environment-file-from-an-hdr-image"></a>Creating a dds environment file from an HDR image</h3><p>We recommend using IBLBaker: <a href="https://github.com/derkreature/IBLBaker">https://github.com/derkreature/IBLBaker</a>
+After cloning the repo, you will be able to go to /bin64 folder and launch IBLBaker.exe.</p>
+<p>Now use the &quot;Load environment&quot; button to load a HDR image (Try one from <a href="http://hdrlib.com/">HDRLib</a> or <a href="https://github.com/sbtron/BabylonJS-glTFLoader/tree/master/src/images">there</a> as well)</p>
+<p>We recommend to play with the environment scale to define the correct brightness you want.
+You may also want to reduce the output size by setting the specular resolution to 128 or 256:</p>
+<p><img src="/img/iblbaker.jpg" alt="iblbaker"></p>
+<p>Once you are satisfied with the overall result, just click on &quot;save environment&quot; button and you are good to go! </p>
+<p><strong> Please do not forget to write full name with extension in order to make the save works correctly </strong></p>
+<h3><a name="using-a-pure-cube-texture" class="anchor" href="#using-a-pure-cube-texture"></a>Using a pure cube texture</h3><p>While using a dds cube texture is the best option, you may want to still rely on classic cube texture (mostly for size reason).
+So you can still do this as well:</p>
+<pre><code class="lang-javascript">pbr.environmentTexture = new BABYLON.CubeTexture(&quot;textures/TropicalSunnyDay&quot;, scene);
+</code></pre>
+<p>In this case you won&#39;t be able to get HDR rendering and some visual artifacts may appear (mostly when using glossiness or roughness).</p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

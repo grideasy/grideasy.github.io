@@ -1,0 +1,168 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Debug Layer features</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#tools-bar">Tools bar</a></li>
+<li><a href="#tab-bar">Tab bar</a></li>
+<li><a href="#specific-features">Specific features</a><ul>
+<li><a href="#manual-property-update">Manual property update</a></li>
+<li><a href="#tree-tools">Tree Tools</a><ul>
+<li><a href="#mesh">Mesh</a></li>
+<li><a href="#light">Light</a></li>
+<li><a href="#gui">GUI</a></li>
+<li><a href="#material">Material</a></li>
+<li><a href="#camera">Camera</a></li>
+<li><a href="#sounds">Sounds</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="debug-layer-features" class="anchor" href="#debug-layer-features"></a>Debug Layer features</h1><h1><a name="tools-bar" class="anchor" href="#tools-bar"></a>Tools bar</h1><p><img src="/img/overviews/debuglayer/toolbar.jpg" alt="toolbar"></p>
+<p>Several tools are available, from left to right : </p>
+<ul>
+<li>Refresh the current tab - <em>As the debug layer can be created before some information are available, this tool is here to refresh displayed data according to the last version of the game scene</em></li>
+<li>Display mesh names - <em>Display mesh names on the screen, using BABYLON.GUI</em></li>
+<li>Pick a mesh - <em>A click on a tool and a click on a 3D object display the mesh tab, with the selected mesh opened</em></li>
+<li>Popup mode - <em>Open the debug layer in a popup - Not available on Edge for security reasons</em></li>
+<li>Pause mode - <em>All properties are refreshed automatically every 200ms. This tool pauses and resumes the automatic property refresh.</em></li>
+<li>Close debug layer - <em>Self explainatory</em></li>
+</ul>
+<h1><a name="tab-bar" class="anchor" href="#tab-bar"></a>Tab bar</h1><p><img src="/img/overviews/debuglayer/tabbar.jpg" alt="tabbar"></p>
+<p>Each tab has an index (from 0 to 9, 0 is the Scene tab and 9 is the Camera tab) and correspond to a specific feature.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Index</th>
+<th>Description</th>
+<th>Top Panel</th>
+<th>Bottom panel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scene</td>
+<td>0</td>
+<td>Display some information about the current scene</td>
+<td>Toggle render modes</td>
+<td>Display scene properties</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>1</td>
+<td>Display console messages</td>
+<td>Hook all console.log messages</td>
+<td>Display all logs related to babylon.js (callled with BABYLON.Tools.Log)</td>
+</tr>
+<tr>
+<td>Stats</td>
+<td>2</td>
+<td>Display statistics data</td>
+<td>Display stats</td>
+<td></td>
+</tr>
+<tr>
+<td>Textures</td>
+<td>3</td>
+<td>Display all textures</td>
+<td>The list of textures available in the scene (images, render target textures, map textures, font textures and dynamic textures)</td>
+<td>The texture image. You can right-click - open in a new tab to have perfect dimensions</td>
+</tr>
+<tr>
+<td>GUI</td>
+<td>4</td>
+<td>Display GUI information. Only displayed if BABYLON.GUI is included in the project</td>
+<td>The list of BABYLON.GUI, sorted by their name</td>
+<td>The selected BABYLON.GUI primitive properties</td>
+</tr>
+<tr>
+<td>Mesh</td>
+<td>5</td>
+<td>Display mesh data</td>
+<td>The list of mesh, sorted by their names.</td>
+<td>The selected mesh properties</td>
+</tr>
+<tr>
+<td>Shader</td>
+<td>6</td>
+<td>Display vertex and fragment shader</td>
+<td>A combo list with all custom shaders</td>
+<td>The vertex and fragment shaders</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>7</td>
+<td>Display light data</td>
+<td>The list of light, sorted by their names.</td>
+<td>The selected light properties</td>
+</tr>
+<tr>
+<td>Material</td>
+<td>8</td>
+<td>Display material data</td>
+<td>The list of material, sorted by their names.</td>
+<td>The selected material properties</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>9</td>
+<td>Display camera data</td>
+<td>The list of camera, sorted by their names.</td>
+<td>The selected camera properties</td>
+</tr>
+<tr>
+<td>Sound</td>
+<td>10</td>
+<td>Display all sounds</td>
+<td>The list of sounds, sorted by their names.</td>
+<td>The selected sound properties</td>
+</tr>
+</tbody>
+</table>
+<p>In some tabs, a search bar is available to look for a specific object.</p>
+<h1><a name="specific-features" class="anchor" href="#specific-features"></a>Specific features</h1><h2><a name="manual-property-update" class="anchor" href="#manual-property-update"></a>Manual property update</h2><p>When a list of properties is displayed for an object (example for a mesh below), the developer can update manually these properties by clicking on it, updating the new value and press &#39;Enter&#39;.</p>
+<p><img src="/img/overviews/debuglayer/meshdetails.jpg" alt="mesh details"></p>
+<h2><a name="tree-tools" class="anchor" href="#tree-tools"></a>Tree Tools</h2><h3><a name="mesh" class="anchor" href="#mesh"></a>Mesh</h3><p><img src="/img/overviews/debuglayer/meshtools.jpg" alt="mesh tools"></p>
+<ul>
+<li>Make visible/invisible the selected mesh</li>
+<li>Display/remove mesh axis</li>
+<li>Display/remove mesh bounding box</li>
+<li><p>Display the number of vertices of the mesh</p>
+<h3><a name="light" class="anchor" href="#light"></a>Light</h3></li>
+</ul>
+<p><img src="/img/overviews/debuglayer/lighttools.jpg" alt="light tools"></p>
+<ul>
+<li>Switch on/off the light</li>
+</ul>
+<h3><a name="gui" class="anchor" href="#gui"></a>GUI</h3><p><img src="/img/overviews/debuglayer/GUItools.jpg" alt="GUI tools"></p>
+<ul>
+<li>Display all children of the selected primitive</li>
+<li>Display/hide the selected primitive</li>
+</ul>
+<h3><a name="material" class="anchor" href="#material"></a>Material</h3><p><img src="/img/overviews/debuglayer/materialtools.jpg" alt="material tools"></p>
+<ul>
+<li>Display the selected texture with the mouse cursor - <em>Works only for images textures</em></li>
+</ul>
+<h3><a name="camera" class="anchor" href="#camera"></a>Camera</h3><p><img src="/img/overviews/debuglayer/cameratools.jpg" alt="camera tools"></p>
+<ul>
+<li>Make the selected camera the active camera</li>
+</ul>
+<h3><a name="sounds" class="anchor" href="#sounds"></a>Sounds</h3><p><img src="/img/overviews/debuglayer/soundtools.jpg" alt="sound tools"></p>
+<ul>
+<li>Play the selected sound</li>
+</ul>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

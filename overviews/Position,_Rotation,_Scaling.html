@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Position, Rotation, Scaling</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#position-rotation-scaling">Position, Rotation, Scaling</a><ul>
+<li><a href="#frames-of-reference">Frames of Reference</a></li>
+<li><a href="#setting-methods">Setting Methods</a><ul>
+<li><a href="#position">Position</a></li>
+<li><a href="#position-using-local-axes">Position using Local Axes</a></li>
+<li><a href="#rotation">Rotation</a></li>
+<li><a href="#rotationquaternion">RotationQuaternion</a></li>
+</ul>
+</li>
+<li><a href="#transforming-methods">Transforming Methods</a><ul>
+<li><a href="#locally-translate">Locally Translate</a></li>
+</ul>
+</li>
+<li><a href="#translate">Translate</a><ul>
+<li><a href="#addrotation">AddRotation</a></li>
+</ul>
+</li>
+<li><a href="#rotate">Rotate</a></li>
+<li><a href="#change-of-origin">Change of Origin</a><ul>
+<li><a href="#parent">Parent</a></li>
+<li><a href="#pivot">Pivot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a><ul>
+<li><a href="#basic-l1">Basic - L1</a></li>
+<li><a href="#mid-level-l2">Mid Level - L2</a></li>
+<li><a href="#more-advanced-l3">More Advanced - L3</a></li>
+<li><a href="#gamelet">Gamelet</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h1><a name="position-rotation-scaling" class="anchor" href="#position-rotation-scaling"></a>Position, Rotation, Scaling</h1><p>Having created a mesh it is then possible to set its position, rotation and scale. Using the MeshBuilder method makes it less likely that scaling will be needed as dimensions in the x, y and z directions can be set during creation.</p>
+<p>For example to create a box with width 2, height 3 and depth 1 requires</p>
+<pre><code class="lang-javascript">var box = BABYLON.MeshBuilder.CreateBox(&quot;box&quot;, {width:2, height:3, depth:1}, scene);
+
+//or for the legacy method
+
+var box = BABYLON.Mesh.CreateBox(&quot;box&quot;, 1, scene);
+box.scaling.x = 2;
+box.scaling.y = 3;
+</code></pre>
+<p><a href="http://www.babylonjs-playground.com/#1VMQNH">Playground Example Scaling</a> - <i class="fa fa-eye" onclick="createIframe('1VMQNH', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>It is also possible to translate or rotate a mesh from its given position and rotation by a vector or an angle respectively.</p>
+<h2><a name="frames-of-reference" class="anchor" href="#frames-of-reference"></a>Frames of Reference</h2><p>There are two frames of reference one the <strong>world axes</strong> in <em>world space</em> and the other the <strong>local axes</strong> in <em>local space</em>. 
+When a mesh is created the <strong>world axes</strong> and the <strong>local axes</strong> coincide. As a mesh moves the <strong>local axes</strong> move with it. </p>
+<h2><a name="setting-methods" class="anchor" href="#setting-methods"></a>Setting Methods</h2><p><img src="/img/tutorials/Rotation%20and%20scaling/03.png" alt="Elements"></p>
+<p><a href="http://www.babylonjs-playground.com/?3">Playground Example - Positioned, Scaled, and Rotated Boxes</a></p>
+<p>Using these methods the position and orientation of the mesh is set by the values given. The initial position and orientation of a mesh when first created is (0, 0, 0). Position is given in terms of the <strong>world axes</strong> and rotation is computed using <strong>local axes</strong>. </p>
+<p>The order you assign the rotation property values doesn&#39;t matter (<code>.z</code> before <code>.x</code> for instance) since the final mesh rotation is always calculated in the  order - around Y first, then around X, finally around Z - using the <strong>local space</strong>.  If you think in terms of <strong>world space</strong> then the order used is - around Z first, then around X, finally around Y</p>
+<h3><a name="position" class="anchor" href="#position"></a>Position</h3><p>You can easily position any boxes in the scene, anywhere you like. For example:</p>
+<pre><code class="lang-javascript">//Positioning the boxes
+box1.position = new BABYLON.Vector3(-20, 0, 0);
+box2.position.x = -10; // or box2.position = new BABYLON.Vector3(-10,0,0);
+box3.position.y = 0;
+</code></pre>
+<p>A three dimension vector (x, y, z) in Babylon.js is created by using new BABYLON.Vector3(x, y, z) with assigned values for x, y and z.</p>
+<p><a href="http://www.babylonjs-playground.com/#35CPC">Playground Example Position</a> - <i class="fa fa-eye" onclick="createIframe('35CPC', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h3><a name="position-using-local-axes" class="anchor" href="#position-using-local-axes"></a>Position using Local Axes</h3><p>This method sets the position with reference to the origin of the <strong>world axes</strong> and the orientation of the <strong>local axes</strong>. </p>
+<pre><code class="lang-javascript">mesh.setPositionWithLocalVector(new BABYLON.Vector3(x, y, z));
+</code></pre>
+<p><a href="https://www.babylonjs-playground.com/#EYZE4Q">Playground Example setPositionWithLocalVector</a> - <i class="fa fa-eye" onclick="createIframe('EYZE4Q', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p>In order to obtain the current position of the object in local space use</p>
+<pre><code class="lang-javascript">var localPosition = mesh.getPositionExpressedInLocalSpace();
+</code></pre>
+<h3><a name="rotation" class="anchor" href="#rotation"></a>Rotation</h3><p>All angles are in radians</p>
+<pre><code class="lang-javascript">//Rotate the box around the x axis
+box1.rotation.x = Math.PI/4; // or box1.rotation = new BABYLON.Vector3(Math.PI/4,0,0);
+
+//Rotate the box around the y axis
+box2.rotation.y = Math.PI/6;
+</code></pre>
+<p>In this case the vector (alpha, beta, gamma), where x = alpha, y = beta, z = gamma, means a rotation around x of alpha, around y of beta and around z of gamma.</p>
+<p><a href="http://www.babylonjs-playground.com/#YIT1S">Playground Example Rotation</a> - <i class="fa fa-eye" onclick="createIframe('YIT1S', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h3><a name="rotationquaternion" class="anchor" href="#rotationquaternion"></a>RotationQuaternion</h3><p>All angles are in radians</p>
+<p>A rotationQuaternion sets the orientation of a mesh by a rotation around a given axis. It is a four dimensional vector 0f the form (x, y, z, w). The most straight forward way to use a rotationQuaternion is as follows</p>
+<pre><code class="lang-javascript">var axis = new BABYLON.Vector3(1, 1, 1);
+var angle = Math.PI / 8;
+var quaternion = new BABYLON.Quaternion.RotationAxis(axis, angle);
+mesh.rotationQuaternion = quaternion;
+</code></pre>
+<p>The default for rotationQuaternion is <em>undefined</em> .  </p>
+<p><strong>Note</strong> : You MUST set and use rotationQuaternion when creating physics objects because physics engines rely only on them.</p>
+<p><a href="https://www.babylonjs-playground.com/#1ST43U#44">Playground Example rotationQuaternion</a> - <i class="fa fa-eye" onclick="createIframe('1ST43U#44', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="transforming-methods" class="anchor" href="#transforming-methods"></a>Transforming Methods</h2><p>The two transformations translate and rotate add a vector and a rotation, repectively to current position and orientations. Doing this with a sequence of translates or rotates accumulates on the mesh.</p>
+<p>In which space translation or rotation takes place can for some methods be specified.</p>
+<p>The <strong>world space</strong> is set using BABYLON.Space.WORLD</p>
+<p>The <strong>local space</strong> is set using BABYLON.Space.LOCAL</p>
+<h3><a name="locally-translate" class="anchor" href="#locally-translate"></a>Locally Translate</h3><p>To translate in local space you can use</p>
+<pre><code class="lang-javascript">mesh.locallyTranslate(new BABYLON.Vector3(x, y, z));
+</code></pre>
+<p><a href="https://www.babylonjs-playground.com/#EYZE4Q#1">Playground Example locallyTranslate</a> - <i class="fa fa-eye" onclick="createIframe('EYZE4Q#1', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="translate" class="anchor" href="#translate"></a>Translate</h2><p>To translate a mesh a direction, distance and space need to be specified. </p>
+<pre><code class="lang-javascript">pilot.translate(BABYLON.Axis.Y, 2, BABYLON.Space.WORLD);
+
+pilot.translate(new BABYLON.Vector3(-1, 3, -2), 3, BABYLON.Space.LOCAL);
+</code></pre>
+<p><a href="http://www.babylonjs-playground.com/#1JLGFP">Playground Example - Translate</a> - <i class="fa fa-eye" onclick="createIframe('1JLGFP', this)"></i><br/><div class="iframeContainer"></div><br/> </p>
+<h3><a name="addrotation" class="anchor" href="#addrotation"></a>AddRotation</h3><p>A simple and straight forward way to sequence rotations in the order you wish in <strong>local space</strong> only .</p>
+<pre><code class="lang-javascript">mesh.addRotation(Math.PI/2, 0, 0).addRotation(0, Math.PI/4, 0).addRotation(0, 0, Math.PI/6, 0);
+</code></pre>
+<p>Whatever the current rotation of the mesh this will rotate it further first around the <em>local X axis</em>, followed by a rotation around the <em>local Y axis</em> followed by a rotation around the <em>local Z axis</em>.</p>
+<p>In the first of the following two playgrounds the sequence of boxes shows the result of applying a rotation around the <em>local Z axis</em>, followed by a rotation around the <em>local Y axis</em> followed by a rotation around the <em>local X axis</em>. The second example shows how addRotation can be used to add wheels to a car body.</p>
+<p><a href="http://www.babylonjs-playground.com/#1PON40#8">Playground Example - Addition of Rotations</a> - <i class="fa fa-eye" onclick="createIframe('1PON40#8', this)"></i><br/><div class="iframeContainer"></div><br/><br><a href="http://www.babylonjs-playground.com/#1PON40#12">Playground Example - Wheels</a> - <i class="fa fa-eye" onclick="createIframe('1PON40#12', this)"></i><br/><div class="iframeContainer"></div><br/> Author <a href="http://jerome.bousquie.fr/BJS/demos/">Jerome Bousquie</a></p>
+<h2><a name="rotate" class="anchor" href="#rotate"></a>Rotate</h2><p>To rotate a mesh an axis, angle and the space specified are needed. The axis is given as any vector(x, y, z) and this is taken as the line passing through the origin of the local axes.  In other words the mesh spins at its current position.</p>
+<p>For convenience unit vectors in the positive directions of the x, y and z axes are pre-defined as the constants BABYLON.Axis.X, BABYLON.Axis.Y and BABYLON.Axis.Z respectively.</p>
+<pre><code class="lang-javascript">pilot.rotate(BABYLON.Axis.Y, Math.PI / 2, BABYLON.Space.WORLD);
+
+pilot.rotate(new BABYLON.Vector3(-1, 3, -10), 7 * Math.PI / 12, BABYLON.Space.LOCAL);
+</code></pre>
+<p><a href="http://www.babylonjs-playground.com/#1JLGFP#3">Playground Example - Rotate</a> - <i class="fa fa-eye" onclick="createIframe('1JLGFP#3', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h2><a name="change-of-origin" class="anchor" href="#change-of-origin"></a>Change of Origin</h2><p>Should you wish to position, rotate or scale a mesh about a point other than its own <em>local origin</em> then this can be done either using a parent or a pivot. More information in Further Reading.</p>
+<h3><a name="parent" class="anchor" href="#parent"></a>Parent</h3><p>Assigning a mesh a parent changes the <strong>world space</strong> for its children. Any change in position, orientation or scale of the parent will be applied to its children. Setting the position, rotation or scaling of a child will be done using the <strong>local space</strong> of the parent as the child&#39;s <strong>world space</strong>. </p>
+<pre><code class="lang-javascript">childMesh.parent = parentMesh;
+</code></pre>
+<p><a href="https://www.babylonjs-playground.com/#1JLGFP#7">Playground Example Change of Origin Parent</a> - <i class="fa fa-eye" onclick="createIframe('1JLGFP#7', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<p><strong>Note</strong> : Parent-child hierarchies are evaluated on every frame. So any position, rotation and scaling transformations made to the parent prior to assigning it to children will also be applied to the children when the parent is assigned. It usually makes sense not to rotate or move a child until after you&#39;ve assigned it to the parent.</p>
+<h3><a name="pivot" class="anchor" href="#pivot"></a>Pivot</h3><p>It is also possible to change the center of rotation by setting a pivot point.  </p>
+<p><a href="https://www.babylonjs-playground.com/#1JLGFP#19">Playground Example Change of Origin Pivot</a> - <i class="fa fa-eye" onclick="createIframe('1JLGFP#19', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h1><a name="further-reading" class="anchor" href="#further-reading"></a>Further Reading</h1><h2><a name="basic-l1" class="anchor" href="#basic-l1"></a>Basic - L1</h2><p><a href="/babylon101/Position">Positions, rotations, scaling 101</a><br><a href="/tutorials/Axis">Rotation Around an Axis</a></p>
+<h2><a name="mid-level-l2" class="anchor" href="#mid-level-l2"></a>Mid Level - L2</h2><p><a href="/tutorials/Position,_Rotate,_Translate_and_Spaces">Position, Rotate, Translate and Spaces</a></p>
+<h2><a name="more-advanced-l3" class="anchor" href="#more-advanced-l3"></a>More Advanced - L3</h2><p><a href="/tutorials/Rotate">Translate and Rotate in Detail</a><br><a href="/tutorials/Pivots">Using a Pivot</a><br><a href="/tutorials/Pivot">Rotation Around an Axis Through a Pivot</a><br><a href="/tutorials/Euler_Angles">Euler Angles and Quaternions</a><br><a href="/tutorials/Applying_Rotations">Applying Rotation Conventions</a><br><a href="/tutorials/Rotation_Target">Aligning Rotation to Target</a><br><a href="/tutorials/Frame_Of_Reference">Frame of Reference</a><br><a href="/tutorials/Baking_Transformations">Baking Transformations</a><br><a href="/tutorials/In-Browser_Mesh_Simplification">In-Browser Mesh Simplification (Auto-LOD)</a>  </p>
+<h2><a name="gamelet" class="anchor" href="#gamelet"></a>Gamelet</h2><p><a href="/samples/Car_Path">A Simple Car Following a Path</a>  </p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>

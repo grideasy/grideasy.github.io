@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BabylonJS Documentation</title><link rel="shortcut icon" href="http://www.babylonjs.com/img/favicon/favicon.ico"><link rel="apple-touch-icon" sizes="57x57" href="http://www.babylonjs.com/img/favicon/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://www.babylonjs.com/img/favicon/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://www.babylonjs.com/img/favicon/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://www.babylonjs.com/img/favicon/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://www.babylonjs.com/img/favicon/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://www.babylonjs.com/img/favicon/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://www.babylonjs.com/img/favicon/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://www.babylonjs.com/img/favicon/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://www.babylonjs.com/img/favicon/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="http://www.babylonjs.com/img/favicon/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="http://www.babylonjs.com/img/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="http://www.babylonjs.com/img/favicon/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="http://www.babylonjs.com/img/favicon/favicon-16x16.png"><link rel="manifest" href="http://www.babylonjs.com/img/favicon/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="http://www.babylonjs.com/img/favicon/ms-icon-144x144.png"><meta name="msapplication-config" content="http://www.babylonjs.com/img/favicon/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" href="/css/libs/slideout.css"><link rel="stylesheet" href="/css/libs/highlight/github.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.3/css/perfect-scrollbar.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css"></head><body><nav id="menu"></nav><nav class="nav-main"><!-- Hamburger menu : displayed only in small screens--><i class="fa fa-bars" id="mobilemenu"></i><!-- this button only shows on mobile version of a "class" page--><div class="banner"><div class="menu"><div class="do-not-hover item"><a href="http://www.babylonjs.com">Babylon.js                    </a></div><div class="do-not-hover" id="home"><a href="/">DOCUMENTATION</a></div><div class="item" id="whatsnew"><a href="/whats-new">What's new</a></div><div class="item active" id="overview"><a href="/overviews">Overviews       </a></div><div class="item" id="babylon101"><a href="/babylon101">Babylon 101</a></div><div class="item" id="tutorials"><a href="/tutorials">Tutorials</a></div><div class="item" id="porters"><a href="/porters">porters</a></div><div class="item" id="extensions"><a href="/extensions">Extensions</a></div><div class="item" id="extensions"><a href="/samples">Samples        </a></div><div class="item" id="classes"><a href="/classes">Classes</a></div><div class="item" id="playground"><a href="/playground">Playground             </a></div></div><div class="more"><div class="searchbar"><form method="get" action="/search"><input type="text" name="q" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></form></div></div></div></nav><div id="wrapper"><div class="statics-banner"><h1>overviews</h1></div><div class="horizontal-separator"></div><div class="static-content"><h1>Behaviors</h1><br><div class="contentTable"><div class="tocHeader"><span class="tocTitle"><i class="tocIcon fa fa-book"></i>Table of contents</span><span class="tocToggle"><i class="fa fa-arrow-up"></i></span></div><div class="tocContent"><ul>
+<li><a href="#general">General</a></li>
+<li><a href="#camera-behaviors">Camera behaviors</a><ul>
+<li><a href="#bouncing-behavior">Bouncing behavior</a></li>
+<li><a href="#autorotation-behavior">AutoRotation behavior</a></li>
+<li><a href="#framingbehavior-behavior">FramingBehavior behavior</a></li>
+</ul>
+</li>
+</ul>
+</div></div><div id="staticContent"><h2><a name="introduction" class="anchor" href="#introduction"></a>Introduction</h2><p>Babylon.js v3.1 introduced a new component based tools: the behaviors.
+A behavior is a simple class that can be attached to a node where it will provide a specific set of features. Features will be triggered by defined events. </p>
+<h2><a name="general" class="anchor" href="#general"></a>General</h2><p>A behavior is defined by the following interface:</p>
+<ul>
+<li><code>name</code>: Return the name of the behavior</li>
+<li><code>attach(node)</code>: This function will be called when a behavior is attached to a node. This is where the behavior will hook into useful events</li>
+<li><code>detach(node)</code>: This function will be called when a behavior is detached from a node. The behavior must clear any associated resources and unhook all events</li>
+</ul>
+<p>If behaviors rely on animation, the following <strong>static</strong> properties will be available:</p>
+<ul>
+<li><code>EasingFunction</code>: Define the easing function used animations</li>
+<li><code>EasingMode</code>: Define the easing mode used by animations</li>
+</ul>
+<p>You can add behaviors to node objects (lights, cameras and meshes). Every node provides the following entry points:</p>
+<ul>
+<li><code>addBehavior(behavior)</code>: Use this function to attach a behavior to a given node</li>
+<li><code>removeBehavior(behavior)</code>: Use this function to detach a behavior from a node</li>
+<li><code>getBehaviorByName(name)</code>: Return a behavior with the given name or null if not found</li>
+<li><code>behaviors</code>: This read-only property returns the list of behaviors associated with the node</li>
+</ul>
+<p>Most of the time, behaviors are designed to deal with a specific kind of nodes. 
+Let&#39;s have a look at the list of behaviors available in babylon.js core.</p>
+<h2><a name="camera-behaviors" class="anchor" href="#camera-behaviors"></a>Camera behaviors</h2><h3><a name="bouncing-behavior" class="anchor" href="#bouncing-behavior"></a>Bouncing behavior</h3><p>The bouncing behavior (<code>BABYLON.BouncingBehavior</code>) is designed to produce a small bouncing effect when an <strong>ArcRotateCamera</strong> reaches the lowerRadiusLimit or the upperRadiusLimit.</p>
+<p>The bouncing behavior can be configured using the following properties:</p>
+<ul>
+<li><code>transitionDuration</code>: Define the duration of the animation, in milliseconds. By default the value is set to 450ms</li>
+<li><code>lowerRadiusTransitionRange</code>: Define the length of the distance animated by the transition when lower radius is reached. By default the value is set to 2</li>
+<li><code>upperRadiusTransitionRange</code>: Define the length of the distance animated by the transition when upper radius is reached. By default the value is set to -2</li>
+<li><code>autoTransitionRange</code>: Define a value indicating if the lowerRadiusTransitionRange and upperRadiusTransitionRange are defined automatically. Transition ranges will be set to 5% of the bounding box diagonal in world space</li>
+</ul>
+<p>You can easily turn on this behavior on an ArcRotateCamera with the following code:</p>
+<pre><code>camera.useBouncingBehavior = true;
+</code></pre><p>You can find a live demo here: <a href="https://www.babylonjs-playground.com/#6FBD14">https://www.babylonjs-playground.com/#6FBD14</a> - <i class="fa fa-eye" onclick="createIframe('6FBD14', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h3><a name="autorotation-behavior" class="anchor" href="#autorotation-behavior"></a>AutoRotation behavior</h3><p>The autoRotation behavior (<code>BABYLON.AutoRotationBehavior</code>) is designed to create a smooth rotation of an <strong>ArcRotateCamera</strong> when there is no user interaction.</p>
+<p>This behavior can be configured with the following properties:</p>
+<ul>
+<li><code>idleRotationSpeed</code>: Speed at which the camera rotates around the mesh</li>
+<li><code>idleRotationWaitTime</code>: Time (in milliseconds) to wait after user interaction before the camera starts rotating</li>
+<li><code>idleRotationSpinupTime</code>: Time (milliseconds) to take to spin up to the full idle rotation speed</li>
+<li><code>zoomStopsAnimation</code>: Flag that indicates if user zooming should stop animation</li>
+</ul>
+<p>You can easily turn on this behavior on an ArcRotateCamera with the following code:</p>
+<pre><code>camera.useAutoRotationBehavior = true;
+</code></pre><p>You can find a live demo here: <a href="https://www.babylonjs-playground.com/#6FBD14#1">https://www.babylonjs-playground.com/#6FBD14#1</a> - <i class="fa fa-eye" onclick="createIframe('6FBD14#1', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+<h3><a name="framingbehavior-behavior" class="anchor" href="#framingbehavior-behavior"></a>FramingBehavior behavior</h3><p>The framing behavior (<code>BABYLON.FramingBehavior</code>) is designed to automatically position an <strong>ArcRotateCamera</strong> when its target is set to a mesh.
+It is also useful if you want to prevent the camera to go under a virtual horizontal plane.</p>
+<p>This behavior can be configured with the following properties:</p>
+<ul>
+<li><code>mode</code>: The behavior can be configured to:<ul>
+<li><code>BABYLON.FramingBehavior.IgnoreBoundsSizeMode</code>: The camera can move all the way towards the mesh</li>
+<li><code>BABYLON.FramingBehavior.FitFrustumSidesMode</code>: The camera is not allowed to zoom closer to the mesh than the point at which the adjusted bounding sphere touches the frustum sides</li>
+</ul>
+</li>
+<li><code>radiusScale</code>: Define the scale applied to the radius (1 by default)</li>
+<li><code>positionY</code>: Define the Y offset of the primary mesh from the camera&#39;s focus (0 by default)</li>
+<li><code>defaultElevation</code>: Define the angle above/below the horizontal plane to return to when the return to default elevation idle behaviour is triggered, in radians (0.3 by default)</li>
+<li><code>elevationReturnTime</code>: Define the time (in milliseconds) taken to return to the default beta position (1500 by default). Negative value indicates camera should not return to default</li>
+<li><code>elevationReturnWaitTime</code>: Define the delay (in milliseconds) taken before the camera returns to the default beta position (1000 by default)</li>
+<li><code>zoomStopsAnimation</code>: Define if user zooming should stop animation</li>
+<li><code>framingTime</code>: Define the transition time when framing the mesh, in milliseconds (1500 by default)</li>
+</ul>
+<p>You can easily turn on this behavior on an ArcRotateCamera with the following code:</p>
+<pre><code>camera.useFramingBehavior = true;
+</code></pre><p>You can find a live demo here: <a href="https://www.babylonjs-playground.com/#6FBD14#2">https://www.babylonjs-playground.com/#6FBD14#2</a> - <i class="fa fa-eye" onclick="createIframe('6FBD14#2', this)"></i><br/><div class="iframeContainer"></div><br/></p>
+</div></div></div><footer class="footer"><div class="footer-item"><a href="http://www.html5gamedevs.com/forum/16-babylonjs" target="_blank"><i class="fa fa-html5"></i>    Forum</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Babylon.js" target="_blank"><i class="fa fa-github"></i>    Github</a></div><div class="footer-item"><a href="https://github.com/BabylonJS/Documentation" target="_blank"><i class="fa fa-code-fork"></i>    Contribute</a></div><div class="footer-item"><a href="https://www.netlify.com" target="_blank"><i class="fa fa-heart"></i> Deployed by netlify            </a></div></footer><script src="/js/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.9/slideout.min.js"></script><script src="/js/index.js"></script><script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-66146410-1', 'auto');
+ga('send', 'pageview');</script><!-- HIGHLIGHT JS--><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><script src="/js/static.js"></script><script>$('code').each(function(){
+    $(this).text($(this).text().replace(/&nbsp;/gi, ''));
+});
+hljs.initHighlightingOnLoad();</script></body></html>
